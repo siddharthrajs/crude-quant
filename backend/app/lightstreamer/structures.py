@@ -133,6 +133,37 @@ def build_dfly_structures(records: list[dict]) -> list[Structure]:
                 product=product,
                 kind="dfly",
             ))
+    structures.extend(_build_dfly_from_spreads(records))
+    return structures
+
+
+def _build_dfly_from_spreads(records: list[dict]) -> list[Structure]:
+    """For products the feed quotes no flies for, one double-fly per run of three adjacent 1-month spreads.
+
+    DFly(T) = Fly(T) - Fly(T+1) = Spread(T) - 2*Spread(T+1) + Spread(T+2). A structure's legs have to be
+    feed items, not other structures, so it is built straight off the spreads. Labelled like the
+    quoted-fly double-flies: "<front fly>/<next fly> DFly", each fly named for its front spread.
+    """
+    quoted_flies = {r["product"] for r in records if r["instrument_type"] == "FLY"}
+    by_product: dict[str, list[dict]] = {}
+    for record in records:
+        if record["instrument_type"] == "1MS" and record["product"] not in quoted_flies:
+            by_product.setdefault(record["product"], []).append(record)
+
+    structures = []
+    for product, spreads in by_product.items():
+        spreads.sort(key=lambda r: r["sort_key"])
+        for a, b, c in zip(spreads, spreads[1:], spreads[2:]):
+            # Only a gapless run (T-T+1, T+1-T+2, T+2-T+3) makes a double-fly.
+            if a["tenor"].split("-")[1] != b["tenor"].split("-")[0] or b["tenor"].split("-")[1] != c["tenor"].split("-")[0]:
+                continue
+            structures.append(Structure(
+                id=f"{product}:DFLY:{a['tenor']}-{b['tenor']}-{c['tenor']}",
+                label=f"{a['label']}/{b['label']} DFly",
+                legs=[Leg(item=a["item"], weight=1.0), Leg(item=b["item"], weight=-2.0), Leg(item=c["item"], weight=1.0)],
+                product=product,
+                kind="dfly",
+            ))
     return structures
 
 
