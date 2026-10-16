@@ -216,6 +216,7 @@ export function CurvesTab() {
             clocks={[
               { label: "London", zone: "Europe/London" },
               { label: "New York", zone: "America/New_York" },
+              { label: "IST", zone: "Asia/Kolkata" },
             ]}
             left={<FeedHealth compact feeds={feeds} />}
           />

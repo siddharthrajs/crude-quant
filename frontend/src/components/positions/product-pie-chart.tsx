@@ -14,12 +14,12 @@ const CHART_COLOR_VARS = Array.from({ length: 8 }, (_, i) => `var(--chart-${i + 
 
 /** Open exposure by product, as a shadcn/Recharts donut -- direct-labeled via the chart's own legend
  * so identity never rides on color alone. */
-export function ProductPieChart({ slices }: { slices: ProductSlice[] }) {
+export function ProductPieChart({ slices, colors = CHART_COLOR_VARS }: { slices: ProductSlice[]; colors?: string[] }) {
   const total = slices.reduce((sum, s) => sum + s.lots, 0)
 
   const config = useMemo<ChartConfig>(
-    () => Object.fromEntries(slices.map((s, i) => [s.product, { label: s.product, color: CHART_COLOR_VARS[i % 8] }])),
-    [slices],
+    () => Object.fromEntries(slices.map((s, i) => [s.product, { label: s.product, color: colors[i % colors.length] }])),
+    [slices, colors],
   )
 
   if (slices.length === 0 || total === 0) {
@@ -39,7 +39,7 @@ export function ProductPieChart({ slices }: { slices: ProductSlice[] }) {
             is what makes the arc render at all, not just a style choice). */}
         <Pie data={slices} dataKey="lots" nameKey="product" innerRadius="55%" outerRadius="85%" startAngle={0} endAngle={359.999} strokeWidth={2} stroke="var(--card)" isAnimationActive={false}>
           {slices.map((s, i) => (
-            <Cell key={s.product} fill={CHART_COLOR_VARS[i % 8]} />
+            <Cell key={s.product} fill={colors[i % colors.length]} />
           ))}
         </Pie>
         <ChartLegend content={<ChartLegendContent nameKey="product" />} />

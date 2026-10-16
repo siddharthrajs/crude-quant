@@ -55,6 +55,27 @@ export interface JournalEntry {
   closed_at: string
 }
 
+/** One entry (partial fill) netted into an open position's size and average price. */
+export interface PositionFill {
+  id: number
+  size: number
+  price: number
+  created_at: string
+}
+
+/** A fill as submitted by the editor: no `id` = a new fill; existing fills left out are deleted. */
+export interface FillEditInput {
+  id: number | null
+  size: number
+  price: number
+}
+
+export interface PositionEditInput {
+  fills: FillEditInput[]
+  stop_loss: number | null
+  take_profit: number | null
+}
+
 export interface PositionCreateInput {
   product: string
   strategy_code: string
@@ -96,6 +117,18 @@ export async function createPosition(token: string, body: PositionCreateInput, m
   return res.json() as Promise<Position>
 }
 
+export async function getPositionFills(token: string, id: number, mode: BookMode = "live"): Promise<PositionFill[]> {
+  const res = await fetch(`${basePath(mode)}/${id}/fills`, { headers: authHeaders(token) })
+  if (!res.ok) return positionsError(res)
+  return res.json() as Promise<PositionFill[]>
+}
+
+export async function editPosition(token: string, id: number, body: PositionEditInput, mode: BookMode = "live"): Promise<Position> {
+  const res = await fetch(`${basePath(mode)}/${id}`, { method: "PUT", headers: authHeaders(token), body: JSON.stringify(body) })
+  if (!res.ok) return positionsError(res)
+  return res.json() as Promise<Position>
+}
+
 export async function closePosition(token: string, id: number, exitPrice: number, size?: number, mode: BookMode = "live"): Promise<Position> {
   const res = await fetch(`${basePath(mode)}/${id}/close`, {
     method: "POST",
@@ -108,6 +141,28 @@ export async function closePosition(token: string, id: number, exitPrice: number
 
 export async function getJournal(token: string, scope: BookScope, mode: BookMode = "live"): Promise<JournalEntry[]> {
   const res = await fetch(`${basePath(mode)}/journal?scope=${scope}`, { headers: authHeaders(token) })
+  if (!res.ok) return positionsError(res)
+  return res.json() as Promise<JournalEntry[]>
+}
+
+export interface TeamMember {
+  id: number
+  username: string
+  team_id: number
+}
+
+/** Manager-only: the members whose journals the manager can view. */
+export async function getTeamMembers(token: string): Promise<TeamMember[]> {
+  const res = await fetch(`${API_URL}/api/manager/members`, { headers: authHeaders(token) })
+  if (!res.ok) return positionsError(res)
+  return res.json() as Promise<TeamMember[]>
+}
+
+/** Manager-only: one member's closed trades (their personal book), or every member's combined when `userId` is null. */
+export async function getMemberJournal(token: string, userId: number | null, mode: BookMode = "live"): Promise<JournalEntry[]> {
+  const params = new URLSearchParams({ mode })
+  if (userId !== null) params.set("user_id", String(userId))
+  const res = await fetch(`${API_URL}/api/manager/journal?${params}`, { headers: authHeaders(token) })
   if (!res.ok) return positionsError(res)
   return res.json() as Promise<JournalEntry[]>
 }

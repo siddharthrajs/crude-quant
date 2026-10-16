@@ -1,13 +1,18 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordRequestForm
-from sqlalchemy import select
+from sqlalchemy import delete, or_, select, update
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.auth.dependencies import get_current_user, require_superuser
 from app.auth.security import create_access_token, hash_password, verify_password
 from app.db.base import get_db
-from app.db.models import Team, User
-from app.schemas import AccountUpdateIn, AccountUpdateOut, TokenOut, UserCreateIn, UserOut
+from app.db.models import (
+    Book, PaperPosition, PaperPositionFill, PaperTradeJournalEntry, Position, PositionFill, Team,
+    TradeJournalEntry, User, WatchlistItem,
+)
+from app.schemas import (
+    AccountUpdateIn, AccountUpdateOut, TokenOut, UserCreateIn, UserDeleteIn, UserDeleteOut, UserOut,
+)
 
 router = APIRouter(prefix="/api/auth", tags=["auth"])
 
@@ -61,6 +66,45 @@ async def update_me(
     return AccountUpdateOut(user=UserOut.model_validate(user), access_token=token)
 
 
+@router.get("/users", response_model=list[UserOut])
+async def list_users(
+    db: AsyncSession = Depends(get_db),
+    _admin: User = Depends(require_superuser),
+) -> list[User]:
+    return list((await db.execute(select(User).order_by(User.username))).scalars().all())
+
+
+@router.post("/users/delete", response_model=UserDeleteOut)
+async def delete_users(
+    body: UserDeleteIn,
+    db: AsyncSession = Depends(get_db),
+    admin: User = Depends(require_superuser),
+) -> UserDeleteOut:
+    """Permanently deletes the accounts and everything they own: positions, fills, journal entries,
+    watchlist items and personal books (live and paper)."""
+    ids = set(body.ids)
+    if admin.id in ids:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="You can't delete your own account")
+    found = set((await db.execute(select(User.id).where(User.id.in_(ids)))).scalars().all())
+    if found != ids:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Unknown user id(s): {sorted(ids - found)}")
+
+    for position, fill, journal in (
+        (Position, PositionFill, TradeJournalEntry),
+        (PaperPosition, PaperPositionFill, PaperTradeJournalEntry),
+    ):
+        owned = select(position.id).where(position.owner_id.in_(ids))
+        await db.execute(update(position).where(position.linked_position_id.in_(owned)).values(linked_position_id=None))
+        await db.execute(delete(fill).where(fill.position_id.in_(owned)))
+        await db.execute(delete(journal).where(or_(journal.owner_id.in_(ids), journal.position_id.in_(owned))))
+        await db.execute(delete(position).where(position.owner_id.in_(ids)))
+    await db.execute(delete(WatchlistItem).where(WatchlistItem.user_id.in_(ids)))
+    await db.execute(delete(Book).where(Book.kind == "personal", Book.user_id.in_(ids)))
+    await db.execute(delete(User).where(User.id.in_(ids)))
+    await db.commit()
+    return UserDeleteOut(deleted=len(ids))
+
+
 @router.post("/users", response_model=UserOut, status_code=status.HTTP_201_CREATED)
 async def create_user(
     body: UserCreateIn,
@@ -79,7 +123,8 @@ async def create_user(
         username=body.username,
         password_hash=hash_password(body.password),
         team_id=body.team_id,
-        is_superuser=body.is_superuser,
+        role=body.role,
+        is_superuser=body.role == "admin",
     )
     db.add(user)
     await db.commit()

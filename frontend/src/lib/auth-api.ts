@@ -8,8 +8,11 @@ export interface AuthUser {
   team_id: number
   is_active: boolean
   is_superuser: boolean
+  role: Role
   created_at: string
 }
+
+export type Role = "admin" | "manager" | "member"
 
 export interface Team {
   id: number
@@ -73,15 +76,32 @@ export async function createUser(
   username: string,
   password: string,
   teamId: number,
-  isSuperuser = false,
+  role: Role = "member",
 ): Promise<AuthUser> {
   const res = await fetch(`${API_URL}/api/auth/users`, {
     method: "POST",
     headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
-    body: JSON.stringify({ username, password, team_id: teamId, is_superuser: isSuperuser }),
+    body: JSON.stringify({ username, password, team_id: teamId, role }),
   })
   if (!res.ok) return authError(res)
   return res.json() as Promise<AuthUser>
+}
+
+/** Admin-only: every account. */
+export async function fetchUsers(token: string): Promise<AuthUser[]> {
+  const res = await fetch(`${API_URL}/api/auth/users`, { headers: { Authorization: `Bearer ${token}` } })
+  if (!res.ok) return authError(res)
+  return res.json() as Promise<AuthUser[]>
+}
+
+/** Admin-only: permanently deletes accounts and their trades. */
+export async function deleteUsers(token: string, ids: number[]): Promise<void> {
+  const res = await fetch(`${API_URL}/api/auth/users/delete`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+    body: JSON.stringify({ ids }),
+  })
+  if (!res.ok) return authError(res)
 }
 
 export async function fetchTeams(token: string): Promise<Team[]> {

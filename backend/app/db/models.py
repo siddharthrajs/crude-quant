@@ -26,6 +26,8 @@ class User(Base):
     password_hash: Mapped[str] = mapped_column(String(255), nullable=False)
     team_id: Mapped[int] = mapped_column(ForeignKey("teams.id"), nullable=False)
     is_active: Mapped[bool] = mapped_column(Boolean, nullable=False, default=True)
+    # "admin" | "manager" | "member". `is_superuser` is kept equal to (role == "admin").
+    role: Mapped[str] = mapped_column(String(16), nullable=False, default="member", server_default="member")
     is_superuser: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now(), nullable=False)
     updated_at: Mapped[datetime] = mapped_column(
@@ -142,6 +144,53 @@ class PaperTradeJournalEntry(Base):
     opened_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False)
     closed_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now(), nullable=False)
+
+
+class PositionFill(Base):
+    """One entry (partial fill) inside an open position; the position's size/average are their roll-up."""
+
+    __tablename__ = "position_fills"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    position_id: Mapped[int] = mapped_column(ForeignKey("positions.id"), index=True, nullable=False)
+    size: Mapped[int] = mapped_column(Integer, nullable=False)
+    price: Mapped[Decimal] = mapped_column(Numeric(18, 6), nullable=False)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now(), nullable=False)
+
+
+class PaperPositionFill(Base):
+    __tablename__ = "paper_position_fills"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    position_id: Mapped[int] = mapped_column(ForeignKey("paper_positions.id"), index=True, nullable=False)
+    size: Mapped[int] = mapped_column(Integer, nullable=False)
+    price: Mapped[Decimal] = mapped_column(Numeric(18, 6), nullable=False)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now(), nullable=False)
+
+
+class WatchlistItem(Base):
+    """A saved Seasonality combination: its weighted outright legs plus the base range (on price level) to watch.
+
+    `legs` is [{product, tenor, weight}] with the product named as instruments.json does (WTI / Brent / CLBZZ);
+    the Watchlist tab prices them live client-side. `legs_key` is a canonical string of the legs, so the same
+    combination cannot be saved twice by one user.
+    """
+
+    __tablename__ = "watchlist_items"
+    __table_args__ = (UniqueConstraint("user_id", "legs_key", name="uq_watchlist_items_user_id_legs_key"),)
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    user_id: Mapped[int] = mapped_column(ForeignKey("users.id"), index=True, nullable=False)
+    name: Mapped[str] = mapped_column(String(200), nullable=False)
+    legs: Mapped[list] = mapped_column(JSONB, nullable=False)
+    legs_key: Mapped[str] = mapped_column(String(400), nullable=False)
+    settings: Mapped[dict] = mapped_column(JSONB, nullable=False)
+    range: Mapped[dict] = mapped_column(JSONB, nullable=False)
+    range_as_of: Mapped[date | None] = mapped_column(Date, nullable=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now(), nullable=False)
+    updated_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), server_default=func.now(), onupdate=func.now(), nullable=False
+    )
 
 
 class Contract(Base):

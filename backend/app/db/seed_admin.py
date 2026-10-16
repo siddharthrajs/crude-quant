@@ -28,7 +28,9 @@ async def create_user(username: str, password: str, team_id: int, is_superuser: 
         if existing is not None:
             raise SystemExit(f"User '{username}' already exists (id={existing.id})")
 
-        user = User(username=username, password_hash=hash_password(password), team_id=team_id, is_superuser=is_superuser)
+        user = User(username=username, password_hash=hash_password(password), team_id=team_id,
+            role="admin" if is_superuser else "member", is_superuser=is_superuser,
+        )
         db.add(user)
         await db.commit()
         await db.refresh(user)

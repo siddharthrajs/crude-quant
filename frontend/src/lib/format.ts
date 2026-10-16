@@ -43,6 +43,9 @@ function isNil(v: Nullable): v is null | undefined {
 // One Intl.NumberFormat per locale and option set; construction is the expensive part.
 const formatters = new Map<string, Intl.NumberFormat>()
 
+/** True for a time a `Date` can hold: a finite number of milliseconds within 8.64e15 of the epoch either way. */
+export const isInstant = (ms: unknown): ms is number => Number.isFinite(ms) && Math.abs(ms as number) <= 8.64e15
+
 export function numberFormat(locale: string | undefined, options: Intl.NumberFormatOptions): Intl.NumberFormat {
   const key = `${locale ?? "en-US"}|${JSON.stringify(options)}`
   let nf = formatters.get(key)

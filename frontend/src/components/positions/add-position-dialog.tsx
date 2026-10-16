@@ -253,7 +253,7 @@ export function AddPositionDialog({ open, onOpenChange, instruments, customStruc
               <Label htmlFor="add-position-entry">Entry price</Label>
               <div className="flex gap-1.5">
                 <EntryPriceInput id="add-position-entry" value={entryPrice} onChange={setEntryPrice} />
-                <Button type="button" variant="outline" size="sm" disabled={livePrice === null} onClick={() => setEntryPrice(String(livePrice))}>
+                <Button type="button" variant="outline" size="sm" disabled={livePrice === null} onClick={() => setEntryPrice(livePrice === null ? "" : livePrice.toFixed(2))}>
                   Use live
                 </Button>
               </div>

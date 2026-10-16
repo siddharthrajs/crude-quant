@@ -23,6 +23,7 @@ import argparse
 import asyncio
 import csv
 import re
+from collections import Counter
 from dataclasses import dataclass, field
 from datetime import date, datetime, timezone
 from pathlib import Path
@@ -54,6 +55,7 @@ class ProductReport:
     files: list[FileReport] = field(default_factory=list)
     new_contracts: int = 0
     roots: set[str] = field(default_factory=set)
+    dropped_roots: dict[str, int] = field(default_factory=dict)
 
 
 def delivery_month(month_code: str, year_digits: str, bar_ts: datetime) -> date:
@@ -140,7 +142,13 @@ async def load_product(conn: asyncpg.Connection, folder: Path, dry_run: bool) ->
     files = sorted(folder.glob("*.csv"), key=lambda p: int(GENERIC_RE.search(p.stem).group(1)))
     parsed = [read_file(path, product, report) for path in files]
     if len(report.roots) > 1:
-        raise SystemExit(f"{product}: contract codes use more than one root {sorted(report.roots)}; refusing to guess")
+        # Spread files (WTCLCO) carry a few stray codes: mismatched legs such as WTCLH0-LCOJ0, or a
+        # different listing such as PWTCL-LCOM5. Only the dominant root is a clean same-month series.
+        counts = Counter(row[0][0] for _, rows, _ in parsed for row in rows)
+        keep = counts.most_common(1)[0][0]
+        report.dropped_roots = {root: n for root, n in counts.items() if root != keep}
+        report.roots = {keep}
+        parsed = [(g, [row for row in rows if row[0][0] == keep], fr) for g, rows, fr in parsed]
 
     keys = {row[0] for _, rows, _ in parsed for row in rows}
     if dry_run:
@@ -172,6 +180,8 @@ def print_report(report: ProductReport, dry_run: bool) -> None:
     print(f"\n{report.product}: {len(files)} files, contract root {''.join(report.roots) or '-'}")
     print(f"  contracts {'found' if dry_run else 'created'}: {report.new_contracts}")
     print(f"  rows read: {total('rows'):,}")
+    if report.dropped_roots:
+        print(f"  rows ignored (other contract roots): {sum(report.dropped_roots.values()):,}  {report.dropped_roots}")
     if not dry_run:
         print(f"  rows inserted: {total('inserted'):,}  (skipped as already present: {total('rows') - total('inserted'):,})")
     print(f"  blank volume (stored as 0): {total('blank_volume'):,}")

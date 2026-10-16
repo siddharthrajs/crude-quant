@@ -4,9 +4,10 @@ import { JournalAnalyticsPanel } from "@/components/journal/journal-analytics"
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog"
 import { AuditTrail } from "@/components/ui/audit-trail"
 import { Button } from "@/components/ui/button"
+import type { SortState } from "@/components/ui/data-grid"
 import { useAuth } from "@/hooks/use-auth"
 import { NULL_TOKEN, formatPrice, formatSignedUsd } from "@/lib/format"
-import { deleteJournalEntries, getJournal, type BookMode, type BookScope, type JournalEntry } from "@/lib/positions-api"
+import { deleteJournalEntries, getJournal, getMemberJournal, type BookMode, type BookScope, type JournalEntry } from "@/lib/positions-api"
 import { createRowStore, type RowId } from "@/lib/row-store"
 
 /** How the side pane prints a "changes" field's before/after value -- `price` and `realized_pnl`
@@ -20,7 +21,8 @@ function formatChangeValue(field: string, value: unknown): string {
 }
 
 function downloadCsv(csv: string, filename: string) {
-  const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" })
+  // The BOM makes Excel read the file as UTF-8 instead of guessing a legacy code page.
+  const blob = new Blob([String.fromCharCode(0xfeff), csv], { type: "text/csv;charset=utf-8;" })
   const url = URL.createObjectURL(blob)
   const a = document.createElement("a")
   a.href = url
@@ -31,6 +33,9 @@ function downloadCsv(csv: string, filename: string) {
 
 export interface JournalPanelProps {
   scope: BookScope
+  /** Manager view: show this member's journal (null = every member combined) instead of `scope`'s
+   * book, read-only -- no row selection, so nothing can be deleted. */
+  member?: { id: number | null }
   /** Whether this sub-tab is the one currently showing. The panel stays mounted when the user
    * switches away (see `journal-tab.tsx`), and closing a position happens from the separate
    * Positions tab, so a fetch on mount alone would miss every trade closed since -- refetch each
@@ -47,12 +52,14 @@ export interface JournalPanelProps {
  * checked and deleted from the journal (the record only -- the underlying closed position stays put);
  * everything else is read-only, since a trade otherwise lands here only via `POST
  * /api/positions/{id}/close`. */
-export function JournalPanel({ scope, active, label, mode = "live" }: JournalPanelProps) {
+export function JournalPanel({ scope, member, active, label, mode = "live" }: JournalPanelProps) {
+  const memberId = member ? member.id : undefined
   const { token } = useAuth()
   const [error, setError] = useState<string | null>(null)
   const [store] = useState(() => createRowStore<JournalGridRow>({ getRowId: (r) => r.id, lane: "ordered" }))
   const [columns] = useState(() => journalGridColumns())
   const [selection, setSelection] = useState<ReadonlySet<RowId>>(() => new Set())
+  const [sort, setSort] = useState<SortState>({ key: "opened_at", dir: "asc" })
   const [confirmOpen, setConfirmOpen] = useState(false)
   const [deleting, setDeleting] = useState(false)
   // Kept alongside the grid's row store -- the analytics panel reads the raw entries, the grid reads
@@ -61,13 +68,18 @@ export function JournalPanel({ scope, active, label, mode = "live" }: JournalPan
 
   useEffect(() => {
     if (!token || !active) return
-    getJournal(token, scope, mode)
+    const request = memberId !== undefined ? getMemberJournal(token, memberId, mode) : getJournal(token, scope, mode)
+    request
       .then((entries: JournalEntry[]) => {
-        store.applyDeltas({ upsert: entries.map(toJournalRow) })
+        // Replace rather than merge: a manager's view can lose rows (a member deleted an entry).
+        const fresh = new Set(entries.map((e) => String(e.id)))
+        const stale = store.getIds().filter((id) => !fresh.has(String(id)))
+        store.applyDeltas({ upsert: entries.map(toJournalRow), remove: stale })
         setEntries(entries)
+        setError(null)
       })
       .catch((err: unknown) => setError(err instanceof Error ? err.message : "Could not load the trade journal."))
-  }, [token, active, scope, mode, store])
+  }, [token, active, scope, memberId, mode, store])
 
   async function deleteSelected() {
     if (!token || selection.size === 0) return
@@ -127,10 +139,12 @@ export function JournalPanel({ scope, active, label, mode = "live" }: JournalPan
             columns={columns}
             time={formatDateTime}
             value={formatChangeValue}
-            selectionColumn
+            selectionColumn={memberId === undefined}
             selection={selection}
             onSelectionChange={setSelection}
-            onExport={(csv) => downloadCsv(csv, `${scope}-${mode === "paper" ? "paper-" : ""}trade-journal.csv`)}
+            sort={sort}
+            onSortChange={setSort}
+            onExport={(csv) => downloadCsv(csv, `${memberId !== undefined ? "member" : scope}-${mode === "paper" ? "paper-" : ""}trade-journal.csv`)}
             pane={false}
           />
         </div>

@@ -8,8 +8,10 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.auth.dependencies import get_current_user
 from app.db.base import get_db
-from app.db.models import Book, Position, TradeJournalEntry, User
-from app.schemas import JournalDeleteIn, JournalEntryOut, PositionCloseIn, PositionCreateIn, PositionOut
+from app.db.models import Book, PositionFill, Position, TradeJournalEntry, User
+from app.schemas import (
+    FillOut, JournalDeleteIn, JournalEntryOut, PositionCloseIn, PositionCreateIn, PositionEditIn, PositionOut,
+)
 
 router = APIRouter(prefix="/api/positions", tags=["positions"])
 
@@ -40,6 +42,38 @@ async def _book_for_scope(db: AsyncSession, user: User, scope: Scope) -> Book:
     if scope == "personal":
         return await _get_or_create_book(db, kind="personal", user_id=user.id)
     return await _get_or_create_book(db, kind="team", team_id=user.team_id)
+
+
+async def _consume_fills(db: AsyncSession, position_id: int, size: int) -> None:
+    """Removes `size` lots from the position's fills, oldest first (a partial exit trims the oldest entry)."""
+    fills = (
+        await db.execute(select(PositionFill).where(PositionFill.position_id == position_id).order_by(PositionFill.created_at, PositionFill.id))
+    ).scalars().all()
+    remaining = size
+    for fill in fills:
+        if remaining <= 0:
+            break
+        if fill.size <= remaining:
+            remaining -= fill.size
+            await db.delete(fill)
+        else:
+            fill.size -= remaining
+            remaining = 0
+
+
+def _fill_out(fill: PositionFill) -> FillOut:
+    return FillOut(id=fill.id, size=fill.size, price=fill.price, created_at=fill.created_at)
+
+
+def _position_edit_guard(position: Position | None, book: Book | None, user: User) -> Position:
+    if position is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Position not found")
+    if book is None or book.kind != "personal" or position.owner_id != user.id:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Only the owner can view or edit a position, and only from their personal book",
+        )
+    return position
 
 
 def _realized_pnl(side: str, size: int, average_price: Decimal, exit_price: Decimal) -> Decimal:
@@ -102,7 +136,7 @@ def _journal_entry_for(
     )
 
 
-def _close_some(db: AsyncSession, position: Position, *, size: int, exit_price: Decimal, closed_at: datetime) -> Decimal:
+async def _close_some(db: AsyncSession, position: Position, *, size: int, exit_price: Decimal, closed_at: datetime) -> Decimal:
     """Exits `size` lots of `position` at `exit_price`, journaling the realized P&L on just that
     slice. Closes the position outright when `size` covers all of it; otherwise leaves the remainder
     open at its original average price (a partial exit). Returns the realized P&L for this slice."""
@@ -119,6 +153,7 @@ def _close_some(db: AsyncSession, position: Position, *, size: int, exit_price: 
             closed_at=closed_at,
         )
     )
+    await _consume_fills(db, position.id, min(size, position.size))
     if size >= position.size:
         position.status = "closed"
         position.closed_at = closed_at
@@ -192,12 +227,15 @@ async def _net_trade(
         )
         db.add(position)
         await db.flush()
+        db.add(PositionFill(position_id=position.id, size=size, price=average_price))
+        await db.flush()
         return position
 
     if existing.side == side:
         total = existing.size + size
         existing.average_price = (existing.average_price * existing.size + average_price * size) / total
         existing.size = total
+        db.add(PositionFill(position_id=existing.id, size=size, price=average_price))
         if stop_loss is not None:
             existing.stop_loss = stop_loss
         if take_profit is not None:
@@ -221,6 +259,7 @@ async def _net_trade(
         )
     )
 
+    await _consume_fills(db, existing.id, squared)
     if size < existing.size:
         existing.size -= size
         await db.flush()
@@ -237,6 +276,7 @@ async def _net_trade(
     existing.side = side
     existing.size = size - squared
     existing.average_price = average_price
+    db.add(PositionFill(position_id=existing.id, size=existing.size, price=average_price))
     existing.opened_at = now
     existing.stop_loss = stop_loss
     existing.take_profit = take_profit
@@ -362,14 +402,74 @@ async def close_position(
     exit_price = Decimal(str(body.exit_price))
     closed_at = datetime.now(timezone.utc)
 
-    _close_some(db, position, size=close_size, exit_price=exit_price, closed_at=closed_at)
+    await _close_some(db, position, size=close_size, exit_price=exit_price, closed_at=closed_at)
 
     if position.linked_position_id is not None:
         linked = (
             await db.execute(select(Position).where(Position.id == position.linked_position_id))
         ).scalar_one_or_none()
         if linked is not None and linked.status != "closed":
-            _close_some(db, linked, size=min(close_size, linked.size), exit_price=exit_price, closed_at=closed_at)
+            await _close_some(db, linked, size=min(close_size, linked.size), exit_price=exit_price, closed_at=closed_at)
+
+    await db.commit()
+    await db.refresh(position)
+    return _position_out(position, user.username)
+
+
+@router.get("/{position_id}/fills", response_model=list[FillOut])
+async def list_fills(
+    position_id: int,
+    db: AsyncSession = Depends(get_db),
+    user: User = Depends(get_current_user),
+) -> list[FillOut]:
+    position = (await db.execute(select(Position).where(Position.id == position_id))).scalar_one_or_none()
+    book = None if position is None else (await db.execute(select(Book).where(Book.id == position.book_id))).scalar_one()
+    _position_edit_guard(position, book, user)
+    fills = (
+        await db.execute(select(PositionFill).where(PositionFill.position_id == position_id).order_by(PositionFill.created_at, PositionFill.id))
+    ).scalars().all()
+    return [_fill_out(fill) for fill in fills]
+
+
+@router.put("/{position_id}", response_model=PositionOut)
+async def edit_position(
+    position_id: int,
+    body: PositionEditIn,
+    db: AsyncSession = Depends(get_db),
+    user: User = Depends(get_current_user),
+) -> PositionOut:
+    """Replaces the open position's entries with `body.fills` (edit by id, add without one, drop by
+    omitting) and re-derives its size and size-weighted average price from them."""
+    position = (await db.execute(select(Position).where(Position.id == position_id))).scalar_one_or_none()
+    book = None if position is None else (await db.execute(select(Book).where(Book.id == position.book_id))).scalar_one()
+    position = _position_edit_guard(position, book, user)
+    if position.status == "closed":
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Position is already closed")
+
+    existing = {
+        fill.id: fill
+        for fill in (await db.execute(select(PositionFill).where(PositionFill.position_id == position_id))).scalars().all()
+    }
+    kept: set[int] = set()
+    for edit in body.fills:
+        price = Decimal(str(edit.price))
+        if edit.id is None:
+            db.add(PositionFill(position_id=position_id, size=edit.size, price=price))
+            continue
+        fill = existing.get(edit.id)
+        if fill is None:
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Unknown fill id: {edit.id}")
+        fill.size, fill.price = edit.size, price
+        kept.add(edit.id)
+    for fill_id, fill in existing.items():
+        if fill_id not in kept:
+            await db.delete(fill)
+
+    total = sum(edit.size for edit in body.fills)
+    position.size = total
+    position.average_price = sum((Decimal(str(e.price)) * e.size for e in body.fills), Decimal(0)) / total
+    position.stop_loss = Decimal(str(body.stop_loss)) if body.stop_loss is not None else None
+    position.take_profit = Decimal(str(body.take_profit)) if body.take_profit is not None else None
 
     await db.commit()
     await db.refresh(position)

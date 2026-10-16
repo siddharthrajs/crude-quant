@@ -50,6 +50,8 @@ export interface ColumnDef<T> {
   accessor: (row: T) => unknown
   /** Text for the value. Defaults to String(value), NULL_TOKEN for null. */
   format?: (value: unknown, row: T) => string
+  /** Text for the value in `exportCsv`, when the display text is wrong for a spreadsheet (typographic minus, a dash for null). Falls back to `format`. */
+  csv?: (value: unknown, row: T) => string
   /** Custom cell content. The cell still flashes by `accessor` value. `edit` is there when the column is editable and the grid has `onEdit`. */
   cell?: (ctx: { row: T; value: unknown; rowId: RowId; edit?: CellEditHandle }) => ReactNode
   /** Flash on change. Defaults to the preset's variant for numeric columns and off otherwise. */
@@ -306,7 +308,8 @@ export function exportCsv<T>(store: RowStore<T>, columns: ColumnDef<T>[], ids: r
       cols
         .map((c) => {
           const v = c.accessor(row)
-          return esc(c.format ? c.format(v, row) : v === null || v === undefined ? "" : String(v))
+          const text = c.csv ?? c.format
+          return esc(text ? text(v, row) : v === null || v === undefined ? "" : String(v))
         })
         .join(","),
     )

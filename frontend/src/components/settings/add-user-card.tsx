@@ -6,7 +6,13 @@ import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Spinner } from "@/components/ui/spinner"
 import { useAuth } from "@/hooks/use-auth"
-import { createUser, fetchTeams, type Team } from "@/lib/auth-api"
+import { createUser, fetchTeams, type Role, type Team } from "@/lib/auth-api"
+
+const ROLE_OPTIONS: { value: Role; label: string; hint: string }[] = [
+  { value: "admin", label: "Admin", hint: "Full access, including creating accounts." },
+  { value: "manager", label: "Manager", hint: "All features, plus read-only team journals (each member and combined)." },
+  { value: "member", label: "Member", hint: "Standard trader account." },
+]
 
 const TEMP_PASSWORD_CHARS = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz23456789"
 
@@ -25,6 +31,7 @@ export function AddUserCard() {
   const [password, setPassword] = useState("")
   const [teams, setTeams] = useState<Team[]>([])
   const [teamId, setTeamId] = useState<string>("")
+  const [role, setRole] = useState<Role>("member")
   const [error, setError] = useState<string | null>(null)
   const [submitting, setSubmitting] = useState(false)
   const [created, setCreated] = useState<string | null>(null)
@@ -47,7 +54,7 @@ export function AddUserCard() {
     setError(null)
     setCreated(null)
     try {
-      const user = await createUser(token, username.trim(), password, Number(teamId))
+      const user = await createUser(token, username.trim(), password, Number(teamId), role)
       setCreated(user.username)
       setUsername("")
       setPassword("")
@@ -72,7 +79,7 @@ export function AddUserCard() {
           </div>
           <div className="flex flex-col gap-1.5">
             <Label htmlFor="new-user-team">Team</Label>
-            <Select value={teamId} onValueChange={setTeamId}>
+            <Select value={teamId} onValueChange={(v) => setTeamId(v ?? "")}>
               <SelectTrigger id="new-user-team" disabled={submitting || teams.length === 0}>
                 <SelectValue>{(v: string) => teams.find((t) => String(t.id) === v)?.name ?? "Select a team"}</SelectValue>
               </SelectTrigger>
@@ -84,6 +91,22 @@ export function AddUserCard() {
                 ))}
               </SelectContent>
             </Select>
+          </div>
+          <div className="flex flex-col gap-1.5">
+            <Label htmlFor="new-user-role">Account type</Label>
+            <Select value={role} onValueChange={(v) => setRole(v as Role)}>
+              <SelectTrigger id="new-user-role" disabled={submitting}>
+                <SelectValue>{(v: Role) => ROLE_OPTIONS.find((o) => o.value === v)?.label ?? "Select an account type"}</SelectValue>
+              </SelectTrigger>
+              <SelectContent>
+                {ROLE_OPTIONS.map((o) => (
+                  <SelectItem key={o.value} value={o.value}>
+                    {o.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            <p className="text-xs text-muted-foreground">{ROLE_OPTIONS.find((o) => o.value === role)?.hint}</p>
           </div>
           <div className="flex flex-col gap-1.5">
             <div className="flex items-center justify-between">

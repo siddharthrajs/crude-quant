@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react"
 import { AddPositionDialog } from "@/components/positions/add-position-dialog"
 import { ClosePositionDialog } from "@/components/positions/close-position-dialog"
+import { EditPositionDialog } from "@/components/positions/edit-position-dialog"
 import { InsightsPanel } from "@/components/positions/insights-panel"
 import { formatPnl, POSITION_GRID_COLUMNS } from "@/components/positions/position-columns"
 import type { PositionGridRow } from "@/components/positions/position-grid-row"
@@ -27,6 +28,7 @@ export function PersonalPositionsPanel({ tickStore, instruments, customStructure
   const [journal, setJournal] = useState<JournalEntry[]>([])
   const [addOpen, setAddOpen] = useState(false)
   const [closing, setClosing] = useState<Position | null>(null)
+  const [editing, setEditing] = useState<Position | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [gridStore] = useState(() => createRowStore<PositionGridRow>({ getRowId: (r) => r.id }))
 
@@ -70,9 +72,14 @@ export function PersonalPositionsPanel({ tickStore, instruments, customStructure
               const row = rows[0]
               if (!row) return null
               return (
-                <button type="button" className="w-full px-2 py-1 text-left text-xs hover:bg-muted" onClick={() => setClosing(row.raw)}>
-                  Close position…
-                </button>
+                <>
+                  <button type="button" className="w-full px-2 py-1 text-left text-xs hover:bg-muted" onClick={() => setEditing(row.raw)}>
+                    Edit position…
+                  </button>
+                  <button type="button" className="w-full px-2 py-1 text-left text-xs hover:bg-muted" onClick={() => setClosing(row.raw)}>
+                    Close position…
+                  </button>
+                </>
               )
             }}
           />
@@ -85,6 +92,17 @@ export function PersonalPositionsPanel({ tickStore, instruments, customStructure
       </div>
 
       <AddPositionDialog open={addOpen} onOpenChange={setAddOpen} instruments={instruments} customStructures={customStructures} tickStore={tickStore} onCreated={refresh} mode={mode} />
+      <EditPositionDialog
+        position={editing}
+        mode={mode}
+        onOpenChange={(open) => {
+          if (!open) setEditing(null)
+        }}
+        onSaved={() => {
+          setEditing(null)
+          refresh()
+        }}
+      />
       <ClosePositionDialog
         position={closing}
         tickStore={tickStore}

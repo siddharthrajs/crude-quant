@@ -3,6 +3,8 @@ from typing import Literal
 
 from pydantic import BaseModel, Field
 
+Role = Literal["admin", "manager", "member"]
+
 
 class InstrumentOut(BaseModel):
     item: str
@@ -55,7 +57,7 @@ class UserCreateIn(BaseModel):
     username: str = Field(min_length=3, max_length=64, pattern=r"^[a-zA-Z0-9._-]+$")
     password: str = Field(min_length=8, max_length=128)
     team_id: int
-    is_superuser: bool = False
+    role: Role = "member"
 
 
 class UserOut(BaseModel):
@@ -64,7 +66,25 @@ class UserOut(BaseModel):
     team_id: int
     is_active: bool
     is_superuser: bool
+    role: Role
     created_at: datetime
+
+    class Config:
+        from_attributes = True
+
+
+class UserDeleteIn(BaseModel):
+    ids: list[int] = Field(min_length=1, max_length=200)
+
+
+class UserDeleteOut(BaseModel):
+    deleted: int
+
+
+class MemberOut(BaseModel):
+    id: int
+    username: str
+    team_id: int
 
     class Config:
         from_attributes = True
@@ -127,6 +147,27 @@ class PositionCloseIn(BaseModel):
     # Omitted (or equal to the position's own size) closes it fully; anything smaller leaves the
     # remainder open at its original average price -- a partial exit.
     size: int | None = Field(default=None, gt=0)
+
+
+class FillOut(BaseModel):
+    id: int
+    size: int
+    price: float
+    created_at: datetime
+
+
+class FillEditIn(BaseModel):
+    # None = a new fill; otherwise the id of an existing fill being edited. Existing fills left out
+    # of the request are deleted.
+    id: int | None = None
+    size: int = Field(gt=0)
+    price: float
+
+
+class PositionEditIn(BaseModel):
+    fills: list[FillEditIn] = Field(min_length=1)
+    stop_loss: float | None = None
+    take_profit: float | None = None
 
 
 class JournalEntryOut(BaseModel):

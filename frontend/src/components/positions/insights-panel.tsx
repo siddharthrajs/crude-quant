@@ -111,6 +111,17 @@ export function InsightsPanel({ positions, journal, tickStore }: InsightsPanelPr
     return [...byProduct.entries()].sort((a, b) => b[1] - a[1]).map(([product, lots]) => ({ product, lots }))
   }, [positions])
 
+  // Fixed order and colors so Long/Short never swap hues; a side with no lots is left out.
+  const sideSlices = useMemo(() => {
+    const lots = { Long: 0, Short: 0 }
+    for (const p of positions) {
+      if (p.status !== "open") continue
+      lots[p.side === "long" ? "Long" : "Short"] += p.size
+    }
+    return (["Long", "Short"] as const).filter((product) => lots[product] > 0).map((product) => ({ product, lots: lots[product] }))
+  }, [positions])
+  const sideColors = useMemo(() => sideSlices.map((s) => (s.product === "Long" ? "var(--up)" : "var(--down)")), [sideSlices])
+
   const realizedPnls = useMemo(() => journal.map((j) => j.realized_pnl), [journal])
 
   return (
@@ -126,8 +137,9 @@ export function InsightsPanel({ positions, journal, tickStore }: InsightsPanelPr
         <CardHeader>
           <CardTitle className="text-xs tracking-wide text-muted-foreground uppercase">Open exposure</CardTitle>
         </CardHeader>
-        <CardContent className="min-h-0 flex-1">
+        <CardContent className="grid min-h-0 flex-1 grid-cols-2 gap-2">
           <ProductPieChart slices={productSlices} />
+          <ProductPieChart slices={sideSlices} colors={sideColors} />
         </CardContent>
       </Card>
 

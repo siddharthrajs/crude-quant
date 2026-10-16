@@ -10,10 +10,15 @@ from app.config import settings
 from app.lightstreamer.feed import LightstreamerFeed
 from app.lightstreamer.instruments import load_instrument_records
 from app.lightstreamer.structures import Leg, Structure, StructureEngine, build_dfly_structures, build_fly_structures
+from app.news import listener as news_listener, router as news_router
 from app.routers.auth import router as auth_router
+from app.routers.curve_lab import router as curve_lab_router
+from app.routers.manager import router as manager_router
 from app.routers.paper_positions import router as paper_positions_router
 from app.routers.positions import router as positions_router
+from app.routers.seasonality import router as seasonality_router
 from app.routers.teams import router as teams_router
+from app.routers.watchlist import router as watchlist_router
 from app.schemas import InstrumentOut, LegOut, StructureIn, StructureOut
 from app.ws import manager, router as ws_router
 
@@ -61,7 +66,9 @@ async def lifespan(app: FastAPI):
         # Runs on a worker thread: the Lightstreamer SDK is callback/thread
         # based and LightstreamerFeed.start() blocks while the session settles.
         loop.run_in_executor(None, _feed.start).add_done_callback(_log_feed_result)
+    news_listener.start()
     yield
+    await news_listener.stop()
     if _feed:
         _feed.stop()
 
@@ -77,10 +84,15 @@ app.add_middleware(
 )
 
 app.include_router(ws_router)
+app.include_router(news_router)
 app.include_router(auth_router)
 app.include_router(teams_router)
 app.include_router(positions_router)
 app.include_router(paper_positions_router)
+app.include_router(manager_router)
+app.include_router(seasonality_router)
+app.include_router(curve_lab_router)
+app.include_router(watchlist_router)
 
 
 @app.get("/health")

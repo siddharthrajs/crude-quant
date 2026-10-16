@@ -101,8 +101,8 @@ function ClosePositionForm({ position, tickStore, onOpenChange, onClosed, mode =
         <div className="flex flex-col gap-1.5">
           <Label htmlFor="close-position-exit">Exit price</Label>
           <div className="flex gap-2">
-            <Input id="close-position-exit" type="number" step="any" value={exitPrice} onChange={(e) => setExitPrice(e.target.value)} />
-            <Button type="button" variant="outline" size="sm" disabled={livePrice === null} onClick={() => setExitPrice(String(livePrice))}>
+            <Input id="close-position-exit" type="number" step={0.01} value={exitPrice} onChange={(e) => setExitPrice(e.target.value)} />
+            <Button type="button" variant="outline" size="sm" disabled={livePrice === null} onClick={() => setExitPrice(livePrice === null ? "" : livePrice.toFixed(2))}>
               Use live price
             </Button>
           </div>

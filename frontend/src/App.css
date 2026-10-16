@@ -308,3 +308,16 @@
     --dv-tab-group-line-opacity: 0.6;
     }
 }
+@keyframes news-blip {
+    0%, 40% { background-color: color-mix(in oklab, var(--destructive) 45%, transparent); }
+    20%, 60% { background-color: color-mix(in oklab, var(--destructive) 10%, transparent); }
+    100% { background-color: transparent; }
+}
+
+.news-blip {
+    animation: news-blip 1.6s ease-out 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .news-blip { animation: none; background-color: color-mix(in oklab, var(--destructive) 20%, transparent); }
+}
