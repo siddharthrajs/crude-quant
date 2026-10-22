@@ -13,12 +13,6 @@ export const f = (v: number | null | undefined, d = 3) => (v === null || v === u
 export const fs = (v: number | null | undefined, d = 3) => (v === null || v === undefined || !Number.isFinite(v) ? "–" : `${v > 0 ? "+" : ""}${v.toFixed(d)}`)
 export const pct = (v: number | null | undefined, d = 0) => (v === null || v === undefined || !Number.isFinite(v) ? "–" : `${(v * 100).toFixed(d)}%`)
 
-/** x index -> "YYYY-MM" tick for charts plotted against a list of ISO dates. */
-export const dateTick = (dates: string[]) => (i: number) => {
-  const d = dates[Math.max(0, Math.min(dates.length - 1, Math.round(i)))]
-  return d ? d.slice(0, 7) : ""
-}
-
 export type Template = "outright" | "spread" | "fly" | "dfly" | "custom"
 
 export const TEMPLATES: { key: Template; label: string; weights: number[] }[] = [

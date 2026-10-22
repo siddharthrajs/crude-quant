@@ -1,7 +1,7 @@
-import { useState } from "react"
+import { useMemo } from "react"
 import { BarsChart, FanChart, HistChart, XYChart } from "@/components/strategy-lab/charts"
 import { DistCells, Legend, OutcomeTable, Section, Stat, Td, Th } from "@/components/strategy-lab/shared"
-import { THIN, dateTick, f, fs, pct } from "@/lib/strategy-lab"
+import { THIN, f, fs, pct } from "@/lib/strategy-lab"
 import type { AnalogsResult, Implied, NowInfo, ProfileResult, RangeSet, ScenarioResult, StateVar } from "@/lib/quant-api"
 
 // Views that read the strategy against the market state: Profile (what it is and what drives it), Scenario
@@ -118,15 +118,20 @@ function RangeRows({ a, b, now }: { a: RangeSet; b: RangeSet; now: number | null
 }
 
 export function ProfileView({ r, params, setParams }: { r: ProfileResult; params: Params; setParams: (p: Params) => void }) {
-  const [show, setShow] = useState({ raw: true, adj: true, fixed: false })
   const h = r.history
-  const x = h.dates.map((_, i) => i)
   const band = r.ranges.recent.dense90
-  const lines = [
-    show.raw && { label: "generic", y: h.raw, color: "var(--chart-1)", width: 1.25 },
-    show.adj && { label: "roll-adjusted", y: h.adj, color: "var(--chart-2)", width: 1.25 },
-    show.fixed && { label: "today's contracts", y: h.fixed, color: "var(--chart-4)", width: 1.25 },
-  ].filter(Boolean) as { label: string; y: (number | null)[]; color: string; width: number }[]
+  const lines = useMemo(
+    () => [
+      { label: "Generic (screen)", y: h.raw, color: "var(--chart-1)", width: 1.25 },
+      { label: "Roll-adjusted (held P&L)", y: h.adj, color: "var(--chart-2)", width: 1.25 },
+      { label: "Today's contracts", y: h.fixed, color: "var(--chart-4)", width: 1.25, hidden: true },
+    ],
+    [h],
+  )
+  const hlines = useMemo(
+    () => (band[0] !== null && band[1] !== null ? [{ at: band[0], color: "var(--destructive)", label: "dense 90% low" }, { at: band[1], color: "var(--destructive)", label: "dense 90% high" }] : []),
+    [band],
+  )
   const pca = r.pca
   const all = r.drivers.all
   return (
@@ -144,25 +149,10 @@ export function ProfileView({ r, params, setParams }: { r: ProfileResult; params
 
       <Section
         title="History"
-        right={
-          <>
-            {(["raw", "adj", "fixed"] as const).map((k) => (
-              <label key={k} className="flex items-center gap-1">
-                <input type="checkbox" checked={show[k]} onChange={(e) => setShow({ ...show, [k]: e.target.checked })} />
-                {k === "raw" ? "Generic (screen)" : k === "adj" ? "Roll-adjusted (held P&L)" : "Today's contracts"}
-              </label>
-            ))}
-            <Legend items={[{ label: `densest 90%, last ${r.ranges.recent_days}d`, color: "var(--destructive)", dash: true }]} />
-          </>
-        }
+        right={<span className="text-muted-foreground">click a legend entry to show/hide · red dashed = densest 90% band, last {r.ranges.recent_days}d</span>}
       >
-        <div className="h-[280px]">
-          <XYChart
-            x={x}
-            lines={lines}
-            xLabel={dateTick(h.dates)}
-            hlines={band[0] !== null && band[1] !== null ? [{ at: band[0], color: "var(--destructive)" }, { at: band[1], color: "var(--destructive)" }] : []}
-          />
+        <div className="h-[340px]">
+          <XYChart x={h.dates} xType="date" lines={lines} hlines={hlines} />
         </div>
       </Section>
 
@@ -270,13 +260,13 @@ export function ScenarioView({ r, params, setParams }: { r: ScenarioResult; para
       {thin && r.n_days > 0 && <p className="text-xs text-amber-500">Fewer than 5 separate episodes — this is a handful of market regimes, not a distribution. Loosen a filter.</p>}
 
       <div className="grid gap-2 xl:grid-cols-[1fr_1fr]">
-        <Section title="Where the strategy sat on matched days" right={<Legend items={[{ label: "matched", color: "var(--chart-1)", band: true }, { label: "all days", color: "var(--muted-foreground)" }]} />}>
+        <Section title="Where the strategy sat on matched days" right={<span className="text-muted-foreground">share of days per level bin · red = today</span>}>
           <div className="h-[200px]">
             <HistChart
               edges={r.level_hist.edges}
               series={[
                 { label: "matched", values: r.level_hist.series.matched ?? [], color: "var(--chart-1)", fill: true },
-                { label: "all", values: r.level_hist.series.all ?? [], color: "var(--muted-foreground)" },
+                { label: "all days", values: r.level_hist.series.all ?? [], color: "var(--muted-foreground)" },
               ]}
               marker={r.now.state.lvl !== null && r.now.state.lvl !== undefined ? { at: r.now.state.lvl, label: "now" } : undefined}
             />
@@ -433,7 +423,7 @@ export function AnalogsView({ r, params, setParams, vars }: { r: AnalogsResult; 
       <div className="grid gap-2 xl:grid-cols-2">
         <Section title="What the strategy did next (held contracts)" right={<Legend items={[{ label: "median", color: "var(--chart-1)" }, { label: "25–75 / 10–90", color: "var(--chart-1)", band: true }]} />}>
           <div className="h-[230px]">
-            <FanChart fan={r.path} xLabel={(v) => `+${v}d`} />
+            <FanChart fan={r.path} />
           </div>
         </Section>
         <Section title="Implied range from today's level">

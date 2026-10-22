@@ -182,23 +182,16 @@ export function ExpiryView({ r, params, setParams }: { r: ExpiryResult; params: 
       </Section>
 
       <Section title="The same structure at every slot of the curve, through the same expiries" right={<span className="text-muted-foreground">how the 1st, 2nd, 3rd … behave around the roll</span>}>
-        <div className="h-[170px]">
+        <div className="h-[220px]">
           <BarsChart
             categories={charted.map((c) => `c${c.anchor}`)}
             series={[
               { label: "median roll gap", values: charted.map((c) => c.gap.p50), color: "var(--chart-3)" },
-              { label: "median 5d before", values: charted.map((c) => c.pre5.p50), color: "var(--chart-1)" },
-              { label: "median 5d after", values: charted.map((c) => c.post5.p50), color: "var(--chart-2)" },
+              { label: "held move, 5d into expiry", values: charted.map((c) => c.pre5.p50), color: "var(--chart-1)" },
+              { label: "held move, 5d after", values: charted.map((c) => c.post5.p50), color: "var(--chart-2)" },
             ]}
           />
         </div>
-        <Legend
-          items={[
-            { label: "median roll gap", color: "var(--chart-3)", band: true },
-            { label: "held move, 5d into expiry", color: "var(--chart-1)", band: true },
-            { label: "held move, 5d after", color: "var(--chart-2)", band: true },
-          ]}
-        />
         <div className="mt-1 overflow-auto">
           <table className="w-full text-[11px] tabular-nums">
             <thead className="text-muted-foreground">
@@ -280,10 +273,6 @@ export function ExpiryView({ r, params, setParams }: { r: ExpiryResult; params: 
 // ------------------------------------------------------------------------------------------------ seasonal
 
 const MONTH_NAMES = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-const doyLabel = (d: number) => {
-  const dt = new Date(Date.UTC(2001, 0, Math.round(d)))
-  return `${MONTH_NAMES[dt.getUTCMonth()]} ${dt.getUTCDate()}`
-}
 
 export function SeasonalView({ r, params, setParams }: { r: SeasonalResult; params: Params; setParams: (p: Params) => void }) {
   const mode = (params.mode as string) ?? "calendar"
@@ -300,9 +289,17 @@ export function SeasonalView({ r, params, setParams }: { r: SeasonalResult; para
   }
   const last = r.lines[r.lines.length - 1]
   const lines = [
-    ...r.lines.map((l) => ({ label: l === last ? l.label : "", y: onGrid(l.x, l.y), color: l === last ? "var(--destructive)" : "var(--muted-foreground)", width: l === last ? 2 : 0.8, opacity: l === last ? 1 : 0.45 })),
-    { label: "median", y: onGrid(r.median.x, r.median.y), color: "var(--chart-1)", width: 2.25 },
+    ...r.lines.map((l, i) => ({
+      label: l.label,
+      y: onGrid(l.x, l.y),
+      color: l === last ? "var(--destructive)" : `var(--chart-${(i % 7) + 2})`,
+      width: l === last ? 2.25 : 1,
+      opacity: l === last ? 1 : 0.55,
+    })),
+    { label: "median", y: onGrid(r.median.x, r.median.y), color: "var(--chart-1)", width: 2.75 },
   ]
+  // Calendar mode plots day-of-year on one dummy year so the axis reads as dates and zooms like one.
+  const xAxis = mode === "calendar" ? xs.map((d) => new Date(Date.UTC(2001, 0, d)).toISOString().slice(0, 10)) : xs
   return (
     <div className="flex flex-col gap-2">
       <NowBar now={r.now} />
@@ -346,12 +343,11 @@ export function SeasonalView({ r, params, setParams }: { r: SeasonalResult; para
                 </label>
               </>
             )}
-            <Legend items={[{ label: "median", color: "var(--chart-1)" }, { label: last ? `latest (${last.label})` : "latest", color: "var(--destructive)" }]} />
           </>
         }
       >
-        <div className="h-[300px]">
-          <XYChart x={xs} lines={lines} xLabel={mode === "calendar" ? doyLabel : (v) => `${v}d`} />
+        <div className="h-[360px]">
+          {mode === "calendar" ? <XYChart x={xAxis} xType="date" xFormat="%b %d" lines={lines} /> : <XYChart x={xAxis} xSuffix="d" lines={lines} />}
         </div>
         {mode === "contract" && (
           <p className="text-[10px] text-muted-foreground">
