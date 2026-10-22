@@ -7,6 +7,7 @@ import { TeamJournalsTab } from "@/components/journal/team-journals-tab"
 import { PositionsTab } from "@/components/positions/positions-tab"
 import { SeasonalityTab } from "@/components/seasonality/seasonality-tab"
 import { SettingsTab } from "@/components/settings/settings-tab"
+import { StrategyLabTab } from "@/components/strategy-lab/strategy-lab-tab"
 import { WatchlistTab } from "@/components/watchlist/watchlist-tab"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -18,6 +19,7 @@ const TABS = [
   { id: "curves", label: "Curves" },
   { id: "seasonality", label: "Seasonality" },
   { id: "curve-lab", label: "Curve Lab" },
+  { id: "strategy-lab", label: "Strategy Lab" },
   { id: "watchlist", label: "Watchlist" },
   { id: "positions", label: "Positions" },
   { id: "journal", label: "Journal" },
@@ -33,6 +35,7 @@ const TAB_SUBTITLES: Record<Tab, string> = {
   curves: "Live forward curves — Lightstreamer feed",
   seasonality: "Combined strategy replayed across past years — daily history",
   "curve-lab": "Whole-curve fly correlations and the curve conditioned on one fly's range — daily history",
+  "strategy-lab": "Any strategy’s range and behaviour by scenario, breakout, expiry, season and analog days — Reuters 1-minute data",
   watchlist: "Saved combinations — live price against their base range",
   positions: "Personal and team books — live P&L, trade journal",
   journal: "Closed trades — personal and team",
@@ -88,6 +91,10 @@ export default function App() {
 
       <div className={tab === "curve-lab" ? "min-h-0 flex-1" : "hidden"}>
         <CurveLabTab />
+      </div>
+
+      <div className={tab === "strategy-lab" ? "min-h-0 flex-1" : "hidden"}>
+        <StrategyLabTab active={tab === "strategy-lab"} />
       </div>
 
       <div className={tab === "watchlist" ?"min-h-0 flex-1" : "hidden"}>

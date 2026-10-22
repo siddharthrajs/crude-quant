@@ -11,11 +11,13 @@ from app.lightstreamer.feed import LightstreamerFeed
 from app.lightstreamer.instruments import load_instrument_records
 from app.lightstreamer.structures import Leg, Structure, StructureEngine, build_dfly_structures, build_fly_structures
 from app.news import listener as news_listener, router as news_router
+from app.quant.source import PRODUCTS as QUANT_PRODUCTS, store as quant_store
 from app.routers.auth import router as auth_router
 from app.routers.curve_lab import router as curve_lab_router
 from app.routers.manager import router as manager_router
 from app.routers.paper_positions import router as paper_positions_router
 from app.routers.positions import router as positions_router
+from app.routers.quant import router as quant_router
 from app.routers.seasonality import router as seasonality_router
 from app.routers.teams import router as teams_router
 from app.routers.watchlist import router as watchlist_router
@@ -67,6 +69,10 @@ async def lifespan(app: FastAPI):
         # based and LightstreamerFeed.start() blocks while the session settles.
         loop.run_in_executor(None, _feed.start).add_done_callback(_log_feed_result)
     news_listener.start()
+    if settings.quant_autoload:
+        # Build/refresh the Strategy Lab caches from the SQLite share in the background.
+        for product in QUANT_PRODUCTS:
+            quant_store.ensure(product)
     yield
     await news_listener.stop()
     if _feed:
@@ -93,6 +99,7 @@ app.include_router(manager_router)
 app.include_router(seasonality_router)
 app.include_router(curve_lab_router)
 app.include_router(watchlist_router)
+app.include_router(quant_router)
 
 
 @app.get("/health")

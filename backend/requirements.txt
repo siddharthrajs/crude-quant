@@ -10,3 +10,5 @@ alembic
 bcrypt
 pyjwt
 python-multipart
+numpy
+pandas

@@ -35,6 +35,13 @@ class Settings(BaseSettings):
     # Postgres (users/auth, see app/db/)
     database_url: str = "postgresql+asyncpg://postgres:postgres@localhost:5432/postgres"
 
+    # Strategy Lab (see app/quant/): the Reuters 1-minute SQLite databases, read-only, and a local cache of the
+    # 15-minute bars built from them (the share is slow; the cache makes every load after the first one quick).
+    quant_db_dir: Path = Path(r"I:\Energy Apr26\DATABASE\dbs")
+    quant_cache_dir: Path = Path.home() / "AppData" / "Local" / "crude_quant_cache"
+    # Build/refresh the caches in the background when the API starts.
+    quant_autoload: bool = True
+
     # Username/password auth (see app/auth/)
     jwt_secret_key: str = "change-me"
     jwt_algorithm: str = "HS256"
