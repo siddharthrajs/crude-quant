@@ -29,6 +29,8 @@ export const DEFAULT_CURVE_CHART_LABELS: CurveChartLabels = { noData: "No data",
 
 export interface CurveChartProps extends Omit<ComponentProps<"div">, "children"> {
   points: readonly CurvePoint[]
+  /** Settlement prices per tenor, drawn as a light-grey reference line the user can toggle off. */
+  settlePoints?: readonly CurvePoint[]
   convention: PriceConvention | InstrumentConvention
   /** What this curve is, for a screen reader and the header: "Brent, Outrights". */
   label: string
@@ -40,6 +42,7 @@ export interface CurveChartProps extends Omit<ComponentProps<"div">, "children">
 interface Palette {
   line: string
   point: string
+  settle: string
   foreground: string
   mutedForeground: string
   border: string
@@ -60,6 +63,7 @@ function readPalette(host: HTMLElement): Palette {
   const palette: Palette = {
     line: read("--chart-1"),
     point: read("--primary"),
+    settle: "#7a7a7a",
     foreground: read("--foreground"),
     mutedForeground: read("--muted-foreground"),
     border: read("--border"),
@@ -70,7 +74,7 @@ function readPalette(host: HTMLElement): Palette {
   return palette
 }
 
-const UNREAD_PALETTE: Palette = { line: "gray", point: "gray", foreground: "gray", mutedForeground: "gray", border: "gray", background: "white", font: FALLBACK_MONO }
+const UNREAD_PALETTE: Palette = { line: "gray", point: "gray", settle: "#7a7a7a", foreground: "gray", mutedForeground: "gray", border: "gray", background: "white", font: FALLBACK_MONO }
 
 let drawable: boolean | null = null
 function canDraw(): boolean {
@@ -81,6 +85,8 @@ function canDraw(): boolean {
 interface Live {
   palette: Palette
   points: readonly CurvePoint[]
+  settle: readonly CurvePoint[]
+  showSettle: boolean
 }
 
 interface PlotArgs {
@@ -91,10 +97,13 @@ interface PlotArgs {
   onCursor: (index: number | null) => void
 }
 
-function alignedData(points: readonly CurvePoint[]): uPlot.AlignedData {
-  const x = points.map((_, i) => i)
-  const y = points.map((p) => (typeof p.value === "number" && Number.isFinite(p.value) ? p.value : null))
-  return [x, y]
+const finiteOrNull = (v: number | null | undefined) => (typeof v === "number" && Number.isFinite(v) ? v : null)
+
+function alignedData(live: Live): uPlot.AlignedData {
+  const x = live.points.map((_, i) => i)
+  const y = live.points.map((p) => finiteOrNull(p.value))
+  const settle = live.points.map((_, i) => (live.showSettle ? finiteOrNull(live.settle[i]?.value) : null))
+  return [x, y, settle]
 }
 
 function plotOptions(a: PlotArgs): uPlot.Options {
@@ -149,7 +158,11 @@ function plotOptions(a: PlotArgs): uPlot.Options {
       { stroke: axisStroke, font: font(1), grid: { stroke: gridStroke, width: 1 }, ticks: { stroke: gridStroke, width: 1, size: 4 }, gap: 6, size: 22, splits: tenorSplits, values: tenorValues },
       { side: 1, stroke: axisStroke, font: font(1), grid: { stroke: gridStroke, width: 1 }, ticks: { stroke: gridStroke, width: 1, size: 4 }, space: 28, gap: 6, incrs: priceIncrements(a.convention), values: (_u, splits) => splits.map(format), size: priceAxisSize },
     ],
-    series: [{}, { stroke: () => a.live().palette.line, width: 1.75, points: { show: true, size: 5, stroke: () => a.live().palette.line, fill: () => a.live().palette.background }, spanGaps: true }],
+    series: [
+      {},
+      { stroke: () => a.live().palette.line, width: 1.75, points: { show: true, size: 5, stroke: () => a.live().palette.line, fill: () => a.live().palette.background }, spanGaps: true },
+      { stroke: () => a.live().palette.settle, width: 1.5, dash: [3, 4], points: { show: true, size: 4, stroke: () => a.live().palette.settle, fill: () => a.live().palette.settle }, spanGaps: true },
+    ],
     hooks: {
       init: [(u) => u.root.setAttribute("aria-hidden", "true")],
       setCursor: [(u) => a.onCursor(u.cursor.idx ?? null)],
@@ -186,9 +199,18 @@ function drawPointLabels(u: uPlot, a: PlotArgs) {
   ctx.restore()
 }
 
+const SETTLE_KEY = "curves.showSettle"
+function readShowSettle(): boolean {
+  try {
+    return localStorage.getItem(SETTLE_KEY) !== "0"
+  } catch {
+    return true
+  }
+}
+
 const clamp = (n: number, max: number) => Math.max(0, Math.min(max, n))
 
-export function CurveChart({ points, convention, label, height, labels: labelsProp, onCursor, className, style, ...props }: CurveChartProps) {
+export function CurveChart({ points, settlePoints, convention, label, height, labels: labelsProp, onCursor, className, style, ...props }: CurveChartProps) {
   const labels = { ...DEFAULT_CURVE_CHART_LABELS, ...labelsProp }
   const conventionKey = JSON.stringify(convention)
 
@@ -198,10 +220,20 @@ export function CurveChart({ points, convention, label, height, labels: labelsPr
   const [fontEpoch, setFontEpoch] = useState(0)
 
   const plot = useRef<uPlot | null>(null)
-  const live = useRef<Live>({ palette: UNREAD_PALETTE, points })
+  const [showSettle, setShowSettle] = useState(readShowSettle)
+  const live = useRef<Live>({ palette: UNREAD_PALETTE, points, settle: settlePoints ?? [], showSettle })
   const onCursorRef = useRef(onCursor)
   const conventionRef = useRef(convention)
   const cursorFromPlot = useRef(false)
+
+  const toggleSettle = (on: boolean) => {
+    setShowSettle(on)
+    try {
+      localStorage.setItem(SETTLE_KEY, on ? "1" : "0")
+    } catch {
+      // Storage unavailable: the choice just doesn't persist.
+    }
+  }
 
   const moveCursor = (index: number | null, fromPlot: boolean) => {
     cursorFromPlot.current = fromPlot
@@ -218,8 +250,10 @@ export function CurveChart({ points, convention, label, height, labels: labelsPr
   })
   useLayoutEffect(() => {
     live.current.points = points
-    plot.current?.setData(alignedData(points), true)
-  }, [points])
+    live.current.settle = settlePoints ?? []
+    live.current.showSettle = showSettle
+    plot.current?.setData(alignedData(live.current), true)
+  }, [points, settlePoints, showSettle])
 
   useLayoutEffect(() => {
     if (!plotEl) return
@@ -238,7 +272,7 @@ export function CurveChart({ points, convention, label, height, labels: labelsPr
     const box = plotEl.getBoundingClientRect()
     const u = new uPlot(
       plotOptions({ width: box.width, height: box.height, convention: conventionRef.current, live: () => live.current, onCursor: (index) => moveCursor(index, true) }),
-      alignedData(live.current.points),
+      alignedData(live.current),
       plotEl,
     )
     plot.current = u
@@ -280,6 +314,12 @@ export function CurveChart({ points, convention, label, height, labels: labelsPr
   const price = priceOf(convention)
   const at = cursor === null ? null : (points[clamp(cursor, count - 1)] ?? null)
   const readout = at ? `${at.label ?? at.tenor}: ${formatPrice(at.value, price)}` : ""
+  const settleAt = showSettle && at && settlePoints ? (settlePoints[clamp(cursor ?? 0, count - 1)]?.value ?? null) : null
+  const u = plot.current
+  const tip =
+    u && at && cursor !== null && at.value !== null
+      ? { left: u.bbox.left / uPlot.pxRatio + u.valToPos(cursor, "x"), top: u.bbox.top / uPlot.pxRatio + u.valToPos(at.value, "y") }
+      : null
   const interactive = count > 0
   const sentence = count ? `${label}, ${count} ${labels.point}s` : `${label}: ${labels.noData}`
 
@@ -304,6 +344,13 @@ export function CurveChart({ points, convention, label, height, labels: labelsPr
     >
       <div data-chart-header="" className={cn("flex min-h-5 shrink-0 items-baseline gap-x-3 px-1", numericFontClass(convention))}>
         <span className="text-xs font-medium text-muted-foreground">{label}</span>
+        {settlePoints && (
+          <label className="flex cursor-pointer items-center gap-1 text-muted-foreground">
+            <input type="checkbox" checked={showSettle} onChange={(e) => toggleSettle(e.target.checked)} className="size-3 accent-neutral-400" />
+            <span className="inline-block w-3 border-t-2 border-dotted border-[#7a7a7a]" aria-hidden="true" />
+            Settle
+          </label>
+        )}
         <span data-chart-readout="" className={cn("ml-auto", NUMERIC_CLASS)}>
           {readout}
         </span>
@@ -321,6 +368,18 @@ export function CurveChart({ points, convention, label, height, labels: labelsPr
         data-chart-plot=""
         className={cn("relative min-h-0 flex-1 overflow-hidden rounded-sm outline-none", interactive && "cursor-crosshair focus-visible:ring-2 focus-visible:ring-ring/50")}
       >
+        {tip && (
+          <div
+            data-chart-tooltip=""
+            className="pointer-events-none absolute z-10 -translate-x-1/2 whitespace-nowrap rounded border border-border bg-popover px-1.5 py-0.5 text-[10px] leading-tight text-popover-foreground shadow-sm"
+            style={{ left: tip.left, top: tip.top + 12 }}
+          >
+            <div>{formatPrice(at!.value, price)}</div>
+            {showSettle && settlePoints && (
+              <div className="text-muted-foreground">Settle {settleAt === null ? "—" : formatPrice(settleAt, price)}</div>
+            )}
+          </div>
+        )}
         {count === 0 && (
           <p data-chart-empty="" className="absolute inset-0 flex items-center justify-center text-muted-foreground">
             {labels.noData}

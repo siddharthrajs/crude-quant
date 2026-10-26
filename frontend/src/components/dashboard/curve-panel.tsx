@@ -55,6 +55,7 @@ export function CurvePanel() {
 
   const def = useMemo(() => series.find((s) => s.product === product && s.type === type) ?? EMPTY, [series, product, type])
   const points = useCurvePoints(def, tickStore, field)
+  const settlePoints = useCurvePoints(def, tickStore, "settlementPrice")
   const label = def.id ? `${PRODUCT_LABELS[def.product] ?? def.productLabel} — ${CURVE_TYPE_LABELS[def.type]}` : "Curve"
 
   return (
@@ -69,7 +70,7 @@ export function CurvePanel() {
         </PanelActions>
       </PanelHeader>
       <PanelContent className="p-1">
-        {def.id ? <CurveChart points={points} convention={CURVE_CONVENTION} label={label} className="h-full" /> : <p className="p-4 text-center text-xs text-muted-foreground">Loading curves…</p>}
+        {def.id ? <CurveChart points={points} settlePoints={settlePoints} convention={CURVE_CONVENTION} label={label} className="h-full" /> : <p className="p-4 text-center text-xs text-muted-foreground">Loading curves…</p>}
       </PanelContent>
     </>
   )

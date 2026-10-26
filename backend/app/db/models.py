@@ -223,3 +223,64 @@ class HourlyBar(Base):
     bid_size: Mapped[int | None] = mapped_column(Integer, nullable=True)
     ask_size: Mapped[int | None] = mapped_column(Integer, nullable=True)
     volume: Mapped[int] = mapped_column(Integer, nullable=False, server_default="0")
+
+
+class QhContract(Base):
+    """A futures contract whose daily bars come from the QH Data API (see app/qh/sync.py), e.g. CLZ26, WTCLCOF27.
+
+    `expiry` is the contract's last trading day: the date of its final bar once it has expired (expiry_source
+    "data"), otherwise the exchange rule ("rule")."""
+
+    __tablename__ = "qh_contracts"
+
+    code: Mapped[str] = mapped_column(String(24), primary_key=True)
+    product: Mapped[str] = mapped_column(String(16), nullable=False, index=True)
+    delivery_month: Mapped[date] = mapped_column(Date, nullable=False)
+    expiry: Mapped[date] = mapped_column(Date, nullable=False)
+    expiry_source: Mapped[str] = mapped_column(String(8), nullable=False)
+    first_bar: Mapped[date | None] = mapped_column(Date, nullable=True)
+    last_bar: Mapped[date | None] = mapped_column(Date, nullable=True)
+    synced_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
+    # Trade date the full history was fetched from; a later date than settings.qh_history_start means re-fetch.
+    fetched_from: Mapped[date | None] = mapped_column(Date, nullable=True)
+
+
+class QhDailyBar(Base):
+    """One QH daily bar per contract per trade date. `close` is the session's last trade, not the settlement.
+
+    Only days the contract traded have a row; buy/sell volume is 0 before mid-2024 (not split by the API then)."""
+
+    __tablename__ = "qh_daily_bars"
+
+    code: Mapped[str] = mapped_column(ForeignKey("qh_contracts.code"), primary_key=True)
+    trade_date: Mapped[date] = mapped_column(Date, primary_key=True, index=True)
+    open: Mapped[float] = mapped_column(DOUBLE_PRECISION, nullable=False)
+    high: Mapped[float] = mapped_column(DOUBLE_PRECISION, nullable=False)
+    low: Mapped[float] = mapped_column(DOUBLE_PRECISION, nullable=False)
+    close: Mapped[float] = mapped_column(DOUBLE_PRECISION, nullable=False)
+    volume: Mapped[int] = mapped_column(Integer, nullable=False)
+    buy_volume: Mapped[int | None] = mapped_column(Integer, nullable=True)
+    sell_volume: Mapped[int | None] = mapped_column(Integer, nullable=True)
+
+
+class QhSettlement(Base):
+    """Daily settlement per contract from QH /common/dailymarketdata (see app/qh/sync.py): one row for every day the
+    contract was listed, traded or not. The Strategy Lab prices strategies from these."""
+
+    __tablename__ = "qh_settlements"
+
+    code: Mapped[str] = mapped_column(ForeignKey("qh_contracts.code"), primary_key=True)
+    trade_date: Mapped[date] = mapped_column(Date, primary_key=True, index=True)
+    settle: Mapped[float] = mapped_column(DOUBLE_PRECISION, nullable=False)
+    volume: Mapped[int | None] = mapped_column(Integer, nullable=True)
+    oi: Mapped[int | None] = mapped_column(Integer, nullable=True)
+
+
+class QhSyncState(Base):
+    """Per product: the trade date the settlement history was loaded from, and when it was last topped up."""
+
+    __tablename__ = "qh_sync_state"
+
+    product: Mapped[str] = mapped_column(String(16), primary_key=True)
+    settlements_from: Mapped[date | None] = mapped_column(Date, nullable=True)
+    settlements_synced_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
