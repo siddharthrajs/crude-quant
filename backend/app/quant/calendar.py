@@ -22,6 +22,8 @@ import numpy as np
 import pandas as pd
 
 MONTH_CODES = "FGHJKMNQUVXZ"
+# Last Brent contract (Feb 2016 delivery) under ICE's pre-2016 expiry rule.
+OLD_BRENT_RULE_LAST = 2016 * 12 + 1
 _NAME_RE = re.compile(r"([FGHJKMNQUVXZ])(\d{1,2})$")
 
 
@@ -104,9 +106,15 @@ def rule_expiry(rule: str, key: int) -> date:
 
     Brent: last ICE business day of the second month before delivery; the February contract (expiring in December)
     expires on the penultimate business day, since 31 December is a short session. Checked against every Brent
-    expiry since 2019 in the Reuters data (bank holidays, Good Friday and the December rule all match)."""
+    expiry since 2019 in the Reuters data (bank holidays, Good Friday and the December rule all match).
+    Contracts up to Feb 2016 delivery used ICE's old rule: the business day before the 15th calendar day before
+    the first day of the delivery month -- or, when that 15th day is not a business day, the business day before
+    the last business day ahead of it."""
     if rule == "brent":
         bd = _ice_bday()
+        if key <= OLD_BRENT_RULE_LAST:
+            fifteenth_before = pd.Timestamp(key_date(key) - timedelta(days=15))
+            return (bd.rollback(fifteenth_before) - bd).date()
         last = bd.rollback(pd.Timestamp(key_date(key - 1) - timedelta(days=1)))
         if key % 12 == 1:  # February delivery
             last -= bd

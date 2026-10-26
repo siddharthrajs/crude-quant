@@ -11,9 +11,11 @@ from app.lightstreamer.feed import LightstreamerFeed
 from app.lightstreamer.instruments import load_instrument_records
 from app.lightstreamer.structures import Leg, Structure, StructureEngine, build_dfly_structures, build_fly_structures
 from app.news import listener as news_listener, router as news_router
+from app.qh import sync as qh_sync
 from app.quant.source import PRODUCTS as QUANT_PRODUCTS, store as quant_store
 from app.routers.auth import router as auth_router
 from app.routers.curve_lab import router as curve_lab_router
+from app.routers.dd import router as dd_router
 from app.routers.manager import router as manager_router
 from app.routers.paper_positions import router as paper_positions_router
 from app.routers.positions import router as positions_router
@@ -73,7 +75,11 @@ async def lifespan(app: FastAPI):
         # Build/refresh the Strategy Lab caches from the SQLite share in the background.
         for product in QUANT_PRODUCTS:
             quant_store.ensure(product)
+    # Keep the QH daily bars (Strategy Lab) topped up in the background.
+    qh_task = asyncio.create_task(qh_sync.run_forever()) if settings.qh_autosync else None
     yield
+    if qh_task:
+        qh_task.cancel()
     await news_listener.stop()
     if _feed:
         _feed.stop()
@@ -100,6 +106,7 @@ app.include_router(seasonality_router)
 app.include_router(curve_lab_router)
 app.include_router(watchlist_router)
 app.include_router(quant_router)
+app.include_router(dd_router)
 
 
 @app.get("/health")

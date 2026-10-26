@@ -86,6 +86,8 @@ export interface RangeNow {
 export interface RangeStats {
   range: BaseRange
   now: RangeNow | null
+  /** Same mean ± sigma band, but from the current year's own points only; null when it has too few. */
+  own: BaseRange | null
   years: YearBreaks[]
   /** Average breaks per year over the years that define the range's history, or the others when current is shown. */
   avgBreaksOthers: number | null
@@ -154,10 +156,19 @@ export function computeRange(lines: readonly Line[], opts: RangeOptions): RangeS
     }
   }
 
+  let own: BaseRange | null = null
+  if (cur && cur.line.y.length >= 10) {
+    const ys = cur.line.y
+    const s = sd(ys)
+    const m = mean(ys)
+    if (s > 0) own = { mid: toTick(m), sd: s, lo: toTick(m - opts.sigma * s), hi: toTick(m + opts.sigma * s), n: ys.length, basis: "all" }
+  }
+
   const history = perYear.filter((p) => p.line.shift > 0)
   return {
     range,
     now,
+    own,
     years: perYear.map((p) => p.out),
     avgBreaksOthers: history.length ? mean(history.map((p) => p.out.breaksAbove + p.out.breaksBelow)) : null,
   }
@@ -230,6 +241,8 @@ export interface LevelStats {
   hedges: HedgeStat[]
   /** Mean-reversion speed of each selected year's price level, whatever the chart is showing. */
   halfLives: HalfLifeStat[]
+  /** One estimate pooled over every selected year's transitions (year = 0 in the shape, `days` = total days). */
+  halfLifeAll: HalfLifeStat
 }
 
 function prep(series: YearSeries, minDays: number, maxDays: number): Win {
@@ -250,14 +263,19 @@ function prep(series: YearSeries, minDays: number, maxDays: number): Win {
  * then half-life = ln(0.5) / ln(phi), in trading days. Only meaningful for 0 < phi < 1; phi at or above 1 is a level
  * that trends (no reversion), and phi at or below 0 reverts faster than a day, so both return null.
  */
-function halfLife(values: readonly number[]): number | null {
-  if (values.length < 20) return null
-  const m = mean(values)
+function halfLife(...series: (readonly number[])[]): number | null {
+  if (series.reduce((n, v) => n + v.length, 0) < 20) return null
   let num = 0
   let den = 0
-  for (let i = 1; i < values.length; i++) {
-    num += (values[i] - m) * (values[i - 1] - m)
-    den += (values[i - 1] - m) ** 2
+  // Each series is taken from its own average and only steps inside a series count, so years pool without a
+  // fake jump from one year's last day to the next year's first.
+  for (const values of series) {
+    if (values.length < 2) continue
+    const m = mean(values)
+    for (let i = 1; i < values.length; i++) {
+      num += (values[i] - m) * (values[i - 1] - m)
+      den += (values[i - 1] - m) ** 2
+    }
   }
   const phi = den > 0 ? num / den : 0
   return phi > 0 && phi < 1 ? Math.log(0.5) / Math.log(phi) : null
@@ -391,5 +409,7 @@ export function computeLevelStats(result: SeasonalityResult, opts: LevelOptions)
 
   const halfLives = wins.map((w) => ({ year: w.year, days: w.values.length, halfLifeDays: halfLife(w.values) }))
 
-  return { asOf: cur ? cur.dates[cur.dates.length - 1] : null, drift, hedges, halfLives }
+  const halfLifeAll = { year: 0, days: wins.reduce((n, w) => n + w.values.length, 0), halfLifeDays: halfLife(...wins.map((w) => w.values)) }
+
+  return { asOf: cur ? cur.dates[cur.dates.length - 1] : null, drift, hedges, halfLives, halfLifeAll }
 }

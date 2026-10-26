@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button"
-import type { RangeState, RangeStats } from "@/lib/seasonality-stats"
+import type { HalfLifeStat, RangeState, RangeStats } from "@/lib/seasonality-stats"
 
 // The whole answer in one line above the chart: is the combined position inside its base range, where the range
 // is, how far from the edge, and how often it has broken it. The Stats panel below has the per-year detail.
@@ -15,6 +15,10 @@ export interface SummaryBarProps {
   /** What the chart is showing, e.g. "Daily change": names the value so it is never mistaken for the price level. */
   measure: string
   sigma: number
+  /** Per-year mean-reversion half-lives of the price level; the current year is the one with the newest data. */
+  halfLives?: HalfLifeStat[]
+  halfLifeAll?: number | null
+  currentYear?: number
   onDetails?: () => void
 }
 
@@ -29,7 +33,9 @@ function Item({ label, children, title }: { label: string; children: React.React
   )
 }
 
-export function SummaryBar({ range, measure, sigma, onDetails }: SummaryBarProps) {
+const days = (v: number | null | undefined) => (v == null ? "—" : `${v.toFixed(1)}d`)
+
+export function SummaryBar({ range, measure, sigma, halfLives, halfLifeAll, currentYear, onDetails }: SummaryBarProps) {
   if (!range) {
     return <div className="rounded-md border border-border px-3 py-2 text-xs text-muted-foreground">Not enough data in the selected years / days window to measure a base range.</div>
   }
@@ -37,6 +43,8 @@ export function SummaryBar({ range, measure, sigma, onDetails }: SummaryBarProps
   const thisYear = range.years.find((y) => y.year === now?.year)
   const breaks = thisYear ? thisYear.breaksAbove + thisYear.breaksBelow : null
   const edge = now ? `${now.edgeTicks} ticks ${now.state === "inside" ? "from the nearest edge" : `beyond the ${now.state === "above" ? "upper" : "lower"} edge`}` : ""
+
+  const curHl = halfLives?.find((h) => h.year === currentYear)?.halfLifeDays
 
   return (
     <div className="flex flex-wrap items-center gap-x-5 gap-y-1.5 rounded-md border border-border px-3 py-2 text-xs">
@@ -67,6 +75,12 @@ export function SummaryBar({ range, measure, sigma, onDetails }: SummaryBarProps
         <Item label="Breaks this year" title="Moves from inside the range to outside it">
           {breaks}
           {range.avgBreaksOthers !== null && <span className="ml-1 font-normal text-muted-foreground">(past years avg {range.avgBreaksOthers.toFixed(1)})</span>}
+        </Item>
+      )}
+      {halfLives && (
+        <Item label="Half-life" title="Trading days the price level takes to revert halfway to the year's own average. — means it trended instead of reverting.">
+          {days(curHl)}
+          <span className="ml-1 font-normal text-muted-foreground">(all years combined {days(halfLifeAll)})</span>
         </Item>
       )}
       {onDetails && (

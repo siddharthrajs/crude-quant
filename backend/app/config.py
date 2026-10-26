@@ -1,3 +1,4 @@
+from datetime import date
 from pathlib import Path
 
 from pydantic_settings import BaseSettings
@@ -39,8 +40,18 @@ class Settings(BaseSettings):
     # 15-minute bars built from them (the share is slow; the cache makes every load after the first one quick).
     quant_db_dir: Path = Path(r"I:\Energy Apr26\DATABASE\dbs")
     quant_cache_dir: Path = Path.home() / "AppData" / "Local" / "crude_quant_cache"
-    # Build/refresh the caches in the background when the API starts.
-    quant_autoload: bool = True
+    # Build/refresh the caches in the background when the API starts. Off while the Strategy Lab is rebuilt on the
+    # QH API (the Reuters-SQLite lab is disabled in the frontend).
+    quant_autoload: bool = False
+
+    # QH Data API (OHLC history). The token is issued per user via Microsoft sign-in at {base}/auth/.
+    qh_api_base_url: str = "https://qh-api.corp.hertshtengroup.com/apis"
+    qh_api_token: str = ""
+    # Daily bars are kept from this trade date on (see app/qh/sync.py). While the API runs they are topped up once
+    # at startup and then every day at qh_sync_time (London, after the WTI 22:00 and Brent 23:00 closes).
+    qh_history_start: date = date(2011, 1, 1)
+    qh_autosync: bool = True
+    qh_sync_time: str = "01:30"
 
     # Username/password auth (see app/auth/)
     jwt_secret_key: str = "change-me"

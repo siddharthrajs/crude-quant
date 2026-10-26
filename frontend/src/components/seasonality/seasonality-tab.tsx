@@ -311,7 +311,7 @@ export function SeasonalityTab() {
       </p>
 
       {shown && lines.length > 0 && (
-        <SummaryBar range={range} measure={modeInfo.axis} sigma={state.sigma} onDetails={state.showStats ? () => statsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }) : undefined} />
+        <SummaryBar range={range} measure={modeInfo.axis} sigma={state.sigma} halfLives={levels?.halfLives} halfLifeAll={levels?.halfLifeAll.halfLifeDays}currentYear={range?.now?.year} onDetails={state.showStats ? () => statsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }) : undefined} />
       )}
 
       <div className="min-h-[380px] flex-1 rounded-md border border-border p-1">

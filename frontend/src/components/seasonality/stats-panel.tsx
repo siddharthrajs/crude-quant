@@ -19,7 +19,8 @@ export interface StatsPanelProps {
 const fieldClass = "h-7 rounded-md border border-input bg-transparent px-2 text-xs outline-none focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/50 dark:bg-input/30"
 
 const num = (v: number | null | undefined, dp = 1) => (v == null || !Number.isFinite(v) ? "—" : v.toFixed(dp))
-const signed = (v: number | null | undefined, dp = 1) => (v == null || !Number.isFinite(v) ? "—" : `${v > 0 ? "+" : ""}${v.toFixed(dp)}`)
+const hlDays = (v: number | null | undefined) => (v == null ? "—" : `${v.toFixed(1)} d`)
+const signed =(v: number | null | undefined, dp = 1) => (v == null || !Number.isFinite(v) ? "—" : `${v > 0 ? "+" : ""}${v.toFixed(dp)}`)
 const ticks = (price: number) => Math.round(price / TICK)
 
 const STATE_STYLE: Record<RangeState, { label: string; tone: string }> = {
@@ -88,7 +89,7 @@ export function StatsPanel({ range, levels, controls, onControls, measure, plott
         <p className="text-muted-foreground">Not enough data in the selected years / days window to measure a range.</p>
       ) : (
         <>
-          <div className="grid gap-2 md:grid-cols-3">
+          <div className="grid gap-2 md:grid-cols-3 xl:grid-cols-5">
             <div className="rounded-md border border-border px-3 py-2">
               <div className="text-[11px] text-muted-foreground">Where it is now{now ? ` (${now.year}, ${now.date})` : ""}</div>
               {now ? (
@@ -120,10 +121,34 @@ export function StatsPanel({ range, levels, controls, onControls, measure, plott
             </div>
 
             <div className="rounded-md border border-border px-3 py-2">
+              <div className="text-[11px] text-muted-foreground">Range, {now ? `${now.year} only` : "current year only"} (mean ± {sigmaLabel})</div>
+              {range.own ? (
+                <>
+                  <div className="font-mono text-base font-semibold">
+                    {num(range.own.lo, 2)} → {num(range.own.hi, 2)}
+                  </div>
+                  <div className="text-muted-foreground">
+                    centre {num(range.own.mid, 2)} · width {ticks(range.own.hi - range.own.lo)} ticks (${ticks(range.own.hi - range.own.lo) * TICK_USD}/lot)
+                  </div>
+                  <div className="text-muted-foreground">from {range.own.n} daily points of this year alone</div>
+                </>
+              ) : (
+                <div className="text-muted-foreground">{now ? "Not enough points this year yet." : "The current year is not selected."}</div>
+              )}
+            </div>
+
+            <div className="rounded-md border border-border px-3 py-2">
               <div className="text-[11px] text-muted-foreground">Breaks of the range</div>
               <div className="font-mono text-base font-semibold">{thisYear ? `${thisYear.breaksAbove + thisYear.breaksBelow} this year` : "—"}</div>
               <div className="text-muted-foreground">{range.avgBreaksOthers === null ? "no past years to compare" : `${num(range.avgBreaksOthers)} per past year on average`}</div>
               <div className="text-muted-foreground">{now?.lastBreak ? `last break ${now.lastBreak.date} (${now.lastBreak.daysAgo} trading days ago)` : now ? "has not broken the range this year" : ""}</div>
+            </div>
+
+            <div className="rounded-md border border-border px-3 py-2" title="Trading days the price level takes to revert halfway to its average. — means it trended instead of reverting.">
+              <div className="text-[11px] text-muted-foreground">Half-life (price level)</div>
+              <div className="font-mono text-base font-semibold">{now ? `${hlDays(levels?.halfLives.find((h) => h.year === now.year)?.halfLifeDays)} this year` : "—"}</div>
+              <div className="text-muted-foreground">{hlDays(levels?.halfLifeAll.halfLifeDays)} all years combined</div>
+              <div className="text-muted-foreground">{levels ? `${levels.halfLifeAll.days} daily points pooled` : ""}</div>
             </div>
           </div>
 
