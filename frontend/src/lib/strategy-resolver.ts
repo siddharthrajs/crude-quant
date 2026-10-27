@@ -14,13 +14,19 @@ export interface Leg {
 
 const SPACINGS = [1, 2, 3, 6, 12] as const
 
-/** OUT, then 1MS..12MS, 1MF..12MF, 1MDF..12MDF. */
+/** OUT, then 1MS..12MS, 1MF..12MF, 1MDF..12MDF, then the 1:2 1-month double-fly. */
 export const STRATEGY_CODES = [
   "OUT",
   ...SPACINGS.map((n) => `${n}MS`),
   ...SPACINGS.map((n) => `${n}MF`),
   ...SPACINGS.map((n) => `${n}MDF`),
+  "1MDF12",
 ] as const
+
+/** The 1:2 double-fly is only offered for these products and front tenors -- the same set the backend
+ * builds its `dfly12` structures for (`build_dfly12_structures` in `structures.py`). */
+const DFLY12_PRODUCTS = new Set(["Brent", "WTI", "CLBZZ"])
+const DFLY12_TENORS = new Set(["Z26", "F27", "G27", "H27", "J27"])
 
 export type StrategyCode = (typeof STRATEGY_CODES)[number]
 
@@ -74,12 +80,21 @@ function doubleFlyLegs(product: string, tenor: string, n: number, instruments: I
   return near && far ? mergeLegs(near, negate(far)) : null
 }
 
+/** 1:2 1-month double-fly at `tenor`: fly(tenor,1) − 2×fly(tenor+1,1), e.g. Z26 1MF vs 2×F27 1MF. */
+function doubleFly12Legs(product: string, tenor: string, instruments: InstrumentRecord[]): Leg[] | null {
+  if (!DFLY12_PRODUCTS.has(product) || !DFLY12_TENORS.has(tenor)) return null
+  const near = flyLegs(product, tenor, 1, instruments)
+  const far = near && flyLegs(product, addMonths(tenor, 1), 1, instruments)
+  return near && far ? mergeLegs(near, far.map((l) => ({ item: l.item, weight: -2 * l.weight }))) : null
+}
+
 /** Resolves any `STRATEGY_CODES` entry at `tenor` to a weighted leg list; `null` if a required outright is out of the live forward curve. */
 export function resolveStrategy(code: string, product: string, tenor: string, instruments: InstrumentRecord[]): Leg[] | null {
   if (code === "OUT") {
     const item = outrightItem(product, tenor, instruments)
     return item ? [{ item, weight: 1 }] : null
   }
+  if (code === "1MDF12") return doubleFly12Legs(product, tenor, instruments)
   const m = /^(\d+)M(S|F|DF)$/.exec(code)
   if (!m) return null
   const n = Number(m[1])
@@ -88,7 +103,9 @@ export function resolveStrategy(code: string, product: string, tenor: string, in
   return doubleFlyLegs(product, tenor, n, instruments)
 }
 
-/** "X26 1MF": the tenor first, then the strategy code. */
+/** "X26 1MF": the tenor first, then the strategy code. The 1:2 double-fly also spells out its two flies,
+ * "Z26 1MDF12 (Z26/2xF27)", so it reads as what it is. */
 export function strategyLabel(code: string, tenor: string): string {
+  if (code === "1MDF12") return `${tenor} ${code} (${tenor}/2x${addMonths(tenor, 1)})`
   return `${tenor} ${code}`
 }

@@ -9,13 +9,14 @@ export const CURVE_CONVENTION: InstrumentConvention = { price: { kind: "decimal"
 
 /** The three live instrument types worth their own curve, in the order a curve grid reads left to right. */
 export const CURVE_TYPES = ["OUTRIGHT", "1MS", "FLY"] as const
-export type CurveType = (typeof CURVE_TYPES)[number] | "DFLY"
+export type CurveType = (typeof CURVE_TYPES)[number] | "DFLY" | "DFLY12"
 
 export const CURVE_TYPE_LABELS: Record<CurveType, string> = {
   OUTRIGHT: "Outrights",
   "1MS": "1-Month Spreads",
   FLY: "1-Month Flies",
   DFLY: "1-Month Double Flies",
+  DFLY12: "1-Month Double Flies (1:2)",
 }
 
 export interface CurveSeriesDef {
@@ -31,7 +32,8 @@ export interface CurveSeriesDef {
 /** Every curve worth drawing: one per live product for each of OUTRIGHT/1MS/FLY it has instruments for,
  * plus one DFLY curve per product that has at least two adjacent flies (the structure engine only builds
  * a double-fly where it can). A product the feed quotes no flies for (CLBZZ) gets its FLY curve from the
- * backend's synthetic `fly` structures, each priced off two adjacent 1-month spreads. */
+ * backend's synthetic `fly` structures, each priced off two adjacent 1-month spreads. Brent, WTI and CLBZZ
+ * also get a DFLY12 curve: the backend's 1:2 double-flies, Fly(T) − 2×Fly(T+1), for Z26 through J27. */
 export function buildCurveSeries(instruments: InstrumentRecord[], structures: StructureRecord[]): CurveSeriesDef[] {
   const byProductType = new Map<string, InstrumentRecord[]>()
   const productLabels = new Map<string, string>()
@@ -81,17 +83,19 @@ export function buildCurveSeries(instruments: InstrumentRecord[], structures: St
       legs: list.map((s) => ({ item: s.id, tenor: s.label, label: s.label })),
     })
   }
-  for (const [product, list] of structuresByKind("dfly")) {
-    list.sort((a, b) => compareSortKey(sortKeyOf(a, itemByKey), sortKeyOf(b, itemByKey)))
-    out.push({
-      id: `${product}:DFLY`,
-      product,
-      productLabel: productLabels.get(product) ?? product,
-      type: "DFLY",
-      // The axis wants a month code, not "V26/X26 DFly" repeated at every point -- the structure's
-      // label is "<front leg>/<back leg> DFly"; its front leg alone is exactly that code.
-      legs: list.map((s) => ({ item: s.id, tenor: s.label, label: s.label.split("/")[0] ?? s.label })),
-    })
+  for (const [kind, type] of [["dfly", "DFLY"], ["dfly12", "DFLY12"]] as const) {
+    for (const [product, list] of structuresByKind(kind)) {
+      list.sort((a, b) => compareSortKey(sortKeyOf(a, itemByKey), sortKeyOf(b, itemByKey)))
+      out.push({
+        id: `${product}:${type}`,
+        product,
+        productLabel: productLabels.get(product) ?? product,
+        type,
+        // The axis wants a month code, not "V26/X26 DFly" repeated at every point -- the structure's
+        // label is "<front leg>/<back leg> DFly"; its front leg alone is exactly that code.
+        legs: list.map((s) => ({ item: s.id, tenor: s.label, label: s.label.split("/")[0] ?? s.label })),
+      })
+    }
   }
   return out
 }

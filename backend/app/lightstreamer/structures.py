@@ -167,6 +167,56 @@ def _build_dfly_from_spreads(records: list[dict]) -> list[Structure]:
     return structures
 
 
+DFLY12_PRODUCTS = ("Brent", "WTI", "CLBZZ")
+DFLY12_TENORS = ("Z26", "F27", "G27", "H27", "J27")
+
+
+def build_dfly12_structures(records: list[dict]) -> list[Structure]:
+    """1:2 double-flies for the front of the Brent, WTI and CLBZZ curves: DFly12(T) = Fly(T) - 2*Fly(T+1).
+
+    Only for the fly tenors in `DFLY12_TENORS`. A product with quoted flies is built straight off them;
+    one without (CLBZZ) off its 1-month spreads, since a structure's legs have to be feed items:
+    Fly(T) - 2*Fly(T+1) = Spread(T) - 3*Spread(T+1) + 2*Spread(T+2).
+    """
+    by_product: dict[str, dict[str, dict[str, dict]]] = {}
+    for record in records:
+        if record["product"] in DFLY12_PRODUCTS and record["instrument_type"] in ("FLY", "1MS"):
+            # Keyed by front month, so a spread "Z26-F27" and a fly "Z26" both live under "Z26".
+            front = record["tenor"].split("-")[0]
+            by_product.setdefault(record["product"], {}).setdefault(record["instrument_type"], {})[front] = record
+
+    structures = []
+    for product, by_type in by_product.items():
+        flies = by_type.get("FLY", {})
+        spreads = by_type.get("1MS", {})
+        months = sorted({*flies, *spreads}, key=lambda t: (int(t[1:]), "FGHJKMNQUVXZ".index(t[0])))
+        for tenor in DFLY12_TENORS:
+            if tenor not in months or months.index(tenor) + 2 >= len(months):
+                continue
+            i = months.index(tenor)
+            nxt, nxt2 = months[i + 1], months[i + 2]
+            if flies:
+                if tenor not in flies or nxt not in flies:
+                    continue
+                legs = [Leg(item=flies[tenor]["item"], weight=1.0), Leg(item=flies[nxt]["item"], weight=-2.0)]
+            else:
+                if not all(t in spreads for t in (tenor, nxt, nxt2)):
+                    continue
+                legs = [
+                    Leg(item=spreads[tenor]["item"], weight=1.0),
+                    Leg(item=spreads[nxt]["item"], weight=-3.0),
+                    Leg(item=spreads[nxt2]["item"], weight=2.0),
+                ]
+            structures.append(Structure(
+                id=f"{product}:DFLY12:{tenor}",
+                label=f"{tenor}/2x{nxt} DFly",
+                legs=legs,
+                product=product,
+                kind="dfly12",
+            ))
+    return structures
+
+
 def build_fly_structures(records: list[dict]) -> list[Structure]:
     """For products the feed quotes no flies for, one 1-month fly per adjacent pair of 1-month spreads.
 

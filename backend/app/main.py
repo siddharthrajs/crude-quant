@@ -9,7 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.config import settings
 from app.lightstreamer.feed import LightstreamerFeed
 from app.lightstreamer.instruments import load_instrument_records
-from app.lightstreamer.structures import Leg, Structure, StructureEngine, build_dfly_structures, build_fly_structures
+from app.lightstreamer.structures import Leg, Structure, StructureEngine, build_dfly12_structures, build_dfly_structures, build_fly_structures
 from app.news import listener as news_listener, router as news_router
 from app.qh import sync as qh_sync
 from app.quant.source import PRODUCTS as QUANT_PRODUCTS, store as quant_store
@@ -56,7 +56,7 @@ async def lifespan(app: FastAPI):
     global _feed, _instruments, _instrument_items
     _instruments = load_instrument_records(settings.instruments_file)
     _instrument_items = {record["item"] for record in _instruments}
-    for structure in build_fly_structures(_instruments) + build_dfly_structures(_instruments):
+    for structure in build_fly_structures(_instruments) + build_dfly_structures(_instruments) + build_dfly12_structures(_instruments):
         engine.add_structure(structure)
 
     if settings.lightstreamer_autostart:
