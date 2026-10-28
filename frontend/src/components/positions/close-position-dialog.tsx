@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { Textarea } from "@/components/ui/textarea"
 import { useAuth } from "@/hooks/use-auth"
 import { formatPrice } from "@/lib/format"
 import { closePosition, type BookMode, type Position } from "@/lib/positions-api"
@@ -40,6 +41,7 @@ function ClosePositionForm({ position, tickStore, onOpenChange, onClosed, mode =
   const { token } = useAuth()
   const [exitPrice, setExitPrice] = useState("")
   const [exitSize, setExitSize] = useState(String(position.size))
+  const [exitNote, setExitNote] = useState("")
   const [error, setError] = useState<string | null>(null)
   const [submitting, setSubmitting] = useState(false)
   const livePrice = useLivePrice(position.legs, tickStore)
@@ -60,7 +62,7 @@ function ClosePositionForm({ position, tickStore, onOpenChange, onClosed, mode =
     setSubmitting(true)
     setError(null)
     try {
-      const closed = await closePosition(token, position.id, exitPriceValue, exitSizeValue, mode)
+      const closed = await closePosition(token, position.id, exitPriceValue, exitSizeValue, mode, exitNote.trim() === "" ? null : exitNote.trim())
       onClosed(closed)
     } catch (err) {
       setError(err instanceof Error ? err.message : "Could not close the position.")
@@ -108,7 +110,19 @@ function ClosePositionForm({ position, tickStore, onOpenChange, onClosed, mode =
           </div>
         </div>
 
-        {error && <p className="text-xs text-destructive">{error}</p>}
+        <div className="flex flex-col gap-1.5">
+          <Label htmlFor="close-position-note">Exit note</Label>
+          <Textarea
+            id="close-position-note"
+            rows={3}
+            maxLength={2000}
+            placeholder="Why are you exiting? (optional)"
+            value={exitNote}
+            onChange={(e) => setExitNote(e.target.value)}
+          />
+        </div>
+
+        {error &&<p className="text-xs text-destructive">{error}</p>}
       </div>
 
       <DialogFooter>

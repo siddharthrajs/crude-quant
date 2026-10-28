@@ -33,6 +33,7 @@ export interface Position {
   closed_at: string | null
   exit_price: number | null
   realized_pnl: number | null
+  entry_note: string | null
 }
 
 export interface JournalEntry {
@@ -53,6 +54,10 @@ export interface JournalEntry {
   take_profit: number | null
   opened_at: string
   closed_at: string
+  /** Why the position was opened (Add position dialog); null when none was given. */
+  entry_note: string | null
+  /** Why this slice was exited (Close position dialog, or the note on the trade that squared it off). */
+  exit_note: string | null
 }
 
 /** One entry (partial fill) netted into an open position's size and average price. */
@@ -88,6 +93,7 @@ export interface PositionCreateInput {
   stop_loss: number | null
   take_profit: number | null
   share_with_team: boolean
+  entry_note: string | null
 }
 
 async function positionsError(res: Response): Promise<never> {
@@ -129,11 +135,11 @@ export async function editPosition(token: string, id: number, body: PositionEdit
   return res.json() as Promise<Position>
 }
 
-export async function closePosition(token: string, id: number, exitPrice: number, size?: number, mode: BookMode = "live"): Promise<Position> {
+export async function closePosition(token: string, id: number, exitPrice: number, size?: number, mode: BookMode = "live", exitNote: string | null = null): Promise<Position> {
   const res = await fetch(`${basePath(mode)}/${id}/close`, {
     method: "POST",
     headers: authHeaders(token),
-    body: JSON.stringify({ exit_price: exitPrice, size: size ?? null }),
+    body: JSON.stringify({ exit_price: exitPrice, size: size ?? null, exit_note: exitNote }),
   })
   if (!res.ok) return positionsError(res)
   return res.json() as Promise<Position>

@@ -7,6 +7,7 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, D
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Textarea } from "@/components/ui/textarea"
 import { useAuth } from "@/hooks/use-auth"
 import { CURVE_CONVENTION } from "@/lib/curve-series"
 import { formatPrice } from "@/lib/format"
@@ -97,6 +98,7 @@ export function AddPositionDialog({ open, onOpenChange, instruments, customStruc
   const [stopLoss, setStopLoss] = useState("")
   const [takeProfit, setTakeProfit] = useState("")
   const [shareWithTeam, setShareWithTeam] = useState(false)
+  const [entryNote, setEntryNote] = useState("")
   const [error, setError] = useState<string | null>(null)
   const [submitting, setSubmitting] = useState(false)
 
@@ -149,6 +151,7 @@ export function AddPositionDialog({ open, onOpenChange, instruments, customStruc
     setStopLoss("")
     setTakeProfit("")
     setShareWithTeam(false)
+    setEntryNote("")
     setError(null)
   }
 
@@ -180,6 +183,7 @@ export function AddPositionDialog({ open, onOpenChange, instruments, customStruc
         stop_loss: stopLoss.trim() === "" ? null : Number(stopLoss),
         take_profit: takeProfit.trim() === "" ? null : Number(takeProfit),
         share_with_team: shareWithTeam,
+        entry_note: entryNote.trim() === "" ? null : entryNote.trim(),
       }, mode)
       onCreated(position)
       reset()
@@ -266,6 +270,18 @@ export function AddPositionDialog({ open, onOpenChange, instruments, customStruc
               <Label htmlFor="add-position-take">Take profit</Label>
               <Input id="add-position-take" type="number" step="any" placeholder="Optional" value={takeProfit} onChange={(e) => setTakeProfit(e.target.value)} />
             </div>
+          </div>
+
+          <div className="flex flex-col gap-1.5">
+            <Label htmlFor="add-position-note">Entry note</Label>
+            <Textarea
+              id="add-position-note"
+              rows={3}
+              maxLength={2000}
+              placeholder="Why are you putting this trade on? (optional)"
+              value={entryNote}
+              onChange={(e) => setEntryNote(e.target.value)}
+            />
           </div>
 
           <label className="flex items-center gap-2 text-sm">

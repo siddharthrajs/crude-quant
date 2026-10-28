@@ -114,6 +114,7 @@ class PositionCreateIn(BaseModel):
     stop_loss: float | None = None
     take_profit: float | None = None
     share_with_team: bool = False
+    entry_note: str | None = Field(default=None, max_length=2000)
 
 
 class PositionOut(BaseModel):
@@ -137,6 +138,7 @@ class PositionOut(BaseModel):
     closed_at: datetime | None
     exit_price: float | None
     realized_pnl: float | None
+    entry_note: str | None
 
     class Config:
         from_attributes = True
@@ -147,6 +149,7 @@ class PositionCloseIn(BaseModel):
     # Omitted (or equal to the position's own size) closes it fully; anything smaller leaves the
     # remainder open at its original average price -- a partial exit.
     size: int | None = Field(default=None, gt=0)
+    exit_note: str | None = Field(default=None, max_length=2000)
 
 
 class FillOut(BaseModel):
@@ -188,6 +191,8 @@ class JournalEntryOut(BaseModel):
     take_profit: float | None
     opened_at: datetime
     closed_at: datetime
+    entry_note: str | None = None
+    exit_note: str | None = None
 
     class Config:
         from_attributes = True

@@ -79,6 +79,8 @@ async def member_journal(
             take_profit=e.take_profit,
             opened_at=e.opened_at,
             closed_at=e.closed_at,
+            entry_note=e.entry_note,
+            exit_note=e.exit_note,
         )
         for e in entries
     ]

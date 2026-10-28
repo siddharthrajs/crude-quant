@@ -2,7 +2,7 @@ from datetime import date, datetime
 from decimal import Decimal
 
 from sqlalchemy import (
-    Boolean, Date, DateTime, ForeignKey, Integer, Numeric, SmallInteger, String, UniqueConstraint, func,
+    Boolean, Date, DateTime, ForeignKey, Integer, Numeric, SmallInteger, String, Text, UniqueConstraint, func,
 )
 from sqlalchemy.dialects.postgresql import DOUBLE_PRECISION, JSONB
 from sqlalchemy.orm import Mapped, mapped_column
@@ -73,6 +73,8 @@ class Position(Base):
     closed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
     exit_price: Mapped[Decimal | None] = mapped_column(Numeric(18, 6), nullable=True)
     realized_pnl: Mapped[Decimal | None] = mapped_column(Numeric(18, 6), nullable=True)
+    # Why the trade was put on, from the Add position dialog; copied onto each journal entry it closes into.
+    entry_note: Mapped[str | None] = mapped_column(Text, nullable=True)
 
 
 class TradeJournalEntry(Base):
@@ -94,6 +96,8 @@ class TradeJournalEntry(Base):
     take_profit: Mapped[Decimal | None] = mapped_column(Numeric(18, 6), nullable=True)
     opened_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False)
     closed_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False)
+    entry_note: Mapped[str | None] = mapped_column(Text, nullable=True)
+    exit_note: Mapped[str | None] = mapped_column(Text, nullable=True)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now(), nullable=False)
 
 
@@ -122,6 +126,8 @@ class PaperPosition(Base):
     closed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
     exit_price: Mapped[Decimal | None] = mapped_column(Numeric(18, 6), nullable=True)
     realized_pnl: Mapped[Decimal | None] = mapped_column(Numeric(18, 6), nullable=True)
+    # Why the trade was put on, from the Add position dialog; copied onto each journal entry it closes into.
+    entry_note: Mapped[str | None] = mapped_column(Text, nullable=True)
 
 
 class PaperTradeJournalEntry(Base):
@@ -143,6 +149,8 @@ class PaperTradeJournalEntry(Base):
     take_profit: Mapped[Decimal | None] = mapped_column(Numeric(18, 6), nullable=True)
     opened_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False)
     closed_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False)
+    entry_note: Mapped[str | None] = mapped_column(Text, nullable=True)
+    exit_note: Mapped[str | None] = mapped_column(Text, nullable=True)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now(), nullable=False)
 
 

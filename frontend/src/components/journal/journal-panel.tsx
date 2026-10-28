@@ -65,6 +65,9 @@ export function JournalPanel({ scope, member, active, label, mode = "live" }: Jo
   // Kept alongside the grid's row store -- the analytics panel reads the raw entries, the grid reads
   // the store's rows, and the two are populated and pruned together below.
   const [entries, setEntries] = useState<JournalEntry[]>([])
+  // The row last clicked: its entry/exit notes show under the analytics panel's P&L curve.
+  const [focusedId, setFocusedId] = useState<RowId | null>(null)
+  const focusedEntry = focusedId === null ? null : (entries.find((e) => String(e.id) === String(focusedId)) ?? null)
 
   useEffect(() => {
     if (!token || !active) return
@@ -144,11 +147,13 @@ export function JournalPanel({ scope, member, active, label, mode = "live" }: Jo
             onSelectionChange={setSelection}
             sort={sort}
             onSortChange={setSort}
+            focusedRowId={focusedId}
+            onFocusedRowChange={setFocusedId}
             onExport={(csv) => downloadCsv(csv, `${memberId !== undefined ? "member" : scope}-${mode === "paper" ? "paper-" : ""}trade-journal.csv`)}
             pane={false}
           />
         </div>
-        <JournalAnalyticsPanel journal={entries} />
+        <JournalAnalyticsPanel journal={entries} selected={focusedEntry} />
       </div>
     </div>
   )

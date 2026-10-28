@@ -76,6 +76,11 @@ def _position_edit_guard(position: PaperPosition | None, book: Book | None, user
     return position
 
 
+def _note(text: str | None) -> str | None:
+    text = (text or "").strip()
+    return text or None
+
+
 def _realized_pnl(side: str, size: int, average_price: Decimal, exit_price: Decimal) -> Decimal:
     sign = Decimal(1) if side == "long" else Decimal(-1)
     return Decimal(size) * (exit_price - average_price) * sign * PRICE_MULTIPLIER
@@ -103,6 +108,7 @@ def _position_out(position: PaperPosition, owner_username: str) -> PositionOut:
         closed_at=position.closed_at,
         exit_price=position.exit_price,
         realized_pnl=position.realized_pnl,
+        entry_note=position.entry_note,
     )
 
 
@@ -116,6 +122,7 @@ def _journal_entry_for(
     realized_pnl: Decimal,
     opened_at: datetime,
     closed_at: datetime,
+    exit_note: str | None = None,
 ) -> PaperTradeJournalEntry:
     return PaperTradeJournalEntry(
         book_id=position.book_id,
@@ -133,10 +140,12 @@ def _journal_entry_for(
         take_profit=position.take_profit,
         opened_at=opened_at,
         closed_at=closed_at,
+        entry_note=position.entry_note,
+        exit_note=exit_note,
     )
 
 
-async def _close_some(db: AsyncSession, position: PaperPosition, *, size: int, exit_price: Decimal, closed_at: datetime) -> Decimal:
+async def _close_some(db: AsyncSession, position: PaperPosition, *, size: int, exit_price: Decimal, closed_at: datetime, exit_note: str | None = None) -> Decimal:
     """Exits `size` lots of `position` at `exit_price`, journaling the realized P&L on just that
     slice. Closes the position outright when `size` covers all of it; otherwise leaves the remainder
     open at its original average price (a partial exit). Returns the realized P&L for this slice."""
@@ -151,6 +160,7 @@ async def _close_some(db: AsyncSession, position: PaperPosition, *, size: int, e
             realized_pnl=realized,
             opened_at=position.opened_at,
             closed_at=closed_at,
+            exit_note=exit_note,
         )
     )
     await _consume_fills(db, position.id, min(size, position.size))
@@ -201,6 +211,7 @@ async def _net_trade(
     average_price: Decimal,
     stop_loss: Decimal | None,
     take_profit: Decimal | None,
+    note: str | None = None,
 ) -> PaperPosition:
     """Books a trade against `existing` (the open position already sitting in this instrument, if
     any) instead of always inserting a new row. Same side -> size-weighted average into `existing`.
@@ -208,7 +219,8 @@ async def _net_trade(
     trade journal; if the incoming trade is bigger than `existing`, the leftover flips `existing` in
     place into the remainder at the new side/price rather than opening a second row. Returns the
     resulting position: still open after a merge/partial-close/flip, or closed after an exact
-    square-off.
+    square-off. `note` is the incoming trade's reason: the entry note of a new, added-to, or
+    flipped position, and the exit note of whatever it squares off.
     """
     if existing is None:
         position = PaperPosition(
@@ -224,6 +236,7 @@ async def _net_trade(
             average_price=average_price,
             stop_loss=stop_loss,
             take_profit=take_profit,
+            entry_note=note,
         )
         db.add(position)
         await db.flush()
@@ -240,6 +253,8 @@ async def _net_trade(
             existing.stop_loss = stop_loss
         if take_profit is not None:
             existing.take_profit = take_profit
+        if note is not None:
+            existing.entry_note = f"{existing.entry_note}\n\n{note}" if existing.entry_note else note
         await db.flush()
         return existing
 
@@ -256,6 +271,7 @@ async def _net_trade(
             realized_pnl=realized,
             opened_at=existing.opened_at,
             closed_at=now,
+            exit_note=note,
         )
     )
 
@@ -280,6 +296,7 @@ async def _net_trade(
     existing.opened_at = now
     existing.stop_loss = stop_loss
     existing.take_profit = take_profit
+    existing.entry_note = note
     await db.flush()
     return existing
 
@@ -315,6 +332,7 @@ async def create_position(
     average_price = Decimal(str(body.average_price))
     stop_loss = Decimal(str(body.stop_loss)) if body.stop_loss is not None else None
     take_profit = Decimal(str(body.take_profit)) if body.take_profit is not None else None
+    note = _note(body.entry_note)
 
     personal_existing = await _find_open_position(
         db, book_id=personal_book.id, product=body.product, strategy_code=body.strategy_code, tenor=body.tenor
@@ -334,6 +352,7 @@ async def create_position(
         average_price=average_price,
         stop_loss=stop_loss,
         take_profit=take_profit,
+        note=note,
     )
 
     # Mirror the same trade into the team book whenever this instrument is already shared (an
@@ -364,6 +383,7 @@ async def create_position(
             average_price=average_price,
             stop_loss=stop_loss,
             take_profit=take_profit,
+            note=note,
         )
         if personal_position.linked_position_id is None:
             personal_position.linked_position_id = team_position.id
@@ -401,15 +421,16 @@ async def close_position(
 
     exit_price = Decimal(str(body.exit_price))
     closed_at = datetime.now(timezone.utc)
+    exit_note = _note(body.exit_note)
 
-    await _close_some(db, position, size=close_size, exit_price=exit_price, closed_at=closed_at)
+    await _close_some(db, position, size=close_size, exit_price=exit_price, closed_at=closed_at, exit_note=exit_note)
 
     if position.linked_position_id is not None:
         linked = (
             await db.execute(select(PaperPosition).where(PaperPosition.id == position.linked_position_id))
         ).scalar_one_or_none()
         if linked is not None and linked.status != "closed":
-            await _close_some(db, linked, size=min(close_size, linked.size), exit_price=exit_price, closed_at=closed_at)
+            await _close_some(db, linked, size=min(close_size, linked.size), exit_price=exit_price, closed_at=closed_at, exit_note=exit_note)
 
     await db.commit()
     await db.refresh(position)
@@ -509,6 +530,8 @@ async def list_journal(
             take_profit=entry.take_profit,
             opened_at=entry.opened_at,
             closed_at=entry.closed_at,
+            entry_note=entry.entry_note,
+            exit_note=entry.exit_note,
         )
         for entry, username in rows
     ]

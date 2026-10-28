@@ -157,10 +157,45 @@ function JournalPnlCurveChart({ journal }: { journal: readonly JournalEntry[] })
   )
 }
 
+function NoteBlock({ label, text }: { label: string; text: string | null }) {
+  return (
+    <div className="flex flex-col gap-1">
+      <span className="text-[10px] tracking-wide text-muted-foreground uppercase">{label}</span>
+      {text ? <p className="whitespace-pre-wrap break-words">{text}</p> : <p className="text-muted-foreground italic">No note</p>}
+    </div>
+  )
+}
+
+/** The clicked trade's reasons: the entry note it was opened with and the exit note it was closed with. */
+function TradeNotesCard({ entry }: { entry: JournalEntry | null }) {
+  return (
+    <Card size="sm" className="shrink-0">
+      <CardHeader>
+        <CardTitle className="text-xs tracking-wide text-muted-foreground uppercase">Trade notes</CardTitle>
+        {entry && (
+          <CardDescription className="text-xs">
+            {entry.strategy_label} — {entry.side === "long" ? "Long" : "Short"} {entry.size} · <span className={directionClass(directionOf(0, entry.realized_pnl))}>{usd(entry.realized_pnl)}</span>
+          </CardDescription>
+        )}
+      </CardHeader>
+      <CardContent>
+        {entry === null ? (
+          <p className="text-xs text-muted-foreground">Click a trade to see its entry and exit notes.</p>
+        ) : (
+          <div className="flex flex-col gap-3">
+            <NoteBlock label="Entry note" text={entry.entry_note} />
+            <NoteBlock label="Exit note" text={entry.exit_note} />
+          </div>
+        )}
+      </CardContent>
+    </Card>
+  )
+}
+
 /** The journal's KPI column, replacing the audit trail's per-row "changes" pane -- this trail is
  * always one shape of event (a closed trade), so the pane's job is better done as a summary of all
- * of them than a diff of one or two. */
-export function JournalAnalyticsPanel({ journal }: { journal: readonly JournalEntry[] }) {
+ * of them than a diff of one or two. Under the curve, the clicked trade's (`selected`) notes. */
+export function JournalAnalyticsPanel({ journal, selected = null }: { journal: readonly JournalEntry[]; selected?: JournalEntry | null }) {
   const stats = useMemo(() => computeStats(journal), [journal])
 
   return (
@@ -177,6 +212,8 @@ export function JournalAnalyticsPanel({ journal }: { journal: readonly JournalEn
       </div>
 
       <JournalPnlCurveChart journal={journal} />
+
+      <TradeNotesCard entry={selected} />
     </section>
   )
 }
