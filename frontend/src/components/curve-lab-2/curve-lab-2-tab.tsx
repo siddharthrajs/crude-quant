@@ -6,6 +6,7 @@ import {
   getCurveLab2Curves,
   getCurveLab2Meta,
   type CurveLab2Curves,
+  type CurveLab2Day,
   type CurveLab2Meta,
   type CurveLab2Mode,
   type CurveLab2Product,
@@ -16,8 +17,9 @@ import { FullscreenPanel } from "./fullscreen-panel"
 import { RelativeCharts, type RelSeries, type RelView } from "./relative-charts"
 
 // Curve Lab 2: one strategy's forward curve on each settlement day of a date range, from settlements (solid) with
-// the session opens beside it (dashed grey). The whole range is fetched once; the slider (or Play) scrubs through
-// its days locally. Point k applies the strategy from generic slot ck; GD / RD only changes how points are labelled.
+// the session opens beside it (dashed grey), and a reference strategy's curve for the same product and day next to
+// it. The whole range is fetched once per strategy; the slider (or Play) scrubs through its days locally. Point k
+// applies the strategy from generic slot ck; GD / RD only changes how points are labelled.
 
 const STORAGE_KEY = "crude-quant-curve-lab-2"
 const DEFAULT_SPAN_DAYS = 90
@@ -51,6 +53,52 @@ function padded(lo: number, hi: number): [number, number] {
 
 const round2 = (v: number) => String(Math.round(v * 100) / 100)
 
+/** The y-range holding still across the whole range, 2nd–98th percentile. */
+function rangeDomainOf(data: CurveLab2Curves | null): [number, number] | undefined {
+  if (!data) return undefined
+  const values: number[] = []
+  for (const d of data.days) for (const v of [...d.settle, ...d.open]) if (v !== null) values.push(v)
+  if (values.length === 0) return undefined
+  values.sort((a, b) => a - b)
+  return padded(percentile(values, RANGE_PCT), percentile(values, 1 - RANGE_PCT))
+}
+
+function dayDomainOf(day: CurveLab2Day | null): [number, number] | undefined {
+  const values = day ? [...day.settle, ...day.open].filter((v): v is number => v !== null) : []
+  return values.length ? padded(Math.min(...values), Math.max(...values)) : undefined
+}
+
+/** A day's settle and open curves. Axis: the mode's label on top, the other one under it (GD: c3 over G27, RD: G27 over c3). */
+function curvePoints(day: CurveLab2Day | null, mode: CurveLab2Mode): { settlePoints: CurvePoint[]; openPoints: CurvePoint[] } {
+  if (!day) return { settlePoints: [], openPoints: [] }
+  const slot = (k: number) => `c${k + 1}`
+  const label = (k: number) => (mode === "GD" ? slot(k) : day.refs[k])
+  const sublabel = (k: number) => (mode === "GD" ? day.refs[k] : slot(k))
+  return {
+    settlePoints: day.settle.map<CurvePoint>((v, k) => ({ tenor: label(k), sublabel: sublabel(k), value: v })),
+    openPoints: day.open.map<CurvePoint>((v, k) => ({ tenor: label(k), value: v })),
+  }
+}
+
+type CurvesQuery = Parameters<typeof getCurveLab2Curves>[1]
+
+/** One strategy's curves over the range, refetched when the query changes. `loading` while the loaded query differs. */
+function useCurves(token: string | null, query: CurvesQuery | null) {
+  const key = query ? JSON.stringify(query) : ""
+  const [res, setRes] = useState<{ key: string; data: CurveLab2Curves | null; error: string | null }>({ key: "", data: null, error: null })
+  useEffect(() => {
+    if (!token || !key) return
+    const ctl = new AbortController()
+    getCurveLab2Curves(token, JSON.parse(key) as CurvesQuery, ctl.signal)
+      .then((data) => setRes({ key, data, error: null }))
+      .catch((e: unknown) => {
+        if (!ctl.signal.aborted) setRes((r) => ({ key, data: r.data, error: e instanceof Error ? e.message : "Request failed" }))
+      })
+    return () => ctl.abort()
+  }, [token, key])
+  return { data: res.data, error: res.error, loading: Boolean(key) && res.key !== key }
+}
+
 const MAX_PICKS = 3
 
 interface Pick {
@@ -62,6 +110,8 @@ interface Pick {
 interface Persisted {
   product: CurveLab2Product
   strategy: CurveLab2Strategy
+  /** The strategy drawn beside it, for the same product, range and points. */
+  refStrategy: CurveLab2Strategy
   mode: CurveLab2Mode
   /** "" = DEFAULT_SPAN_DAYS before the end. */
   start: string
@@ -80,7 +130,7 @@ interface Persisted {
   relByYear: boolean
 }
 
-const DEFAULTS: Persisted = { product: "CL", strategy: "spread", mode: "GD", start: "", end: "", depth: 12, yScale: "range", yMin: "", yMax: "", speedMs: 200, picks: { GD: [], RD: [] }, relView: "level", relByYear: false }
+const DEFAULTS: Persisted = { product: "CL", strategy: "spread", refStrategy: "outright", mode: "GD", start: "", end: "", depth: 12, yScale: "range", yMin: "", yMax: "", speedMs: 200, picks: { GD: [], RD: [] }, relView: "level", relByYear: false }
 
 function loadPersisted(): Persisted {
   try {
@@ -106,12 +156,9 @@ export function CurveLab2Tab() {
   const { token } = useAuth()
   const [state, setState] = useState<Persisted>(loadPersisted)
   const [meta, setMeta] = useState<CurveLab2Meta | null>(null)
-  // The query `data` / `error` belong to; while it differs from the current one, a request is in flight.
-  const [loadedKey, setLoadedKey] = useState("")
-  const [data, setData] = useState<CurveLab2Curves | null>(null)
   const [index, setIndex] = useState(0)
   const [playing, setPlaying] = useState(false)
-  const [error, setError] = useState<string | null>(null)
+  const [metaError, setMetaError] = useState<string | null>(null)
   const patch = (p: Partial<Persisted>) => setState((s) => ({ ...s, ...p }))
 
   useEffect(() => {
@@ -128,7 +175,7 @@ export function CurveLab2Tab() {
     getCurveLab2Meta(token, ctl.signal)
       .then(setMeta)
       .catch((e: unknown) => {
-        if (!ctl.signal.aborted) setError(e instanceof Error ? e.message : "Request failed")
+        if (!ctl.signal.aborted) setMetaError(e instanceof Error ? e.message : "Request failed")
       })
     return () => ctl.abort()
   }, [token])
@@ -139,29 +186,20 @@ export function CurveLab2Tab() {
   const start = state.start || (end ? shiftDays(end, -DEFAULT_SPAN_DAYS) : "")
 
   // One request per range/strategy; the slider only moves through what came back.
-  const query = { product: state.product, strategy: state.strategy, start, end, depth: state.depth }
-  const queryKey = JSON.stringify(query)
-  const loading = Boolean(start && end) && loadedKey !== queryKey
-  useEffect(() => {
-    if (!token || !start || !end) return
-    const ctl = new AbortController()
-    getCurveLab2Curves(token, JSON.parse(queryKey) as typeof query, ctl.signal)
-      .then((c) => {
-        setData(c)
-        setIndex(c.days.length - 1)
-        setPlaying(false)
-        setError(null)
-        setLoadedKey(queryKey)
-      })
-      .catch((e: unknown) => {
-        if (ctl.signal.aborted) return
-        setError(e instanceof Error ? e.message : "Request failed")
-        setLoadedKey(queryKey)
-      })
-    return () => ctl.abort()
-    // queryKey stands for the query's fields.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [token, queryKey])
+  const ready = Boolean(start && end)
+  const main = useCurves(token, ready ? { product: state.product, strategy: state.strategy, start, end, depth: state.depth } : null)
+  const ref = useCurves(token, ready ? { product: state.product, strategy: state.refStrategy, start, end, depth: state.depth } : null)
+  const data = main.data
+  const error = metaError ?? main.error
+  const loading = main.loading || ref.loading
+
+  // A newly loaded range starts on its last day, paused.
+  const [shown, setShown] = useState(data)
+  if (data !== shown) {
+    setShown(data)
+    if (data) setIndex(data.days.length - 1)
+    setPlaying(false)
+  }
 
   const count = data?.days.length ?? 0
   useEffect(() => {
@@ -180,26 +218,21 @@ export function CurveLab2Tab() {
 
   const day = data?.days[Math.min(index, count - 1)] ?? null
   const nLegs = data?.weights.length ?? 1
+  // The reference's curve on the slider's day (same product, so the same settlement days).
+  const refByDate = useMemo(() => new Map((ref.data?.days ?? []).map((d) => [d.date, d])), [ref.data])
+  const refDay = day ? (refByDate.get(day.date) ?? null) : null
 
-  const rangeDomain = useMemo<[number, number] | undefined>(() => {
-    if (!data) return undefined
-    const values: number[] = []
-    for (const d of data.days) for (const v of [...d.settle, ...d.open]) if (v !== null) values.push(v)
-    if (values.length === 0) return undefined
-    values.sort((a, b) => a - b)
-    return padded(percentile(values, RANGE_PCT), percentile(values, 1 - RANGE_PCT))
-  }, [data])
-
-  const dayDomain = (): [number, number] | undefined => {
-    const values = day ? [...day.settle, ...day.open].filter((v): v is number => v !== null) : []
-    return values.length ? padded(Math.min(...values), Math.max(...values)) : undefined
-  }
+  const rangeDomain = useMemo(() => rangeDomainOf(data), [data])
+  const refRangeDomain = useMemo(() => rangeDomainOf(ref.data), [ref.data])
+  const dayDomain = () => dayDomainOf(day)
 
   const yMin = Number(state.yMin)
   const yMax = Number(state.yMax)
   const manualValid = state.yMin.trim() !== "" && state.yMax.trim() !== "" && Number.isFinite(yMin) && Number.isFinite(yMax) && yMin < yMax
   const manualDomain = useMemo<[number, number] | undefined>(() => (manualValid ? [yMin, yMax] : undefined), [manualValid, yMin, yMax])
   const yDomain = state.yScale === "range" ? rangeDomain : state.yScale === "manual" ? manualDomain : undefined
+  // The reference is on its own scale (an outright is ~100x a spread), so typed bounds don't apply to it: Manual holds it on its range.
+  const refYDomain = state.yScale === "auto" ? undefined : refRangeDomain
 
   // Switching to Manual starts from whatever the chart shows now, so the bounds are a sensible place to edit from.
   const setYScale = (yScale: YScale) => {
@@ -220,17 +253,8 @@ export function CurveLab2Tab() {
     setManual([mid - half, mid + half])
   }
 
-  const { settlePoints, openPoints } = useMemo(() => {
-    if (!day) return { settlePoints: [], openPoints: [] }
-    // Axis: the mode's label on top, the other one under it (GD: c3 over G27, RD: G27 over c3).
-    const slot = (k: number) => `c${k + 1}`
-    const label = (k: number) => (state.mode === "GD" ? slot(k) : day.refs[k])
-    const sublabel = (k: number) => (state.mode === "GD" ? day.refs[k] : slot(k))
-    return {
-      settlePoints: day.settle.map<CurvePoint>((v, k) => ({ tenor: label(k), sublabel: sublabel(k), value: v })),
-      openPoints: day.open.map<CurvePoint>((v, k) => ({ tenor: label(k), value: v })),
-    }
-  }, [day, state.mode])
+  const { settlePoints, openPoints } = useMemo(() => curvePoints(day, state.mode), [day, state.mode])
+  const refPoints = useMemo(() => curvePoints(refDay, state.mode), [refDay, state.mode])
 
   // Contracts that can be picked: GD the generic slots on the curve; RD every contract that is a point's front leg
   // on some day of the range, in delivery order.
@@ -292,13 +316,12 @@ export function CurveLab2Tab() {
     return { dates: data.days.map((d) => d.date), combo, components, comboMissing }
   }, [data, picks, state.mode])
 
-  // Where today's curve has each pick, to ring it in red.
+  // Where today's curve has each pick, to ring it in red; on the reference, the point starting from the same slot / contract.
   const highlight = useMemo(() => {
-    if (!day) return []
-    return picks
-      .map((p) => (state.mode === "GD" ? Number(p.ref.slice(1)) - 1 : day.refs.indexOf(p.ref)))
-      .filter((k) => k >= 0 && k < day.settle.length)
-  }, [day, picks, state.mode])
+    const at = (d: CurveLab2Day | null) =>
+      d ? picks.map((p) => (state.mode === "GD" ? Number(p.ref.slice(1)) - 1 : d.refs.indexOf(p.ref))).filter((k) => k >= 0 && k < d.settle.length) : []
+    return { main: at(day), ref: at(refDay) }
+  }, [day, refDay, picks, state.mode])
 
   const play = () => {
     if (index >= count - 1) setIndex(0)
@@ -366,6 +389,16 @@ export function CurveLab2Tab() {
         <label className="flex items-center gap-1.5">
           <span className="font-semibold">Strategy</span>
           <select className={fieldClass} value={state.strategy} onChange={(e) => patch({ strategy: e.target.value as CurveLab2Strategy })}>
+            {(meta?.strategies ?? []).map((s) => (
+              <option key={s.id} value={s.id}>
+                {s.label} ({s.weights.join(":")})
+              </option>
+            ))}
+          </select>
+        </label>
+        <label className="flex items-center gap-1.5" title="Drawn beside the strategy: same product, day and points">
+          <span className="font-semibold">Reference</span>
+          <select className={fieldClass} value={state.refStrategy} onChange={(e) => patch({ refStrategy: e.target.value as CurveLab2Strategy })}>
             {(meta?.strategies ?? []).map((s) => (
               <option key={s.id} value={s.id}>
                 {s.label} ({s.weights.join(":")})
@@ -461,21 +494,46 @@ export function CurveLab2Tab() {
         <>
           {sliderBar()}
 
-          <FullscreenPanel controls={sliderBar("pr-9")}>
-            {(full) => (
-              <CurveChart
-                points={settlePoints}
-                settlePoints={openPoints}
-                settleLabel="Open"
-                yDomain={yDomain}
-                highlight={highlight}
-                convention={CURVE_CONVENTION}
-                label={`${data.product_label} ${data.strategy_label} · ${day.date} — settlement`}
-                height={full ? undefined : 360}
-                className={`[&_[data-chart-header]]:pr-8 ${full ? "min-h-0 flex-1" : ""}`}
-              />
-            )}
-          </FullscreenPanel>
+          {/* The strategy and its reference, half the width each. */}
+          <div className="grid grid-cols-2 gap-2">
+            <FullscreenPanel controls={sliderBar("pr-9")} className="min-w-0">
+              {(full) => (
+                <CurveChart
+                  points={settlePoints}
+                  settlePoints={openPoints}
+                  settleLabel="Open"
+                  yDomain={yDomain}
+                  highlight={highlight.main}
+                  convention={CURVE_CONVENTION}
+                  label={`${data.product_label} ${data.strategy_label} · ${day.date} — settlement`}
+                  height={full ? undefined : 360}
+                  className={`[&_[data-chart-header]]:pr-8 ${full ? "min-h-0 flex-1" : ""}`}
+                />
+              )}
+            </FullscreenPanel>
+
+            <FullscreenPanel controls={sliderBar("pr-9")} className="min-w-0">
+              {(full) =>
+                ref.error ? (
+                  <div className="p-3 text-sm text-destructive">Reference: {ref.error}</div>
+                ) : ref.data && refDay ? (
+                  <CurveChart
+                    points={refPoints.settlePoints}
+                    settlePoints={refPoints.openPoints}
+                    settleLabel="Open"
+                    yDomain={refYDomain}
+                    highlight={highlight.ref}
+                    convention={CURVE_CONVENTION}
+                    label={`Reference: ${ref.data.product_label} ${ref.data.strategy_label} · ${refDay.date} — settlement`}
+                    height={full ? undefined : 360}
+                    className={`[&_[data-chart-header]]:pr-8 ${full ? "min-h-0 flex-1" : ""}`}
+                  />
+                ) : (
+                  <div className="p-3 text-sm text-muted-foreground">{ref.loading ? "Loading reference…" : `No reference curve on ${day.date}`}</div>
+                )
+              }
+            </FullscreenPanel>
+          </div>
 
           <section className="flex flex-wrap items-center gap-2 rounded-md border border-border px-2 py-1.5 text-xs">
             <span className="font-semibold">Contracts</span>
