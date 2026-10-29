@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { CurvesTab } from "@/components/curves/curves-tab"
 import { CurveLabTab } from "@/components/curve-lab/curve-lab-tab"
+import { CurveLab2Tab } from "@/components/curve-lab-2/curve-lab-2-tab"
 import { DashboardTab } from "@/components/dashboard/dashboard-tab"
 import { JournalTab } from "@/components/journal/journal-tab"
 import { TeamJournalsTab } from "@/components/journal/team-journals-tab"
@@ -19,6 +20,7 @@ const TABS = [
   { id: "curves", label: "Curves" },
   { id: "seasonality", label: "Seasonality" },
   { id: "curve-lab", label: "Curve Lab" },
+  { id: "curve-lab-2", label: "Curve Lab 2" },
   { id: "strategy-lab", label: "Strategy Lab" },
   { id: "watchlist", label: "Watchlist" },
   { id: "positions", label: "Positions" },
@@ -35,6 +37,7 @@ const TAB_SUBTITLES: Record<Tab, string> = {
   curves: "Live forward curves — Lightstreamer feed",
   seasonality: "Combined strategy replayed across past years — daily history",
   "curve-lab": "Whole-curve fly correlations and the curve conditioned on one fly's range — daily history",
+  "curve-lab-2": "A strategy's forward curve, day by day through a date range — settlement, with the open dashed — QH Data API",
   "strategy-lab": "Distributions, seasonality and roll-over of any strategy — QH Data API",
   watchlist: "Saved combinations — live price against their base range",
   positions: "Personal and team books — live P&L, trade journal",
@@ -91,6 +94,10 @@ export default function App() {
 
       <div className={tab === "curve-lab" ? "min-h-0 flex-1" : "hidden"}>
         <CurveLabTab />
+      </div>
+
+      <div className={tab === "curve-lab-2" ? "min-h-0 flex-1" : "hidden"}>
+        <CurveLab2Tab />
       </div>
 
       {/* The Reuters-SQLite Strategy Lab (components/strategy-lab/) is disabled while it is rebuilt on the QH API. */}

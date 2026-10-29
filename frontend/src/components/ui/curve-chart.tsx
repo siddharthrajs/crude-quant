@@ -17,6 +17,8 @@ export interface CurvePoint {
   tenor: string
   /** A longer form for the crosshair readout, e.g. "Brent V26 Outright". Defaults to `tenor`. */
   label?: string
+  /** A second, smaller-print line under the tick on the x-axis, e.g. the contract month under a generic slot. */
+  sublabel?: string
   value: number | null
 }
 
@@ -31,6 +33,12 @@ export interface CurveChartProps extends Omit<ComponentProps<"div">, "children">
   points: readonly CurvePoint[]
   /** Settlement prices per tenor, drawn as a light-grey reference line the user can toggle off. */
   settlePoints?: readonly CurvePoint[]
+  /** Name of the grey reference line in the header toggle and tooltip; its on/off choice is remembered per name. */
+  settleLabel?: string
+  /** Fixed y-axis [min, max], e.g. to hold the scale still while scrubbing through days. Default: fit the points. */
+  yDomain?: readonly [number, number]
+  /** Point indices to ring in red, e.g. the tenors a user has picked elsewhere. */
+  highlight?: readonly number[]
   convention: PriceConvention | InstrumentConvention
   /** What this curve is, for a screen reader and the header: "Brent, Outrights". */
   label: string
@@ -41,6 +49,7 @@ export interface CurveChartProps extends Omit<ComponentProps<"div">, "children">
 
 interface Palette {
   line: string
+  highlight: string
   point: string
   settle: string
   foreground: string
@@ -62,6 +71,7 @@ function readPalette(host: HTMLElement): Palette {
   }
   const palette: Palette = {
     line: read("--chart-1"),
+    highlight: read("--destructive"),
     point: read("--primary"),
     settle: "#7a7a7a",
     foreground: read("--foreground"),
@@ -74,7 +84,7 @@ function readPalette(host: HTMLElement): Palette {
   return palette
 }
 
-const UNREAD_PALETTE: Palette = { line: "gray", point: "gray", settle: "#7a7a7a", foreground: "gray", mutedForeground: "gray", border: "gray", background: "white", font: FALLBACK_MONO }
+const UNREAD_PALETTE: Palette = { line: "gray", highlight: "red", point: "gray", settle: "#7a7a7a", foreground: "gray", mutedForeground: "gray", border: "gray", background: "white", font: FALLBACK_MONO }
 
 let drawable: boolean | null = null
 function canDraw(): boolean {
@@ -87,6 +97,8 @@ interface Live {
   points: readonly CurvePoint[]
   settle: readonly CurvePoint[]
   showSettle: boolean
+  yDomain?: readonly [number, number]
+  highlight: readonly number[]
 }
 
 interface PlotArgs {
@@ -114,7 +126,14 @@ function plotOptions(a: PlotArgs): uPlot.Options {
   const gridStroke = () => a.live().palette.border
   // The axis wants the short month code ("V26"), not the full leg description ("V26-X26" for a
   // spread, say) -- `label` carries that; `tenor` stays the fuller form for the crosshair readout.
-  const tenorValues: uPlot.Axis.Values = (_u, splits) => splits.map((i) => { const p = a.live().points[Math.round(i)]; return p?.label ?? p?.tenor ?? "" })
+  const tenorValues: uPlot.Axis.Values = (_u, splits) =>
+    splits.map((i) => {
+      const p = a.live().points[Math.round(i)]
+      const main = p?.label ?? p?.tenor ?? ""
+      return p?.sublabel ? `${main}\n${p.sublabel}` : main
+    })
+  // Room for the second line when any point has one (uPlot draws "\n" as a new line at 1.5x the font size).
+  const tenorAxisSize: uPlot.Axis.Size = () => (a.live().points.some((p) => p.sublabel) ? 40 : 22)
   // One split per point, always -- uPlot's own incrs/space thinning renders *zero* ticks (not a
   // thinned subset) once the pixel gap between points falls under `space`, since incrs here has
   // nowhere smaller than 1 to fall back to. A curve is exactly as many tenors as it has points, and
@@ -145,6 +164,8 @@ function plotOptions(a: PlotArgs): uPlot.Options {
       x: { range: () => [-0.4, n() + 0.4] },
       y: {
         range: (_u, min, max) => {
+          const fixed = a.live().yDomain
+          if (fixed) return [fixed[0], fixed[1]]
           if (!(max > min)) {
             const step = priceIncrements(a.convention)[0] ?? 1
             return [min - step, max + step]
@@ -155,7 +176,7 @@ function plotOptions(a: PlotArgs): uPlot.Options {
       },
     },
     axes: [
-      { stroke: axisStroke, font: font(1), grid: { stroke: gridStroke, width: 1 }, ticks: { stroke: gridStroke, width: 1, size: 4 }, gap: 6, size: 22, splits: tenorSplits, values: tenorValues },
+      { stroke: axisStroke, font: font(1), grid: { stroke: gridStroke, width: 1 }, ticks: { stroke: gridStroke, width: 1, size: 4 }, gap: 6, size: tenorAxisSize, splits: tenorSplits, values: tenorValues },
       { side: 1, stroke: axisStroke, font: font(1), grid: { stroke: gridStroke, width: 1 }, ticks: { stroke: gridStroke, width: 1, size: 4 }, space: 28, gap: 6, incrs: priceIncrements(a.convention), values: (_u, splits) => splits.map(format), size: priceAxisSize },
     ],
     series: [
@@ -166,7 +187,7 @@ function plotOptions(a: PlotArgs): uPlot.Options {
     hooks: {
       init: [(u) => u.root.setAttribute("aria-hidden", "true")],
       setCursor: [(u) => a.onCursor(u.cursor.idx ?? null)],
-      draw: [(u) => drawPointLabels(u, a)],
+      draw: [(u) => drawPointLabels(u, a), (u) => drawHighlights(u, a)],
     },
   }
 }
@@ -199,10 +220,30 @@ function drawPointLabels(u: uPlot, a: PlotArgs) {
   ctx.restore()
 }
 
+/** A red ring around each highlighted point that has a value. */
+function drawHighlights(u: uPlot, a: PlotArgs) {
+  const { palette, points, highlight } = a.live()
+  if (highlight.length === 0) return
+  const ctx = u.ctx
+  const px = uPlot.pxRatio
+  ctx.save()
+  ctx.strokeStyle = palette.highlight
+  ctx.lineWidth = 2 * px
+  for (const i of highlight) {
+    const value = points[i]?.value
+    if (value === null || value === undefined || !Number.isFinite(value)) continue
+    ctx.beginPath()
+    ctx.arc(u.valToPos(i, "x", true), u.valToPos(value, "y", true), 8 * px, 0, 2 * Math.PI)
+    ctx.stroke()
+  }
+  ctx.restore()
+}
+
 const SETTLE_KEY = "curves.showSettle"
-function readShowSettle(): boolean {
+const settleKey = (name: string) => (name === "Settle" ? SETTLE_KEY : `curves.show.${name}`)
+function readShowSettle(key: string): boolean {
   try {
-    return localStorage.getItem(SETTLE_KEY) !== "0"
+    return localStorage.getItem(key) !== "0"
   } catch {
     return true
   }
@@ -210,7 +251,7 @@ function readShowSettle(): boolean {
 
 const clamp = (n: number, max: number) => Math.max(0, Math.min(max, n))
 
-export function CurveChart({ points, settlePoints, convention, label, height, labels: labelsProp, onCursor, className, style, ...props }: CurveChartProps) {
+export function CurveChart({ points, settlePoints, settleLabel = "Settle", yDomain, highlight, convention, label, height, labels: labelsProp, onCursor, className, style, ...props }: CurveChartProps) {
   const labels = { ...DEFAULT_CURVE_CHART_LABELS, ...labelsProp }
   const conventionKey = JSON.stringify(convention)
 
@@ -220,8 +261,8 @@ export function CurveChart({ points, settlePoints, convention, label, height, la
   const [fontEpoch, setFontEpoch] = useState(0)
 
   const plot = useRef<uPlot | null>(null)
-  const [showSettle, setShowSettle] = useState(readShowSettle)
-  const live = useRef<Live>({ palette: UNREAD_PALETTE, points, settle: settlePoints ?? [], showSettle })
+  const [showSettle, setShowSettle] = useState(() => readShowSettle(settleKey(settleLabel)))
+  const live = useRef<Live>({ palette: UNREAD_PALETTE, points, settle: settlePoints ?? [], showSettle, highlight: highlight ?? [] })
   const onCursorRef = useRef(onCursor)
   const conventionRef = useRef(convention)
   const cursorFromPlot = useRef(false)
@@ -229,7 +270,7 @@ export function CurveChart({ points, settlePoints, convention, label, height, la
   const toggleSettle = (on: boolean) => {
     setShowSettle(on)
     try {
-      localStorage.setItem(SETTLE_KEY, on ? "1" : "0")
+      localStorage.setItem(settleKey(settleLabel), on ? "1" : "0")
     } catch {
       // Storage unavailable: the choice just doesn't persist.
     }
@@ -252,8 +293,10 @@ export function CurveChart({ points, settlePoints, convention, label, height, la
     live.current.points = points
     live.current.settle = settlePoints ?? []
     live.current.showSettle = showSettle
+    live.current.yDomain = yDomain
+    live.current.highlight = highlight ?? []
     plot.current?.setData(alignedData(live.current), true)
-  }, [points, settlePoints, showSettle])
+  }, [points, settlePoints, showSettle, yDomain, highlight])
 
   useLayoutEffect(() => {
     if (!plotEl) return
@@ -348,7 +391,7 @@ export function CurveChart({ points, settlePoints, convention, label, height, la
           <label className="flex cursor-pointer items-center gap-1 text-muted-foreground">
             <input type="checkbox" checked={showSettle} onChange={(e) => toggleSettle(e.target.checked)} className="size-3 accent-neutral-400" />
             <span className="inline-block w-3 border-t-2 border-dotted border-[#7a7a7a]" aria-hidden="true" />
-            Settle
+            {settleLabel}
           </label>
         )}
         <span data-chart-readout="" className={cn("ml-auto", NUMERIC_CLASS)}>
@@ -376,7 +419,7 @@ export function CurveChart({ points, settlePoints, convention, label, height, la
           >
             <div>{formatPrice(at!.value, price)}</div>
             {showSettle && settlePoints && (
-              <div className="text-muted-foreground">Settle {settleAt === null ? "—" : formatPrice(settleAt, price)}</div>
+              <div className="text-muted-foreground">{settleLabel} {settleAt === null ? "—" : formatPrice(settleAt, price)}</div>
             )}
           </div>
         )}
