@@ -146,16 +146,37 @@ function fitYOnXZoom(P: PlotlyModule, el: PlotEl) {
   })
 }
 
+/** The point a click landed on: its x, and the trace it belongs to (with that trace's `meta`). */
+export interface PlotClick {
+  x: unknown
+  meta: unknown
+}
+
 /**
  * A Plotly chart filling its container. `build` turns the theme into traces + layout, so callers write colors as
  * theme tokens. `revision` keeps the user's zoom while it stays the same (new data for the same view) and resets
- * it when it changes (a different view).
+ * it when it changes (a different view). `onPointClick` gets the clicked point (with x-unified hover, a click
+ * anywhere in the plot lands on the nearest x).
  */
-export function Plot({ build, revision, className = "h-full w-full" }: { build: (t: Theme) => { data: Data[]; layout?: Partial<Layout> }; revision: string; className?: string }) {
+export function Plot({
+  build,
+  revision,
+  className = "h-full w-full",
+  onPointClick,
+}: {
+  build: (t: Theme) => { data: Data[]; layout?: Partial<Layout> }
+  revision: string
+  className?: string
+  onPointClick?: (p: PlotClick) => void
+}) {
   const host = useRef<HTMLDivElement>(null)
   const theme = useTheme(host)
   const [failed, setFailed] = useState<string | null>(null)
   const wired = useRef(false)
+  const clickRef = useRef(onPointClick)
+  useEffect(() => {
+    clickRef.current = onPointClick
+  })
 
   useEffect(() => {
     const el = host.current
@@ -168,6 +189,10 @@ export function Plot({ build, revision, className = "h-full w-full" }: { build: 
         return P.react(el, data, { ...merge(baseLayout(theme), layout), uirevision: revision }, CONFIG).then(() => {
           if (!wired.current) {
             fitYOnXZoom(P, el as PlotEl)
+            ;(el as PlotEl).on?.("plotly_click", (ev) => {
+              const pt = (ev.points as { x?: unknown; data?: { meta?: unknown } }[] | undefined)?.[0]
+              if (pt) clickRef.current?.({ x: pt.x, meta: pt.data?.meta })
+            })
             wired.current = true
           }
         })
