@@ -1,14 +1,10 @@
 import { useState } from "react"
 import { CurvesTab } from "@/components/curves/curves-tab"
-import { CurveLabTab } from "@/components/curve-lab/curve-lab-tab"
 import { CurveLab2Tab } from "@/components/curve-lab-2/curve-lab-2-tab"
 import { DashboardTab } from "@/components/dashboard/dashboard-tab"
-import { JournalTab } from "@/components/journal/journal-tab"
 import { TeamJournalsTab } from "@/components/journal/team-journals-tab"
-import { PositionsTab } from "@/components/positions/positions-tab"
-import { SeasonalityTab } from "@/components/seasonality/seasonality-tab"
+import { PositionsJournalTab } from "@/components/positions/positions-journal-tab"
 import { SettingsTab } from "@/components/settings/settings-tab"
-import { QhStrategyLabTab } from "@/components/qh-strategy-lab/strategy-lab-tab"
 import { WatchlistTab } from "@/components/watchlist/watchlist-tab"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -18,15 +14,10 @@ import "./App.css"
 const TABS = [
   { id: "dashboard", label: "Home" },
   { id: "curves", label: "Curves" },
-  { id: "seasonality", label: "Seasonality" },
-  { id: "curve-lab", label: "Curve Lab" },
   { id: "curve-lab-2", label: "Curve Lab 2" },
-  { id: "strategy-lab", label: "Strategy Lab" },
   { id: "watchlist", label: "Watchlist" },
   { id: "positions", label: "Positions" },
-  { id: "journal", label: "Journal" },
   { id: "paper", label: "Paper Trade" },
-  { id: "paper-journal", label: "Paper Trade Journal" },
   { id: "team-journals", label: "Team Journals" },
   { id: "settings", label: "Settings" },
 ] as const
@@ -35,15 +26,10 @@ type Tab = (typeof TABS)[number]["id"]
 const TAB_SUBTITLES: Record<Tab, string> = {
   dashboard: "Live curve, news squawk, watchlist, positions and P&L — drag panels to arrange",
   curves: "Live forward curves — Lightstreamer feed",
-  seasonality: "Combined strategy replayed across past years — daily history",
-  "curve-lab": "Whole-curve fly correlations and the curve conditioned on one fly's range — daily history",
   "curve-lab-2": "A strategy's forward curve, day by day through a date range — settlement, with the open dashed — QH Data API",
-  "strategy-lab": "Distributions, seasonality and roll-over of any strategy — QH Data API",
   watchlist: "Saved combinations — live price against their base range",
-  positions: "Personal and team books — live P&L, trade journal",
-  journal: "Closed trades — personal and team",
-  paper: "Simulated personal and team books — live P&L, paper trade journal",
-  "paper-journal": "Closed paper trades — personal and team",
+  positions: "Personal and team books — live P&L, and the journal of closed trades",
+  paper: "Simulated personal and team books — live P&L, and the journal of closed paper trades",
   "team-journals": "Each member's trade journal, and the whole team's combined — read-only",
   settings: "Account and user management",
 }
@@ -88,21 +74,11 @@ export default function App() {
         <CurvesTab />
       </div>
 
-      <div className={tab === "seasonality" ? "min-h-0 flex-1" : "hidden"}>
-        <SeasonalityTab />
-      </div>
-
-      <div className={tab === "curve-lab" ? "min-h-0 flex-1" : "hidden"}>
-        <CurveLabTab />
-      </div>
+      {/* Seasonality (components/seasonality/), Curve Lab (components/curve-lab/) and both Strategy Labs
+          (components/strategy-lab/, components/qh-strategy-lab/) are disabled. */}
 
       <div className={tab === "curve-lab-2" ? "min-h-0 flex-1" : "hidden"}>
         <CurveLab2Tab />
-      </div>
-
-      {/* The Reuters-SQLite Strategy Lab (components/strategy-lab/) is disabled while it is rebuilt on the QH API. */}
-      <div className={tab === "strategy-lab" ? "min-h-0 flex-1" : "hidden"}>
-        <QhStrategyLabTab active={tab === "strategy-lab"} />
       </div>
 
       <div className={tab === "watchlist" ?"min-h-0 flex-1" : "hidden"}>
@@ -110,19 +86,11 @@ export default function App() {
       </div>
 
       <div className={tab === "positions" ? "min-h-0 flex-1" : "hidden"}>
-        <PositionsTab active={tab === "positions"} />
-      </div>
-
-      <div className={tab === "journal" ? "min-h-0 flex-1" : "hidden"}>
-        <JournalTab active={tab === "journal"} />
+        <PositionsJournalTab active={tab === "positions"} />
       </div>
 
       <div className={tab === "paper" ? "min-h-0 flex-1" : "hidden"}>
-        <PositionsTab active={tab === "paper"} mode="paper" />
-      </div>
-
-      <div className={tab === "paper-journal" ? "min-h-0 flex-1" : "hidden"}>
-        <JournalTab active={tab === "paper-journal"} mode="paper" />
+        <PositionsJournalTab active={tab === "paper"} mode="paper" />
       </div>
 
       {canViewTeamJournals && (
