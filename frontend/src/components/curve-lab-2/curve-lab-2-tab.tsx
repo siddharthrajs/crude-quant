@@ -9,6 +9,7 @@ import {
   type CurveLab2Day,
   type CurveLab2Meta,
   type CurveLab2Mode,
+  type CurveLab2Price,
   type CurveLab2Product,
   type CurveLab2Strategy,
 } from "@/lib/curve-lab-2-api"
@@ -16,7 +17,7 @@ import { CURVE_CONVENTION } from "@/lib/curve-series"
 import { FullscreenPanel } from "./fullscreen-panel"
 import { RelativeCharts, type RelSeries, type RelView } from "./relative-charts"
 
-// Curve Lab 2: one strategy's forward curve on each settlement day of a date range, from settlements (solid) with
+// Curve Lab 2: one strategy's forward curve on each settlement day of a date range, from settlements or closes (solid) with
 // the session opens beside it (dashed grey), and a reference strategy's curve for the same product and day next to
 // it. The whole range is fetched once per strategy; the slider (or Play) scrubs through its days locally. Point k
 // applies the strategy from generic slot ck; GD / RD only changes how points are labelled.
@@ -101,6 +102,12 @@ function useCurves(token: string | null, query: CurvesQuery | null) {
 
 const MAX_PICKS = 3
 
+const PRICES: { id: CurveLab2Price; label: string; hint: string }[] = [
+  { id: "settle", label: "Settlement", hint: "Official settlement prices" },
+  { id: "close", label: "Close", hint: "The session's last trade; a point is missing when any leg did not trade that day" },
+]
+const PRICE_LABEL: Record<CurveLab2Price, string> = { settle: "settlement", close: "close" }
+
 interface Pick {
   ref: string
   /** As typed. */
@@ -113,6 +120,8 @@ interface Persisted {
   /** The strategy drawn beside it, for the same product, range and points. */
   refStrategy: CurveLab2Strategy
   mode: CurveLab2Mode
+  /** The solid curve (and the relative charts): settlements or closes. */
+  price: CurveLab2Price
   /** "" = DEFAULT_SPAN_DAYS before the end. */
   start: string
   /** "" = the latest settlement day. */
@@ -130,7 +139,7 @@ interface Persisted {
   relByYear: boolean
 }
 
-const DEFAULTS: Persisted = { product: "CL", strategy: "spread", refStrategy: "outright", mode: "GD", start: "", end: "", depth: 12, yScale: "range", yMin: "", yMax: "", speedMs: 200, picks: { GD: [], RD: [] }, relView: "level", relByYear: false }
+const DEFAULTS: Persisted = { product: "CL", strategy: "spread", refStrategy: "outright", mode: "GD", price: "settle", start: "", end: "", depth: 12, yScale: "range", yMin: "", yMax: "", speedMs: 200, picks: { GD: [], RD: [] }, relView: "level", relByYear: false }
 
 function loadPersisted(): Persisted {
   try {
@@ -187,8 +196,8 @@ export function CurveLab2Tab() {
 
   // One request per range/strategy; the slider only moves through what came back.
   const ready = Boolean(start && end)
-  const main = useCurves(token, ready ? { product: state.product, strategy: state.strategy, start, end, depth: state.depth } : null)
-  const ref = useCurves(token, ready ? { product: state.product, strategy: state.refStrategy, start, end, depth: state.depth } : null)
+  const main = useCurves(token, ready ? { product: state.product, strategy: state.strategy, start, end, depth: state.depth, price: state.price } : null)
+  const ref = useCurves(token, ready ? { product: state.product, strategy: state.refStrategy, start, end, depth: state.depth, price: state.price } : null)
   const data = main.data
   const error = metaError ?? main.error
   const loading = main.loading || ref.loading
@@ -432,6 +441,24 @@ export function CurveLab2Tab() {
             </label>
           ))}
         </div>
+        <div className="flex items-center gap-1.5">
+          <span className="font-semibold">Price</span>
+          <div className="flex overflow-hidden rounded-md border border-input" role="radiogroup" aria-label="Price">
+            {PRICES.map((p) => (
+              <button
+                key={p.id}
+                type="button"
+                role="radio"
+                aria-checked={state.price === p.id}
+                title={p.hint}
+                onClick={() => patch({ price: p.id })}
+                className={`h-7 px-2.5 text-xs ${state.price === p.id ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:bg-muted"}`}
+              >
+                {p.label}
+              </button>
+            ))}
+          </div>
+        </div>
         <label className="flex items-center gap-1.5">
           <span className="font-semibold">Points</span>
           <input
@@ -505,7 +532,7 @@ export function CurveLab2Tab() {
                   yDomain={yDomain}
                   highlight={highlight.main}
                   convention={CURVE_CONVENTION}
-                  label={`${data.product_label} ${data.strategy_label} · ${day.date} — settlement`}
+                  label={`${data.product_label} ${data.strategy_label} · ${day.date} — ${PRICE_LABEL[data.price]}`}
                   height={full ? undefined : 360}
                   className={`[&_[data-chart-header]]:pr-8 ${full ? "min-h-0 flex-1" : ""}`}
                 />
@@ -524,7 +551,7 @@ export function CurveLab2Tab() {
                     yDomain={refYDomain}
                     highlight={highlight.ref}
                     convention={CURVE_CONVENTION}
-                    label={`Reference: ${ref.data.product_label} ${ref.data.strategy_label} · ${refDay.date} — settlement`}
+                    label={`Reference: ${ref.data.product_label} ${ref.data.strategy_label} · ${refDay.date} — ${PRICE_LABEL[ref.data.price]}`}
                     height={full ? undefined : 360}
                     className={`[&_[data-chart-header]]:pr-8 ${full ? "min-h-0 flex-1" : ""}`}
                   />

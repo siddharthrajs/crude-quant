@@ -2,6 +2,7 @@ import { useState } from "react"
 import { CurvesTab } from "@/components/curves/curves-tab"
 import { CurveLab2Tab } from "@/components/curve-lab-2/curve-lab-2-tab"
 import { DashboardTab } from "@/components/dashboard/dashboard-tab"
+import { FundamentalsTab } from "@/components/fundamentals/fundamentals-tab"
 import { TeamJournalsTab } from "@/components/journal/team-journals-tab"
 import { PositionsJournalTab } from "@/components/positions/positions-journal-tab"
 import { SettingsTab } from "@/components/settings/settings-tab"
@@ -15,6 +16,7 @@ const TABS = [
   { id: "dashboard", label: "Home" },
   { id: "curves", label: "Curves" },
   { id: "curve-lab-2", label: "Curve Lab 2" },
+  { id: "fundamentals", label: "Fundamentals" },
   { id: "watchlist", label: "Watchlist" },
   { id: "positions", label: "Positions" },
   { id: "paper", label: "Paper Trade" },
@@ -27,6 +29,7 @@ const TAB_SUBTITLES: Record<Tab, string> = {
   dashboard: "Live curve, news squawk, watchlist, positions and P&L — drag panels to arrange",
   curves: "Live forward curves — Lightstreamer feed",
   "curve-lab-2": "A strategy's forward curve, day by day through a date range — settlement, with the open dashed — QH Data API",
+  fundamentals: "Supply, demand and inventory fundamentals",
   watchlist: "Saved combinations — live price against their base range",
   positions: "Personal and team books — live P&L, and the journal of closed trades",
   paper: "Simulated personal and team books — live P&L, and the journal of closed paper trades",
@@ -79,6 +82,10 @@ export default function App() {
 
       <div className={tab === "curve-lab-2" ? "min-h-0 flex-1" : "hidden"}>
         <CurveLab2Tab />
+      </div>
+
+      <div className={tab === "fundamentals" ? "min-h-0 flex-1" : "hidden"}>
+        <FundamentalsTab />
       </div>
 
       <div className={tab === "watchlist" ?"min-h-0 flex-1" : "hidden"}>

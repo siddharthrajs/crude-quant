@@ -8,7 +8,8 @@ applies it from generic slot c(k): c1 is the first contract whose expiry is on o
 app/qh/curve.py), so on 2026-10-27 the WTI spread curve is c1-c2, c2-c3, ... = Z26-F27, F27-G27, ...
 
 Two values per point, both the weighted sum of the legs on that day:
-  settle  official settlements (qh_settlements)
+  settle  official settlements (qh_settlements), or with price=close the session's last trade (qh_daily_bars.close),
+          missing when any leg did not trade that day
   open    the session's first trade (qh_daily_bars.open); missing when any leg did not trade that day
 
 The days are those with at least one settlement for the product. The whole range comes back in one response so
@@ -46,6 +47,7 @@ STRATEGIES: dict[str, tuple[str, tuple[int, ...]]] = {
 
 Product = Literal["CL", "CO", "WTCLCO"]
 StrategyId = Literal["outright", "spread", "fly", "dfly", "dfly12"]
+Price = Literal["settle", "close"]
 
 
 def _weighted(values: list[float | None], weights: tuple[int, ...]) -> float | None:
@@ -79,6 +81,7 @@ async def curves(
     start: date,
     end: date,
     depth: int = Query(default=MAX_DEPTH, ge=1, le=MAX_DEPTH),
+    price: Price = "settle",
     db: AsyncSession = Depends(get_db),
     _: User = Depends(get_current_user),
 ) -> dict:
@@ -98,7 +101,7 @@ async def curves(
     prices = (
         await db.execute(
             text(
-                "SELECT s.code, s.trade_date, s.settle, b.open FROM qh_settlements s "
+                "SELECT s.code, s.trade_date, s.settle, b.open, b.close FROM qh_settlements s "
                 "JOIN qh_contracts c ON c.code = s.code "
                 "LEFT JOIN qh_daily_bars b ON b.code = s.code AND b.trade_date = s.trade_date "
                 "WHERE c.product = :p AND s.trade_date BETWEEN :s AND :e"
@@ -106,9 +109,10 @@ async def curves(
             {"p": product, "s": start, "e": end},
         )
     ).all()
-    by_day: dict[date, dict[str, tuple[float, float | None]]] = defaultdict(dict)
+    # The days are the settlement days either way; with price=close a leg without a bar that day has no value.
+    by_day: dict[date, dict[str, tuple[float | None, float | None]]] = defaultdict(dict)
     for r in prices:
-        by_day[r.trade_date][r.code] = (r.settle, r.open)
+        by_day[r.trade_date][r.code] = (r.settle if price == "settle" else r.close, r.open)
     days = sorted(by_day)
     if not days:
         raise HTTPException(status_code=404, detail=f"No {PRODUCTS[product].label} settlements between {start} and {end}")
@@ -129,6 +133,7 @@ async def curves(
             "date": d.isoformat(),
             # Each point's legs are refs[k : k + len(weights)].
             "refs": [code[len(product):] for code in held],
+            # The solid curve: settlements, or closes with price=close.
             "settle": settle,
             "open": opens,
         })
@@ -138,5 +143,6 @@ async def curves(
         "strategy": strategy,
         "strategy_label": label,
         "weights": list(weights),
+        "price": price,
         "days": out_days,
     }

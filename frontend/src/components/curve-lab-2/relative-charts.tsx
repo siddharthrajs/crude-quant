@@ -5,7 +5,7 @@ import { Plot, type PlotClick, type Theme } from "@/components/strategy-lab/plot
 import { FullscreenPanel } from "./fullscreen-panel"
 
 // Two daily Plotly charts over the slider's date range for the picked strategies:
-//   Relative value  the combination sum(coef_i * strategy_i), on days every pick has a settlement
+//   Relative value  the combination sum(coef_i * strategy_i), on days every pick has a price
 //   Components      each picked strategy on its own (unweighted), to see which leg drove the combination
 // Drag or scroll to zoom (y re-fits to the zoomed window), drag the range slider underneath, click a legend entry to
 // hide a line (double-click to isolate it), double-click the plot to reset. Clicking the plot moves the day slider

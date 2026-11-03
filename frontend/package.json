@@ -19,6 +19,7 @@
     "cn": "^0.3.3",
     "dockview-react": "^8.3.1",
     "lucide-react": "^1.48.0",
+    "maplibre-gl": "^6.16.0",
     "plotly.js-dist-min": "^4.1.2",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",

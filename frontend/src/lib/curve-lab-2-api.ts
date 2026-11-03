@@ -6,6 +6,8 @@ export type CurveLab2Product = "CL" | "CO" | "WTCLCO"
 export type CurveLab2Strategy = "outright" | "spread" | "fly" | "dfly" | "dfly12"
 /** GD labels each point by its generic slot (c1, c2, ...), RD by its front contract (Z26, F27, ...). */
 export type CurveLab2Mode = "GD" | "RD"
+/** The solid curve: official settlements, or the session's last trade. */
+export type CurveLab2Price = "settle" | "close"
 
 export interface CurveLab2Meta {
   products: { root: CurveLab2Product; label: string; first: string | null; last: string | null }[]
@@ -17,6 +19,7 @@ export interface CurveLab2Meta {
 export interface CurveLab2Day {
   date: string
   refs: string[]
+  /** The solid curve, in the response's `price`: settlements, or weighted closes (null when any leg did not trade that day). */
   settle: (number | null)[]
   /** Weighted session opens; null when any leg did not trade that day. */
   open: (number | null)[]
@@ -28,6 +31,7 @@ export interface CurveLab2Curves {
   strategy: CurveLab2Strategy
   strategy_label: string
   weights: number[]
+  price: CurveLab2Price
   days: CurveLab2Day[]
 }
 
@@ -48,9 +52,9 @@ export const getCurveLab2Meta = (token: string, signal?: AbortSignal) => call<Cu
 
 export function getCurveLab2Curves(
   token: string,
-  q: { product: CurveLab2Product; strategy: CurveLab2Strategy; start: string; end: string; depth: number },
+  q: { product: CurveLab2Product; strategy: CurveLab2Strategy; start: string; end: string; depth: number; price: CurveLab2Price },
   signal?: AbortSignal,
 ) {
-  const params = new URLSearchParams({ product: q.product, strategy: q.strategy, start: q.start, end: q.end, depth: String(q.depth) })
+  const params = new URLSearchParams({ product: q.product, strategy: q.strategy, start: q.start, end: q.end, depth: String(q.depth), price: q.price })
   return call<CurveLab2Curves>(token, `/api/curve-lab-2/curves?${params}`, { signal })
 }
