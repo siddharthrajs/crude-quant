@@ -138,3 +138,150 @@ export function SlotStrip({
     </FullscreenPanel>
   )
 }
+
+const nums = (s: ArrayLike<number>, from: number, count: number) =>
+  Array.from({ length: count }, (_, t) => {
+    const v = s[from + t]
+    return Number.isFinite(v) ? Math.round(v * 1e6) / 1e6 : null
+  })
+
+/**
+ * The traded combination A − h·B on the day's contracts, with its rolling mean and ±1σ / ±2σ bands over the
+ * lookback, over the shown days. `from` is the shown range's first index into the full series.
+ */
+export function CombinationChart({
+  title,
+  dates,
+  from,
+  combo,
+  mean,
+  sd,
+  current,
+  onPick,
+  controls,
+  revision,
+}: {
+  title: ReactNode
+  dates: string[]
+  from: number
+  combo: Float64Array
+  mean: Float64Array
+  sd: Float64Array
+  current: string
+  onPick: (index: number) => void
+  controls?: ReactNode
+  revision: string
+}) {
+  const index = useDateIndex(dates)
+  const build = useCallback(
+    (t: Theme): { data: Data[]; layout: Partial<Layout> } => {
+      const n = dates.length
+      const s = nums(combo, from, n)
+      const m = nums(mean, from, n)
+      const band = (k: number) => nums(Array.from({ length: n }, (_, i) => mean[from + i] + k * sd[from + i]), 0, n)
+      const ci = index.get(current)
+      const now = ci === undefined ? null : s[ci]
+      const bandLine = (k: number, dash: "dot" | "dash", fill?: boolean): Data => ({
+        type: "scatter",
+        mode: "lines",
+        name: `${k > 0 ? "+" : "−"}${Math.abs(k)}σ`,
+        x: dates,
+        y: band(k),
+        line: { color: t.c("var(--muted-foreground)", Math.abs(k) === 2 ? 0.7 : 0.45), width: 1, dash },
+        fill: fill ? "tonexty" : undefined,
+        fillcolor: fill ? t.c("var(--muted-foreground)", 0.08) : undefined,
+        hovertemplate: "%{y:.3f}",
+        showlegend: k === 2 || k === 1,
+        legendgroup: `b${Math.abs(k)}`,
+      })
+      const data: Data[] = [
+        bandLine(-2, "dot"),
+        bandLine(2, "dot", true),
+        bandLine(-1, "dash"),
+        bandLine(1, "dash"),
+        { type: "scatter", mode: "lines", name: "Rolling mean", x: dates, y: m, line: { color: t.c("var(--muted-foreground)"), width: 1 }, hovertemplate: "%{y:.3f}" },
+        { type: "scatter", mode: "lines", name: "A − h·B", x: dates, y: s, connectgaps: false, line: { color: t.c("var(--chart-1)"), width: 2 }, hovertemplate: "%{y:.3f}" },
+      ]
+      if (now !== null && now !== undefined)
+        data.push({ type: "scatter", mode: "markers", x: [current], y: [now], marker: { color: t.c("var(--chart-1)"), size: 8, line: { color: t.c("var(--background)"), width: 1.5 } }, hoverinfo: "skip", showlegend: false })
+      return {
+        data,
+        layout: {
+          shapes: [cursorShape(t, current)],
+          margin: { l: 48, r: 12, t: 26, b: 28 },
+          xaxis: { type: "date", hoverformat: "%a %d %b %Y" },
+          yaxis: { tickformat: ".2f", zeroline: false },
+        },
+      }
+    },
+    [dates, from, combo, mean, sd, current, index],
+  )
+  return (
+    <FullscreenPanel controls={controls} className="flex min-w-0 flex-col">
+      {(full) => (
+        <>
+          <div className="mb-1 pr-8 text-xs">{title}</div>
+          <div className={full ? "min-h-0 flex-1" : ""} style={full ? undefined : { height: 300 }}>
+            <Plot build={build} revision={revision} onPointClick={({ x }: PlotClick) => { const t = index.get(String(x).slice(0, 10)); if (t !== undefined) onPick(t) }} />
+          </div>
+        </>
+      )}
+    </FullscreenPanel>
+  )
+}
+
+/** The rolling hedge ratio over the shown days. */
+export function HedgeRatioChart({
+  title,
+  dates,
+  from,
+  h,
+  current,
+  onPick,
+  controls,
+  revision,
+}: {
+  title: ReactNode
+  dates: string[]
+  from: number
+  h: Float64Array
+  current: string
+  onPick: (index: number) => void
+  controls?: ReactNode
+  revision: string
+}) {
+  const index = useDateIndex(dates)
+  const build = useCallback(
+    (t: Theme): { data: Data[]; layout: Partial<Layout> } => {
+      const y = nums(h, from, dates.length)
+      const ci = index.get(current)
+      const now = ci === undefined ? null : y[ci]
+      const data: Data[] = [{ type: "scatter", mode: "lines", name: "h", x: dates, y, connectgaps: false, line: { color: t.c("var(--chart-2)"), width: 2 }, hovertemplate: "h = %{y:.3f}<extra></extra>" }]
+      if (now !== null && now !== undefined)
+        data.push({ type: "scatter", mode: "markers", x: [current], y: [now], marker: { color: t.c("var(--chart-2)"), size: 8, line: { color: t.c("var(--background)"), width: 1.5 } }, hoverinfo: "skip", showlegend: false })
+      return {
+        data,
+        layout: {
+          shapes: [cursorShape(t, current)],
+          showlegend: false,
+          margin: { l: 48, r: 12, t: 8, b: 28 },
+          xaxis: { type: "date", hoverformat: "%a %d %b %Y" },
+          yaxis: { tickformat: ".2f", zeroline: true },
+        },
+      }
+    },
+    [dates, from, h, current, index],
+  )
+  return (
+    <FullscreenPanel controls={controls} className="flex min-w-0 flex-col">
+      {(full) => (
+        <>
+          <div className="mb-1 pr-8 text-xs">{title}</div>
+          <div className={full ? "min-h-0 flex-1" : ""} style={full ? undefined : { height: 180 }}>
+            <Plot build={build} revision={revision} onPointClick={({ x }: PlotClick) => { const t = index.get(String(x).slice(0, 10)); if (t !== undefined) onPick(t) }} />
+          </div>
+        </>
+      )}
+    </FullscreenPanel>
+  )
+}

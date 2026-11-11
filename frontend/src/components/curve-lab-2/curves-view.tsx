@@ -414,7 +414,8 @@ export function CurvesView() {
         <div className="p-3 text-sm text-destructive">{error}</div>
       ) : data && day ? (
         <>
-          {sliderBar()}
+          {/* Stays in view while the page scrolls. */}
+          <div className="sticky top-0 z-40 -mx-2 -mt-2 bg-background px-2 pt-2 pb-1">{sliderBar()}</div>
 
           {/* The strategy and its reference, half the width each. */}
           <div className="grid grid-cols-2 gap-2">

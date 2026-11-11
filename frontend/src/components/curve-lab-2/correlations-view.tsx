@@ -2,7 +2,8 @@ import { useEffect, useMemo, useState } from "react"
 import { useAuth } from "@/hooks/use-auth"
 import type { CurveLab2Curves, CurveLab2Product, CurveLab2Strategy } from "@/lib/curve-lab-2-api"
 import { corrAt, matchedColumn, pointSeries, rollingCorr, sharedDates, type CorrAlign, type CorrBasis } from "@/lib/rolling-corr"
-import { PairChart, SlotStrip } from "./correlation-charts"
+import { combine, contractSeries, diff, EG_CRITICAL, legExposure, lotRatio, oneLotRatio, reversion, rollingBands, rollingHedge, stdev, type HedgeFit } from "@/lib/pair-trade"
+import { CombinationChart, HedgeRatioChart, PairChart, SlotStrip } from "./correlation-charts"
 import { CorrelationMatrix, MatrixLegend } from "./correlation-matrix"
 import { DayScrubber } from "./day-scrubber"
 import { fieldClass, shiftDays, useCurves, useMeta, usePlayback } from "./shared"
@@ -16,6 +17,8 @@ import { fieldClass, shiftDays, useCurves, useMeta, usePlayback } from "./shared
 const STORAGE_KEY = "crude-quant-curve-lab-2-corr"
 const DEFAULT_SPAN_DAYS = 365
 const WINDOWS = [20, 60, 120, 250] as const
+/** Settlement days the pair trade's mean, bands and mean-reversion fit look back over. */
+const LOOKBACKS = [60, 120, 250] as const
 /** The matrix's "change" view and the "N days ago" stat look back this many settlement days. */
 const LAG = 20
 /** A correlation needs at least this share of the window's days to be shown. */
@@ -40,7 +43,14 @@ interface Persisted {
   /** The selected cell: A's point, B's point. */
   sel: [number, number]
   speedMs: number
+  /** Pair trade: how the hedge ratio is fitted, and the lookback for its mean, bands and mean-reversion stats. */
+  fit: HedgeFit
+  lookback: number
+  /** The ratio the combination is built at: the fitted h, the nearest small whole-lot ratio (5 : 4), or one side a single lot (1 : 2). */
+  ratio: RatioMode
 }
+
+type RatioMode = "exact" | "lots" | "one"
 
 const DEFAULTS: Persisted = {
   aProduct: "CL",
@@ -56,6 +66,9 @@ const DEFAULTS: Persisted = {
   matrix: "corr",
   sel: [0, 0],
   speedMs: 100,
+  fit: "ols",
+  lookback: 120,
+  ratio: "exact",
 }
 
 function loadPersisted(): Persisted {
@@ -120,13 +133,15 @@ export function CorrelationsView() {
   const end = state.end || (lastA && lastB ? (lastA < lastB ? lastA : lastB) : "")
   const start = state.start || (end ? shiftDays(end, -DEFAULT_SPAN_DAYS) : "")
   const maxDepth = meta?.max_depth ?? 24
-  const depth = state.depth
+  const depth = Math.min(state.depth, maxDepth)
 
-  // Fetch a window's worth of settlement days (≈1.5 calendar days each, plus slack) before the range.
+  // Fetch a window's worth of settlement days (≈1.5 calendar days each, plus slack) before the range. Always the
+  // whole curve: the matrix uses the first `depth` points, and the pair trade follows the day's contracts back in
+  // time, when they sat further out.
   const fetchStart = start ? shiftDays(start, -Math.ceil(state.window * 1.5) - 14) : ""
   const ready = Boolean(fetchStart && end)
-  const a = useCurves(token, ready ? { product: state.aProduct, strategy: state.aStrategy, start: fetchStart, end, depth, price: "settle" } : null)
-  const b = useCurves(token, ready ? { product: state.bProduct, strategy: state.bStrategy, start: fetchStart, end, depth, price: "settle" } : null)
+  const a = useCurves(token, ready ? { product: state.aProduct, strategy: state.aStrategy, start: fetchStart, end, depth: maxDepth, price: "settle" } : null)
+  const b = useCurves(token, ready ? { product: state.bProduct, strategy: state.bStrategy, start: fetchStart, end, depth: maxDepth, price: "settle" } : null)
   const error = metaError ?? a.error ?? b.error
   const loading = a.loading || b.loading
 
@@ -136,9 +151,12 @@ export function CorrelationsView() {
     const dates = sharedDates(a.data, b.data)
     const xa = pointSeries(a.data, dates, depth, state.basis)
     const xb = pointSeries(b.data, dates, depth, state.basis)
+    // The hedge ratio is always fitted on daily changes, whatever the matrix correlates.
+    const ca = state.basis === "change" ? xa : pointSeries(a.data, dates, depth, "change")
+    const cb = state.basis === "change" ? xb : pointSeries(b.data, dates, depth, "change")
     const corr = rollingCorr(xa.values, depth, xb.values, depth, dates.length, state.window, Math.ceil(state.window * MIN_SHARE))
     const offset = Math.max(0, dates.findIndex((d) => d >= start))
-    return { dates, xa, xb, corr, offset, shown: dates.findIndex((d) => d >= start) < 0 ? [] : dates.slice(offset) }
+    return { dates, xa, xb, ca, cb, corr, offset, shown: dates.findIndex((d) => d >= start) < 0 ? [] : dates.slice(offset) }
   }, [a.data, b.data, depth, state.basis, state.window, start])
 
   const shown = useMemo(() => calc?.shown ?? [], [calc])
@@ -184,6 +202,53 @@ export function CorrelationsView() {
     return { pair, average, strip, text }
   }, [calc, shown, align, si, sj, depth])
 
+  // The pair trade for the selected cell on the slider's day: the hedge ratio, the combination on the day's
+  // contracts with its bands and mean-reversion statistics, and the legs.
+  const T = calc ? calc.offset + playback.index : -1
+  const trade = useMemo(() => {
+    if (!calc || !a.data || !b.data || T < 0) return null
+    const days = calc.dates.length
+    const col = (s: Float64Array, k: number) => Float64Array.from({ length: days }, (_, t) => s[t * depth + k])
+    const hedge = rollingHedge(col(calc.ca.values, si), col(calc.cb.values, sj), state.window, Math.ceil(state.window * MIN_SHARE), state.fit)
+    const h = hedge.h[T]
+    // The package: qa lots of A against qb of B (signed: positive means short B). Exact is 1 against h.
+    const lots = { exact: null, lots: lotRatio(h), one: oneLotRatio(h) }[state.ratio]
+    const qa = lots ? lots[0] : 1
+    const qb = lots ? Math.sign(h) * lots[1] : h
+    const refA = calc.xa.refs[T][si]
+    const refB = calc.xb.refs[T][sj]
+    const base = { hedge, h, qa, qb, lotsSmall: lotRatio(h), lotsOne: oneLotRatio(h), r2: hedge.r2[T], refA, refB }
+    if (!Number.isFinite(h) || !refA || !refB) return { ...base, ready: false as const }
+    const sA = contractSeries(a.data, calc.dates, refA)
+    const sB = contractSeries(b.data, calc.dates, refB)
+    const combo = combine(sA, sB, qb, qa)
+    const lookback = state.lookback
+    const bands = rollingBands(combo, lookback, Math.ceil(lookback * MIN_SHARE))
+    const from = T - lookback + 1
+    const date = calc.dates[T]
+    const dayA = a.data.days.find((d) => d.date === date)!
+    const dayB = b.data.days.find((d) => d.date === date)!
+    const legs = legExposure(
+      { root: a.data.product, weights: a.data.weights, refs: dayA.refs, front: si },
+      { root: b.data.product, weights: b.data.weights, refs: dayB.refs, front: sj },
+      qb,
+      qa,
+    )
+    return {
+      ...base,
+      ready: true as const,
+      combo,
+      bands,
+      rev: reversion(combo, T, lookback),
+      // A's leg alone, at the package's size, so the risk cut compares like with like.
+      sdA: qa * stdev(diff(sA), from, T),
+      sdS: stdev(diff(combo), from, T),
+      legs,
+      z: (combo[T] - bands.mean[T]) / bands.sd[T],
+      now: combo[T],
+    }
+  }, [calc, a.data, b.data, T, si, sj, depth, state.window, state.fit, state.lookback, state.ratio])
+
   const sliderBar = (className = "") => <DayScrubber dates={shown} playback={playback} speedMs={state.speedMs} onSpeed={(speedMs) => patch({ speedMs })} className={className} />
 
   const strategyOptions = (meta?.strategies ?? []).map((s) => (
@@ -197,12 +262,202 @@ export function CorrelationsView() {
     </option>
   ))
 
+  const tradeSection = (nameA: string, nameB: string, dayStr: string) => {
+    if (!calc || !trade) return null
+    const { h, qa, qb } = trade
+    const short = !(h < 0)
+    const exact = state.ratio === "exact"
+    // B's quantity in the package: "0.79" for exact h, "4" for whole lots.
+    const hText = !Number.isFinite(qb) ? "h" : exact ? Math.abs(qb).toFixed(2) : String(Math.abs(qb))
+    const qaText = qa === 1 ? "" : `${qa} × `
+    const ratioText = (l: [number, number] | null) => (l ? `${l[0]}:${l[1]}` : "–")
+    const pointA = `${nameA} c${si + 1}${trade.refA ? ` (${trade.refA})` : ""}`
+    const pointB = `${nameB} c${sj + 1}${trade.refB ? ` (${trade.refB})` : ""}`
+    const rev = trade.ready ? trade.rev : null
+    const verdict =
+      !rev || !Number.isFinite(rev.adfT)
+        ? ""
+        : rev.adfT < EG_CRITICAL.p1
+          ? "Mean-reverting at 1%"
+          : rev.adfT < EG_CRITICAL.p5
+            ? "Mean-reverting at 5%"
+            : rev.adfT < EG_CRITICAL.p10
+              ? "Weak: only at 10%"
+              : "Not significantly mean-reverting"
+    const n = (v: number | null | undefined, d = 2, signed = false) =>
+      v === null || v === undefined || !Number.isFinite(v) ? "–" : `${signed && v > 0 ? "+" : ""}${v.toFixed(d)}`.replace("-", "−")
+    const hedgeStats: [string, string, string?][] = [
+      ["Hedge ratio h", n(h, 3), `${state.fit === "ols" ? "OLS of A's daily changes on B's" : "Total least squares (symmetric)"} over ${state.window}d to ${dayStr}`],
+      [
+        "Traded ratio",
+        Number.isFinite(qb) ? (exact ? `1 : ${n(Math.abs(qb), 3)}` : `${qa} : ${Math.abs(qb)}`) : "–",
+        `${qa} ${nameA} against ${Number.isFinite(qb) ? Math.abs(qb).toFixed(exact ? 3 : 0) : "–"} ${nameB}${exact ? "" : `: ${(Math.abs(qb) / qa).toFixed(2)} per lot of A, against h = ${Math.abs(h).toFixed(3)}`}`,
+      ],
+      ["R²", n(trade.r2), "Share of A's daily variance the fitted hedge explains"],
+      ["σ A daily", trade.ready ? n(trade.sdA, 3) : "–", `Standard deviation of the daily change of ${qa} A alone over ${state.lookback}d`],
+      ["σ hedged daily", trade.ready ? n(trade.sdS, 3) : "–", `Standard deviation of the package's daily change over ${state.lookback}d`],
+      ["Risk cut", trade.ready && trade.sdA > 0 ? `${Math.round(100 * (1 - trade.sdS / trade.sdA))}%` : "–", "1 − σ hedged / σ A: negative means the hedge adds risk"],
+    ]
+    const revStats: [string, string, string?][] = [
+      ["Combination", trade.ready ? n(trade.now, 3) : "–", `The package's value on the day: ${qaText}A − ${hText} × B`],
+      ["z-score", trade.ready ? n(trade.z, 2, true) : "–", `Distance from the ${state.lookback}d mean, in ${state.lookback}d standard deviations`],
+      ["Percentile", rev ? `${Math.round(rev.percentile)}th` : "–", `Where the day sits among the last ${state.lookback}d`],
+      ["Range min / max", rev ? `${n(rev.min, 3)} / ${n(rev.max, 3)}` : "–", `Over the last ${state.lookback}d`],
+      ["Half-life", rev ? (rev.halfLife === null ? "None" : `${rev.halfLife < 10 ? rev.halfLife.toFixed(1) : Math.round(rev.halfLife)}d`) : "–", "Settlement days for a gap to the mean to halve, from an AR(1) fit; None when it does not pull back"],
+      ["ADF t", rev ? n(rev.adfT) : "–", `Engle–Granger critical values: 1% ${EG_CRITICAL.p1}, 5% ${EG_CRITICAL.p5}, 10% ${EG_CRITICAL.p10}`],
+    ]
+    const tiles = (rows: [string, string, string?][]) => (
+      <div className="grid grid-cols-3 gap-1.5">
+        {rows.map(([l, v, hint]) => (
+          <div key={l} title={hint} className="rounded-md border border-border px-2 py-1">
+            <div className="text-[10px] tracking-wide text-muted-foreground uppercase">{l}</div>
+            <div className="text-sm font-medium tabular-nums">{v}</div>
+          </div>
+        ))}
+      </div>
+    )
+    const revision = `trade|${si}|${sj}|${state.fit}|${state.lookback}|${state.window}|${state.ratio}|${trade.refA}|${trade.refB}`
+
+    return (
+      <section className="flex min-w-0 flex-col gap-2 rounded-md border border-border p-2">
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs">
+          <div>
+            <span className="font-semibold">Pair trade</span>{" "}
+            <span className="text-muted-foreground">
+              · long {qa} {pointA}, {short ? "short" : "long"} {hText} {pointB}
+            </span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <span className="font-semibold">Ratio</span>
+            <Segmented
+              label="Traded ratio"
+              value={state.ratio}
+              onChange={(ratio) => patch({ ratio })}
+              options={[
+                { id: "exact", label: `Exact h ${Number.isFinite(h) ? Math.abs(h).toFixed(2) : ""}`.trim(), hint: "1 lot of A against the fitted h of B" },
+                { id: "lots", label: `Whole lots ${ratioText(trade.lotsSmall)}`, hint: "The smallest whole-lot ratio within 5% of h, up to 10 lots of A" },
+                { id: "one", label: `1-lot ${ratioText(trade.lotsOne)}`, hint: "One side a single lot: h rounded to the nearest whole number (2.3 → 1:2), or 1/h when h is under 1 (0.3 → 3:1)" },
+              ]}
+            />
+          </div>
+          <div className="flex items-center gap-1.5">
+            <span className="font-semibold">Fit</span>
+            <Segmented
+              label="Hedge ratio fit"
+              value={state.fit}
+              onChange={(fit) => patch({ fit })}
+              options={[
+                { id: "ols", label: "OLS", hint: "Minimum-variance hedge for holding A: A's daily changes regressed on B's" },
+                { id: "tls", label: "TLS", hint: "Total least squares: the same ratio whichever side you hold" },
+              ]}
+            />
+          </div>
+          <div className="flex items-center gap-1.5">
+            <span className="font-semibold">Lookback</span>
+            <Segmented
+              label="Lookback"
+              value={state.lookback}
+              onChange={(lookback) => patch({ lookback })}
+              options={LOOKBACKS.map((l) => ({ id: l, label: `${l}d`, hint: `Mean, bands and mean-reversion stats over ${l} settlement days` }))}
+            />
+          </div>
+        </div>
+
+        {!trade.ready ? (
+          <div className="p-2 text-sm text-muted-foreground">
+            No hedge ratio on {dayStr}: the pair needs {Math.ceil(state.window * MIN_SHARE)} days with a change on both sides in the {state.window}d window.
+          </div>
+        ) : (
+          <div className="grid gap-2 xl:grid-cols-[minmax(0,1fr)_minmax(0,26rem)]">
+            <div className="flex min-w-0 flex-col gap-2">
+              <CombinationChart
+                title={
+                  <>
+                    <span className="font-semibold">
+                      {qaText}
+                      {a.data?.product_label} {trade.refA} {a.data?.strategy_label} {short ? "−" : "+"} {hText} × {b.data?.product_label} {trade.refB} {b.data?.strategy_label}
+                    </span>{" "}
+                    <span className="text-muted-foreground">
+                      · the day's contracts, {exact ? `h fixed at ${dayStr}` : `${qa}:${Math.abs(qb)} lots from h on ${dayStr}`} · mean and ±1σ / ±2σ over {state.lookback}d
+                    </span>
+                  </>
+                }
+                dates={shown}
+                from={calc.offset}
+                combo={trade.combo}
+                mean={trade.bands.mean}
+                sd={trade.bands.sd}
+                current={dayStr}
+                onPick={playback.pick}
+                controls={sliderBar("pr-9")}
+                revision={revision}
+              />
+              <HedgeRatioChart
+                title={
+                  <>
+                    <span className="font-semibold">Rolling hedge ratio</span>{" "}
+                    <span className="text-muted-foreground">
+                      · {nameA} c{si + 1} on {nameB} c{sj + 1}, {state.fit.toUpperCase()} over {state.window}d of daily changes
+                    </span>
+                  </>
+                }
+                dates={shown}
+                from={calc.offset}
+                h={trade.hedge.h}
+                current={dayStr}
+                onPick={playback.pick}
+                controls={sliderBar("pr-9")}
+                revision={revision}
+              />
+            </div>
+            <div className="flex min-w-0 flex-col gap-2">
+              <div className="text-[11px] font-semibold tracking-wide text-muted-foreground uppercase">Hedge</div>
+              {tiles(hedgeStats)}
+              <div className="flex items-baseline justify-between gap-2 text-[11px]">
+                <span className="font-semibold tracking-wide text-muted-foreground uppercase">Mean reversion · {state.lookback}d</span>
+                <span className="text-foreground">{verdict}</span>
+              </div>
+              {tiles(revStats)}
+              <div className="text-[11px] font-semibold tracking-wide text-muted-foreground uppercase">{exact ? "Legs per 1 A" : `Legs per ${qa}:${Math.abs(qb)} package`}</div>
+              <table className="text-xs tabular-nums">
+                <thead className="text-[10px] text-muted-foreground uppercase">
+                  <tr>
+                    <th className="text-left font-normal">Contract</th>
+                    <th className="text-right font-normal">{qaText}A</th>
+                    <th className="text-right font-normal">
+                      {short ? "−" : "+"}
+                      {hText} × B
+                    </th>
+                    <th className="text-right font-normal">Net</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {trade.legs.map((l) => (
+                    <tr key={l.code} className="border-t border-border">
+                      <td className="py-0.5">{l.code}</td>
+                      <td className="text-right">{l.a ? n(l.a, 0, true) : ""}</td>
+                      <td className="text-right">{l.b ? n(l.b, exact ? 2 : 0, true) : ""}</td>
+                      <td className="text-right font-medium">{n(l.net, exact ? 2 : 0, true)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <p className="text-[11px] text-muted-foreground">
+                The combination uses the contracts held on the day, so a roll never puts a jump in it, and the day's ratio across the whole range, so the
+                line before the day is in-sample. Bands, z-score and percentile look back {state.lookback} settlement days.
+              </p>
+            </div>
+          </div>
+        )}
+      </section>
+    )
+  }
+
   const body = () => {
     if (error) return <div className="p-3 text-sm text-destructive">{error}</div>
     if (!calc || !series || !a.data || !b.data) return <div className="p-3 text-sm text-muted-foreground">Loading curves…</div>
     if (shown.length === 0) return <div className="p-3 text-sm text-muted-foreground">No settlement days both strategies share in this range.</div>
 
-    const T = calc.offset + playback.index
     const T0 = T - LAG
     const changeView = state.matrix === "change"
     const refsA = calc.xa.refs[T]
@@ -235,7 +490,8 @@ export function CorrelationsView() {
 
     return (
       <>
-        {sliderBar()}
+        {/* Stays in view while the page scrolls. */}
+        <div className="sticky top-0 z-40 -mx-2 -mt-2 bg-background px-2 pt-2 pb-1">{sliderBar()}</div>
 
         <div className="grid gap-2 xl:grid-cols-[auto_minmax(0,1fr)]">
           <section className="flex min-w-0 flex-col gap-1.5 rounded-md border border-border p-2">
@@ -292,6 +548,8 @@ export function CorrelationsView() {
             />
           </div>
         </div>
+
+        {tradeSection(nameA, nameB, dayStr)}
 
         <SlotStrip
           title={

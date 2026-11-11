@@ -40,7 +40,8 @@ export function FullscreenPanel({ children, controls, className }: { children: (
     <section
       ref={ref}
       className={cn(
-        "relative rounded-md border border-border p-2",
+        // isolate: keeps Plotly's modebar (z-index 1001) inside the panel, so it never shows through the sticky day slider.
+        "relative isolate rounded-md border border-border p-2",
         full && "flex h-full w-full flex-col gap-2 overflow-auto rounded-none border-0 bg-background p-4 text-foreground",
         overlay && "fixed inset-0 z-50",
         className,
