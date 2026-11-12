@@ -1,0 +1,102 @@
+{
+  "report_date": "2026-10-20",
+  "sources": ["oilgram_news 2026-10-20"],
+  "prices": [
+    {"name": "ICE December Brent settle", "value": "$108.79/b", "unit": "$/b", "as_of": "2026-10-20", "change": "-76 cents/b", "page": 13},
+    {"name": "NYMEX November WTI settle", "value": "$101.79/b", "unit": "$/b", "as_of": "2026-10-20", "change": "-$1.87/b", "page": 13},
+    {"name": "Platts Dated Brent", "value": "$117.61/b", "unit": "$/b", "as_of": "2026-10-19", "change": "", "page": 5},
+    {"name": "Murban", "value": "$109.27/b", "unit": "$/b", "as_of": "2026-10-19", "change": "", "page": 6},
+    {"name": "Qatar Shaheen", "value": "$69.27/b", "unit": "$/b", "as_of": "2026-10-19", "change": "", "page": 6},
+    {"name": "Basrah Medium", "value": "$64.07/b", "unit": "$/b", "as_of": "2026-10-19", "change": "", "page": 6},
+    {"name": "Banoco Arab Medium", "value": "$68.80/b", "unit": "$/b", "as_of": "2026-10-19", "change": "", "page": 6},
+    {"name": "Urals Primorsk vs Dated Brent", "value": "-$19.40/b", "unit": "$/b", "as_of": "2026-10-19", "change": "about -$35/b in early March", "page": 19},
+    {"name": "Urals DAP West Coast India vs forward Dated Brent", "value": "+$3.30/b", "unit": "$/b", "as_of": "2026-10-19", "change": "-$12.50/b pre-war", "page": 19},
+    {"name": "Platts pricescore Dated Brent, week average", "value": "126.97", "unit": "$/b", "as_of": "2026-10-16", "change": "129.94 week ending 2026-10-09", "page": 20},
+    {"name": "Platts pricescore WTI Cushing first month, week average", "value": "96.47", "unit": "$/b", "as_of": "2026-10-16", "change": "90.10 week ending 2026-10-09", "page": 20},
+    {"name": "WTI front month cited in North Dakota webinar", "value": "$97.88/b prior afternoon, about $96/b morning of webinar, November near $101/b later", "unit": "$/b", "as_of": "2026-10-20", "change": "", "page": 7},
+    {"name": "North Dakota realized oil price", "value": "$76.14/b", "unit": "$/b", "as_of": "2026-08", "change": "from $75.56/b in July", "page": 7},
+    {"name": "North Dakota wellhead discount to WTI", "value": "$6.54/b", "unit": "$/b", "as_of": "2026-08", "change": "YTD average $4.21/b", "page": 7}
+  ],
+  "flows": [
+    {"metric": "Saudi visible gross crude loadings", "value": "7.1 million b/d", "unit": "b/d", "period": "Oct. 1-10", "source": "S&P Global Commodities at Sea (preliminary)", "page": 4},
+    {"metric": "Yanbu crude loadings", "value": "3.2 million b/d", "unit": "b/d", "period": "Oct. 1-10 (Sept 1.9 million b/d wartime low; earlier text also says 3.5 million b/d prior three months)", "source": "CAS", "page": 4},
+    {"metric": "Ras Tanura loadings", "value": "1.9 million b/d", "unit": "b/d", "period": "Oct. 1-10", "source": "CAS", "page": 13},
+    {"metric": "Crude loadings at ports inside Strait of Hormuz", "value": "1.06 million b/d", "unit": "b/d", "period": "week beginning Oct. 11 (vs 4.9 million b/d prior week; about 8.4 million b/d week beginning Sept. 20, record since war)", "source": "CAS preliminary", "page": 14},
+    {"metric": "Hormuz transits into and out of Persian Gulf", "value": "19 ships", "unit": "ships", "period": "Oct. 19 (no VLCCs for first time since Aug. 2)", "source": "CAS", "page": 13},
+    {"metric": "Crude tankers entering Hormuz", "value": "just under 20", "unit": "vessels", "period": "Oct. 11-17 (25 to 30 per week through most of Sept and early Oct)", "source": "CAS", "page": 15},
+    {"metric": "Ship attacks recorded by IMO", "value": "23", "unit": "attacks", "period": "October to date, highest monthly total since conflict began", "source": "IMO / UKMTO", "page": 15},
+    {"metric": "Pre-war Hormuz crude and liquids flow", "value": "around 21 million b/d", "unit": "b/d", "period": "pre-war", "source": "EIA", "page": 15},
+    {"metric": "China crude imports from Saudi Arabia", "value": "2.7 million mt (644,341 b/d), -62.1% y/y, -14.3% m/m", "unit": "mt", "period": "Sept 2026", "source": "GAC", "page": 2},
+    {"metric": "China Jan-Sep crude imports from Saudi Arabia", "value": "1.15 million b/d, -27.6% y/y", "unit": "b/d", "period": "Jan-Sep 2026", "source": "GAC", "page": 2},
+    {"metric": "Saudi crude arrivals in China expected", "value": "1.1 million b/d", "unit": "b/d", "period": "Oct 2026 estimate", "source": "CAS", "page": 2},
+    {"metric": "Iranian crude deliveries to China", "value": "about 2.2 million mt (537,000 b/d), -57.3% m/m, lowest since Jan 2022", "unit": "mt", "period": "Sept 2026", "source": "Platts", "page": 2},
+    {"metric": "Iranian crude and condensate floating in Southeast Asia", "value": "2.6 million barrels", "unit": "barrels", "period": "Oct. 19 (4.8 million a month ago; 37.3 million Feb. 19)", "source": "CAS", "page": 2},
+    {"metric": "Norwegian crude exports", "value": "1.71 million b/d", "unit": "b/d", "period": "Sept 2026 (Aug 1.58 million b/d)", "source": "CAS", "page": 5},
+    {"metric": "European purchases of Johan Castberg crude", "value": "about 220,000 b/d", "unit": "b/d", "period": "current", "source": "article", "page": 18},
+    {"metric": "Middle East diesel exports from Persian Gulf", "value": "540,000 b/d", "unit": "b/d", "period": "Q3 2026", "source": "S&P Global Energy Horizons", "page": 13},
+    {"metric": "Argentina oil exports", "value": "330,000 b/d", "unit": "b/d", "period": "first eight months 2026 (128,000 b/d in 2023)", "source": "Milei", "page": 12},
+    {"metric": "North Dakota crude-by-rail", "value": "around 180,000 b/d", "unit": "b/d", "period": "Aug 2026", "source": "ND Pipeline Authority", "page": 7}
+  ],
+  "supply": [
+    {"metric": "Russia crude output", "value": "8.8 million b/d (from 9.23 million b/d in January)", "unit": "b/d", "period": "Sept 2026", "page": 1},
+    {"metric": "Russia 2026 oil production forecast", "value": "494 million mt, about 9.92 million b/d, about -3.5% vs 2025", "unit": "mt", "period": "2026", "page": 18},
+    {"metric": "Russian refining capacity offline", "value": "nearly half", "unit": "", "period": "end Sept 2026 (CERA)", "page": 19},
+    {"metric": "Norway crude output", "value": "1.73 million b/d (Aug 1.88; Sept 2025 1.89)", "unit": "b/d", "period": "Sept 2026", "page": 5},
+    {"metric": "Norway liquids output", "value": "1.9 million b/d, 1.1% below NOD forecast", "unit": "b/d", "period": "Sept 2026", "page": 5},
+    {"metric": "North Dakota oil production", "value": "1.16 million b/d, +2.4% m/m", "unit": "b/d", "period": "Aug 2026", "page": 6},
+    {"metric": "Brazil production-sharing oil output", "value": "1.905 million b/d record (July 1.843 million b/d)", "unit": "b/d", "period": "Aug 2026", "page": 11},
+    {"metric": "Argentina oil output", "value": "932,000 b/d record, 670,000 b/d from Vaca Muerta", "unit": "b/d", "period": "Aug 2026", "page": 12},
+    {"metric": "Gulf Keystone-ShaMaran combined Iraq output", "value": "53,000 b/d", "unit": "b/d", "period": "merger announced Oct. 20", "page": 4},
+    {"metric": "Saudi Yanbu pipeline attack", "value": "disrupted flows in September", "unit": "", "period": "Sept 2026", "page": 4}
+  ],
+  "demand_inventories": [
+    {"metric": "US gasoline demand vs 2023-2025 average", "value": "94,000 b/d below; projected to rise to 8.9 million b/d in rest of year", "unit": "b/d", "period": "2026 YTD (CERA Oct. 15)", "page": 8},
+    {"metric": "China LPG imports", "value": "2.19 million mt, -21.3% m/m", "unit": "mt", "period": "Sept 2026", "page": 3},
+    {"metric": "Midwest refinery utilization", "value": "near 100% through August, upper-80% range from mid-September", "unit": "%", "period": "Aug-Sept 2026", "page": 7},
+    {"metric": "Russia refinery runs", "value": "nearly half of refining capacity offline", "unit": "", "period": "end Sept 2026", "page": 19},
+    {"metric": "Global diesel exports", "value": "700,000 b/d lower y/y; 1.3 million b/d loss from Russia and Middle East", "unit": "b/d", "period": "Sept 2026 (IEA Oct. 14)", "page": 14},
+    {"metric": "Bayway refinery capacity (lockout Oct. 19)", "value": "about 275,000 b/d crude", "unit": "b/d", "period": "Oct 2026", "page": 9},
+    {"metric": "Global jet fuel consumption", "value": "around 7 million to 8 million b/d", "unit": "b/d", "period": "current", "page": 16}
+  ],
+  "physical_market": [
+    {"metric": "NWE ULSD crack vs Dated Brent", "value": "$83.07/b (five-year average $21.18/b)", "unit": "$/b", "as_of": "2026-10-19", "page": 14},
+    {"metric": "CIF NWE jet fuel", "value": "$1,628/mt (pre-war $831/mt)", "unit": "$/mt", "as_of": "2026-10-19", "page": 15},
+    {"metric": "Murban premium to regional alternatives", "value": "some $40/b", "unit": "$/b", "as_of": "2026-10-20", "page": 5},
+    {"metric": "Arab Gulf-UK/Continent LR1 freight", "value": "$220.77/mt", "unit": "$/mt", "as_of": "2026-10-19", "page": 14},
+    {"metric": "Arab Gulf-Japan LR2 freight", "value": "$224.32/mt", "unit": "$/mt", "as_of": "2026-10-19", "page": 14},
+    {"metric": "USGC-Brazil MR1 freight", "value": "$89.54/mt", "unit": "$/mt", "as_of": "2026-10-19", "page": 14},
+    {"metric": "Ship attacks near Jubail", "value": "four ship attacks Oct. 16-18 incl. RPG attack on tanker near Jubail (UKMTO)", "unit": "", "as_of": "2026-10-18", "page": 3},
+    {"metric": "Clearbrook / Patoka / synthetic differentials", "value": "about +$4/b / just under +$6/b / $7.56/b", "unit": "$/b", "as_of": "2026-08", "page": 7},
+    {"metric": "Ukraine/Russia Urals discount trend", "value": "Primorsk -$19.40/b vs about -$35/b early March", "unit": "$/b", "as_of": "2026-10-19", "page": 19}
+  ],
+  "forecasts": [
+    {"who": "EIA", "what": "October oil price outlook raised by about $10/b from September; prices begin normalizing 1H 2027, surplus in 2H 2027 pressuring prices", "value": "+$10/b revision", "horizon": "1H 2027 to 2H 2027", "page": 7},
+    {"who": "S&P Global Energy CERA", "what": "NWE jet fuel cracks average", "value": "$46/b (vs $84/b expected in September, $25/b in January)", "horizon": "through 2027", "page": 15},
+    {"who": "ING (Warren Patterson)", "what": "risk premium would erode slowly if flows continue uninhibited", "value": "", "horizon": "near term", "page": 13},
+    {"who": "S&P Global Energy CERA", "what": "Russian crude and condensate production has likely peaked", "value": "declining after 2025", "horizon": "all scenarios", "page": 19},
+    {"who": "S&P Global Energy Horizons", "what": "LR2 Arab Gulf-UKC rate forecast", "value": "$119.77/mt Q4 2026; 2027 avg $85.02/mt; 2028 avg $60.94/mt", "horizon": "Q4 2026-2028", "page": 14}
+  ],
+  "events": [
+    {"date": "2026-10-19", "category": "attack", "region": "Saudi Arabia", "what": "Houthis claim missile and drone attacks on Aramco Yanbu facilities and Shaybah field; Saudi has not confirmed", "crude_impact": "bullish", "page": 4},
+    {"date": "2026-10-20", "category": "shipping", "region": "Strait of Hormuz", "what": "Transits fell to 19 ships Oct. 19, no VLCCs; 23 ship attacks in October, a monthly high", "crude_impact": "bullish", "page": 13},
+    {"date": "2026-10-20", "category": "diplomacy", "region": "US/Iran", "what": "White House says US will not attack Iran before Nov. 3 midterms, easing escalation concerns", "crude_impact": "bearish", "page": 13},
+    {"date": "2026-10-16", "category": "sanctions", "region": "Russia", "what": "Trump signed order waiving Graham Act sanctions measures citing national interests; existing restrictions remain", "crude_impact": "bearish", "page": 1},
+    {"date": "2026-10-09", "category": "sanctions", "region": "Russia", "what": "US Treasury waiver allows sale, delivery and import of Russian-origin diesel; Russia partly lifted diesel ban Oct. 10", "crude_impact": "neutral", "page": 5},
+    {"date": "2026-10-20", "category": "attack", "region": "Russia", "what": "Druzhba Nikolskoye pumping station reportedly attacked overnight Oct. 19-20; MOL and Slovnaft report no change to nominations", "crude_impact": "neutral", "page": 4},
+    {"date": "2026-10-18", "category": "attack", "region": "Russia", "what": "Ukraine struck St. Petersburg oil terminal and largest oil depot; last refinery strike (Ryazan) Oct. 15", "crude_impact": "bullish", "page": 5},
+    {"date": "2026-10-18", "category": "shipping", "region": "Saudi east coast", "what": "Four ship attacks Oct. 16-18 incl. RPG attack on tanker near Jubail", "crude_impact": "bullish", "page": 3},
+    {"date": "2026-10-19", "category": "other", "region": "US", "what": "Phillips 66 locked out union workers at 275,000 b/d Bayway refinery after contract extension expired", "crude_impact": "bearish", "page": 9},
+    {"date": "2026-10-20", "category": "policy", "region": "EU", "what": "EU Arctic strategy drops call for multilateral ban on Arctic drilling", "crude_impact": "neutral", "page": 1},
+    {"date": "2026-10-20", "category": "other", "region": "Iraq", "what": "Gulf Keystone and ShaMaran agree $601 million merger", "crude_impact": "neutral", "page": 4},
+    {"date": "2026-10-22", "category": "policy", "region": "Brazil", "what": "PPSA first auction of government gas share scheduled", "crude_impact": "neutral", "page": 12}
+  ],
+  "themes": [
+    {"theme": "Hormuz disruption and ship attacks", "articles": 6, "direction": "bullish", "summary": "Hormuz transits fell to 19 ships, Gulf port loadings dropped to 1.06 million b/d and October has a record 23 ship attacks."},
+    {"theme": "Saudi export recovery vs Houthi attacks", "articles": 3, "direction": "mixed", "summary": "Saudi loadings rebounded to 7.1 million b/d in Oct. 1-10 while Houthis claimed attacks on Yanbu and Shaybah."},
+    {"theme": "US-Iran diplomacy", "articles": 2, "direction": "bearish", "summary": "White House said no US attack on Iran before midterms, easing near-term escalation concerns as futures fell."},
+    {"theme": "Russian output, sanctions and Ukraine strikes", "articles": 3, "direction": "mixed", "summary": "Russian output fell to 8.8 million b/d amid refinery attacks while the Graham Act waiver narrows Urals discounts."},
+    {"theme": "Product tightness and freight", "articles": 4, "direction": "bullish", "summary": "NWE diesel crack at $83.07/b, jet at $1,628/mt and Gulf clean tanker rates surged."},
+    {"theme": "Non-OPEC supply growth", "articles": 4, "direction": "bearish", "summary": "Brazil, Argentina and North Dakota reported record or rising output while Norway fell on maintenance."},
+    {"theme": "China crude import shifts", "articles": 2, "direction": "mixed", "summary": "China's Saudi imports fell 62.1% y/y in Sept and Iranian supply is drying up, with Saudi arrivals seen rebounding in Oct."}
+  ]
+}

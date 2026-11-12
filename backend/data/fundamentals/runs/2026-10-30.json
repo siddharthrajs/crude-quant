@@ -1,0 +1,661 @@
+{
+ "run_date": "2026-10-30",
+ "ref_contract": "COF27",
+ "ref_price": 113.43,
+ "themes": [
+  {
+   "key": "us_iran_escalation",
+   "name": "US-Iran escalation risk",
+   "impact": "highest",
+   "status": "active"
+  },
+  {
+   "key": "hormuz_flow_recovery",
+   "name": "Hormuz / Gulf export flow recovery",
+   "impact": "high",
+   "status": "active"
+  },
+  {
+   "key": "gulf_disruption_tight_stocks",
+   "name": "Persistent Gulf disruption and tight stocks",
+   "impact": "high",
+   "status": "active"
+  },
+  {
+   "key": "stock_releases",
+   "name": "G7 / IEA / SPR stock releases",
+   "impact": "high",
+   "status": "active"
+  },
+  {
+   "key": "diesel_export_ban",
+   "name": "Diesel tightness, export-ban risk and Russian diesel deal",
+   "impact": "medium",
+   "status": "active"
+  },
+  {
+   "key": "russia_ukraine_strikes",
+   "name": "Russian supply and Ukrainian strikes",
+   "impact": "medium",
+   "status": "active"
+  },
+  {
+   "key": "houthi_saudi_attacks",
+   "name": "Houthi attacks on Saudi oil infrastructure and Red Sea shipping",
+   "impact": "high",
+   "status": "active"
+  },
+  {
+   "key": "gom_hurricane",
+   "name": "Hurricane Isaias Gulf of Mexico shut-ins",
+   "impact": "medium",
+   "status": "dormant"
+  },
+  {
+   "key": "atlantic_basin_arb",
+   "name": "Asian pull on Atlantic Basin crude / WTI-Brent",
+   "impact": "medium",
+   "status": "dormant"
+  },
+  {
+   "key": "non_gulf_supply",
+   "name": "Non-Gulf supply growth and rerouting",
+   "impact": "low",
+   "status": "dormant"
+  }
+ ],
+ "new_sets": [
+  {
+   "theme_key": "us_iran_escalation",
+   "horizon_end": "2026-11-06",
+   "scenarios": [
+    {
+     "direction": "bearish",
+     "label": "US-Iran deal or formal direct talks announced, no strikes",
+     "test_kind": "report",
+     "test_text": "A fact sheet dated 2026-10-31..2026-11-06 reports that the US and Iran reached/signed an agreement or formally announced direct negotiations during Oct 30-Nov 6, and no US/Israeli strike on Iranian territory occurred in that window.",
+     "metric": null,
+     "op": null,
+     "value_lo": null,
+     "value_hi": null
+    },
+    {
+     "direction": "base",
+     "label": "No strikes, no deal through Nov 6",
+     "test_kind": "report",
+     "test_text": "Neither the bearish nor the bullish condition is reported in fact sheets dated 2026-10-31..2026-11-06.",
+     "metric": null,
+     "op": null,
+     "value_lo": null,
+     "value_hi": null
+    },
+    {
+     "direction": "bullish",
+     "label": "US or Israeli strikes on Iran before Nov 6",
+     "test_kind": "report",
+     "test_text": "A fact sheet dated 2026-10-31..2026-11-06 reports a US or Israeli military strike on Iranian territory occurring between Oct 30 and Nov 6, 2026.",
+     "metric": null,
+     "op": null,
+     "value_lo": null,
+     "value_hi": null
+    }
+   ]
+  },
+  {
+   "theme_key": "russia_ukraine_strikes",
+   "horizon_end": "2026-11-06",
+   "scenarios": [
+    {
+     "direction": "bearish",
+     "label": "Russia-Ukraine ceasefire agreed",
+     "test_kind": "report",
+     "test_text": "A fact sheet dated 2026-10-31..2026-11-06 reports that Russia and Ukraine agreed a ceasefire (full or covering energy infrastructure) during Oct 30-Nov 6.",
+     "metric": null,
+     "op": null,
+     "value_lo": null,
+     "value_hi": null
+    },
+    {
+     "direction": "base",
+     "label": "Strikes continue without export-port shutdown",
+     "test_kind": "report",
+     "test_text": "Neither the bearish nor the bullish condition is reported in fact sheets dated 2026-10-31..2026-11-06.",
+     "metric": null,
+     "op": null,
+     "value_lo": null,
+     "value_hi": null
+    },
+    {
+     "direction": "bullish",
+     "label": "Strike halts loadings at a Russian crude export port",
+     "test_kind": "report",
+     "test_text": "A fact sheet dated 2026-10-31..2026-11-06 reports that a Ukrainian strike during Oct 30-Nov 6 halted or suspended crude loadings at Primorsk, Ust-Luga or Novorossiysk, or Russia halted crude exports.",
+     "metric": null,
+     "op": null,
+     "value_lo": null,
+     "value_hi": null
+    }
+   ]
+  },
+  {
+   "theme_key": "houthi_saudi_attacks",
+   "horizon_end": "2026-11-06",
+   "scenarios": [
+    {
+     "direction": "bearish",
+     "label": "Houthis halt or suspend attacks on Saudi Arabia",
+     "test_kind": "report",
+     "test_text": "A fact sheet dated 2026-10-31..2026-11-06 reports that the Houthis (Yemeni armed forces) announced a halt, pause, truce or ceasefire in attacks on Saudi Arabia, and no bullish condition is reported in that window.",
+     "metric": null,
+     "op": null,
+     "value_lo": null,
+     "value_hi": null
+    },
+    {
+     "direction": "base",
+     "label": "Attacks continue without Saudi crude export outage",
+     "test_kind": "report",
+     "test_text": "Neither the bearish nor the bullish condition is reported in fact sheets dated 2026-10-31..2026-11-06.",
+     "metric": null,
+     "op": null,
+     "value_lo": null,
+     "value_hi": null
+    },
+    {
+     "direction": "bullish",
+     "label": "Attack halts Saudi crude loadings, pipeline or field output",
+     "test_kind": "report",
+     "test_text": "A fact sheet dated 2026-10-31..2026-11-06 reports that an attack during Oct 30-Nov 6 halted or suspended crude loadings at a Saudi export terminal (Yanbu, Ras Tanura, Juaymah or other), shut the East-West pipeline, or cut Saudi crude output or exports.",
+     "metric": null,
+     "op": null,
+     "value_lo": null,
+     "value_hi": null
+    }
+   ]
+  },
+  {
+   "theme_key": "hormuz_flow_recovery",
+   "horizon_end": "2026-11-06",
+   "scenarios": [
+    {
+     "direction": "bearish",
+     "label": "Front Brent spread eases below $2.25",
+     "test_kind": "price",
+     "metric": "brent_m1m2",
+     "op": "<",
+     "value_lo": 2.25,
+     "value_hi": null,
+     "test_text": "brent_m1m2 on the last settlement on or before 2026-11-06 is below 2.25."
+    },
+    {
+     "direction": "base",
+     "label": "Front Brent spread holds $2.25-4.25",
+     "test_kind": "price",
+     "metric": "brent_m1m2",
+     "op": "between",
+     "value_lo": 2.25,
+     "value_hi": 4.25,
+     "test_text": "brent_m1m2 on the last settlement on or before 2026-11-06 is >= 2.25 and < 4.25."
+    },
+    {
+     "direction": "bullish",
+     "label": "Front Brent spread widens to $4.25+",
+     "test_kind": "price",
+     "metric": "brent_m1m2",
+     "op": ">=",
+     "value_lo": 4.25,
+     "value_hi": null,
+     "test_text": "brent_m1m2 on the last settlement on or before 2026-11-06 is >= 4.25."
+    }
+   ]
+  },
+  {
+   "theme_key": "gulf_disruption_tight_stocks",
+   "horizon_end": "2026-11-06",
+   "scenarios": [
+    {
+     "direction": "bearish",
+     "label": "COF27 falls below $107",
+     "test_kind": "price",
+     "metric": "brent_ref",
+     "op": "<",
+     "value_lo": 107.0,
+     "value_hi": null,
+     "test_text": "brent_ref on the last settlement on or before 2026-11-06 is below 107.00."
+    },
+    {
+     "direction": "base",
+     "label": "COF27 holds $107-119",
+     "test_kind": "price",
+     "metric": "brent_ref",
+     "op": "between",
+     "value_lo": 107.0,
+     "value_hi": 119.0,
+     "test_text": "brent_ref on the last settlement on or before 2026-11-06 is >= 107.00 and < 119.00."
+    },
+    {
+     "direction": "bullish",
+     "label": "COF27 at $119 or higher",
+     "test_kind": "price",
+     "metric": "brent_ref",
+     "op": ">=",
+     "value_lo": 119.0,
+     "value_hi": null,
+     "test_text": "brent_ref on the last settlement on or before 2026-11-06 is >= 119.00."
+    }
+   ]
+  },
+  {
+   "theme_key": "stock_releases",
+   "horizon_end": "2026-11-06",
+   "scenarios": [
+    {
+     "direction": "bearish",
+     "label": "Front Brent falls below $109",
+     "test_kind": "price",
+     "metric": "brent_m1",
+     "op": "<",
+     "value_lo": 109.0,
+     "value_hi": null,
+     "test_text": "brent_m1 on the last settlement on or before 2026-11-06 is below 109.00."
+    },
+    {
+     "direction": "base",
+     "label": "Front Brent holds $109-118",
+     "test_kind": "price",
+     "metric": "brent_m1",
+     "op": "between",
+     "value_lo": 109.0,
+     "value_hi": 118.0,
+     "test_text": "brent_m1 on the last settlement on or before 2026-11-06 is >= 109.00 and < 118.00."
+    },
+    {
+     "direction": "bullish",
+     "label": "Front Brent at $118 or higher",
+     "test_kind": "price",
+     "metric": "brent_m1",
+     "op": ">=",
+     "value_lo": 118.0,
+     "value_hi": null,
+     "test_text": "brent_m1 on the last settlement on or before 2026-11-06 is >= 118.00."
+    }
+   ]
+  },
+  {
+   "theme_key": "diesel_export_ban",
+   "horizon_end": "2026-11-06",
+   "scenarios": [
+    {
+     "direction": "bearish",
+     "label": "WTI front falls below $98",
+     "test_kind": "price",
+     "metric": "wti_m1",
+     "op": "<",
+     "value_lo": 98.0,
+     "value_hi": null,
+     "test_text": "wti_m1 on the last settlement on or before 2026-11-06 is below 98.00."
+    },
+    {
+     "direction": "base",
+     "label": "WTI front holds $98-110",
+     "test_kind": "price",
+     "metric": "wti_m1",
+     "op": "between",
+     "value_lo": 98.0,
+     "value_hi": 110.0,
+     "test_text": "wti_m1 on the last settlement on or before 2026-11-06 is >= 98.00 and < 110.00."
+    },
+    {
+     "direction": "bullish",
+     "label": "WTI front at $110 or higher",
+     "test_kind": "price",
+     "metric": "wti_m1",
+     "op": ">=",
+     "value_lo": 110.0,
+     "value_hi": null,
+     "test_text": "wti_m1 on the last settlement on or before 2026-11-06 is >= 110.00."
+    }
+   ]
+  }
+ ],
+ "forecasts": [
+  {
+   "theme_key": "us_iran_escalation",
+   "horizon_end": "2026-11-06",
+   "direction": "bearish",
+   "probability": 8,
+   "brent_lo": 104,
+   "brent_hi": 110
+  },
+  {
+   "theme_key": "us_iran_escalation",
+   "horizon_end": "2026-11-06",
+   "direction": "base",
+   "probability": 82,
+   "brent_lo": 108,
+   "brent_hi": 118
+  },
+  {
+   "theme_key": "us_iran_escalation",
+   "horizon_end": "2026-11-06",
+   "direction": "bullish",
+   "probability": 10,
+   "brent_lo": 117,
+   "brent_hi": 130
+  },
+  {
+   "theme_key": "russia_ukraine_strikes",
+   "horizon_end": "2026-11-06",
+   "direction": "bearish",
+   "probability": 2,
+   "brent_lo": 105,
+   "brent_hi": 110
+  },
+  {
+   "theme_key": "russia_ukraine_strikes",
+   "horizon_end": "2026-11-06",
+   "direction": "base",
+   "probability": 89,
+   "brent_lo": 108,
+   "brent_hi": 118
+  },
+  {
+   "theme_key": "russia_ukraine_strikes",
+   "horizon_end": "2026-11-06",
+   "direction": "bullish",
+   "probability": 9,
+   "brent_lo": 112,
+   "brent_hi": 122
+  },
+  {
+   "theme_key": "houthi_saudi_attacks",
+   "horizon_end": "2026-11-06",
+   "direction": "bearish",
+   "probability": 4,
+   "brent_lo": 105,
+   "brent_hi": 110
+  },
+  {
+   "theme_key": "houthi_saudi_attacks",
+   "horizon_end": "2026-11-06",
+   "direction": "base",
+   "probability": 82,
+   "brent_lo": 108,
+   "brent_hi": 117
+  },
+  {
+   "theme_key": "houthi_saudi_attacks",
+   "horizon_end": "2026-11-06",
+   "direction": "bullish",
+   "probability": 14,
+   "brent_lo": 115,
+   "brent_hi": 126
+  },
+  {
+   "theme_key": "hormuz_flow_recovery",
+   "horizon_end": "2026-11-06",
+   "direction": "bearish",
+   "probability": 22,
+   "brent_lo": 105,
+   "brent_hi": 112
+  },
+  {
+   "theme_key": "hormuz_flow_recovery",
+   "horizon_end": "2026-11-06",
+   "direction": "base",
+   "probability": 53,
+   "brent_lo": 108,
+   "brent_hi": 117
+  },
+  {
+   "theme_key": "hormuz_flow_recovery",
+   "horizon_end": "2026-11-06",
+   "direction": "bullish",
+   "probability": 25,
+   "brent_lo": 113,
+   "brent_hi": 122
+  },
+  {
+   "theme_key": "gulf_disruption_tight_stocks",
+   "horizon_end": "2026-11-06",
+   "direction": "bearish",
+   "probability": 13,
+   "brent_lo": 101,
+   "brent_hi": 106
+  },
+  {
+   "theme_key": "gulf_disruption_tight_stocks",
+   "horizon_end": "2026-11-06",
+   "direction": "base",
+   "probability": 70,
+   "brent_lo": 107,
+   "brent_hi": 118
+  },
+  {
+   "theme_key": "gulf_disruption_tight_stocks",
+   "horizon_end": "2026-11-06",
+   "direction": "bullish",
+   "probability": 17,
+   "brent_lo": 119,
+   "brent_hi": 127
+  },
+  {
+   "theme_key": "stock_releases",
+   "horizon_end": "2026-11-06",
+   "direction": "bearish",
+   "probability": 22,
+   "brent_lo": 102,
+   "brent_hi": 108
+  },
+  {
+   "theme_key": "stock_releases",
+   "horizon_end": "2026-11-06",
+   "direction": "base",
+   "probability": 56,
+   "brent_lo": 109,
+   "brent_hi": 117
+  },
+  {
+   "theme_key": "stock_releases",
+   "horizon_end": "2026-11-06",
+   "direction": "bullish",
+   "probability": 22,
+   "brent_lo": 118,
+   "brent_hi": 126
+  },
+  {
+   "theme_key": "diesel_export_ban",
+   "horizon_end": "2026-11-06",
+   "direction": "bearish",
+   "probability": 14,
+   "brent_lo": 102,
+   "brent_hi": 107
+  },
+  {
+   "theme_key": "diesel_export_ban",
+   "horizon_end": "2026-11-06",
+   "direction": "base",
+   "probability": 72,
+   "brent_lo": 107,
+   "brent_hi": 118
+  },
+  {
+   "theme_key": "diesel_export_ban",
+   "horizon_end": "2026-11-06",
+   "direction": "bullish",
+   "probability": 14,
+   "brent_lo": 117,
+   "brent_hi": 125
+  }
+ ],
+ "resolutions": [
+  {
+   "theme_key": "us_iran_escalation",
+   "horizon_end": "2026-10-30",
+   "direction": "bearish",
+   "outcome": "no",
+   "observed_value": null,
+   "source": "report:2026-10-30"
+  },
+  {
+   "theme_key": "us_iran_escalation",
+   "horizon_end": "2026-10-30",
+   "direction": "base",
+   "outcome": "yes",
+   "observed_value": null,
+   "source": "report:2026-10-30"
+  },
+  {
+   "theme_key": "us_iran_escalation",
+   "horizon_end": "2026-10-30",
+   "direction": "bullish",
+   "outcome": "no",
+   "observed_value": null,
+   "source": "report:2026-10-30"
+  },
+  {
+   "theme_key": "russia_ukraine_strikes",
+   "horizon_end": "2026-10-30",
+   "direction": "bearish",
+   "outcome": "no",
+   "observed_value": null,
+   "source": "report:2026-10-30"
+  },
+  {
+   "theme_key": "russia_ukraine_strikes",
+   "horizon_end": "2026-10-30",
+   "direction": "base",
+   "outcome": "yes",
+   "observed_value": null,
+   "source": "report:2026-10-30"
+  },
+  {
+   "theme_key": "russia_ukraine_strikes",
+   "horizon_end": "2026-10-30",
+   "direction": "bullish",
+   "outcome": "no",
+   "observed_value": null,
+   "source": "report:2026-10-30"
+  },
+  {
+   "theme_key": "houthi_saudi_attacks",
+   "horizon_end": "2026-10-30",
+   "direction": "bearish",
+   "outcome": "no",
+   "observed_value": null,
+   "source": "report:2026-10-30"
+  },
+  {
+   "theme_key": "houthi_saudi_attacks",
+   "horizon_end": "2026-10-30",
+   "direction": "base",
+   "outcome": "yes",
+   "observed_value": null,
+   "source": "report:2026-10-30"
+  },
+  {
+   "theme_key": "houthi_saudi_attacks",
+   "horizon_end": "2026-10-30",
+   "direction": "bullish",
+   "outcome": "no",
+   "observed_value": null,
+   "source": "report:2026-10-30"
+  },
+  {
+   "theme_key": "hormuz_flow_recovery",
+   "horizon_end": "2026-10-30",
+   "direction": "bearish",
+   "outcome": "no",
+   "observed_value": 4.21,
+   "source": "settlements"
+  },
+  {
+   "theme_key": "hormuz_flow_recovery",
+   "horizon_end": "2026-10-30",
+   "direction": "base",
+   "outcome": "yes",
+   "observed_value": 4.21,
+   "source": "settlements"
+  },
+  {
+   "theme_key": "hormuz_flow_recovery",
+   "horizon_end": "2026-10-30",
+   "direction": "bullish",
+   "outcome": "no",
+   "observed_value": 4.21,
+   "source": "settlements"
+  },
+  {
+   "theme_key": "gulf_disruption_tight_stocks",
+   "horizon_end": "2026-10-30",
+   "direction": "bearish",
+   "outcome": "no",
+   "observed_value": 113.43,
+   "source": "settlements"
+  },
+  {
+   "theme_key": "gulf_disruption_tight_stocks",
+   "horizon_end": "2026-10-30",
+   "direction": "base",
+   "outcome": "yes",
+   "observed_value": 113.43,
+   "source": "settlements"
+  },
+  {
+   "theme_key": "gulf_disruption_tight_stocks",
+   "horizon_end": "2026-10-30",
+   "direction": "bullish",
+   "outcome": "no",
+   "observed_value": 113.43,
+   "source": "settlements"
+  },
+  {
+   "theme_key": "stock_releases",
+   "horizon_end": "2026-10-30",
+   "direction": "bearish",
+   "outcome": "no",
+   "observed_value": 117.64,
+   "source": "settlements"
+  },
+  {
+   "theme_key": "stock_releases",
+   "horizon_end": "2026-10-30",
+   "direction": "base",
+   "outcome": "yes",
+   "observed_value": 117.64,
+   "source": "settlements"
+  },
+  {
+   "theme_key": "stock_releases",
+   "horizon_end": "2026-10-30",
+   "direction": "bullish",
+   "outcome": "no",
+   "observed_value": 117.64,
+   "source": "settlements"
+  },
+  {
+   "theme_key": "diesel_export_ban",
+   "horizon_end": "2026-10-30",
+   "direction": "bearish",
+   "outcome": "no",
+   "observed_value": 104.12,
+   "source": "settlements"
+  },
+  {
+   "theme_key": "diesel_export_ban",
+   "horizon_end": "2026-10-30",
+   "direction": "base",
+   "outcome": "yes",
+   "observed_value": 104.12,
+   "source": "settlements"
+  },
+  {
+   "theme_key": "diesel_export_ban",
+   "horizon_end": "2026-10-30",
+   "direction": "bullish",
+   "outcome": "no",
+   "observed_value": 104.12,
+   "source": "settlements"
+  }
+ ]
+}

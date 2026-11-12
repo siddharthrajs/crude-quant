@@ -1,0 +1,87 @@
+{
+  "report_date": "2026-10-14",
+  "sources": ["oilgram_news 2026-10-14"],
+  "prices": [
+    {"name": "Dated Brent (Platts)", "value": "$130.52/b", "unit": "$/b", "as_of": "2026-10-13", "change": "up 84% since the US-Israel war with Iran began in late February; 53% above five-year average", "page": 11},
+    {"name": "Dated Brent weekly average (Platts pricescore)", "value": "129.94", "unit": "$/b", "as_of": "2026-10-09", "change": "prior week (02-Oct) 123.52", "page": 14},
+    {"name": "Dubai (first month) weekly average", "value": "108.11", "unit": "$/b", "as_of": "2026-10-09", "change": "prior week (02-Oct) 107.84", "page": 14},
+    {"name": "WTI Cushing (first month) weekly average", "value": "90.10", "unit": "$/b", "as_of": "2026-10-09", "change": "prior week (02-Oct) 91.28", "page": 14},
+    {"name": "NYMEX Light Sweet Crude weekly average settlement", "value": "90.06", "unit": "$/b", "as_of": "2026-10-09", "change": "prior week 91.62", "page": 14},
+    {"name": "ICE Brent weekly average settlement", "value": "101.76", "unit": "$/b", "as_of": "2026-10-09", "change": "prior week 102.98", "page": 14},
+    {"name": "Mars (MOC) weekly average", "value": "91.22", "unit": "$/b", "as_of": "2026-10-09", "change": "prior week (02-Oct) 89.52", "page": 14},
+    {"name": "ANS (California) weekly average", "value": "113.01", "unit": "$/b", "as_of": "2026-10-09", "change": "prior week (02-Oct) 105.61", "page": 14},
+    {"name": "US crude futures", "value": "settled at three-week highs", "unit": "", "as_of": "2026-10-14", "change": "", "page": 8},
+    {"name": "Bonny Light differential to Dated Brent", "value": "-40 cents/b", "unit": "cents/b", "as_of": "2026-10-13", "change": "", "page": 11},
+    {"name": "ULSD CIF NWE margin over Dated Brent", "value": "$69.65/b", "unit": "$/b", "as_of": "2026-10-13", "change": "down 30% from start of September", "page": 10},
+    {"name": "Forties NWE Cracking Netback Margin", "value": "$18.62/b", "unit": "$/b", "as_of": "2026-10-13", "change": "down 67% from Sept. 1; 41% above five-year average", "page": 11}
+  ],
+  "flows": [
+    {"metric": "Gulf crude exports (led by Saudi Arabia)", "value": "13.9 million b/d", "unit": "b/d", "period": "September", "source": "IEA OMR; up 4.4 million b/d", "page": 11},
+    {"metric": "Strait of Hormuz flows", "value": "10.9 million b/d", "unit": "b/d", "period": "September", "source": "IEA OMR; up 3.7 million b/d", "page": 11},
+    {"metric": "Middle East and Russia combined net gasoil exports", "value": "820,000 b/d", "unit": "b/d", "period": "September", "source": "IEA OMR; down 1.3 million b/d, more than 60% y/y", "page": 10},
+    {"metric": "Russian diesel and gasoil exports", "value": "479,000 mt", "unit": "mt", "period": "September", "source": "S&P Global Commodities at Sea; lowest monthly volume on record (data from 2016)", "page": 4},
+    {"metric": "Russian diesel exports target", "value": "3.5 million mt/month", "unit": "mt/month", "period": "by end of 2026", "source": "Novak", "page": 4},
+    {"metric": "Huajin Aramco first Saudi crude cargo (VLCC Kassab, Arab Medium)", "value": "discharged Oct. 6", "unit": "", "period": "loaded Juaymah around Sept. 3", "source": "S&P Global Commodities at Sea / Aramco", "page": 2},
+    {"metric": "Malaysia crude imports", "value": "10.22 million mt", "unit": "mt", "period": "Jan-Aug 2026", "source": "Dept of Statistics; down 30.7% y/y", "page": 3},
+    {"metric": "Malaysia crude exports", "value": "nearly 3.5 million mt", "unit": "mt", "period": "Jan-Aug 2026", "source": "Dept of Statistics; down 32.9% y/y", "page": 3}
+  ],
+  "supply": [
+    {"metric": "Nigeria crude output (excl. condensate, OPEC quota basis)", "value": "1.53 million b/d", "unit": "b/d", "period": "September", "page": 10},
+    {"metric": "Nigeria output incl. condensates", "value": "1.72 million b/d", "unit": "b/d", "period": "September (up 2.3% m/m; single-day peak 1.84 million b/d)", "page": 11},
+    {"metric": "Nigeria shut-in restoration plan", "value": "around 788,000 b/d", "unit": "b/d", "period": "plan laid out Oct. 11", "page": 11},
+    {"metric": "Venezuela crude output (PDVSA and partners)", "value": "1.218 million b/d", "unit": "b/d", "period": "September (August 1.213 million b/d)", "page": 5},
+    {"metric": "Venezuela Orinoco Belt output", "value": "690,000 b/d", "unit": "b/d", "period": "September (August 685,000 b/d)", "page": 5},
+    {"metric": "Venezuela end-2026 output target (PDVSA)", "value": "1.3 million b/d by Dec. 31", "unit": "b/d", "period": "2026", "page": 6},
+    {"metric": "Venezuela end-2027 output target (PDVSA)", "value": "nearly 1.5 million b/d", "unit": "b/d", "period": "end-2027", "page": 6},
+    {"metric": "NABEP Venezuela crude output", "value": "more than 200,000 b/d", "unit": "b/d", "period": "as of Oct. 13", "page": 8},
+    {"metric": "Russia refining capacity offline", "value": "about 45%", "unit": "% of primary capacity", "period": "end of September (CERA)", "page": 4},
+    {"metric": "Peru crude output", "value": "39,458 b/d", "unit": "b/d", "period": "through September (Perupetro)", "page": 8},
+    {"metric": "Global refinery runs outlook (IEA)", "value": "81.3 million b/d seasonal low in October; 84.6 million b/d by year-end", "unit": "b/d", "period": "Oct / year-end 2026", "page": 11}
+  ],
+  "demand_inventories": [
+    {"metric": "IEA world oil demand change 2026", "value": "decline of 2.6 million b/d", "unit": "b/d", "period": "2026 (average 102.4 million b/d)", "page": 1},
+    {"metric": "IEA world oil demand 2027", "value": "104.4 million b/d", "unit": "b/d", "period": "2027 (September report: 105 million b/d)", "page": 1},
+    {"metric": "IEA global demand y/y change", "value": "-2.5 million b/d Q4 2026; -5 million b/d Q2; -3.7 million b/d Q3", "unit": "b/d", "period": "2026 quarters", "page": 1},
+    {"metric": "OECD gasoil stocks", "value": "565 million barrels", "unit": "barrels", "period": "July (lowest since November 2023)", "page": 10},
+    {"metric": "IEA emergency stock release", "value": "331 million barrels of 400 million barrels committed", "unit": "barrels", "period": "by end of September; about 96 million barrels remain", "page": 12},
+    {"metric": "Global observed stocks", "value": "fell by 10 million barrels", "unit": "barrels", "period": "September; oil on water +103 million, on-land -113 million", "page": 12},
+    {"metric": "OECD stocks", "value": "fell by 37 million barrels (preliminary)", "unit": "barrels", "period": "September", "page": 12},
+    {"metric": "IEA global refinery runs 2026", "value": "81.7 million b/d, down 2.3 million b/d", "unit": "b/d", "period": "2026 (2027 up 2.8 million b/d)", "page": 12},
+    {"metric": "US oil consumption (IEA)", "value": "contraction of 90,000 b/d (0.4%)", "unit": "b/d", "period": "2026", "page": 11}
+  ],
+  "physical_market": [
+    {"metric": "Wholesale diesel prices Europe and US", "value": "all-time highs of around $220/barrel", "as_of": "mid-September", "page": 10},
+    {"metric": "ULSD CIF NWE", "value": "$1,491.25/metric ton ($200.17/b)", "as_of": "2026-10-13", "page": 11},
+    {"metric": "European diesel cracks", "value": "retreated from $100/b to around $60/b", "as_of": "early October", "page": 10},
+    {"metric": "FOB Singapore 10 ppm gasoil crack vs Dubai swap", "value": "$67.42/b average", "as_of": "August (July $61.79/b)", "page": 2},
+    {"metric": "Freight", "value": "record freight and rapidly escalating VLCC rates from Middle East hurt Singapore margins by $7-$15/b m/m", "as_of": "September", "page": 11}
+  ],
+  "forecasts": [
+    {"who": "IEA", "what": "World oil demand change", "value": "-2.6 million b/d (2026); 104.4 million b/d level in 2027 vs 105 million b/d prior", "horizon": "2026-2027", "page": 1},
+    {"who": "IEA", "what": "Demand growth return to positive territory", "value": "March 2027", "horizon": "2027", "page": 1},
+    {"who": "IEA", "what": "Global gasoil market back to surplus", "value": "Q1 2027, insufficient to offset 2026 deficits", "horizon": "Q1 2027", "page": 10},
+    {"who": "PDVSA", "what": "Venezuela output", "value": "1.3 million b/d by Dec. 31, 2026; 1.5 million b/d end-2027", "horizon": "2026-2027", "page": 6}
+  ],
+  "events": [
+    {"date": "2026-10-14", "category": "attack", "region": "Saudi Arabia", "what": "Houthis claim strikes on Aramco in Dhahran, King Khalid Airport and Aramco refinery in Riyadh; vow more; Dhahran admin building fire (Oct. 13) per SPA", "crude_impact": "bullish", "page": 4},
+    {"date": "2026-10-11", "category": "attack", "region": "Saudi Arabia", "what": "Houthis say Aramco Shedgum gas plant and Tanajib oil facility struck, causing fires", "crude_impact": "bullish", "page": 4},
+    {"date": "2026-10-14", "category": "shipping", "region": "Strait of Hormuz", "what": "Iran targets ships in the Strait of Hormuz (headline)", "crude_impact": "bullish", "page": 8},
+    {"date": "2026-10-14", "category": "other", "region": "Global", "what": "IEA cuts 2027 demand forecast to 104.4 million b/d from 105 million b/d", "crude_impact": "bearish", "page": 1},
+    {"date": "2026-10-09", "category": "sanctions", "region": "US/Russia", "what": "US Treasury waiver allowing sale, delivery and import of Russian-origin diesel", "crude_impact": "mixed", "page": 4},
+    {"date": "2026-10-10", "category": "policy", "region": "Russia", "what": "Russia partially lifts diesel export ban in place since July", "crude_impact": "mixed", "page": 4},
+    {"date": "2026-10-02", "category": "policy", "region": "G7", "what": "G7 leaders commit to accelerating IEA Collective Action releases, prioritizing diesel", "crude_impact": "bearish", "page": 10},
+    {"date": "2026-10-07", "category": "policy", "region": "IEA", "what": "IEA members support accelerating March 2026 emergency stock releases", "crude_impact": "bearish", "page": 12},
+    {"date": "2026-10-14", "category": "conflict", "region": "Russia/Ukraine", "what": "Zelenskyy says Ukraine will halt strikes on Russian refineries and oil exports only if Russia stops striking Ukraine's energy system", "crude_impact": "mixed", "page": 4},
+    {"date": "2026-10-14", "category": "other", "region": "China", "what": "Huajin Aramco (300,000 b/d refinery) receives first Saudi crude cargo ahead of startup", "crude_impact": "neutral", "page": 2},
+    {"date": "2026-10-11", "category": "policy", "region": "Nigeria", "what": "NUPRC plans to restore around 788,000 b/d from shut-in assets", "crude_impact": "bearish", "page": 11}
+  ],
+  "themes": [
+    {"theme": "Houthi attacks on Saudi infrastructure", "articles": 2, "direction": "bullish", "summary": "Houthis claimed strikes on Aramco sites in Dhahran and Riyadh and vowed more; US crude futures hit three-week highs on fresh attacks."},
+    {"theme": "IEA demand cut", "articles": 4, "direction": "bearish", "summary": "IEA cut 2027 demand to 104.4 million b/d from 105 million b/d, sees 2026 demand falling 2.6 million b/d, with recovery not before March 2027."},
+    {"theme": "Diesel shortage", "articles": 3, "direction": "bullish", "summary": "Middle East and Russia gasoil exports fell more than 60% y/y in September and OECD gasoil stocks are the lowest since November 2023."},
+    {"theme": "Gulf supply recovery vs vulnerability", "articles": 2, "direction": "mixed", "summary": "Gulf crude exports rose 4.4 million b/d to 13.9 million b/d in September and Hormuz flows to 10.9 million b/d, but IEA says recovery remains vulnerable to renewed attacks."},
+    {"theme": "Russia refining recovery and US talks", "articles": 1, "direction": "mixed", "summary": "Novak says plants are restarting and output will rise, a US waiver and partial export-ban lift were issued, yet about 45% of primary refining capacity was offline at end-September."},
+    {"theme": "Emergency stock releases", "articles": 2, "direction": "bearish", "summary": "IEA countries released 331 of 400 million barrels committed; about 96 million barrels remain, mostly over the next four months."},
+    {"theme": "Non-Gulf supply growth", "articles": 4, "direction": "bearish", "summary": "Nigeria met its OPEC quota for a fifth month at 1.53 million b/d and Venezuela output edged up to 1.218 million b/d in September."}
+  ]
+}

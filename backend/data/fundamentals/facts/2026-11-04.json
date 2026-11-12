@@ -1,0 +1,97 @@
+{
+  "report_date": "2026-11-04",
+  "sources": ["oilgram_news 2026-11-04"],
+  "prices": [
+    {"name": "ICE January Brent settle", "value": "$94.62/b", "unit": "$/b", "as_of": "2026-11-04", "change": "-$8.98/b", "page": 14},
+    {"name": "NYMEX December WTI settle", "value": "$88.12/b", "unit": "$/b", "as_of": "2026-11-04", "change": "-$7.97/b", "page": 14},
+    {"name": "ICE January Brent intraday (1747 GMT)", "value": "$94.02/b", "unit": "$/b", "as_of": "2026-11-04", "change": "-$9.58/b", "page": 1},
+    {"name": "NYMEX December WTI intraday (1747 GMT)", "value": "$87.70/b", "unit": "$/b", "as_of": "2026-11-04", "change": "-$8.39/b", "page": 1},
+    {"name": "Front-month WTI and Brent level", "value": "lowest since Aug. 31", "unit": "", "as_of": "2026-11-04", "change": "", "page": 14},
+    {"name": "Dated Brent (Platts)", "value": "$96.16/b", "unit": "$/b", "as_of": "2026-11-04", "change": "up 35.6% from $70.94/b on Feb. 27", "page": 19},
+    {"name": "Dated Brent (Platts)", "value": "$105.195/b", "unit": "$/b", "as_of": "2026-11-03", "change": "", "page": 15},
+    {"name": "Dated Brent war-time peak (Platts)", "value": "$144.42/b", "unit": "$/b", "as_of": "2026-04-07", "change": "from $72/b pre-war", "page": 15},
+    {"name": "Dated Brent weekly average", "value": "120.34", "unit": "$/b", "as_of": "2026-10-30", "change": "23-Oct: 120.93", "page": 21},
+    {"name": "Dubai (first month) weekly average", "value": "115.59", "unit": "$/b", "as_of": "2026-10-30", "change": "23-Oct: 112.22", "page": 21},
+    {"name": "WTI Cushing (first month) weekly average", "value": "102.11", "unit": "$/b", "as_of": "2026-10-30", "change": "23-Oct: 103.86", "page": 21},
+    {"name": "ANS California weekly average", "value": "125.73", "unit": "$/b", "as_of": "2026-10-30", "change": "23-Oct: 122.05", "page": 21},
+    {"name": "Mars (MOC) weekly average", "value": "104.21", "unit": "$/b", "as_of": "2026-10-30", "change": "23-Oct: 111.06", "page": 21},
+    {"name": "Cash Dubai vs same-month Dubai futures (Dubai M1-M3 structure)", "value": "30 cents/b", "unit": "cents/b", "as_of": "2026-11-02", "change": "lowest since minus 30 cents/b on July 17; 92 cents/b on Nov. 3; prewar Feb avg 92 cents/b", "page": 4},
+    {"name": "Basrah Medium Dec delivery DES Shandong premium to ICE Brent", "value": "$13-$14/b", "unit": "$/b", "as_of": "2026-11-04", "change": "broadly stable w/w", "page": 2},
+    {"name": "ANS Q4 differential to WTI (average)", "value": "$24.19/b", "unit": "$/b", "as_of": "2026-11-04", "change": "Q3: $6.27/b", "page": 11},
+    {"name": "ANS Q4 differential to ICE Brent (average)", "value": "$17.45/b", "unit": "$/b", "as_of": "2026-11-04", "change": "Q3: $1.57/b", "page": 11},
+    {"name": "Singapore 0.5%S marine fuel crack vs ICE Brent", "value": "$30.50/barrel", "unit": "$/b", "as_of": "2026-10-30", "change": "up 17% w/w; strongest since July 2022", "page": 4},
+    {"name": "Singapore gasoil swap crack vs Dubai (second month)", "value": "$60.6/b", "unit": "$/b", "as_of": "2026-11-03", "change": "record $83.02/b on Sept. 16", "page": 3},
+    {"name": "NYMEX December ULSD settle", "value": "$4.2055/gal", "unit": "$/gal", "as_of": "2026-11-04", "change": "-32.51 cents/gal", "page": 14},
+    {"name": "NYMEX December RBOB settle", "value": "$2.7286/gal", "unit": "$/gal", "as_of": "2026-11-04", "change": "-20.69 cents/gal", "page": 14},
+    {"name": "ULSD barge FOB ARA", "value": "$1,350.25/mt", "unit": "$/mt", "as_of": "2026-11-04", "change": "up 79.5% from Feb. 27", "page": 19}
+  ],
+  "flows": [
+    {"metric": "Middle East crude shipments (CAS)", "value": "15.2 million b/d", "unit": "b/d", "period": "October 2026", "source": "S&P Global Commodities at Sea; 80% of Dec 2025-Feb 2026 average", "page": 1},
+    {"metric": "Middle East oil product exports", "value": "3.6 million b/d", "unit": "b/d", "period": "October 2026", "source": "CAS; 51% of pre-war level", "page": 1},
+    {"metric": "Middle East total oil exports (crude + products)", "value": "18.8 million b/d", "unit": "b/d", "period": "October 2026", "source": "CAS; wartime record 18.9 million b/d in September; 72% of prewar", "page": 1},
+    {"metric": "Middle East oil flows recovered to", "value": "20.7 million b/d", "unit": "b/d", "period": "current (Nov. 4 note)", "source": "JP Morgan", "page": 1},
+    {"metric": "Hormuz vessel transits", "value": "19 (8 outbound, 11 inbound; 11 dark)", "unit": "vessels", "period": "Nov. 3", "source": "CAS; 20 the previous day", "page": 16},
+    {"metric": "Hormuz crude tanker transits", "value": "4 outbound, 3 inbound", "unit": "vessels", "period": "Nov. 3", "source": "CAS", "page": 16},
+    {"metric": "US naval blockade line crossings", "value": "59 (29 inbound, 30 outbound)", "unit": "vessels", "period": "Nov. 3", "source": "CAS", "page": 16},
+    {"metric": "Bab al-Mandab crossings", "value": "30", "unit": "vessels", "period": "Nov. 3", "source": "CAS; 48 on Nov. 2", "page": 16},
+    {"metric": "Gulf tankers used by producers/traders to exit Hormuz", "value": "nearly 230", "unit": "tankers", "period": "Oct. 28 note", "source": "Windward; ~80% VLCCs", "page": 19},
+    {"metric": "VLCCs in Persian Gulf shuttle operations", "value": "more than 60", "unit": "VLCCs", "period": "start of Q4 2026", "source": "Torm estimate", "page": 15},
+    {"metric": "China independents' Iranian crude imports", "value": "1.16 million mt (275,000 b/d)", "unit": "", "period": "October 2026", "source": "Platts; lowest since Jan 2022, -80% y/y, -49% m/m; 5 cargoes vs 13 in Sept", "page": 2},
+    {"metric": "China independents' imports from Iraq and UAE", "value": "3.12 million mt", "unit": "mt", "period": "October 2026", "source": "Platts; vs 790,000 mt in September; Iraq about 2.31 million mt vs 520,000 mt", "page": 2},
+    {"metric": "China independents' Iranian crude imports peak", "value": "1.81 million b/d", "unit": "b/d", "period": "April 2026", "source": "Platts", "page": 2},
+    {"metric": "ANS exports to Asia", "value": "36,760 b/d (Q4 as of Nov. 4)", "unit": "b/d", "period": "Q4 2026 to date", "source": "CAS; Q3: 15,390 b/d", "page": 11}
+  ],
+  "supply": [
+    {"metric": "EIA forecast Persian Gulf shut-in production", "value": "around 4.47 million b/d", "unit": "b/d", "period": "Q4 2026 (falling to 2.68 million b/d in Q1 2027)", "page": 19},
+    {"metric": "US crude oil output", "value": "13.97 million b/d", "unit": "b/d", "period": "August 2026", "page": 20},
+    {"metric": "PDVSA and partners oil output", "value": "1.23 million b/d", "unit": "b/d", "period": "October 2026 (targets 1.3 million b/d end-2026, 1.5 million b/d end-2027)", "page": 19},
+    {"metric": "Cenovus oil sands production", "value": "833,000 b/d", "unit": "b/d", "period": "Q3 2026", "page": 13},
+    {"metric": "Suncor oil sands production", "value": "948,000 b/d", "unit": "b/d", "period": "Q3 2026 (958,300 b/d year earlier)", "page": 14},
+    {"metric": "West White Rose start-up", "value": "first oil imminent; peak about 80,000 b/d by 2028-29", "unit": "b/d", "period": "Nov. 4", "page": 13},
+    {"metric": "SM Energy oil output", "value": "229,000-239,000 b/d guided", "unit": "b/d", "period": "Q4 2026 (Q3: 230,000 b/d)", "page": 11},
+    {"metric": "Ovintiv oil and condensate output", "value": "204,000 b/d", "unit": "b/d", "period": "Q3 2026", "page": 10}
+  ],
+  "demand_inventories": [
+    {"metric": "US commercial crude stocks", "value": "-870,000 barrels", "unit": "barrels", "period": "week ended Oct. 30 (EIA)", "page": 8},
+    {"metric": "US distillate stocks", "value": "99.26 million barrels (-3.57 million)", "unit": "barrels", "period": "week ended Oct. 30 (EIA)", "page": 8},
+    {"metric": "US total product supplied", "value": "21.96 million b/d (+9%)", "unit": "b/d", "period": "week ended Oct. 30 (EIA)", "page": 8},
+    {"metric": "US refinery utilization", "value": "94.5% of capacity", "unit": "%", "period": "week ended Oct. 30 (EIA)", "page": 8},
+    {"metric": "US refinery net crude inputs", "value": "16.73 million b/d", "unit": "b/d", "period": "week ended Oct. 30 (EIA)", "page": 8},
+    {"metric": "Singapore commercial heavy distillate stocks", "value": "18.68 million barrels", "unit": "barrels", "period": "week ended Oct. 28", "page": 4},
+    {"metric": "JP Morgan global oil market surplus", "value": "1.1 million b/d (Sept), 1.4 million b/d (Oct)", "unit": "b/d", "period": "Sept-Oct 2026", "page": 1},
+    {"metric": "Vopak Rotterdam (Europoort) occupancy", "value": "95%", "unit": "%", "period": "Q3 2026", "page": 16}
+  ],
+  "physical_market": [
+    {"metric": "Basrah Medium Dec DES Shandong vs ICE Brent", "value": "$13-$14/b premium", "unit": "$/b", "as_of": "2026-11-04", "page": 2},
+    {"metric": "Platts Global Clean Tanker Index (eco, scrubber-fitted)", "value": "$146,688.69/day", "unit": "$/day", "as_of": "2026-11-03", "page": 15},
+    {"metric": "Crude exporters discounting to clear barrels; FOB differentials swung from 3%-5% premiums to 5%-8% discounts", "value": "-5% to -8%", "unit": "%", "as_of": "2026-11-04", "page": 11},
+    {"metric": "Delivered ANS differentials to US West Coast widened", "value": "$10-$15/b", "unit": "$/b", "as_of": "2026-11-04", "page": 11}
+  ],
+  "forecasts": [
+    {"who": "OPEC", "what": "2026 world oil demand growth", "value": "200,000 b/d (from 1.4 million b/d pre-war)", "horizon": "2026 (issued Oct. 13)", "page": 14},
+    {"who": "IEA", "what": "2026 world oil demand change", "value": "fall of about 2.6 million b/d (pre-war: growth of about 850,000 b/d)", "horizon": "2026 (issued Oct. 14)", "page": 14},
+    {"who": "EIA", "what": "Persian Gulf shut-ins to continue well into 2027", "value": "4.47 million b/d Q4 2026; 2.68 million b/d Q1 2027", "horizon": "Q4 2026-Q1 2027", "page": 19},
+    {"who": "S&P Global Energy CERA", "what": "Middle East exports remain below prewar levels", "value": "below prewar", "horizon": "through 2027", "page": 15},
+    {"who": "S&P Global Energy CERA", "what": "US gasoline demand", "value": "8.9 million b/d", "horizon": "rest of 2026", "page": 20}
+  ],
+  "events": [
+    {"date": "2026-11-03", "category": "policy", "region": "US", "what": "Democrats win Senate and House in midterms; seen lowering US-Iran escalation risk", "crude_impact": "bearish", "page": 14},
+    {"date": "2026-11-04", "category": "diplomacy", "region": "US/Iran", "what": "Schumer says Iran war must end; Rystad sees greater pressure for Hormuz deal; analysts warn Trump could escalate in lame-duck period with third carrier strike group", "crude_impact": "mixed", "page": 1},
+    {"date": "2026-11-03", "category": "attack", "region": "Strait of Hormuz", "what": "IRGC reported destroying three tankers early Nov. 3 and four more after a 'mine collision'; UKMTO reported one tanker (Grit) hit by two projectiles 14 nm NE of Lima, Oman", "crude_impact": "bullish", "page": 16},
+    {"date": "2026-11-02", "category": "shipping", "region": "Strait of Hormuz", "what": "Iran's Persian Gulf Strait Authority added 114 ships to violators list, total 240", "crude_impact": "bullish", "page": 19},
+    {"date": "2026-10-31", "category": "attack", "region": "Middle East", "what": "October was worst month for attacks on shipping since the war began: 35 IMO-recorded incidents vs 15 in September", "crude_impact": "bullish", "page": 19},
+    {"date": "2026-11-04", "category": "policy", "region": "UK", "what": "Energy Independence Bill introduced, ending new North Sea oil and gas licenses", "crude_impact": "neutral", "page": 6},
+    {"date": "2026-11-04", "category": "policy", "region": "Global", "what": "OPEC, IEA and IEF hold workshop on maritime energy security", "crude_impact": "neutral", "page": 14},
+    {"date": "2026-11-03", "category": "other", "region": "Switzerland", "what": "Second release of jet fuel stocks authorized, up to 50,000 cubic meters until Nov. 29", "crude_impact": "neutral", "page": 7},
+    {"date": "2026-11-04", "category": "outage", "region": "US/Canada", "what": "Suncor Sarnia curtailment tied to unplanned Line 5 outage in Q3", "crude_impact": "neutral", "page": 12}
+  ],
+  "themes": [
+    {"theme": "US midterm result and Iran escalation risk", "articles": 4, "direction": "bearish", "summary": "Oil fell sharply on Nov. 4 as Democratic wins were seen lowering US-Iran escalation risk, though analysts flag lame-duck escalation risk and a possible Hormuz deal."},
+    {"theme": "Hormuz flows and shipping attacks", "articles": 4, "direction": "mixed", "summary": "Middle East exports stayed near wartime highs in October at 18.8 million b/d, but attacks hit 35 incidents and Hormuz transits were 19 on Nov. 3."},
+    {"theme": "Persian Gulf shut-ins and supply outlook", "articles": 3, "direction": "bullish", "summary": "EIA expects shut-ins to continue well into 2027 and CERA assumes exports stay below prewar levels through 2027."},
+    {"theme": "Iranian crude loss in China, replaced by Iraq", "articles": 2, "direction": "mixed", "summary": "China independents' Iranian imports hit a record low of 275,000 b/d in October while Iraq and UAE barrels rose to 3.12 million mt."},
+    {"theme": "Demand destruction and surplus", "articles": 3, "direction": "bearish", "summary": "OPEC and IEA cut 2026 demand forecasts and JP Morgan sees a 1.4 million b/d surplus in October, most evident in crude."},
+    {"theme": "Tight distillates and strong refining demand", "articles": 4, "direction": "bullish", "summary": "US distillate stocks hit a 23-year low and refiners are pushing runs, with 94.5% utilization in the week ended Oct. 30."},
+    {"theme": "Pacific crude differentials and long-haul freight", "articles": 2, "direction": "bearish", "summary": "ANS Q4 differentials to Brent averaged $17.45/b vs $1.57/b in Q3 as far-flung exporters discount to clear barrels."}
+  ]
+}

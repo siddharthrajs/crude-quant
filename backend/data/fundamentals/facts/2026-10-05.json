@@ -1,0 +1,100 @@
+{
+  "report_date": "2026-10-05",
+  "sources": ["oilgram_news 2026-10-05"],
+  "prices": [
+    {"name": "ICE December Brent settle", "value": "$100.32/b", "unit": "$/b", "as_of": "2026-10-05", "change": "-$1.93/b", "page": 13},
+    {"name": "NYMEX November WTI settle", "value": "$89.43/b", "unit": "$/b", "as_of": "2026-10-05", "change": "-$1.68/b", "page": 13},
+    {"name": "Dated Brent (Platts)", "value": "$126.955/b", "unit": "$/b", "as_of": "2026-10-02", "change": "up 79% from $70.94/b on Feb. 27", "page": 1},
+    {"name": "WTI Midland", "value": "$90.91/b", "unit": "$/b", "as_of": "2026-10-02", "change": "up 37.1% (vs Feb. 27)", "page": 1},
+    {"name": "Urals FOB Primorsk", "value": "$91.85/b", "unit": "$/b", "as_of": "2026-10-02", "change": "discount of $35.11/b to Dated Brent; Sept avg discount $29.55/b vs 5-yr avg $20.79/b", "page": 7},
+    {"name": "Saudi Aramco November OSP differentials, Asia", "value": "lowered $3-$5/b month over month (heavier grades cut more)", "unit": "$/b", "as_of": "2026-10-05", "change": "-$3 to -$5/b; NW Europe raised by around $3/b per analyst", "page": 13},
+    {"name": "Dated Brent weekly average, week ending 25-Sep", "value": "120.65", "unit": "$/b", "as_of": "2026-09-25", "change": "vs 127.76 week ending 18-Sep", "page": 18},
+    {"name": "Dubai (first month) weekly average, week ending 25-Sep", "value": "113.06", "unit": "$/b", "as_of": "2026-09-25", "change": "vs 124.90 week ending 18-Sep", "page": 18},
+    {"name": "WTI Cushing (first month) weekly average, week ending 25-Sep", "value": "97.27", "unit": "$/b", "as_of": "2026-09-25", "change": "vs 102.37 week ending 18-Sep", "page": 18},
+    {"name": "Singapore gasoil swap crack (2nd month) vs Dubai swaps", "value": "$83.02/b record", "unit": "$/b", "as_of": "2026-09-16", "change": "Sept avg $72.97/b; Aug $64.71/b; Jul $56.14/b; 2025 avg $18.16/b", "page": 3},
+    {"name": "NYMEX November ULSD settle", "value": "$4.5452/gal", "unit": "$/gal", "as_of": "2026-10-05", "change": "+4.41 cents/gal", "page": 13},
+    {"name": "NYMEX November RBOB settle", "value": "$3.2462/gal", "unit": "$/gal", "as_of": "2026-10-05", "change": "-6.62 cents/gal", "page": 13}
+  ],
+  "flows": [
+    {"metric": "Strait of Hormuz total ship transits", "value": "25 ships", "unit": "ships/day", "period": "Oct. 4 (21 on Oct. 3; 14 on Oct. 1)", "source": "S&P Global Commodities at Sea", "page": 15},
+    {"metric": "Hormuz VLCC transits", "value": "9", "unit": "VLCCs", "period": "Oct. 4 (most since Sept. 22)", "source": "S&P Global Commodities at Sea", "page": 15},
+    {"metric": "Bab al-Mandab VLCC crossings", "value": "none for 10th consecutive day; total transits 31 ships vs 35", "unit": "ships", "period": "Oct. 4 vs Oct. 3", "source": "S&P Global Commodities at Sea", "page": 15},
+    {"metric": "Middle East crude exports incl. Saudi Red Sea", "value": "14.5 million b/d (about 66% of Jan-Feb averages); 7-day average reached 16.2 million b/d on Sept. 30", "unit": "million b/d", "period": "September", "source": "S&P Global Commodities at Sea", "page": 15},
+    {"metric": "Russian seaborne crude exports", "value": "4.088 million b/d (+8% m/m, +3% y/y)", "unit": "b/d", "period": "September", "source": "S&P Global Energy ship tracking", "page": 7},
+    {"metric": "Russian seaborne crude to India", "value": "816,000 b/d (-59% m/m, -51% y/y)", "unit": "b/d", "period": "September", "source": "S&P Global Commodities at Sea", "page": 7},
+    {"metric": "Russian seaborne crude to China", "value": "1.415 million b/d (+22% m/m, +27% y/y)", "unit": "b/d", "period": "September", "source": "S&P Global Commodities at Sea", "page": 7},
+    {"metric": "Russian crude exports to unknown destinations", "value": "709,000 b/d (24,000 b/d in August)", "unit": "b/d", "period": "September", "source": "S&P Global Commodities at Sea", "page": 7},
+    {"metric": "Russian seaborne refined product exports", "value": "1.075 million b/d (-11% m/m, -42% y/y)", "unit": "b/d", "period": "September", "source": "S&P Global Commodities at Sea", "page": 7},
+    {"metric": "Kuwait crude production/exports via own tanker fleet", "value": "around 2 million b/d output, exporting via own strategic tanker fleet", "unit": "million b/d", "period": "as of Oct. 5", "source": "KPC CEO", "page": 6},
+    {"metric": "US diesel and gasoil exports", "value": "1.8 million b/d (1.5 million b/d in September)", "unit": "million b/d", "period": "October to date", "source": "S&P Global Commodities at Sea", "page": 10},
+    {"metric": "South Korea secured Middle Eastern sour crude for rest of year", "value": "1.1 million b/d", "unit": "million b/d", "period": "rest of 2026", "source": "MOTIR official", "page": 2},
+    {"metric": "China October clean product exports expected", "value": "about 2 million mt (previous estimate 3.85 million mt; Sept 4.36 million mt)", "unit": "mt", "period": "October", "source": "Platts", "page": 3},
+    {"metric": "Aramco export routes in use", "value": "Yanbu, Sidi Kerir/Port Said, and Hormuz with STS transfers", "unit": "", "period": "Oct. 5", "source": "Aramco CEO", "page": 16}
+  ],
+  "supply": [
+    {"metric": "OPEC+ crude production (Platts survey)", "value": "33.66 million b/d, down 530,000 b/d m/m (42.89 million b/d in February)", "unit": "million b/d", "period": "August", "page": 13},
+    {"metric": "OPEC+ voluntary-cut group November quotas", "value": "held steady (OPEC Secretariat statement Oct. 4)", "unit": "", "period": "November", "page": 13},
+    {"metric": "Iran crude output (Platts survey)", "value": "2.2 million b/d (3.22 million b/d in February)", "unit": "million b/d", "period": "August", "page": 7},
+    {"metric": "Kuwait crude output", "value": "around 2 million b/d; pre-war around 2.6 million b/d; max sustainable capacity 3 million b/d", "unit": "million b/d", "period": "Oct. 5", "page": 6},
+    {"metric": "Venezuela crude output", "value": "1.218 million b/d (1.213 million b/d in August); Orinoco Belt 690,000 b/d", "unit": "million b/d", "period": "September", "page": 11},
+    {"metric": "Chevron Venezuela output", "value": "280,000 b/d (23% of Venezuela total)", "unit": "b/d", "period": "September", "page": 11},
+    {"metric": "Russia 2026 oil production forecast", "value": "494 million mt (about 9.92 million b/d), about 3.5% below 2025's 512 million mt", "unit": "", "period": "2026", "page": 7},
+    {"metric": "Kazakhstan 2026 oil production forecast", "value": "96 million mt (cut)", "unit": "mt", "period": "2026", "page": 8},
+    {"metric": "Vietnam crude production", "value": "172,866 b/d in September (+2.9% y/y); 178,900 b/d Jan-Sep (+10.5% y/y)", "unit": "b/d", "period": "Sept / Jan-Sep", "page": 6},
+    {"metric": "ConocoPhillips US crude production view", "value": "could reach 14.5 million b/d if current prices persist", "unit": "million b/d", "period": "n/a", "page": 1},
+    {"metric": "CERA US crude production forecast", "value": "13.7 million b/d 2025; 13.8 million b/d 2026; 14.1 million b/d 2027", "unit": "million b/d", "period": "2025-2027", "page": 16},
+    {"metric": "Guyana installed capacity", "value": "900,000 b/d now, expected over 1 million b/d by end-2026", "unit": "b/d", "period": "end-2026", "page": 11},
+    {"metric": "Cenovus-Athabasca deal", "value": "C$5.7 billion; adds 45,000 boe/d; closing anticipated December", "unit": "", "period": "announced Oct. 5", "page": 12}
+  ],
+  "demand_inventories": [
+    {"metric": "US distillate stocks (Platts survey)", "value": "likely -1.5 million bbl to about 103.7 million bbl, 12.5% below 5-yr avg", "unit": "million bbl", "period": "week to Oct. 2", "page": 10},
+    {"metric": "US gasoline stocks (survey)", "value": "+1.2 million bbl to 205.6 million bbl; 5.9% below 5-yr avg", "unit": "million bbl", "period": "week to Oct. 2", "page": 10},
+    {"metric": "US crude stocks (survey)", "value": "+100,000 bbl to 427.4 million bbl", "unit": "million bbl", "period": "week to Oct. 2", "page": 10},
+    {"metric": "US refinery utilization (survey)", "value": "92.2% of capacity, -0.3 point, fifth straight weekly fall, lowest since May", "unit": "% capacity", "period": "week to Oct. 2", "page": 10},
+    {"metric": "USGC WTI MEH cracking margin", "value": "$52.97/b (September avg $50.13/b)", "unit": "$/b", "period": "week to Oct. 2", "page": 10},
+    {"metric": "Aramco inventory availability", "value": "less than 10% of inventory available; replenishing could take up to two years", "unit": "", "period": "Oct. 5", "page": 1},
+    {"metric": "G7 stock release", "value": "100 million barrels over next four months; substantial diesel release frontloaded in 20 days (IEA March: 400 million barrels)", "unit": "million bbl", "period": "announced Oct. 2", "page": 14},
+    {"metric": "KPC estimate of Gulf refined products lost", "value": "around 6 million b/d", "unit": "million b/d", "period": "Oct. 5", "page": 6},
+    {"metric": "IEA global oil consumption", "value": "-2.5 million b/d in 2026, +2.6 million b/d in 2027", "unit": "million b/d", "period": "2026-2027", "page": 16},
+    {"metric": "Aramco demand view", "value": "2 million b/d additional demand over 18-24 months; Chinese liquids-to-chemicals +3 million b/d", "unit": "million b/d", "period": "18-24 months", "page": 16},
+    {"metric": "EU gas storage", "value": "72.4% full vs 82.6% a year earlier", "unit": "%", "period": "Oct. 3", "page": 14}
+  ],
+  "physical_market": [
+    {"metric": "Physical barrels vs benchmark premium (Aramco CEO)", "value": "sometimes $20-30/b more than benchmark price", "as_of": "2026-10-05", "page": 16},
+    {"metric": "USGC to NWE ULSD arbitrage", "value": "37 cents/b in October from $5.29/b in September", "as_of": "2026-10", "page": 10},
+    {"metric": "USGC ULSD crack vs WTI MEH", "value": "$98.53/b (September avg $101.03/b); jet crack $93.62/b; gasoline crack $57.15/b", "as_of": "week to 2026-10-02", "page": 10},
+    {"metric": "GS Caltex 50 ppm gasoil spot sale", "value": "300,000 bbl at about $1.50/b discount to MOPS gasoil 10ppm loading-month average, FOB, loading Oct. 23-27", "as_of": "2026-10", "page": 2}
+  ],
+  "forecasts": [
+    {"who": "Australia Office of the Chief Economist", "what": "Brent baseline Q4 2026", "value": "$101.11/b", "horizon": "Dec quarter 2026", "page": 4},
+    {"who": "Australia Office of the Chief Economist", "what": "Brent prolonged-disruption scenario", "value": "$135/b", "horizon": "Dec quarter 2026", "page": 4},
+    {"who": "Australia Office of the Chief Economist", "what": "Brent baseline path", "value": "$77.50/b Q1 2027; $69.58/b Q4 2027; annual $95.7/b 2026, $73.6/b 2027, $67/b 2028", "horizon": "2026-2028", "page": 4},
+    {"who": "Australia Office of the Chief Economist", "what": "Global oil supply vs demand", "value": "supply 108.3 million b/d in 2027 from 100.6 million b/d in 2026; demand 105.2 million b/d", "horizon": "2026-2027", "page": 4},
+    {"who": "ConocoPhillips", "what": "Planning price assumption", "value": "about $65/b WTI and $70/b Brent midcycle; $70/b realistic downside", "horizon": "long term", "page": 16},
+    {"who": "IEA", "what": "Global oil consumption", "value": "-2.5 million b/d in 2026, +2.6 million b/d in 2027", "horizon": "2026-2027", "page": 16}
+  ],
+  "events": [
+    {"date": "2026-10-05", "category": "policy", "region": "Saudi Arabia", "what": "Aramco cut November Asia OSP differentials $3-$5/b m/m", "crude_impact": "bearish", "page": 13},
+    {"date": "2026-10-04", "category": "policy", "region": "OPEC+", "what": "Seven voluntary-cut OPEC+ producers keep current quotas for November", "crude_impact": "neutral", "page": 13},
+    {"date": "2026-10-02", "category": "policy", "region": "G7", "what": "G7 to release 100 million barrels over four months, diesel frontloaded in 20 days; Trump then ruled out US diesel export ban", "crude_impact": "bearish", "page": 10},
+    {"date": "2026-10-02", "category": "sanctions", "region": "Japan/Russia", "what": "Japan sanctions 31 tankers (MR, LR1, Suezmax, Aframax) tied to 42.7 million bbl and 33 Russian entities", "crude_impact": "mixed", "page": 3},
+    {"date": "2026-09-18", "category": "sanctions", "region": "US/Russia", "what": "Trump signed law allowing tariffs up to 100% on top five importers of Russian crude/gas and sanctions on shadow fleet vessels", "crude_impact": "mixed", "page": 7},
+    {"date": "2026-10-01", "category": "attack", "region": "Strait of Hormuz", "what": "Hormuz transits fell to six-week low after an attack; traffic has risen daily since", "crude_impact": "bullish", "page": 7},
+    {"date": "2026-10-04", "category": "diplomacy", "region": "Iran", "what": "Iran appoints NIOC CEO Hamid Bovard caretaker oil minister after Paknejad resignation", "crude_impact": "neutral", "page": 7},
+    {"date": "2026-10-05", "category": "policy", "region": "Russia", "what": "Russia extends full diesel export ban to end-October (producers); non-producers and gasoline to end-January 2027", "crude_impact": "neutral", "page": 7},
+    {"date": "2026-10-03", "category": "diplomacy", "region": "Turkey/Iraq", "what": "Turkey and Iraq begin talks on wider energy deal after August pipeline extension; aim 1 million b/d throughput", "crude_impact": "neutral", "page": 8},
+    {"date": "2026-10-05", "category": "other", "region": "Kazakhstan", "what": "Dunga oilfield PSA dispute settled with Kazmunaigas", "crude_impact": "neutral", "page": 8},
+    {"date": "2026-10-02", "category": "other", "region": "Venezuela", "what": "Chevron begins repairs on three José terminal berths; first tanker expected Jan-Feb", "crude_impact": "bearish", "page": 11},
+    {"date": "2026-10-04", "category": "other", "region": "Canada", "what": "Suncor sells Newfoundland assets to Ithaca for C$1.11 billion; Cenovus to buy Athabasca Oil for C$5.7 billion on Oct. 5", "crude_impact": "neutral", "page": 12}
+  ],
+  "themes": [
+    {"theme": "Hormuz supply crisis and buffers", "articles": 6, "direction": "bullish", "summary": "Aramco and KPC say inventory buffers are finite or evaporating, while Middle East exports ran 14.5 million b/d in September, about 66% of Jan-Feb."},
+    {"theme": "Hormuz traffic recovery", "articles": 3, "direction": "bearish", "summary": "Hormuz transits rose to 25 ships on Oct. 4 with nine VLCCs, and Brent and WTI settled lower on Oct. 5."},
+    {"theme": "Saudi OSP cut and OPEC+ quotas", "articles": 2, "direction": "bearish", "summary": "Aramco cut November Asia OSPs $3-$5/b and OPEC+ kept November quotas unchanged."},
+    {"theme": "Strategic stock releases", "articles": 3, "direction": "bearish", "summary": "G7 will release 100 million barrels over four months with diesel prioritized, after the IEA's 400 million-barrel March draw."},
+    {"theme": "Product tightness and diesel", "articles": 4, "direction": "bullish", "summary": "Singapore gasoil crack hit $83.02/b on Sept. 16, US distillate stocks are seen at 103.7 million bbl, and Russia extended its diesel export ban."},
+    {"theme": "Russia sanctions and flows", "articles": 3, "direction": "mixed", "summary": "Russia's September seaborne crude exports rose to 4.088 million b/d despite new US and Japanese sanctions, with India-bound volumes down 59% m/m."},
+    {"theme": "Forecasts and price floor", "articles": 3, "direction": "mixed", "summary": "Australia's outlook sees Brent at $135/b in disruption or $101.11/b baseline in Q4, and ConocoPhillips plans on $70/b Brent."},
+    {"theme": "Non-Gulf supply growth", "articles": 4, "direction": "bearish", "summary": "US output could reach 14.5 million b/d per ConocoPhillips, Guyana capacity is heading above 1 million b/d, and Venezuela output is 1.218 million b/d."}
+  ]
+}

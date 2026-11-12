@@ -1,0 +1,87 @@
+{
+  "report_date": "2026-10-23",
+  "sources": ["oilgram_news 2026-10-23"],
+  "prices": [
+    {"name": "ICE December Brent settle", "value": "$116.72/b", "unit": "$/b", "as_of": "2026-10-23", "change": "+$3.55/b; highest since April 29", "page": 10},
+    {"name": "NYMEX December WTI settle", "value": "$103.27/b", "unit": "$/b", "as_of": "2026-10-23", "change": "+$3.80/b", "page": 10},
+    {"name": "Dated Brent (Platts)", "value": "$122.44/b", "unit": "$/b", "as_of": "2026-10-22", "change": "+2.21% day over day", "page": 5},
+    {"name": "Dated Brent week-ending average", "value": "126.97", "unit": "$/b", "as_of": "2026-10-16", "change": "prior week (09-Oct) 129.94", "page": 16},
+    {"name": "Dubai (first month) week-ending average", "value": "108.11", "unit": "$/b", "as_of": "2026-10-16", "change": "prior week (09-Oct) 108.11", "page": 16},
+    {"name": "WTI Cushing (first month) week-ending average", "value": "96.47", "unit": "$/b", "as_of": "2026-10-16", "change": "prior week (09-Oct) 90.10", "page": 16},
+    {"name": "Urals FOB Novorossiysk", "value": "-$25.35/b", "unit": "$/b vs Dated Brent", "as_of": "2026-10-23", "change": "", "page": 12},
+    {"name": "CPC Blend FOB Novorossiysk", "value": "-$31.90/b", "unit": "$/b vs Dated Brent", "as_of": "2026-10-23", "change": "Urals-CPC spread lowest since Apr. 28, 2020 (-$7.585/b)", "page": 12},
+    {"name": "CPC Blend CIF Augusta differential", "value": "-$6.855/b", "unit": "$/b", "as_of": "2026-10-22", "change": "from $1.76/b on Oct. 15; Sept avg $0.93/b", "page": 12},
+    {"name": "Urals DAP India", "value": "around $3/b premium to calendar month average Dated Brent", "unit": "$/b", "as_of": null, "change": "stable through October", "page": 12},
+    {"name": "ESPO DES Shandong", "value": "ICE Brent plus $20/b", "unit": "$/b", "as_of": "2026-10-23", "change": "down from plus $30/b a month ago", "page": 15},
+    {"name": "Basrah Medium (heard)", "value": "flat to November average Dated Brent", "unit": "$/b", "as_of": null, "change": "offered, past week", "page": 12},
+    {"name": "Aramco Arab Light OSP to Asia (September)", "value": "$111.89/b", "unit": "$/b", "as_of": null, "change": "+25% from August OSP", "page": 5}
+  ],
+  "flows": [
+    {"metric": "Hormuz vessel transits (observed and inferred)", "value": "23", "unit": "vessels", "period": "2026-10-22", "source": "S&P Global Commodities at Sea", "page": 10},
+    {"metric": "Hormuz vessel transits prior day (revised)", "value": "19", "unit": "vessels", "period": "2026-10-21", "source": "CAS", "page": 10},
+    {"metric": "Bab al-Mandab transits", "value": "27 (from 35)", "unit": "vessels", "period": "2026-10-22", "source": "CAS", "page": 10},
+    {"metric": "UKMTO weekly Hormuz transits", "value": "114 outbound, 127 inbound; activity about 70% below pre-conflict levels", "unit": "transits", "period": "week to 2026-10-23", "source": "UKMTO", "page": 10},
+    {"metric": "US naval blockade line crossings", "value": "44 (from 65)", "unit": "transits", "period": "2026-10-22", "source": "CAS", "page": 10},
+    {"metric": "Middle East crude exports", "value": "11.9 million b/d", "unit": "b/d", "period": "October so far (September 15 million b/d)", "source": "S&P Global Commodities at Sea", "page": 4},
+    {"metric": "Middle East oil exports vs prewar", "value": "nearly 75%", "unit": "% of prewar", "period": "first half October", "source": "CAS", "page": 10},
+    {"metric": "Saudi crude northbound via Suez", "value": "about 653,000 b/d", "unit": "b/d", "period": "Oct. 1-19", "source": "CAS", "page": 4},
+    {"metric": "East-West Pipeline flow rate", "value": "5.8 million b/d (7 million b/d capacity)", "unit": "b/d", "period": "early October", "source": "Saudi energy minister", "page": 4},
+    {"metric": "SUMED capacity northbound", "value": "up to 2.5 million b/d", "unit": "b/d", "period": "", "source": "article", "page": 4},
+    {"metric": "Aramco STS transfers off Sohar", "value": "at least 24 million barrels", "unit": "barrels", "period": "September and October", "source": "article", "page": 4},
+    {"metric": "Iraq crude exports", "value": "2.48 million b/d (roughly 75% of prewar)", "unit": "b/d", "period": "September", "source": "Platts port loading data", "page": 6},
+    {"metric": "Iraq exports to India / China / UAE", "value": "700,000 / 99,000 / 619,000", "unit": "b/d", "period": "September", "source": "Platts", "page": 6},
+    {"metric": "Basrah Medium / Basrah Heavy exports", "value": "1.7 million b/d / 775,800 b/d", "unit": "b/d", "period": "September", "source": "Platts", "page": 6},
+    {"metric": "Russian crude discharges to India", "value": "1.64 million b/d (Aug 1.98, Jul 2.05, Jun peak 2.43)", "unit": "b/d", "period": "September", "source": "CAS", "page": 14},
+    {"metric": "Russian crude discharges to China", "value": "2.43 million b/d (Aug 2.65); Jan-Sep avg about 2.35 million b/d; 30.9% of imports", "unit": "b/d", "period": "September", "source": "GAC", "page": 15},
+    {"metric": "Russian diesel to US tanker cargo", "value": "about 40,000 mt, due New York around Nov. 6-7", "unit": "mt", "period": "left Primorsk Oct. 22", "source": "CAS / Novak", "page": 1}
+  ],
+  "supply": [
+    {"metric": "Saudi crude supply", "value": "8.3 million b/d, +2.3 million b/d m/m", "unit": "b/d", "period": "September", "page": 4},
+    {"metric": "Argentina oil production", "value": "973,700 b/d record, +15.5% y/y", "unit": "b/d", "period": "September", "page": 8},
+    {"metric": "Neuquen crude production", "value": "714,089 b/d record, +26% y/y", "unit": "b/d", "period": "September", "page": 8},
+    {"metric": "East-West Pipeline", "value": "shut after Sept. 10 drone attacks; flows recovered after repairs", "unit": "", "period": "Sept-Oct", "page": 4},
+    {"metric": "Eni liquids output", "value": "845,000 b/d, -2% y/y", "unit": "b/d", "period": "Q3 2026", "page": 5},
+    {"metric": "Russian diesel export plan (Novak)", "value": "300,000 mt Oct, 500,000 mt Nov, 1 million mt Dec", "unit": "mt", "period": "Oct-Dec 2026", "page": 14}
+  ],
+  "demand_inventories": [
+    {"metric": "US SPR stocks", "value": "282.7 million barrels (from 282.9)", "unit": "barrels", "period": "week ended 2026-10-16", "page": 8},
+    {"metric": "DOE SPR exchange for Phillips 66 Lake Charles", "value": "up to 400,000 barrels", "unit": "barrels", "period": "announced 2026-10-23", "page": 7},
+    {"metric": "US SPR release commitment", "value": "172 million barrels of coordinated 400 million IEA release", "unit": "barrels", "period": "2026", "page": 8},
+    {"metric": "DOE SPR solicitation", "value": "up to 40 million barrels, Big Hill and Bryan Mound", "unit": "barrels", "period": "Sept. 29 offer; Nov-Dec delivery", "page": 8},
+    {"metric": "Singapore heavy distillate stocks", "value": "18.858 million barrels, +4.5% w/w", "unit": "barrels", "period": "week ended 2026-10-21", "page": 3},
+    {"metric": "Orlen refinery throughput", "value": "10.1 million mt, -1% y/y, utilization 94%", "unit": "mt", "period": "Q3 2026", "page": 6},
+    {"metric": "Eni refinery utilization", "value": "86% (Q2 74%); margin $28.1/b vs $8.3/b", "unit": "%", "period": "Q3 2026", "page": 5}
+  ],
+  "physical_market": [
+    {"metric": "VLCC Persian Gulf-China 270,000 mt", "value": "$234.93/mt, -$2.08/mt d/d", "unit": "$/mt", "as_of": "2026-10-23", "page": 10},
+    {"metric": "VLCC Yanbu-Far East 270,000 mt", "value": "$198.63/mt, -16.7% m/m (July 20: $36.42/mt)", "unit": "$/mt", "as_of": "2026-10-22", "page": 5},
+    {"metric": "VLCC Sidi Kerir-Far East", "value": "$230.77/mt (Sept. 25: $185.19/mt)", "unit": "$/mt", "as_of": "2026-10-22", "page": 5},
+    {"metric": "Mediterranean sweet crude", "value": "CPC Blend corrected sharply; traders struggled to clear early-November cargoes", "unit": "", "as_of": "2026-10-23", "page": 12},
+    {"metric": "Mediterranean sour complex", "value": "balanced; Saudi export availability improved", "unit": "", "as_of": "2026-10-23", "page": 12}
+  ],
+  "forecasts": [
+    {"who": "Clearview Energy Partners", "what": "crude price bias", "value": "retains upside bias on inventory depletion and escalation risk", "horizon": "", "page": 10},
+    {"who": "Patterson and Manthey", "what": "risk premium", "value": "sizeable geopolitical risk premium likely to stay embedded in prices", "horizon": "", "page": 10},
+    {"who": "Argentine Chamber of Hydrocarbons Exploration and Production", "what": "Argentina oil output", "value": "1.7 million b/d", "horizon": "2030", "page": 8}
+  ],
+  "events": [
+    {"date": "2026-10-22", "category": "attack", "region": "Saudi Arabia (Yanbu)", "what": "Houthis claim attack on Aramco facilities in Yanbu, say fire broke out; unconfirmed by Saudi authorities/Aramco as of Oct. 23", "crude_impact": "bullish", "page": 3},
+    {"date": "2026-10-19", "category": "attack", "region": "Saudi Arabia (Yanbu, Shaybah)", "what": "Houthis claim missile and drone attacks on Aramco sites in Yanbu and Shaybah", "crude_impact": "bullish", "page": 4},
+    {"date": "2026-10-20", "category": "shipping", "region": "Iraq/Hormuz", "what": "IMO confirms product tanker Soyia damaged near Al Faw and tanker Al Dasma attacked in Hormuz", "crude_impact": "bullish", "page": 10},
+    {"date": "2026-10-19", "category": "shipping", "region": "off Oman", "what": "VLCC Chloe damaged 121 nm off Oman carrying Russian crude to India", "crude_impact": "bullish", "page": 10},
+    {"date": "2026-07-20", "category": "conflict", "region": "Red Sea", "what": "Houthis declared naval blockade on Saudi shipping", "crude_impact": "bullish", "page": 4},
+    {"date": "2026-10-16", "category": "sanctions", "region": "US/Russia", "what": "Trump executive order waives Graham Sanctioning Russia and Iran Act measures for largest Russian crude buyers; described as sixty-day pause", "crude_impact": "neutral", "page": 14},
+    {"date": "2026-10-09", "category": "sanctions", "region": "US/Russia", "what": "OFAC waiver allows sale and import of Russian diesel incl. into US", "crude_impact": "bearish", "page": 14},
+    {"date": "2026-10-23", "category": "policy", "region": "US", "what": "DOE approves up to 400,000-barrel SPR exchange for Phillips 66 Lake Charles after pipeline supply disruption", "crude_impact": "neutral", "page": 7},
+    {"date": "2026-10-15", "category": "attack", "region": "Russia/Ukraine", "what": "Last Ukrainian strike on a Russian refinery; Trump pressing Zelenskyy to stop", "crude_impact": "neutral", "page": 14},
+    {"date": "2026-09-10", "category": "outage", "region": "Saudi Arabia", "what": "East-West Pipeline shut after drone attacks; later repaired", "crude_impact": "bullish", "page": 4}
+  ],
+  "themes": [
+    {"theme": "Houthi attacks on Saudi infrastructure", "articles": 3, "direction": "bullish", "summary": "Houthis claimed fresh strikes on Yanbu and Shaybah, lifting Brent above $116/b on fears for Saudi export routes."},
+    {"theme": "Hormuz and Red Sea shipping disruption", "articles": 4, "direction": "bullish", "summary": "Tanker attacks continue, Middle East exports averaged 11.9 million b/d in October vs 15 million b/d in September, and Hormuz transits remain about 70% below pre-conflict levels."},
+    {"theme": "Saudi rerouting and recovery", "articles": 3, "direction": "mixed", "summary": "Saudi supply rebounded to 8.3 million b/d in September and Suez/SUMED flows rose, easing Mediterranean sour differentials."},
+    {"theme": "Russian crude and product sanctions waivers", "articles": 2, "direction": "mixed", "summary": "US waivers preserve Russian crude flows to India and China and enable the first Russian diesel cargo to the US since 2022."},
+    {"theme": "Mediterranean sweet weakness", "articles": 1, "direction": "bearish", "summary": "CPC Blend differentials fell to the lowest since the assessment began (-$6.855/b CIF Augusta) on weak demand and high freight."},
+    {"theme": "Escalation risk and inventory depletion", "articles": 2, "direction": "bullish", "summary": "Analysts cite inventory depletion and possible renewed US-Israeli strikes on Iran after the midterms as sustaining a risk premium."}
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "report_date": "2026-10-28",
+  "sources": ["oilgram_news 2026-10-28"],
+  "prices": [
+    {"name": "ICE December Brent settle", "value": "$115.32/b", "unit": "$/b", "as_of": "2026-10-28", "change": "+$1.44/b", "page": 16},
+    {"name": "NYMEX December WTI settle", "value": "$102.78/b", "unit": "$/b", "as_of": "2026-10-28", "change": "+$2.88/b", "page": 16},
+    {"name": "Dated Brent", "value": "$119.52/b", "unit": "$/b", "as_of": "2026-10-27", "change": "", "page": 17},
+    {"name": "Dated Brent weekly avg (week ending 23-Oct)", "value": "120.93", "unit": "$/b", "as_of": "2026-10-23", "change": "prior week (16-Oct) 126.97", "page": 20},
+    {"name": "Dubai (first month) weekly avg", "value": "112.22", "unit": "$/b", "as_of": "2026-10-23", "change": "prior week 108.11", "page": 20},
+    {"name": "WTI Cushing (first month) weekly avg", "value": "103.86", "unit": "$/b", "as_of": "2026-10-23", "change": "prior week 96.47", "page": 20},
+    {"name": "Mars (MOC) weekly avg", "value": "111.06", "unit": "$/b", "as_of": "2026-10-23", "change": "prior week 99.82", "page": 20},
+    {"name": "ANS (California) weekly avg", "value": "122.05", "unit": "$/b", "as_of": "2026-10-23", "change": "prior week 119.61", "page": 20},
+    {"name": "ICE Brent average settlement (week)", "value": "110.80", "unit": "$/b", "as_of": "2026-10-23", "change": "prior week 105.74", "page": 20},
+    {"name": "NYMEX Light Sweet Crude average settlement (week)", "value": "101.19", "unit": "$/b", "as_of": "2026-10-23", "change": "prior week 95.10", "page": 20},
+    {"name": "Johan Sverdrup premium to Dated Brent", "value": "$1.12/b premium", "unit": "$/b", "as_of": "2026-10-27", "change": "", "page": 17},
+    {"name": "Basrah Heavy to China vs ICE Brent futures DES Shandong", "value": "slightly above $11/b premium", "unit": "$/b", "as_of": "2026-10-28", "change": "", "page": 4},
+    {"name": "Basrah Medium to China vs ICE Brent futures DES Shandong", "value": "$13-$15/b premium", "unit": "$/b", "as_of": "2026-10-28", "change": "", "page": 4},
+    {"name": "ESPO offered vs ICE Brent futures DES Shandong", "value": "about $24-$25/b", "unit": "$/b", "as_of": "2026-10-28", "change": "", "page": 4}
+  ],
+  "flows": [
+    {"metric": "Strait of Hormuz transits", "value": "20 ships (5 VLCC transits; 5 linked to Iran)", "unit": "ships", "period": "2026-10-27", "source": "S&P Global Commodities at Sea", "page": 16},
+    {"metric": "Strait of Hormuz transits", "value": "21 ships (4 VLCC)", "unit": "ships", "period": "2026-10-26", "source": "S&P Global Commodities at Sea", "page": 16},
+    {"metric": "Bab al-Mandab transits", "value": "31 ships, no VLCCs (42 ships on Oct. 26)", "unit": "ships", "period": "2026-10-27", "source": "S&P Global Commodities at Sea", "page": 16},
+    {"metric": "US naval blockade line crossings", "value": "54 (56 on Oct. 26)", "unit": "crossings", "period": "2026-10-27", "source": "S&P Global Commodities at Sea", "page": 16},
+    {"metric": "Crude exports from Gulf and Red Sea", "value": "16.1 million (preliminary)", "unit": "barrels", "period": "2026-10-25", "source": "S&P Global Commodities at Sea", "page": 16},
+    {"metric": "Crude exports from Gulf and Red Sea at end of March", "value": "2.39 million", "unit": "barrels", "period": "end of March 2026", "source": "S&P Global Commodities at Sea", "page": 16},
+    {"metric": "Mideast crude flows vs prewar", "value": "closer to 70%", "unit": "% of prewar", "period": "2026-10-28 note", "source": "TD Securities", "page": 17},
+    {"metric": "Middle East crude exports", "value": "from 8 million b/d in May to nearly 17 million b/d", "unit": "b/d", "period": "May to Oct 2026", "source": "Scorpio Tankers", "page": 10},
+    {"metric": "US weekly crude exports", "value": "4.85 million, up 41%", "unit": "b/d", "period": "week to 2026-10-23", "source": "EIA", "page": 8},
+    {"metric": "China independents Iraqi crude imports", "value": "2.73 million mt (20 million barrels), 22.3% of 12.22 million mt total", "unit": "mt", "period": "Sept 2026", "source": "Platts data", "page": 4},
+    {"metric": "China independents Iraqi purchases for November", "value": "at least 6 million barrels plus at least 2 million barrels", "unit": "barrels", "period": "Nov delivery", "source": "traders", "page": 4},
+    {"metric": "Russian diesel/gasoil exports", "value": "326,000 mt (152,000 mt prior week)", "unit": "mt", "period": "week ended 2026-10-22", "source": "S&P Global Commodities at Sea", "page": 14},
+    {"metric": "Russian diesel/gasoil loadings October so far", "value": "891,000 mt (Sept 453,000 mt)", "unit": "mt", "period": "Oct 1-28 2026", "source": "S&P Global Commodities at Sea", "page": 14},
+    {"metric": "Africa OPEC+ members crude production", "value": "4.48 million b/d", "unit": "b/d", "period": "Sept 2026", "source": "Platts OPEC+ survey", "page": 6}
+  ],
+  "supply": [
+    {"metric": "US crude production", "value": "13.99 million b/d record, up 5.4%", "unit": "b/d", "period": "week to 2026-10-23", "page": 8},
+    {"metric": "Iran crude output", "value": "2.1 million b/d 2026 low (around 3.2 million b/d before Feb. 28)", "unit": "b/d", "period": "Sept 2026", "page": 7},
+    {"metric": "Iran crude output capacity", "value": "3.715 million b/d (IRNA)", "unit": "b/d", "period": "Oct 2026", "page": 7},
+    {"metric": "Iran Masjed Soleiman capacity added after pipeline repairs", "value": "9,000 b/d (plus 4,000 b/d on Oct. 20)", "unit": "b/d", "period": "2026-10-28", "page": 7},
+    {"metric": "Russian refinery capacity offline from attacks", "value": "about 2 million b/d (CERA)", "unit": "b/d", "period": "2026-10-28", "page": 14},
+    {"metric": "Equinor Q3 oil and gas production", "value": "2.166 million boe/d, up 2% y/y", "unit": "boe/d", "period": "Q3 2026", "page": 1},
+    {"metric": "Equinor Johan Sverdrup decline year to date", "value": "11% (field 755,000 b/d)", "unit": "%", "period": "YTD 2026", "page": 18},
+    {"metric": "Rosebank field", "value": "70,000 b/d, H1 2027 startup, UK approval expected", "unit": "b/d", "period": "2027", "page": 18},
+    {"metric": "Venezuela rigs working", "value": "9 (vs more than 85 in 2013)", "unit": "rigs", "period": "2026-10-28", "page": 12}
+  ],
+  "demand_inventories": [
+    {"metric": "US commercial crude stocks", "value": "410.63 million, down 1.89 million", "unit": "barrels", "period": "week to 2026-10-23", "page": 8},
+    {"metric": "Cushing stocks", "value": "26.97 million, down 620,000", "unit": "barrels", "period": "week to 2026-10-23", "page": 8},
+    {"metric": "US SPR", "value": "282.58 million, down 100,000 (44-year low)", "unit": "barrels", "period": "week to 2026-10-23", "page": 8},
+    {"metric": "US refinery utilization", "value": "92.8%, down 0.6 pt", "unit": "% capacity", "period": "week to 2026-10-23", "page": 8},
+    {"metric": "US distillate stocks", "value": "102.82 million, down 1.46 million", "unit": "barrels", "period": "week to 2026-10-23", "page": 8},
+    {"metric": "Fujairah oil product stocks", "value": "8.914 million, up 23% (down 57% since Feb. 23)", "unit": "barrels", "period": "week to 2026-10-26", "page": 15},
+    {"metric": "Global oil product inventories", "value": "fallen by more than 600 million barrels since conflict began", "unit": "barrels", "period": "2026-10-28", "page": 11},
+    {"metric": "Global refinery runs", "value": "up 4 million b/d", "unit": "b/d", "period": "May to Oct 2026", "page": 10},
+    {"metric": "China clean product exports November", "value": "up to 3.13 million mt, down 15% from 3.7 million mt", "unit": "mt", "period": "Nov 2026", "page": 4}
+  ],
+  "physical_market": [
+    {"metric": "Platts VLCC index non-scrubber ships", "value": "$1.04 million/day", "unit": "$/day", "as_of": "2026-10-27", "page": 16},
+    {"metric": "Scorpio LR2 November bookings", "value": "about $215,000/day", "unit": "$/day", "as_of": "2026-10-28", "page": 10},
+    {"metric": "US export arb WTI MEH to Rotterdam vs Forties", "value": "$6.83/b week to Oct. 23 (October avg $13.57/b)", "unit": "$/b", "as_of": "2026-10-23", "page": 8},
+    {"metric": "US export arb Mars to China vs Dubai", "value": "minus $1.57/b (October avg $5.19/b)", "unit": "$/b", "as_of": "2026-10-23", "page": 8},
+    {"metric": "USGC WTI MEH cracking margin", "value": "$48.29/b October average (Sept $50.13/b)", "unit": "$/b", "as_of": "2026-10-23", "page": 8},
+    {"metric": "ULSD 10ppm CIF NWE", "value": "$1,509.50/mt", "unit": "$/mt", "as_of": "2026-10-28", "page": 15},
+    {"metric": "NYMEX November ULSD", "value": "$4.8152/gal, up 4.00 cents", "unit": "$/gal", "as_of": "2026-10-28", "page": 17}
+  ],
+  "forecasts": [
+    {"who": "Baker Hughes", "what": "global upstream spending growth", "value": "low- to mid-single-digit rise", "horizon": "2027", "page": 1},
+    {"who": "Equinor", "what": "2026 production growth guidance", "value": "raised from 3% to about 4%", "horizon": "2026", "page": 1},
+    {"who": "Scorpio Tankers", "what": "refined product demand ex fuel oil", "value": "about 74 million b/d, could reach 76 million b/d", "horizon": "October 2027", "page": 11},
+    {"who": "Omega Oil & Gas", "what": "longer-term normalized oil price", "value": "$70-$75/b", "horizon": "long term", "page": 3}
+  ],
+  "events": [
+    {"date": "2026-10-28", "category": "shipping", "region": "Hormuz / Gulf of Oman", "what": "US Navy warns vessels to avoid Strait of Hormuz and Gulf of Oman; neutral vessels may be subject to search under blockade", "crude_impact": "bullish", "page": 16},
+    {"date": "2026-10-27", "category": "attack", "region": "Hormuz", "what": "Iranian military cited saying a crude tanker hit a sea mine; not reported by IMO or UKMTO", "crude_impact": "bullish", "page": 16},
+    {"date": "2026-10-28", "category": "shipping", "region": "Gulf of Aden", "what": "UKMTO reports suspicious activity possibly pirate action group; latest attack reported Oct. 26", "crude_impact": "bullish", "page": 16},
+    {"date": "2026-10-28", "category": "diplomacy", "region": "Middle East", "what": "ING says market awaits clarity after Nov. 3 US midterms on possible renewed US attacks on Iran", "crude_impact": "bullish", "page": 16},
+    {"date": null, "category": "sanctions", "region": "Iran", "what": "US blockade reimposed mid-July; Iranian seaborne trades halted, only humanitarian ships allowed", "crude_impact": "bullish", "page": 16},
+    {"date": "2026-10-15", "category": "conflict", "region": "Russia/Ukraine", "what": "Last reported Ukrainian strike on a Russian refinery (Ryazan); none since, after US pressure", "crude_impact": "mixed", "page": 14},
+    {"date": "2026-10-09", "category": "sanctions", "region": "Russia/US", "what": "OFAC waiver allows sale, delivery and import of Russian-origin diesel; Russia partially lifts diesel export ban", "crude_impact": "bearish", "page": 14},
+    {"date": "2026-10-28", "category": "sanctions", "region": "UK/Russia", "what": "UK extends Lukoil Bulgaria sanctions waiver to Feb. 26, 2027", "crude_impact": "neutral", "page": 6},
+    {"date": "2026-10-27", "category": "policy", "region": "US", "what": "EPA proposes rolling back methane rules, restoring flaring option", "crude_impact": "bearish", "page": 13},
+    {"date": "2026-10-28", "category": "policy", "region": "UK", "what": "UK extends 5 pence/liter fuel duty discount to July 2027", "crude_impact": "neutral", "page": 7},
+    {"date": "2026-10-28", "category": "outage", "region": "Iran", "what": "Partial restoration of Khuzestan oil transfer pipelines returns 9,000 b/d from Labsefid unit", "crude_impact": "bearish", "page": 7},
+    {"date": "2026-10-22", "category": "shipping", "region": "Russia/US", "what": "First Russian diesel tanker to US since 2022 left Primorsk, expected about Nov. 6-7", "crude_impact": "neutral", "page": 14},
+    {"date": "2026-11-03", "category": "policy", "region": "US", "what": "US midterm elections scheduled", "crude_impact": "mixed", "page": 14}
+  ],
+  "themes": [
+    {"theme": "Hormuz / Red Sea shipping risk", "articles": 4, "direction": "bullish", "summary": "Hormuz transits fell to 20 ships Oct. 27, US Navy warned vessels off, and TD says Mideast crude flows are near 70% of prewar levels, requiring a risk premium."},
+    {"theme": "US-Iran war and midterms uncertainty", "articles": 4, "direction": "bullish", "summary": "ING says the market prices greater re-escalation likelihood and awaits clarity after the Nov. 3 US midterms; Iranian output hit a 2026 low of 2.1 million b/d in Sept."},
+    {"theme": "US inventory draws and exports", "articles": 2, "direction": "bullish", "summary": "US commercial crude fell 1.89 million barrels to 410.63 million, exports rose 41% to 4.85 million b/d, offsetting record 13.99 million b/d production."},
+    {"theme": "Middle East export recovery", "articles": 3, "direction": "bearish", "summary": "Gulf and Red Sea crude exports reached a preliminary 16.1 million barrels on Oct. 25 versus 2.39 million at end of March, and Middle East exports nearly 17 million b/d per Scorpio."},
+    {"theme": "Tanker freight and fleet tightness", "articles": 3, "direction": "bullish", "summary": "VLCC index at $1.04 million/day, Scorpio LR2 bookings about $215,000/day, with constrained vessel supply from Hormuz risk and sanctions."},
+    {"theme": "Chinese refiners shift to Iraqi crude", "articles": 1, "direction": "mixed", "summary": "Iranian barrels have almost vanished; independents bought at least 8 million barrels of Iraqi crude for November at Basrah premiums of $11-$15/b over ICE Brent."},
+    {"theme": "Russian supply and sanctions easing", "articles": 3, "direction": "mixed", "summary": "No Ukrainian refinery strikes since Oct. 15, Russian diesel exports at June highs after OFAC waiver, while about 2 million b/d of Russian refining capacity remains offline."},
+    {"theme": "Upstream and service-sector tightness", "articles": 4, "direction": "bullish", "summary": "Baker Hughes, NOV, Nabors and Equinor report offshore rig rates near $500,000/day, rig supply tightening and higher 2027 pricing as producers prioritize recovery."}
+  ]
+}

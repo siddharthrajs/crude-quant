@@ -1,0 +1,2403 @@
+===== OILGRAM NEWS dated 2026-10-07 =====
+Platts Oilgram News
+Volume 104 / Issue 197 / October 7, 2026
+
+US crude oil inventories hit three-week low as exports surge
+Commercial stocks fall 3.19 million barrels
+SPR hits fresh 44-year low
+Weekly crude exports climb 33% to 4-week high
+US crude oil stocks fell to three-week lows during the week to Oct. 2, US Energy Information Administration data showed Oct. 7, against a backdrop of stronger exports and refinery demand.
+US commercial crude stocks declined 3.19 million barrels over the week to Oct. 2 to 424.13 million barrels, US Energy Information Administration data showed Oct. 7. The draw was the largest since the week ended Aug. 28 and put stocks 0.6% below the seasonal five-year average, marking the first time they have fallen below normal since early August.
+An additional 780,000 barrels exited from the Strategic Petroleum Reserves, extending declines for a 28th-straight week and putting stocks there down to 282.98 million barrels, a fresh 44-year low.
+Commercial crude stocks declined across all regions outside of the Midwest, where planned and unplanned refinery outages have trimmed local demand. Midwest stocks climbed 1.87 million barrels, EIA data showed, including a 440,000-barrel build in inventories at the NYMEX delivery hub of Cushing, Oklahoma, that left stockpiles there at a 20-week high.
+Midwest refinery utilization climbed 2.6 percentage points to 88.2% of capacity but remained well below the September average of around 94% of capacity. On Sept. 26, ExxonMobil restarted its 267,000 barrels per day Joliet refinery in Illinois after a power outage shut the plant unexpectedly on Sept. 13, according to a company spokesperson.
+(continued on page 12)
+
+IEA supports priority release of diesel stocks 'to the extent possible'
+IEA backs fast-tracked release of March commitment
+Members have 200 million barrels of diesel still in stock
+European release could leave 57 days of diesel supply: JP Morgan
+The International Energy Agency has offered its support for the accelerated release of emergency oil reserves after a G7 commitment to speed up stock draws, but stopped short of setting specific timelines for new diesel and crude supplies to reach the market.
+After a meeting of its member governments on Oct. 7, the IEA said it backed the faster release of stocks already agreed upon in March 2026, when the organization committed to draw an unprecedented 400 million barrels of crude and oil products from its collective reserves. Members also supported the prioritized release of diesel "to the extent possible, given the tightness in diesel markets," the statement said.
+The IEA announcement follows an Oct. 2 statement from G7 leaders committing to release 100 million barrels of oil via the agency, after pressure from the US to take stronger measures to cool diesel prices. According to the IEA, 100 million barrels of oil represents the volume of stocks committed in March but not yet released, although some countries have overfilled their targets.
+IEA member states -- comprising 32 mostly advanced economies -- have so far released 325 million barrels of oil in response to the Middle East supply shock, and the agency remains on standby to release more stocks as needed, according to its statement. Its remaining emergency oil stocks stand at 1.1 billion barrels, of which over 200 million are diesel.
+(continued on page 12)
+
+Inside this issue
+South Korea may cut US crude costs with Panama pipeline FTA waiver. . . . . . . . . . . . . 2 ASEAN net oil product imports to reach 2.2 million b/d by 2031: IEA. . . . . . . . . . . . . . . . . 3 Shell flags high refining margins, strong trading result in third quarter.. . . . . . . . . . . . . . 4 Russian tanker operators lift crude exports to highest level since G7 price cap.. . . . . 4 Repsol Q3 upstream output rises, refining margin breaks record. . . . . . . . . . . . . . . . . . . . 5 Russia says fire out on tanker hit in Black Sea attack. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 6 Vitol restarts Fujairah refinery: Middle East head. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 6 Kazakhstan aims to end refined product imports, start exports by 2030.. . . . . . . . . . . . 7 Chevron divests Hess Midstream stake, restructures Bakken, DJ Basin assets. . . . . . 7
+Gulf of Mexico shut-ins seen at 511,619 boe/d, 350 MMcf/d due to tropical storm:
+MMA. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 8 Eastern USGC refiners brace for Isaias, as the storm threatens diesel exports. . . . . . 8
+
+www.spglobal.com/energy
+©2026 S&P Global Inc. Any unauthorized use of this copyrighted material constitutes infringement of our intellectual property and will subject you to possible legal action.
+
+
+
+Platts Oilgram News
+
+October 7, 2026
+
+Asia Pacific
+South Korea may cut US crude costs with Panama pipeline FTA waiver
+Transit time to drop by 15 days via new route
+Country on track to keep Asia's top US crude buyer status
+The Korea Customs Service is working to extend the preferential tariff treatment under the South Korea-US free trade agreement to US crude shipped through Panama's Petroterminal de Panamá pipeline, a move that could lower transportation costs and the time taken to move WTI Midland crude to East Asia via the Pacific Ocean passage, the customs agency and several industry sources with knowledge of the matter said during Oct. 2-7.
+In an effort to reduce South Korea's dependence on Middle Eastern crude, the customs department has developed and implemented various measures to diversify import sources. For US crude imports, preferential tariffs under FTAs had previously been difficult to apply because the crude was shipped through neighboring countries after loading, potentially violating the "direct transportation" requirement for FTA preferential treatment, the KCS said in a statement Oct. 5.
+South Korean refiners regularly purchase WTI Midland and West Texas Light crude from the US Gulf Coast, and the sweet grades are often shipped directly to South Korea on VLCCs. On other voyages, refiners co-load US crude with West African, Middle Eastern or Southeast Asian grades, making several port calls along the long US Gulf Coast-Cape of Good Hope-Far East route, feedstock managers at two major refiners based in Ulsan and Seosan told Platts, part of S&P Global Energy, during market discussion sessions over Oct. 5-7.
+
+January-August, up 19.9% from the same period last year, the latest data from state-run Korea National Oil Corp. issued Sept. 25 showed.
+KCS Commissioner Lee Jong-wook said in an Oct. 5 statement that the department will immediately begin working-level consultations with the Panamanian customs authorities so that, upon submission of certification documents issued by the Panama Customs Service or another competent authority, the shipments will be recognized as satisfying the FTA direct transportation requirement and "will qualify for preferential tariffs."
+Should a pathway be established for US crude oil transported via the Panama Pipeline to receive FTA preferential tariff treatment, WTI Midland crude could be moved by pipeline from Panama's Atlantic Coast to the Pacific Coast and then reloaded onto a VLCC, the Ulsan-based refinery feedstock manager said.
+US crude trading edge By seeking preferential FTA tariff treatment for US crude
+arriving via the Panama pipeline's Pacific route, South Korea's customs authorities could give domestic refiners an additional trading advantage over other Asian refiners and trading firms, particularly as they already benefit from Seoul's freight incentives for crude imported from outside the Middle East.
+Sources said strong demand from various Asian importers, including South Korea, Japan, Taiwan and Thailand, has driven premiums for Atlantic Basin grades such as WTI Midland and Brazil's Tupi higher during recent trading cycles. Platts assessed WTI Midland on a DES Yeosu basis at a premium of $34.60/b
+
+However, starting in May, the KCS said it eased the criteria for using FTAs, allowing such shipments to qualify for an exception to the direct transportation requirement when importers submit simplified supporting documents, such as a "cargo manifest and crude-oil type plan."
+Thanks to the simplified FTA qualification structure, South Korea is poised to maintain its status as Asia's top US crude buyer in 2026, according to KCS and refinery feedstock managers. Imports from the US totaled 131.09 million barrels in
+
+© 2026 by S&P Global Inc. All rights reserved.
+
+2
+
+©2026 S&P Global Inc. Any unauthorized use of this copyrighted material constitutes infringement of our intellectual property and will subject you to possible legal action.
+
+
+
+Platts Oilgram News
+
+October 7, 2026
+
+to front-month Dubai on Sept. 18, marking a record-high price differential for the light, sweet US crude delivered to the Far East. The premium was last assessed at $28.50/b on Oct. 6.
+Despite the high spot premium, the shorter Panama CanalPacific Ocean delivery option, on top of the government's freight incentives for non-Middle Eastern crude, would help cut costs, the refinery feedstock managers and a Singapore-based trader said. Compared to the US Gulf Coast-Cape of Good Hope-Far East route, VLCC transportation costs could be cut from $28.3 million to $24.3 million, according to KCS.
+Additionally, compared with the existing Cape of Good Hope route, the transport time is expected to fall by approximately 15 days -- from 55 days to 40 days -- according to the Ulsan-based refinery feedstock manager and KCS.
+The PTP Trans-isthmian Pipeline is 130 km long and it transports approximately 10 million barrels of crude per month from the Atlantic Terminal, located in Chiriquí Grande on the Atlantic Ocean, to the Pacific Terminal, located in Puerto Armuelles in the Pacific Ocean, the pipeline operator Petroterminal de Panamá S.A. said on its official website.
+"Hundreds of oil tankers discharge and load over 100 million barrels of crude oil per year to take it to markets in Asia," Petroterminal de Panamá said.
+-- Gawoon Philip Vahn and Mia Pei
+ASEAN net oil product imports to reach 2.2 million b/d by 2031: IEA
+Regional demand grows 130,000 b/d yearly
+Upstream output drops to 1.6 million b/d
+LPG imports double, creating vulnerability
+Southeast Asia's net oil product imports are projected to reach 2.2 million barrels/day by 2031 as rising demand outpaces domestic crude production and the capabilities of the region's aging refineries, the International Energy Agency said.
+Regional crude import requirements are expected to approach 3 million b/d by the same year, leaving ASEAN increasingly exposed to supply disruptions, freight costs and price volatility at the Strait of Hormuz and Strait of Malacca, according to the IEA's ASEAN Energy Security Review published Oct. 6.
+Oil demand is projected to grow by 130,000 b/d annually between 2025 and 2031, led by diesel, jet fuel, petrochemical feedstocks, LPG and marine fuels. Indonesia and Vietnam will account for much of the increase, according to the report.
+Southeast Asia is expected to become the largest regional contributor to global oil-demand growth over the medium term, the IEA said. Regional consumption increased by an average of 1.7%/ year in the decade through 2025, almost twice the global average.
+LPG represents a particular vulnerability. Regional LPG imports have more than doubled over the past decade to around 500,000 b/d, while domestic natural gas liquids production is declining and alternative supply options remain limited, according to IEA.
+
+Domestic supply declines Upstream production is moving in the opposite direction,
+falling from 2.5 million b/d in 2015 to 1.8 million b/d in 2025. "Production is forecast to fall by 150 kb/d from 1.8 mb/d to 1.6 mb/d during 2025-2031, with Malaysia accounting for two-thirds of the drop," said the IEA.
+However, the IEA highlighted Indonesia as an exception, with fiscal reforms, enhanced recovery and new condensate production expected to lift output following decades of decline. "Having fallen from approximately 820 kb/d in 2015 to 600 kb/d in 2025, output is projected to rise to around 730 kb/d by 2031, making Indonesia a notable exception among ASEAN producers," the agency said.
+ASEAN has around 5.5 million b/d of refining capacity, with crude and condensate processing averaging 4.1 mb/d in 2026, according to IEA data. The region's refining sector continues to face competitive pressure from export-oriented refining centers in the Middle East and China and is expected to see limited further capacity additions through 2031, the IEA said.
+Emergency oil stocks The IEA said emergency oil stocks remain the most effective
+mechanism for managing a severe physical disruption because commercial inventories are generally intended for normal operations rather than prolonged international shortages.
+ASEAN's Framework Agreement on petroleum security provides for consultation, information exchange and voluntary commercial assistance to members facing critical shortages, but practical implementation remains limited.
+IEA recommended clarifying emergency procedures, improving regional market data, conducting simulation exercises and exploring commercially based regional storage arrangements for smaller and highly import-dependent economies. It also said dedicated LPG stocks could merit separate consideration because the fuel requires distinct storage and distribution infrastructure.
+The IEA noted that oil market balances are expected to flip from undersupplied in Q4 2026 to oversupplied by Q1 2027, with the surplus continuing throughout next year amid a rebound in Middle Eastern production and exports during 2027, providing governments an opportunity to "establish or expand governmentheld stocks of crude and products and absorb part of the surplus."
+Biofuel demand to rise 50% The IEA expects Southeast Asian liquid biofuel demand to
+increase approximately 50% from more than 360,000 b/d in 2025 to over 550,000 b/d by 2030. Biodiesel will account for 75% of that growth to 2030, with smaller contributions from ethanol, renewable diesel and sustainable aviation fuel.
+Biofuel blending already displaces significant gasoline and diesel imports, including volumes equivalent to up to 35% of Indonesia's diesel demand, the IEA said.
+-- Mia Pei
+
+© 2026 by S&P Global Inc. All rights reserved.
+
+3
+
+©2026 S&P Global Inc. Any unauthorized use of this copyrighted material constitutes infringement of our intellectual property and will subject you to possible legal action.
+
+
+
+Platts Oilgram News
+
+October 7, 2026
+
+Europe, Middle East and Africa
+Shell flags high refining margins, strong trading result in third quarter
+Refining margins rise to $42/b in Q3
+Upstream output at 1.74 mil-1.84 mil boe/d
+LNG output climbs on ARC Canada deal
+Shell expects its third-quarter earnings to be buoyed by higher refining margins and continued strong trading results, it said Oct. 7, even as upstream oil and natural gas production is likely to dip.
+In a trading statement released on its website, Shell said its chemicals and products business had seen its indicative refining margin rise from $24/barrel in Q2 to $42/b in Q3, with infrastructure damage and shipping restrictions in the Middle East driving diesel cracks to new records.
+Last week, G7 countries agreed to release crude and product stocks from strategic reserves to cushion the impact of high diesel prices.
+Strong margins come despite lower refinery utilization, which Shell expects to dip to 93%-97% in Q3, from 102% in Q2, primarily due to low Rhine water levels impacting its Rheinland plant.
+Upstream, the company narrowed its production estimate and inched down the top end of its guidance, while lifting production expectations from its integrated gas division, which includes LNG.
+Shell expects Q3 upstream production of 1.735 million-1.835 million barrels of oil equivalent/day, it said, compared to 1.824 million boe/d in the second quarter.
+Integrated gas should see production rise quarter-overquarter from 631,000 boe/d to 740,000-780,000 boe/d, the company said. That represents a boost from Shell's previous Q3 estimate, reflecting volumes from ARC Resources, its new Canadian acquisition, and Qatar, it said.
+"Trading and optimization [are] expected to be in line with Q2," the company said.
+Like its rival European majors, the company has seen earnings rise considerably on strong trading results this year, with its traders able to take advantage of volatility stemming from the war in the Middle East.
+Platts Dated Brent, a key physical crude benchmark, rose past $144/b in April before edging downwards and has been volatile in recent weeks. Platts is part of S&P Global Energy.
+While refining margins have expanded, the company's chemicals division has not seen a similar boost. Shell said it expects a $62/mt quarter-over-quarter drop in chemicals margins in Q3.
+Echoing comments of other international oil company heads, Shell CEO Wael Sawan told the Energy Intelligence Forum in London on Oct. 6 that the oil market was close to exhausting some of the buffers - from high pre-war stocks to the quantity of oil on water and strong refining runs - that had prevented
+
+runaway crude and product prices in the early months of the war.
+"There is a limit to how much those shock absorbers can continue to take," Sawan said.
+-- Charlie Mitchell
+Russian tanker operators lift crude exports to highest level since G7 price cap
+Non-G7 tankers help Russia lift crude exports
+Russian tanker operators play bigger role
+Mainstream companies lack incentives to stay in Russia
+Russia increased crude exports in September by relying more heavily on non-G7 tankers, particularly those operated by domestic companies, whose shipments reached their highest level since Western nations imposed a price cap.
+Tankers flagged, owned and operated by companies not based in G7 countries and their allies, and not insured by Western protection and indemnity clubs, lifted nearly 2.89 million barrels/ day in September, compared with 2.7 million b/d in August, according to S&P Global Commodities at Sea and Maritime Intelligence Risk Suite data.
+The increase came as overall Russian seaborne exports rose to 4.09 million b/d from 3.82 million b/d in the same period.
+While the overall share of Russian crude exports on non-G7 tankers, mainly from the shadow flee established to bypass Western sanctions, showed little change month on month, Russian tanker operators were shouldering more responsibilities for their home country's overseas sales.
+Continuing the upward trajectory seen in recent months, shipments rose from 18.6 million barrels in August to 20.6 million barrels in September -- the highest since the G7 and EU began banning maritime service firms from participating in Russian crude exports unless the barrels were sold below a certain threshold in December 2022.
+State carrier Sovcomflot's tankers loaded 6.4 million barrels in September, while the remainder were generally lifted by tankers owned by small, little-known companies, according to the CAS and MIRS data. All of the ships were flagged in Russia.
+
+© 2026 by S&P Global Inc. All rights reserved.
+
+4
+
+©2026 S&P Global Inc. Any unauthorized use of this copyrighted material constitutes infringement of our intellectual property and will subject you to possible legal action.
+
+
+
+Platts Oilgram News
+
+October 7, 2026
+
+Flag clampdown The International Maritime Organization has launched a
+campaign against falsified flag registration in recent quarters. In 2026, some members states -- including Cameroon and the Cook Islands -- told the UN agency that more than 110 ships with a total carrying capacity of 9.78 million deadweight tons were removed from their flag registries or wrongly claimed to be flagged with them.
+More than 100 of these were tankers designated by Western authorities for sanctioned Russian trades or other reasons, according to an earlier Platts review of their circulars. Platts is part of S&P Global Energy.
+Meanwhile, 107 ships were reflagged in Russia between January 2025 and June 2026, 56% of which joined the Russian registry after previously reporting false flag information following designation by Western authorities, according to a study by the Centre for Research on Energy and Clean Air.
+"`Shadow' fleet vessels have been funneled into the Russian ship registry as their other options have been slowly closed off," the nonprofit said in a note published in September. "Under diplomatic pressure from sanctioning countries, many open registries began significantly withdrawing their flagging services for `shadow' vessels. With vessels increasingly being removed from open registries, many vessels turned to false flags."
+Sanctions impact As for the G7 fleet, Greek-operated tankers loaded 17.3 million
+barrels in September, up from 13.6 million barrels in August, according to the data. The increase came as fewer tanker attacks were reported in the Black Sea.
+But freight market conditions point to limited financial incentives for mainstream companies to remain in Russian trade going forward. The time-charter-equivalent earnings for Aframaxes shipping Russian oil from the Baltic to West Coast India have been below the Global Aframax Index since Sept. 9, according to Platts assessments.
+Moreover, US President Donald Trump on Sept. 18 signed legislation allowing him to impose tariffs of up to 100% on goods imported from the five largest importers of Russian crude or natural gas by volume, and to impose sanctions on tankers used to evade sanctions.
+
+"The measures could potentially increase the number of sanctioned vessels and raise compliance risks for companies involved in transporting Russian crude," shipbroker BRS said in a note in September. "For the oil market, the measure could further disrupt established Russian trade flows, particularly if tighter restrictions on vessels are combined with pressure on major buyers to reduce purchases of Russian crude oil and refined products."
+-- Max Lin
+Repsol Q3 upstream output rises, refining margin breaks record
+Q3 production hits 574,000 boe/d, up 4%
+Downstream margin reaches record $36.20/b
+North American output surges 21% YOY
+Spanish integrated energy group Repsol SA increased its upstream oil and gas production by 4% year over year to 574,000 barrels of oil equivalent/day in the third quarter, the company said in a stock market filing Oct. 6.
+Repsol's downstream margin for the period reached a record high, based on company data.
+Upstream output, which reached the largest quarterly total since Q2 2024, was driven by a 21% year year-over-year increase in North American output to 219,000 boe/d, Repsol said, without providing a breakdown. The figures are all provisional, with final volumes to be published Oct. 29.
+Repsol and partner Santos in May announced the start-up of production from the Alaskan North Slope Pikka field, which had a production target of 40,000 boe/d during H2 2026.
+The Madrid-based company also has producing assets in Pennsylvania, Texas and the Gulf of Mexico.
+In its other regions, Latin American net production, which includes Venezuela, was 237,000 boe/d, down 6% year over year, Repsol said, without providing a breakdown.
+Europe, Africa and "rest of world" output dropped 33% year over year to 118,000 boe/d, amid disruption to output from Libya's El Sharara field.
+On Sept. 22, Libya's National Oil Corp. issued a third force majeure warning since August after the pipeline and the gates of the Zawiya refinery and Libyan state fuel marketer were shut by armed groups. The incidents affected flows from the field.
+For the first nine months of 2026, Repsol's average production was about 557,000 boe/d, short of a company forecast of between 560,000 boe/d to 570,000 boe/d for 2026 that it published in July.
+Record margin Repsol's Q3 2026 Spanish downstream refining margin,
+based on regional benchmarks, increased 159% year over year to $36.20/b, the company said in its filing. This beat the previous record high of $23.20/b from Q2 2022, company data showed.
+The Q3 indicator was greater than Repsol's budgeted $6.50/b
+
+© 2026 by S&P Global Inc. All rights reserved.
+
+5
+
+©2026 S&P Global Inc. Any unauthorized use of this copyrighted material constitutes infringement of our intellectual property and will subject you to possible legal action.
+
+
+
+Platts Oilgram News
+
+October 7, 2026
+
+benchmark margin for the 2026 to 2028 period. For the first nine months, the indicator has averaged roughly
+$20.37/b, according to company data. Repsol's CEO Josu Jon Imaz estimated in July that Repsol
+might reach a full-year 2026 average benchmark margin of at least $15/b with a premium of around $6/b or $7/b on top.
+Repsol did not respond to a request for comment Oct. 6. Repsol owns and manages five refining complexes in Spain -- Cartagena, A Coruna, Bilbao, Puertollano and Tarragona -- with a total capacity of around 896,000 b/d, according to company information. The overall distillation rate in Q3 fell 5% year over year to 81.3%, the company reported, while the conversion rate was down 4% year over year to 97.6%. A topping unit at Cartagena that suffered a fire in January was due to remain offline until around the end of 2026, Repsol CEO Imaz said July 23, while Bilbao reported some work during Q3, and Cartagena was due to carry out a change of catalyst at the hydrocracker unit in September, meaning a few days' halt, the company said in July. Looking ahead, Puertollano could carry out a turnaround of its conversion units in Q4, with no time frame supplied for the work, Repsol said in July. Downstream, Repsol's petrochemical margin indicator was 387/mt, up 50% year over year and above the 2025 full-year average of 252/mt. Repsol operates 4.8 million mt/year of base and derivative petrochemical capacity in Spain and Portugal.
+-- Gianluca Baratti
+
+Novorissiysk -- the primary export terminal for Urals crude -- as well as from the CPC terminal north of Novorissiysk, which handles Kazakh-origin crude.
+Disruptions to tanker operations in the area have at times tightened supply flows of both Russian Urals and CPC Blend crude to Mediterranean buyers.
+Platts, part of S&P Global Energy, assessed the rate to carry a 135,000 metric ton cargo of crude from the Black Sea to the Mediterranean at $121.69/mt Oct. 6, up 632% year over year and above a five-year average of $17.90/mt.
+Platts assessed the crude oil Additional War Risk Premium, for carriage on Aframaxes and Suezmaxes in the Black Sea, at $3/b Oct. 6, up 329% year over year. It has averaged $1.31/b since it was launched in October 2022.
+Bulgarian waters In a separate incident, two civilian vessels were attacked
+in Bulgarian waters, with one sinking and the other sustaining significant damage, Ukrainian President Volodymyr Zelenskyy said on X Oct. 6. Zelenskyy said Ukraine's Defence Forces conducted no operations in the area and attributed the attack to Russia, saying it was "a combined Russian attack using maritime and aerial drones."
+One of the vessels struck was identified as MV Royad Mammadov in an Oct. 6 statement from India's Ministry of External Affairs. The ministry confirmed that two foreign seafarers were killed in the attack and that crew members, including Indian nationals, were injured.
+-- Thomas Washington
+
+Russia says fire out on tanker hit in Black Sea attack
+Tanker fire extinguished, no oil spill
+Two civilian ships struck in Bulgarian waters Oct. 6
+
+Vitol restarts Fujairah refinery: Middle East head
+UAE facility resumes 100,000 b/d operation Baker confirms temporary shutdown has ended Investment grows despite regional attacks
+
+A Russian Aframax tanker was set ablaze in Russia's Black Sea waters, amid a series of recent attacks, Russia's Ministry of Transport said Oct. 7.
+Transport Minister Andrei Nikitin chaired an emergency response meeting following the attack on the tanker Aframax Rio off the Black Sea coast, a ministry announcement said on Telegram.
+"Open burning on the vessel has been extinguished. Rescue vessels remain on standby. There is no oil cargo pollution of the surrounding waters," the announcement said. A joint task force comprising personnel from the Ministry of Transport, the Ministry of Emergency Situations, the Ministry of Defence and the Krasnodar region has begun clean-up and damage-limitation operations, the ministry said.
+The vessel's destination country is India and it is carrying Urals sour crude, according to ship tracking software S&P Global Commodities at Sea.
+Aframax vessels are the workhorse of crude and refined product exports from the region, carrying cargoes of around 80,000-100,000 mt from Russian Black Sea ports, including
+
+Vitol's 100,000 barrels/day refinery at Fujairah in the UAE is "back up and operating" after a temporary shutdown, Tom Baker, head of Middle East for Vitol, told Platts at a Fujairah conference Oct. 7.
+"It was down for a period, and now it is back up and operating," Baker said at the Energy Markets Forum. The refinery is not operating at full capacity due to damage sustained earlier in the year, he said. He declined to say how long it had been shut.
+Fujairah has been attacked during the war in the Middle East, but has also attracted new investment to take advantage of its location on the UAE's east coast outside the Strait of Hormuz.
+In July, DP World, which operates the Jebel Ali port in Dubai inside the Persian Gulf, announced plans to expand with two new terminals in Fujairah under a 50-year concession with the Fujairah Ports Authority. The project includes a new deep-water trade gateway capable of handling Ultra Large Container Vessels and is expected to take 24 to 30 months once construction starts, DP World said.
+-- Claudia Carpenter, Lauren Holtmeier
+
+© 2026 by S&P Global Inc. All rights reserved.
+
+6
+
+©2026 S&P Global Inc. Any unauthorized use of this copyrighted material constitutes infringement of our intellectual property and will subject you to possible legal action.
+
+
+
+Platts Oilgram News
+
+October 7, 2026
+
+Kazakhstan aims to end refined product imports, start exports by 2030
+Kazakhstan wants to end fuel imports by 2030
+Refineries cover more than 90% of needs
+Major refinery expansions planned
+Kazakhstan plans to eliminate its dependence on imported refined products and start exports by 2030, by expanding domestic refining capacity, Energy Minister Yerlan Akkenzhenov said Oct. 7.
+In 2025, the country's refineries processed 18.4 million metric tons of crude and produced about 15.5 million mt of finished petroleum products, the minister said during a livestreamed address to the Kurultai, Kazakhstan's unicameral parliament. This accounts for more than 90% of Kazakhstan's domestic fuel needs, according to Akkenzhenov.
+"We face annual challenges regarding the supply of aviation fuel. At present, we import around 300,000 tons of aviation fuel from the Russian Federation, and the [renewed] agreement enables us to import aviation fuel from Russia duty-free," Akkenzhenov said.
+Kazakhstan's parliament ratified Oct. 7 the renewal of the intergovernmental agreement with Russia on the supply of oil and petroleum products from the country. The deal was extended until Jan. 1, 2028, with automatic renewal for five-year periods in the absence of objections from either party.
+The agreement provides for the continued annual coordination of indicative balances for the supply of oil and petroleum products, as well as for the duty-free import of petroleum products from Russia to Kazakhstan.
+However, the minister hopes Kazakhstan will be able to meet all of its needs in less than four years.
+There are currently three large oil refineries in Kazakhstan and around 25 mini-refineries, according to the minister. "But practically none of [mini-refineries] produce fuel that meets the quality standards established by the Customs Union's technical regulations," he added.
+The large refineries include the 6 million mt/y Pavlodar, the 6 million mt/y Shymkent and the 5.5 million mt/year Atyrau.
+"We plan to increase the capacity of the Shymkent refinery from 6 million to 12 million tons. We expect the feasibility study for this refinery to be completed by the end of this year, at which point we anticipate moving to the practical implementation stage," Akkenzhenov said.
+"We also plan to expand the Pavlodar refinery by 2 million tons and are addressing bottlenecks at the Atyrau refinery-- specifically, the construction of additional diesel hydrotreating lines," the minister added, stressing that these additional volumes should enable Kazakhstan to fully meet its domestic refining needs.
+By 2030, Kazakhstan is expected not only to meet its own domestic needs but also to export petroleum products to Central Asian countries, according to the minister.
+The deadline and volume targets differ slightly from figures
+
+presented by Chairman of the Board of KazMunayGas Askhat Khasenov at a meeting with Prime Minister Olzhas Bektenov Sept. 23. The Pavlodar refinery should be expanded by 3 million mt/y, with completion expected by 2031, Khasenov said at the meeting, according to the official website of the prime minister.
+KazMunayGas was not immediately available for comment. The Atyrau refinery will be expanded by 600,000 mt to 6.1 million mt/year, according to the KazMunayGas chairman. Expansion projects at three refineries will increase their combined capacity from 17.5 million mt to 28.8 million mt, according to the statement from KazMunayGas. The 2030 export goal does not include the fourth refinery which is also under consideration, with three areas chosen as a potential future home for the facility. "We are considering several sites within the Republic of Kazakhstan: in the Ulytau, Atyrau, and Mangystau regions. Consultants are currently working on this," Akkenzhenov said. Kazakhstan's government hopes to attract private investment for its new refinery in exchange for guarantees including tax incentives and feedstock supplies, the ministry's director of the oil transportation and refining department, Daulet Arykbayev, told Platts, part of S&P Global Energy, Sept. 30. If approved, the 10 million mt/y fourth large refinery is expected to start up by 2033. The ministry plans a "major roadshow" for the project in 2027-2028, according to Arykbayev.
+-- Alexandra Vladimirova
+The Americas
+Chevron divests Hess Midstream stake, restructures Bakken, DJ Basin assets
+Eyes reducing midstream costs by 50%
+Hess acquires midstream DJ basin assets
+Chevron to write down $3.7 billion in Hess debt
+Chevron Corp. said it would divest its ownership interests in US-based service provider Hess Midstream and restructure its midstream oil contracts in the Bakken and DJ Basin, it said.
+The revised deal will extend Chevron's Bakken contracts and is expected to reduce its Bakken unit midstream costs by nearly 50%, enhancing future earnings and return on capital employed, Chevron said late Oct. 6.
+Hess Midstream said in a separate statement that it would acquire Chevron's crude and natural gas gathering and storage assets in the DJ Basin, including a minority interest in a longhaul pipeline, diversifying its geographic presence and increasing revenue.
+Chevron said the deal brought an "improved long-term commercial framework," and $200 million cash consideration.
+Under the deal, Chevron expects to fully deconsolidate Hess Midstream, including about $3.7 billion of Hess Midstream's debt, it said.
+
+© 2026 by S&P Global Inc. All rights reserved.
+
+7
+
+©2026 S&P Global Inc. Any unauthorized use of this copyrighted material constitutes infringement of our intellectual property and will subject you to possible legal action.
+
+
+
+Platts Oilgram News
+
+October 7, 2026
+
+"This transaction resets the commercial framework between our upstream and midstream assets in the Bakken and DJ Basins," said Andy Walz, Chevron's president of downstream, midstream and chemicals, in a statement. "It lowers our Bakken cost structure while positioning Hess Midstream to advance as an independent company."
+Chevron expects to sustain Bakken production through ongoing technology deployment and operational improvements drawn from its global shale and tight portfolio, it said.
+-- Ashok Dutta
+Gulf of Mexico shut-ins seen at 511,619 boe/d, 350 MMcf/d due to tropical storm: MMA
+25.08% of crude oil out impacted
+Chevron to shut in at four facilities
+Shell shuts in Mars production
+Producers in the Gulf of Mexico have cumulatively shut in 511,619 barrels/day of oil equivalent crude oil and some 350 MM cubic feet/day of natural gas production in response to Tropical Storm Isaias, the Marine Minerals Administration said in its latest update Oct. 7.
+MMA, which is part of the Bureau of Safety and Environment Assessment, said at 2 pm ET that the shut-in volumes represent about 25.08% of crude oil and 16.37% of natural gas production in the Gulf of Mexico.
+"Based on data from offshore operator reports submitted as of 11 am CT today [Oct.7], personnel have been evacuated from a total of eight production platforms or 2.16% of the 371 manned platforms in the Gulf of America [Mexico]," MMA said, noting a single `dynamically positioned' rig has moved off location out of the storm's path as a precaution.
+"Non-dynamically positioned rigs maintain their location while conducting well operations by using thrusters and propellers; these rigs are not moored to the seafloor, so they can move out of harm's way in a relatively short time frame," MMA said.
+Chevron, Shell announce curtailment Chevron Corp. and Shell have started separately shutting in
+production at their Gulf of Mexico facilities in preparation for Tropical Storm Isaias, they said Oct. 7, adding that all associated personnel are also being evacuated.
+While some additional personnel are being transported onshore, production from four facilities have been shut in, while its other five Gulf of Mexico facilities remain at normal levels, Chevron said without identifying the offshore production units.
+"At our onshore facilities, we continue to follow our established storm response procedures and are closely monitoring the projected path of the storm," it said.
+"Shell is continuing to monitor Tropical Storm Isaias for potential impacts to our assets and operations in the Gulf of America," it said, adding: "As a precautionary measure at our Mars, Olympus, Ursa, Vito, and Appomattox assets, we are
+
+evacuating all personnel and shutting in production." In addition, Shell has already moved non-essential personnel
+from its Stones asset, it said. Late Oct. 6, Chevron said it was keeping a close eye on the
+projected path of Tropical Depression Nine, while maintaining "normal" production levels from its assets in the Gulf of Mexico.
+Chevron is a leading leaseholder in the Gulf of Mexico, operating nine facilities and multiple tie-backs, and has a goal of producing 300,000 boe/d net to the company in the current year, according to information on the Chevron website.
+Tropical Depression Nine is a low-pressure system that is developing in the Gulf of Mexico, with a forecast to strengthen into Tropical Storm Isaias and subsequently a hurricane by Oct. 8, the National Hurricane Center said on its latest update on Oct. 7.
+With a windspeed of 35 miles/hour, Tropical Depression Nine is located some 345 miles west of Progreso, Mexico, in the Bay of Campeche, the NHC said.
+-- Ashok Dutta
+Eastern USGC refiners brace for Isaias, as the storm threatens diesel exports
+Refiners brace for Isaias' operational impact
+Storm threatens 2.5 mil b/d of refining capacity
+USGC exports more than 90% of distillate produced
+Refineries along the eastern edge of the US Gulf Coast have braced for the possible impact of Tropical Storm Isaias, which finally emerged after an unusually quiet Atlantic hurricane season, with the National Hurricane Center forecasting rapid strengthening and several forecasters expecting it to become the first Atlantic hurricane of 2026.
+"At our onshore facilities, we are following our storm preparedness procedures and paying close attention to the forecast and track of the system," a spokesperson with Chevron Corp. said in a statement, noting that it is likely that the company will continue to monitor and likely provide operational updates for the storm, which is "pretty dynamic."
+Under the storm's current path, about 2.5 million barrels/ day, or about 14% of total US refining capacity, is at risk. Multiple models forecast that Isaias could strengthen to a Category 2 storm before coming ashore later this week, making it the first hurricane of the 2026 Atlantic Season, according to National Oceanic and Atmospheric Administration (NOAA) data.
+Meteorologists note that if Isaias reaches hurricane status Oct. 8, it would tie the record, set in 1905, for the latest first Atlantic hurricane. If it happens after Oct. 8, it would be a new record.
+As the storm approaches the northern Gulf Coast, US Gulf Coast traders will be closely monitoring forecast track shifts, refinery operating decisions, Coast Guard port conditions, ship traffic restrictions, power-reliability risks, and the potential for flooding-related impacts on refineries, terminals, and logistics.
+
+© 2026 by S&P Global Inc. All rights reserved.
+
+8
+
+©2026 S&P Global Inc. Any unauthorized use of this copyrighted material constitutes infringement of our intellectual property and will subject you to possible legal action.
+
+
+
+Platts Oilgram News
+
+October 7, 2026
+
+ULSD inventories slip EIA weekly data shows for the week ended Sept. 25, USGC
+refiners continued to run at very high rates despite a modest week-over-week decline to 95.9% from 96.5%, while crude oil inputs fell 297,000 b/d to 9.20 million b/d.
+Even with the decline, Gulf Coast refinery runs remained well above year-ago levels, reflecting strong refining economics and robust operating rates heading into maintenance season.
+Meanwhile, PADD 3 ULSD inventories dipped 139,000 barrels week over week to 35.87 million barrels, following several weeks of stock builds, thus pulling down total USGC distillate inventories by 504,000 barrels to 43.90 million barrels for the week ended Sept. 25, according to EIA data.
+-- Janet Mcgurty
+Markets and Data
+OIL FUTURES: Crude slides after IEA offers support for G7 diesel release
+IEA backs faster release of diesel stocks
+Hormuz shipping falls amid supply fears
+US crude stocks hit three-week low
+Crude oil futures settled lower Oct. 7 after the International Energy Agency offered support for the emergency release of European diesel stocks.
+NYMEX November WTI settled $1.16/barrel lower at $88.28/b and ICE December Brent declined 38 cents/b to $100.20/b.
+After a meeting of its member governments on Oct. 7, the IEA said it backed the faster release of stocks already agreed upon in March, when the organization committed to draw an unprecedented 400 million barrels of crude and oil products from its collective reserves. Members also supported the prioritized release of diesel "to the extent possible, given the tightness in diesel markets," the IEA said in a statement.
+The IEA announcement follows an Oct. 2 statement from G7 leaders committing to release 100 million barrels of oil via the agency, after pressure from the US to take stronger measures to cool diesel prices. According to the IEA, 100 million barrels of oil represents the volume of stocks committed in March but not yet released, although some countries have overfilled their targets.
+NYMEX November RBOB declined 3.90 cents/gallon to $3.2342/gal and November ULSD settled 5.33 cents/gal higher at $4.6227/gal.
+Oil prices had been higher earlier in the session as Middle East supply concerns mounted following a wave of fresh attacks on shipping in the Strait of Hormuz.
+Ship traffic through the Strait of Hormuz fell for a second straight day to 19 transits on Oct. 6, according to the latest report from S&P Global Commodities at Sea.
+"There is a clear tug-of-war at the moment between improving supply from the region and lingering threats to
+
+supply," ING's Warren Patterson said in a note Oct. 7. "For now, the market is likely to remain nervous to any potential supply disruptions."
+Global Risk Management's Arne Lohmann Rasmussen said, "Higher exports in September do not mean that geopolitical risk has declined -- quite the opposite. The narrative may be shifting from rising exports to a growing risk that the current high export levels cannot be sustained."
+Oil exports from the Gulf region could return to pre-conflict levels by mid-2027, but a prolonged disruption to shipments could further strain already depleted inventories and lift prices to levels that may threaten demand, the World Bank said in its latest East Asia and Pacific Economic Update Oct. 6.
+Erik Meyersson, chief emerging markets strategist at SEB Strategy & Economic Research, wrote in his Conflict Update Oct. 7 that "questions are being raised over the sustainability of the US military operation to secure [Strait of Hormuz] transit, protect allies in the region, and retain geopolitical dominance from an Iranian regime that appears more risk-tolerant."
+Meyersson said this continues to feed into the risk premium and means that "predicting an endgame to the conflict has become more difficult."
+US crude stocks hit three-week low US crude oil stocks fell 3.19 million barrels to a three-week
+low 424.13 million barrels during the week to Oct. 2, US Energy Information Administration data showed Oct. 7, against a backdrop of stronger exports and refinery demand.
+The draw exceeded recent market expectations after the American Petroleum Institute on Oct. 6 reported a 2.09 million barrel decline over the period and put stocks below the seasonal five-year average for the first time since early August.
+The draw was predicated on stronger US crude exports, which surged 33% to a four-week high 4.77 million b/d, EIA data showed. Notably, inventories at the NYMEX delivery hub of Cushing, Oklahoma, climbed 440,000 barrels to 24.75 million barrels -- a 20-week high.
+-- Christopher Vanmoessner
+FUJAIRAH DATA: Oil product stocks fall to three-week low
+Inventories decline 7.8% to 7.574 mil barrels
+Light distillates plunge 65% to record low
+Marine fuel prices rise from September lows
+Oil product inventories at Fujairah in the UAE dropped 7.8% in the week ended Oct. 5 after falling 20% the previous week, according to Fujairah Oil Industry Zone data published Oct. 7.
+The total inventory declined to 7.574 million barrels, a three-week low, with light distillates such as gasoline and naphtha down 65% to a record low of 559,000 barrels, according to the data.
+Heavy distillates used as ship fuel and for power generation rose 21% to 4.723 million barrels and middle distillates, such as
+
+© 2026 by S&P Global Inc. All rights reserved.
+
+10
+
+©2026 S&P Global Inc. Any unauthorized use of this copyrighted material constitutes infringement of our intellectual property and will subject you to possible legal action.
+
+
+
+Platts Oilgram News
+
+October 7, 2026
+
+jet fuel and diesel, slipped 15% to 2.292 million barrels. The Platts-assessed marine fuel 0.5% sulfur delivered Fujairah
+rose 0.7% on Oct. 6 to $980/metric ton, extending gains from the recent low of $940/mt on Sept. 30. Platts is part of S&P Global Energy.
+The Platts-assessed bunker fuel oil 380 CST delivered Fujairah also rose 0.7% to $700/mt on Oct. 6, extending gains from the recent low of $658/mt on Sept. 30.
+-- Claudia Carpenter
+Strait of Hormuz ship traffic falls Oct. 6 after tanker attacks
+Hormuz transits drop to 19 amid attacks Fire damages Panama-flagged tanker Five vessels struck between Oct. 3-6
+Ship traffic through the Strait of Hormuz dropped to 19 transits on Oct. 6, a second consecutive decline, down from 23 as ship attacks continue in the narrow waterway, according to the latest report from S&P Global Commodities at Sea.
+A fire broke out onboard the Panama-flagged On Peace crude oil tanker as it was struck in the strait Oct. 6, nine nautical miles off the coast of Oman, Vanguard Tech reported. India's Ministry of External Affairs said in a statement that 12 of the 19 crew members were injured in the attack. On Oct. 7, it was anchored off the coast of Fujairah in the UAE, according to CAS data.
+"The targeting of commercial shipping, seafarers and civilian
+
+infrastructure in the region must end, and navigation and commerce through international waterways must be restored at the earliest," the statement said.
+Of the vessels that sailed through the strait on Oct. 6, nine vessels entered the waterway and 10 exited the Strait of Hormuz.
+One LNG tanker exited the strait Oct. 6 for the first time in two days; it loaded at Qatar's Ras Laffan on Oct. 4, transited the Iran-approved route with its AIS on and is currently headed to Pakistan, the report said. So far in October, four LNG tankers have left the Strait of Hormuz.
+Five tankers were struck in the Strait of Hormuz over Oct. 3-6, with one vessel turning around after it was told to do so by the navy of the Islamic Revolution Guard Corps, according to multiple notices from UK Maritime Trade Organization (UKMTO) and Vanguard Tech.
+Just beyond the Strait of Hormuz at the US blockade line, 58 vessels crossed the line, with 31 of those entering the Gulf and moving toward the Strait of Hormuz, the report said.
+"Hydrocarbon-related movements included 19 inbound crude, LNG and LPG tankers and 12 outbound tankers," the report said. Only one of those tankers was identified as linked to Iran.
+Across the Arabian Peninsula, traffic at the region's other maritime chokepoint totaled 40 vessels, with 16 moving south through the Bab al-Mandab Strait.
+-- Lauren Holtmeier
+Energy Transition
+Argentina's YPF-led venture signs deal to supply SAF to TotalEnergies
+$400 million to be invested in the project
+Sales deal is first step to finance the investment
+Production will come from retrofitted oil refinery
+YPF, Argentina's biggest oil refiner, said in a statement Oct. 7 that a consortium it leads signed a deal to supply sustainable aviation fuel to France's TotalEnergies under a long-term contract, a key for moving forward on the $400 million project at its San Lorenzo refinery.
+State-backed YPF and Argentina-based Essential Energy will produce the SAF through their Santa Fe Bio venture at YPF's 50,000 b/d San Lorenzo refinery.
+The first step to do this was inking a long-term sales contract, and the next steps will be to work on project engineering and to raise financing to retrofit the refinery to produce 170,000 mt/ year of SAF and hydrotreated vegetable oil from animal fats, crop residues, vegetable oils and other related feedstock, YPF said.
+The feedstock will be run through a biorefinery at the facility in the central farming province of Santa Fe, it added.
+TotalEnergies will buy most of the output under a long-term contract with rights to the remaining volumes, YPF said.
+YPF said last year that SAF demand is rising in Europe and
+
+© 2026 by S&P Global Inc. All rights reserved.
+
+11
+
+©2026 S&P Global Inc. Any unauthorized use of this copyrighted material constitutes infringement of our intellectual property and will subject you to possible legal action.
+
+
+
+Platts Oilgram News
+
+October 7, 2026
+
+the US, where airlines are seeking cleaner alternatives to jet fuel to reduce greenhouse gas emissions. The deal with TotalEnergies will allow it to meet this growing demand.
+YPF acquired the 50,000 b/d San Lorenzo refinery in the central province of Santa Fe in 2018.
+-- Charles Newbery
+
+moving USGC ULSD into Northwest Europe has fallen to minus $1.25/b this month compared with $5.29/b in September, CERA data showed.
+
+US crude oil inventories hit three-week low as exports surge ...from page 1
+
+Nationwide refinery utilization edged 0.2 percentage point higher to 92.7% of capacity, pushing runs 5% above average for this time of year.
+
+The bulk of the crude draw was seen on the US Gulf Coast, where crude stocks declined 3.9 million barrels as weekly exports surged 33% to a four-week high of 4.77 million barrels per day.
+Exports have been supported by strong arbitrage economics. The incentive for moving USGC WTI MEH into Rotterdam has surged to $15.92/b versus North Sea Forties to-date in October, S&P Global Energy CERA data showed, up from $8.78/b in September and $1.41/b in August.
+Nationwide gasoline stocks climbed 380,000 barrels to 204.74 million barrels, and distillate stocks dipped 40,000 barrels to 105.14 million barrels.
+Distillate exports climbed 15% to a six-week high of 1.76 million b/d. These flows are likely to see pressure in the coming weeks as the coordinated release of diesel stocks by G7 members in Europe has cratered arbitrage economics. The incentive for
+
+-- Christopher Vanmoessner
+IEA supports priority release of diesel stocks `to the extent possible' ...from page 1
+The IEA welcomed recent comments from the G7 on global energy security, and set out a target to complete remaining stock releases "as soon as possible". It did not repeat a G7 target for significant diesel releases to occur within the next 20 days, or for the full 100-million-barrel stock draw to be completed within the next four months.
+
+© 2026 by S&P Global Inc. All rights reserved.
+
+12
+
+©2026 S&P Global Inc. Any unauthorized use of this copyrighted material constitutes infringement of our intellectual property and will subject you to possible legal action.
+
+
+
+Platts Oilgram News
+
+October 7, 2026
+
+Instead, the agency singled out the G7 commitment to "the importance of free flow of energy trade" after members jointly agreed to refrain from energy export restrictions. The commitment saw major importers like Europe stave off threats of a US diesel export ban, which US President Donald Trump had previously floated as a way to help curb domestic fuel costs.
+"We're not going to be doing the export ban," Trump told reporters at the White House later the same day, acknowledging a European commitment to draw down more of its diesel stocks. "It was never really ever on the table, but what Europe did was a great thing," he said.
+Emergency stocks policy The European Commission estimates that EU countries relied
+on the US for half their diesel imports in August, leaving the bloc heavily exposed in the event of potential shut-ins. As prices continue to hover close to all-time highs, officials have warned of a "tough winter" ahead, but have maintained that supplies remain sufficient to serve the region's energy needs.
+The new statement from the IEA appears to confirm analyst expectations that the G7's 100-million-barrel stock release commitment represents supplies already agreed in principle but slow to hit the market. According to analysis from JP Morgan, a US investment bank, Europe remains the largest pool of emergency diesel stocks, with 377 million barrels still in storage.
+Major European contributors to the IEA's collective action include the Netherlands, France and Italy, although 40 million barrels of oil committed by the region in March have yet to reach the market. Assuming those volumes are made up exclusively
+
+using diesel stocks, the associated supply injection would be around 660,000 b/d, the bank estimates.
+"A release of this size should materially ease prompt diesel tightness, narrow the transatlantic arbitrage and reduce Europe's reliance on US exports," said a note from JP Morgan analysts Natasha Kaneva, Lyuba Savinova, and Artem Fakhretdinov.
+However, governments are likely to remain anxious around deploying reserves that could help shield them through any further deterioration in energy supplies, the analysts said, estimating a 40-million-barrel diesel release would leave Europe with around 57 days of demand cover.
+The IEA's governing board is set to meet again next week after continued assessment of the market situation, the statement said, without providing further detail.
+-- Kelly Norways
+Subscriber Notes
+Correction In the story "IRAQ DATA: Sep crude exports rise 25% on
+month as Hormuz flows rebound" published Oct. 6, a reference to crude exports via the Syrian port of Banias, which have not commenced, was removed, and a clarification about the classification of 85,000 barrels/day of internal sales included in the Iraqi state oil marketer SOMO's September export data was added, explaining the state marketer classified the volume as exports on a revenue basis, rather than as crude physically leaving the country.
+
+© 2026 by S&P Global Inc. All rights reserved.
+
+13
+
+©2026 S&P Global Inc. Any unauthorized use of this copyrighted material constitutes infringement of our intellectual property and will subject you to possible legal action.
+
+
+
+Platts Oilgram News
+
+October 7, 2026
+
+Platts pricescore
+Week ending
+Crude oil Dated Brent Dubai (First month) WTI (Cushing) (First month) ANS (California) Mars (MOC)
+Products
+
+($/b) ($/b) ($/b) ($/b) ($/b)
+
+02-Oct
+123.52 107.84
+91.28 105.61
+89.52
+
+25-Sep
+120.65 113.06
+97.27 105.09
+92.92
+
+NWE (CIF cargoes)
+Naphtha (physical) Diesel 10PPM NWE Diesel 10ppm UK Fuel Oil 3.5% Jet Kerosene
+
+($/mt) ($/mt) ($/mt) ($/mt) ($/mt)
+
+Singapore (FOB cargoes)
+Kerosene (physical) Kerosene (paper) Gasoil 0.5% HSFO 180cst
+
+($/b) ($/b) ($/b) ($/mt)
+
+C&F Japan Naphtha (physical)
+
+($/mt)
+
+US Atlantic Coast (Barge)
+RBOB 87 No. 6 1.0% (Cargo)
+
+(¢/gal) ($/b)
+
+US Gulf (Pipeline)
+Unleaded 87 No. 2
+
+(¢/gal) (¢/gal)
+
+US Gulf (Waterborne) USGC HSFO
+
+($/b)
+
+Average settlement prices
+
+842.35 1446.60 1448.35
+562.50 1543.55
+173.08 168.51 174.30 695.68
+897.25
+341.91 96.33
+356.26 393.68
+78.29
+
+848.25 1507.50 1509.35
+564.75 1556.85
+168.71 169.15 176.75 673.77
+907.95
+354.66 96.47
+373.32 399.82
+78.41
+
+NY Mercantile Exchange
+
+Light Sweet Crude No. 2 oil RBOB Natural Gas
+
+($/b) (¢/gal) (¢/gal) ($/MMBtu)
+
+91.62 477.44 333.42
+30.20
+
+94.10 482.32 351.13
+30.21
+
+IntercontinentalExchange
+
+Gasoil Brent
+
+($/mt) ($/b)
+
+1428.88 102.98
+
+1459.70 102.50
+
+The averages in this table are the mean of Platts low and high daily quotations, or exchange settlements, calculated on a 5-day week basis, Monday through Friday. Saturdays and Sundays are excluded.
+
+US degree days indicator through October 4
+
+The degree days indicator for US heating oil demand so far this heating season (through October 4) was 85.03% greater than the corresponding period of the last season and 54.15% less then normal.
+
+The indicator is comprised of the average degree days for 18 geographically representative US cities, weighted to reflect the cities' relative consumption of home heating oil.
+
+The degree days data were compiled by Platts from reports by CustomWeather.
+
+September 1 - October 4
+
+Sep-26 Oct-26
+
+Sep-25 Oct-25
+
+Normal
+
+Week Ended 04-Oct
+
+East Coast
+
+Boston
+
+54
+
+33
+
+68
+
+18
+
+New York City
+
+21
+
+7
+
+31
+
+9
+
+Philadelphia
+
+10
+
+3
+
+23
+
+4
+
+Washington DC
+
+16
+
+14
+
+41
+
+4
+
+Average
+
+25
+
+14
+
+41
+
+9
+
+Great Lakes
+
+Buffalo
+
+59
+
+29
+
+110
+
+20
+
+Chicago
+
+24
+
+19
+
+80
+
+12
+
+Cleveland
+
+37
+
+28
+
+81
+
+17
+
+Detroit
+
+38
+
+16
+
+78
+
+10
+
+Average
+
+39
+
+23
+
+87
+
+15
+
+Midwest
+
+Denver
+
+15
+
+38
+
+97
+
+8
+
+Minneapolis
+
+49
+
+31
+
+124
+
+17
+
+Omaha
+
+18
+
+16
+
+67
+
+9
+
+St. Louis
+
+3
+
+3
+
+23
+
+2
+
+Average
+
+21
+
+22
+
+78
+
+9
+
+Southeast
+
+Birmingham
+
+0
+
+0
+
+4
+
+0
+
+Charleston, SC
+
+0
+
+0
+
+0
+
+0
+
+Nashville
+
+0
+
+1
+
+11
+
+0
+
+Raleigh
+
+8
+
+4
+
+11
+
+2
+
+Average
+
+2
+
+1
+
+6
+
+0
+
+West Coast
+
+Portland, OR
+
+36
+
+22
+
+74
+
+5
+
+San Francisco
+
+16
+
+2
+
+47
+
+4
+
+Average
+
+26
+
+12
+
+61
+
+5
+
+Simple Average for all groups
+
+23
+
+15
+
+55
+
+8
+
+Heating oil demand indicator*
+
+22
+
+12
+
+49
+
+9
+
+* This is the average of each group's simple average weighted to reflect each group's percentage of past home heating oil demand, totaled for the 18 cities.
+
+© 2026 by S&P Global Inc. All rights reserved.
+
+14
+
+©2026 S&P Global Inc. Any unauthorized use of this copyrighted material constitutes infringement of our intellectual property and will subject you to possible legal action.
+
+
+
+Platts Oilgram News
+
+October 7, 2026
+
+September milder in Europe, but colder in Canada and Japan
+
+September was milder in Europe, but colder in Canada and Japan than a year ago, according to data obtained from CustomWeather and gathered by Platts.
+
+A total of 19 cities geographically representative of Europe had 26.1% fewer heating degree days in September than in September 2025. The total for the SeptemberSeptember period was 26.1% fewer degree days than the similar period last year and 35.1% fewer than normal.
+
+Eight cities geographically representative of Canada had 48% more degree days in September than in September 2025. The total for the September-September period was 48% more than the similar period last year and 4.7% fewer than normal.
+
+Four cities geographically representative of Japan had 45.9% more degree days in September than in September 2025. The total for the September-September period was 45.9% more than the similar period last year and 27.5% fewer than normal.
+
+Sep-Sep Sep-Sep Sep-Sep September September
+
+2026-2026 2025-2025
+
+Normal
+
+2026
+
+2025
+
+Canada
+Based on 65 deg. F Edmonton Halifax Montreal Regina St. John's Toronto Vancouver Winnipeg TOTAL
+
+370 225 118 205 280
+64 188 198 1,647
+
+227 129
+78 152 245
+41 82 157 1,113
+
+404 163 121 295 248
+85 161 250 1,727
+
+370 225 118 205 280
+64 188 198 1,647
+
+227 129
+78 152 245
+41 82 157 1,113
+
+Europe
+Based on 65 deg. F Amsterdam Brussels Copenhagen Dublin Essen Frankfurt Geneva Hamburg Helsinki Klagenfurt London Marseilles Milan Munich Oslo Paris Rome Stockholm Vienna TOTAL
+
+87 75 165 159 79 66 32 131 257 123 52
+0 1 176 354 20 0 265 84 2,128
+
+146 150 143 303 150 146 138 153 247
+79 172
+31 51 217 318 123
+0 208 106 2,881
+
+165 163 197 251 164 146 130 202 354 169 144
+8 48 238 370 112
+3 284 133 3,280
+
+87 75 165 159 79 66 32 131 257 123 52
+0 1 176 354 20 0 265 84 2,128
+
+146 150 143 303 150 146 138 153 247
+79 172
+31 51 217 318 123
+0 208 106 2,881
+
+Japan
+
+Based on 65 deg. F
+
+Nagasaki
+
+0
+
+0
+
+0
+
+0
+
+0
+
+Osaka
+
+0
+
+0
+
+0
+
+0
+
+0
+
+Sapporo
+
+64
+
+44
+
+88
+
+64
+
+44
+
+Tokyo
+
+0
+
+0
+
+0
+
+0
+
+0
+
+TOTAL
+
+64
+
+44
+
+88
+
+64
+
+44
+
+US degree days for September
+
+The degree days indicator for US heating oil demand for September was 121.54% greater than for September 2025 and 44.11% less then normal.
+
+The indicator is comprised of the average degree days for 18 geographically representative US cities, weighted to reflect the cities relative consumption of home heating oil.
+
+The degree days data were compiled by Platts from reports by CustomWeather.
+
+September
+
+2026
+
+2025
+
+Normal
+
+East Coast
+
+Boston New York City Philadelphia Washington DC Average
+
+47
+
+20
+
+45
+
+18
+
+1
+
+17
+
+8
+
+0
+
+11
+
+13
+
+5
+
+25
+
+21
+
+6
+
+24
+
+Great Lakes
+
+Buffalo Chicago Cleveland Detroit Average
+
+47
+
+19
+
+79
+
+16
+
+19
+
+56
+
+28
+
+25
+
+57
+
+28
+
+14
+
+54
+
+30
+
+19
+
+61
+
+Midwest
+
+Denver Minneapolis Omaha St. Louis Average
+
+11
+
+37
+
+71
+
+34
+
+31
+
+88
+
+9
+
+16
+
+45
+
+2
+
+3
+
+12
+
+14
+
+22
+
+54
+
+Southeast
+
+Birmingham Charleston, SC Nashville Raleigh Average
+
+0
+
+0
+
+2
+
+0
+
+0
+
+0
+
+0
+
+1
+
+5
+
+6
+
+0
+
+5
+
+1
+
+0
+
+3
+
+West Coast
+
+Portland, OR San Francisco Average
+
+36
+
+10
+
+51
+
+14
+
+2
+
+40
+
+25
+
+6
+
+45
+
+Simple Average for all groups
+
+18
+
+11
+
+38
+
+*Heating oil demand indicator
+
+18
+
+8
+
+32
+
+* This is the average of each group's simple average but weighted to reflect each group's percentage of past home heating oil demand, totaled for the 18 cities.
+
+© 2026 by S&P Global Inc. All rights reserved.
+
+15
+
+©2026 S&P Global Inc. Any unauthorized use of this copyrighted material constitutes infringement of our intellectual property and will subject you to possible legal action.
+
+
+
+2.3
+OPTIMIZE THE REFINERY.
+1.9
+REFINE THE TRADE.
+Simulate unit capacities and crude slates to optimize margins.
+
+See RSM in action >
+
+3.8
+
+5.4
+
+©2026 S&P Global Inc. Any unauthorized use of this copyrighted material constitutes infringement of our intellectual property and will subject you to possible legal action.
+
+
+
+New York2026 Market Briefing
+October 15 - 16 | New York, NY
+Navigating energy markets with insight. Register today.
+1 © 2026 S&P Global.
+©2026 S&P Global Inc. Any unauthorized use of this copyrighted material constitutes infringement of our intellectual property and will subject you to possible legal action.
+
+
+
+
+===== OILGRAM PRICE REPORT dated 2026-10-07 (crude-relevant pages only) =====
+Platts Oilgram Price Report
+Volume 104 / Issue 191 / October 6, 2026
+
+News
+OIL FUTURES: Crude rises amid improved Middle East flows, persistent risks
+Saudi pipeline restores 5.8 million b/d flow Hormuz traffic drops amid security incidents
+US EIA raises Q4 crude price outlook
+Crude prices finished a volatile session Oct. 6, as markets weighed improved Middle East energy flows against persistent security threats.
+NYMEX November WTI settled up 1 cent/barrel at $89.44/b and ICE December Brent climbed 26 cents/b to $100.58/b.
+"The crude oil market is in a battle between increasingly normalized flows via the broad Middle East region alongside additional crude and SPR releases, while on the other side tanker attacks and Houthi escalations remain prevalent," TD Securities analysts Ryan McKay and Bart Melek said in an Oct. 6 note.
+Saudi Arabia's East-West pipeline returned to operations within "five or six days" after it was attacked and is pumping 5.8 million barrels/day of crude as of Oct. 6, according to Saudi energy minister Prince Abdulaziz bin Salman, Saudi news outlet Al Arabiya reported the same day.
+Saudi Arabia's East-West pipeline, with a capacity to transport up to 7 million b/d of crude oil shut following Sept. 10 drone attacks, causing significant disruptions to oil supply from the Red Sea while flows from the Persian Gulf remain troubled.
+Meanwhile, ship traffic through the Strait of Hormuz dipped to 22 crossings Oct. 5, from 26 on Oct. 4, as two incidents occurred around the chokepoint that day, S&P Global Commodities at Sea said in a report Oct. 6.
+(continued on page 17)
+
+Market analysis
+International Crude
+East-West oil pipeline now flowing at 5.8 million b/d after restart: Saudi energy minister
+East-West pipeline restarted days after drone attack
+Pipeline flows at 5.8 million b/d on Oct. 6
+Majority of Yanbu loadings not visible since Houthi threat
+Saudi Arabia's East-West pipeline returned to operations within "five or six days" after it was attacked and is pumping 5.8 million barrels/day of crude as of Oct. 6, according to Saudi energy minister Prince Abdulaziz bin Salman, Saudi news outlet Al Arabiya reported the same day.
+Saudi Arabia's East-West pipeline, with a capacity to transport up to 7 million b/d of crude oil, was shut down following Sept. 10 drone attacks, causing significant disruptions to oil supply from the Red Sea while flows from the Persian Gulf remain troubled.
+"Not everyone knows that within five or six days [of the attack on the East-West pipeline] we started using the line," the Saudi energy minister told the Made in GCC conference in Bahrain Oct. 6, in comments broadcast on Al Arabiya.
+The East-West pipeline is central to Saudi Arabia's contingency plans to bypass shipping disruptions in the Strait of Hormuz amid the US-Iran conflict, allowing the country to continue exporting crude worldwide amid the ongoing conflict in the Middle East.
+"And today, this morning, we are back to 5.8 million b/d," Prince Abdulaziz said, noting Saudi Arabia's localization efforts -- ensuring resources for repairs are available in-country -- as the driver for the pipeline's restart within less than a week.
+The Saudi energy ministry declined to comment. The East-West pipeline moves Saudi export barrels that are largely priced against Middle East sour crude benchmarks. Platts Dubai, the regional oil price reference for medium-sour crude, was assessed by Platts, part of S&P Global Energy, $105.69/b on Oct. 6, down from a recent high of $128/b on Sept. 16. Saudi crude loadings from Yanbu resumed on Sept. 23 after being suspended on Sept. 12 following the attack on the EastWest pipeline, according to ship tracker data from S&P Global Commodities at Sea. In the seven months since the war began, Yanbu loadings have averaged 2.8 million b/d, from June's 4 million b/d wartime high to 1.9 million b/d of visible shipments over September, CAS showed on Oct. 6.
+-- Lulwa Albuainain
+(continued on page 3)
+
+www.spglobal.com/energy
+©2026 S&P Global Inc. Any unauthorized use of this copyrighted material constitutes infringement of our intellectual property and will subject you to possible legal action.
+
+
+
+Platts Oilgram Price Report
+
+October 6, 2026
+
+Inside this issue
+International Crude
+East-West oil pipeline now flowing at 5.8 million b/d after
+restart: Saudi energy minister........................................................... 1
+IRAQ DATA: Sep crude exports rise 25% on month as Hormuz flows rebound........... 3 ICE Dubai crude futures traded volume edges down MOM in September............... 4 Dubai crude futures traded volume on TOCOM edges up MOM in September. . . . . . . . . . 4 CRUDE MOC: Middle East crude differentials hit 5-week low............................ 5 Platts North Sea Crude Daily Market Analysis........................................... 5
+Americas Crude Brazil's PPSA to sell 4 million barrels of crude oil at Oct. 7 spot market auction. . . . . . . . . 5
+Gasoline Platts US Gasoline Daily Market Analysis................................................ 6
+Jet Platts US Jet Fuel Daily Market Analysis................................................. 7
+Diesel US diesel export ban could lift prices with 'buffers' growing thin: Chevron CEO. . . . . . . . . 7 European diesel prices plunge on hopes of resupply from G7 stock release............. 8 Russia mulling partial easing of diesel export ban: report............................... 9
+Marine Fuel
+Gibraltar, Algeciras bunker Hi-5 spreads hit 6-month lows
+on HSFO supply constraints............................................................. 9
+Resid ICE front-month Singapore HSFO open interest falls 1.8% MOM in Sep................ 10
+Feedstocks Platts European Naphtha Daily Market Analysis......................................... 11
+Gas Liquids China's LPG imports fall 15% MOM in September; US remains top supplier: CAS. . . . . . . . 11 Asian, Middle East propane swap trades on CME rises 31% MOM in September. . . . . . . 12
+Tankers Platts East of Suez Dirty Tanker Daily Commentary..................................... 12 Platts West of Suez Clean Tanker Daily Commentary................................... 13 Platts Americas Clean Tanker Daily Commentary....................................... 13 News US EIA sharply raises oil price forecast on Middle East supply disruptions............. 14 Indonesia fuel import tenders draw few bidders amid supply disruption: ministry.. . . . . 15 Hormuz ship crossings dip to 22 as two incidents reported in strait: CAS.............. 16 Refinery updates
+REFINERY NEWS: Diamond Green Diesel begins maintenance
+at Port Arthur renewable fuel plant..................................................... 16 REFINERY NEWS: New co-processing plant to start work at Cressier from 2027. . . . . . . 17
+REFINERY NEWS: Maintenance at the Wesseling part of Germany's Rhineland
+completed.............................................................................. 17 REFINERY NEWS: Chevron reports unplanned flaring at Los Angeles refinery.. . . . . . . . . 18 REFINERY NEWS: Marathon reports unplanned flaring at Los Angeles refinery. . . . . . . . 18
+REFINERY NEWS: ExxonMobil reports Beaumont hydrocracker upset,
+as USGC ULSD prices rise.............................................................. 18 REFINERY NEWS: PBF reports Martinez flaring after process unit trip................. 18 REFINERY NEWS: Delek US' Big Spring refinery down for 10-day maintenance. . . . . . . . . 19
+
+Data inside this issue
+OIL FUTURES: Crude rises amid improved Middle East flows, persistent risks. . . . . . . . 1 October to-date MOC trade & convergence data. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5 Front-month open interest (`000 mt).. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10 Total forward curve open interest (`000 mt). . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10
+Total traded volume for Asian and Middle Eastern
+propane futures contracts on CME. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12
+Open interest for front-month Asian and Middle Eastern
+propane futures contracts on CME. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12 EIA weekly summary, Sep 30 (PGA page 95).. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 23 Asia, Oct 6. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 24 China, Oct 6 (PGA page 2010).. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 24 Fujairah, FOB, Oct 6 (PGA page 2018).. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 24 Arab Gulf, FOB, Oct 6 (PGA page 2004). . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 24 Asia product premium/discount assessments. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 24 European bulk, Oct 6.. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 25 West Africa products ($/mt), Oct 6. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 25 Platts Index, Oct 6 (PGA page 115). . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 25 Renewable fuels, Oct 6 (PGA pages 1414, 483 and 2414). . . . . . . . . . . . . . . . . . . . . . . . . . . . . 26 New York, Oct 6 (PGA page 152). . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 26 European feedstocks and blendstocks.. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 26 New York (PGA page 15) (continued).. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 27 U.S. Buckeye pipeline, Oct 6 (PGA page 310).. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 27 Chicago pipeline, Oct 6 (PGA page 160).. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 28 U.S. Gulf Coast, Oct 6. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 28 Marine Fuel (PGA page 30). . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 28 U.S. Gulf Coast pipeline cycles, Oct 6 (PGA page 156). . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 30 USAC CPL Linden*, Oct 6 (PGA page 410).. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 30 West Coast pipeline, Oct 6 (PGA page 158). . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 31 West Coast waterborne, Oct 6 (PGA page 158). . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 31 Group Three, Oct 6 (PGA page 160). . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 31 Latin America, FOB, Oct 6 (PGA page 164). . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 32 Caribbean product postings (PGA page 466). . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 32 Gas liquids (¢/gal), Oct 6 (PGA page 780). . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 32 Asia Pacific/Middle East spot crude assessments ($/barrel), Oct 6. . . . . . . . . . . . . . . . . 33 Asia Pacific/Middle East spot crude assessments ($/barrel), (continued). . . . . . . . . . . 34 North Sea, Oct 6 (PGA page 1212). . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 34 West Africa, Oct 6 (PGA pages 1230 and 1232).. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 34 International, Oct 6. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 34 West Africa (PGA pages 1230 and 1232) (continued). . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 35 Mediterranean, Oct 6 (PGA pages 1220, 1222, 1234).. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 35 Asia ($/barrel), Oct 6 (PGA page 2210). . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 35 Mediterranean (PGA pages 1220, 1222, 1234) (continued). . . . . . . . . . . . . . . . . . . . . . . . . . . . 36 London, Oct 6 (PGA page 1214). . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 36 Platts Euro denominated crude oil assessments (/barrel) (PGA page 1252). . . . . . . . 36 United States ($/barrel), Oct 6 (PGA pages 210, 214 & 230). . . . . . . . . . . . . . . . . . . . . . . . . . 37 US domestic crude assessments London close.. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 37
+United States ($/barrel), (PGA pages 210, 214 & 230) (continued)..................................................38
+US crude assessments Singapore close. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 38 Daily OPEC basket price ($/barrel) (PGA page 207). . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 38 Delivered-Asia spot crude assessments ($/barrel) (PGA page 2238). . . . . . . . . . . . . . . . 38 Canada, Oct 6 (PGA page 230). . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 38 Canadian spot crude assessments, Oct 6. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 38 Latin America crude ($/barrel), Oct 6 (PGA page 280). . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 39
+
+© 2026 by S&P Global Inc. All rights reserved.
+
+2
+
+©2026 S&P Global Inc. Any unauthorized use of this copyrighted material constitutes infringement of our intellectual property and will subject you to possible legal action.
+
+
+
+Platts Oilgram Price Report
+
+October 6, 2026
+
+Angola's Hungo crude trades in Platts MOC at $19.60/b discount to Dated Brent
+Eni sells Hungo cargo to ExxonMobil in Platts MOC
+Assessment at all-time low since launch in Jan 2006
+Traders blame record freight costs for plunging differentials
+A cargo of Hungo crude from Angola traded in the Platts Market on Close assessment process on Oct. 6 at a $19.60/barrel discount to benchmark Dated Brent, representing an all-time low for the grade's cash differential.
+In the day's process, Eni offered a Nov. 19-20 loading, 950,000-barrel cargo of the grade from a $12.95/b discount down to a $19.60/b discount which was then bought by ExxonMobil. The last time Hungo traded in the Platts MOC was almost one year earlier on Oct. 15, 2025, when Eni again sold to PetroIneos at a $2.95/b discount for a November 2025 cargo.
+The Oct. 6 trade occurred in the third pricing session that Eni offered the Nov. 19-20 loading clip, following the Oct. 1 and Oct. 2 sessions. In the first session, Eni opened their offer at a $1/b discount to Dated Brent, representing an $18.60/b softening across the three days.
+Platts assessed Hungo at a $19.60/b discount to Dated Brent on Oct. 6, the lowest ever assessment for the grade since its launch by Platts in January 2006.
+The monumental fall in cash differentials for grades like Angola's Hungo has been blamed by West African crude traders on unprecedented freight costs which have made shifting crude on long haul voyages very difficult.
+The cargo traded in the day's Platts MOC is the only cargo of Hungo scheduled to load in November, according to a copy of the grade's loading schedule seen by Platts.
+Platts is part of S&P Global Energy. -- George Delaney
+IRAQ DATA: Sep crude exports rise 25% on month as Hormuz flows rebound
+Exports reach nearly 3 million b/d
+Gulf terminal shipments up 321,000 b/d on month
+Launched exports via Syrian port of Banias
+Iraqi crude exports rose 25% month over month in September, as more Iraqi oil passed through the Strait of Hormuz, according to data from state oil marketer SOMO, obtained exclusively by Platts Oct. 5.
+The data showed that exports hit 2.960 million barrels/day in September, up 583,000 b/d from August levels.
+Despite the substantial increase, September flows were around 83% of the 3.568 million b/d Iraq exported in February, before shipping restrictions and attacks linked to the US-Iran war disrupted production and exports in the Middle East.
+September exports included 2.571 million b/d from the
+
+southern Gulf terminals, up 321,000 b/d month over month. This was up from 2.250 million b/d in August, but is well below the February rate of 3.335 million b/d.
+The rise in exports from the Gulf terminals was due to the increased number of tankers carrying Iraqi oil arriving and loading after crossing the Strait of Hormuz. On Oct. 4, Iraqi Oil Minister Basim Mohammed Khudair al-Abadi said "Iraq had endured difficult circumstances in the recent past, but the crisis is beginning to subside," according to an oil ministry statement.
+Gulf terminal exports accounted for 70% of the oil passing through the Strait of Hormuz during the month, SOMO chief Ali Shatri said Sept. 3.
+September Basrah Gulf terminal exports consisted of 1.968 million b/d of Basrah Medium crude and 603,000 b/d of Basrah Heavy crude. This compares to 1.799 million b/d and 451,000 b/d in August, respectively, the SOMO data showed. Exports remain below February levels of 2.120 million b/d of Basrah Medium crude and 1.215 million b/d of Basrah Heavy crude.
+Basrah Medium has a nominal API gravity of 29 degrees, while Basrah Heavy carries a gravity of 23-24 API.
+Iraq also increased exports via Ceyhan and the Syrian port of Banias and resumed supplies to Qayara, the data showed.
+Ceyhan exports, which consisted of oil from Kirkuk and the Kurdistan region, doubled month over month to 254,000 b/d.
+These volumes, pumped via the Kurdistan pipeline, increased from 180,000 b/d in July and 198,000 b/d in February.
+This indicates that IOCs in Kurdistan resumed exports of around 120,000 b/d during the month. This resumption was due to attacks on the Kurdistan region ceasing in early August.
+In August, all exports from Ceyhan were Kirkuk federal oil pumped through the Kurdistan pipeline, and no oil was supplied by the IOCs working in Kurdistan.
+Exports are below the 250,000 b/d that the Kurdistan Regional Government agreed to pump through their pipeline in mid-March. Under that agreement, some 170,000-200,000 b/d of crude from Basrah was to be pumped North, as volumes produced from Kirkuk are not sufficient to meet export and local refinery demand. In August, the fall was attributed by Shatri to shortages of road trucks to transport the oil from Basrah to the northern system.
+Exports of heavy Qayara oil resumed in September at a rate of 56,000 b/d. They had been suspended since February, when the export rate was 35,000 b/d. Trucking to Jordan has remained suspended since January.
+In its efforts to diversify export routes and increase export volumes, the oil ministry started supplying oil by trucks from Basrah through Syria for export from the port of Banias on the Mediterranean. These supplies averaged 85,000 b/d in September.
+Iraqi government oil revenues were hit by a $25-$35/b discount on the OSP to compensate for risks to tankers passing through the Strait of Hormuz .
+-- Faleh Al-Khayat
+
+© 2026 by S&P Global Inc. All rights reserved.
+
+3
+
+©2026 S&P Global Inc. Any unauthorized use of this copyrighted material constitutes infringement of our intellectual property and will subject you to possible legal action.
+
+
+
+Platts Oilgram Price Report
+
+October 6, 2026
+
+ICE Dubai crude futures traded volume edges down MOM in September
+Traded volume at 2.427 mil lots in September
+Middle East crude supply volatile in September
+The volume of ICE Dubai crude futures traded on the Intercontinental Exchange edged 0.1% lower month over month to 2.427 million lots in September, exchange data showed Oct. 6.
+ICE Dubai crude futures comprise Dubai first-line futures, Dated Brent versus Dubai first-line futures and Brent first-line versus Dubai first-line futures. One lot is equivalent to 1,000 barrels.
+The lower traded volume came as Dated Brent versus Dubai first-line futures volume fell 7.72% month over month to 14,424 lots, and Brent first-line versus Dubai first-line futures volume dropped 2.17% to 817,557 lots, even as Dubai first-line futures volume rose 1.08% to 1.595 million lots, exchange data showed.
+Traders attributed the decline to reduced Murban-Dubai positioning following the suspension of the IFAD Murban crude futures contract.
+Middle East crude supply was volatile in September, with the shutdown of Saudi Arabia's East-West pipeline and reduced Iranian crude exports sending regional cash differentials to multimonth highs. Prices, however, cooled toward the end of the month as producers and traders ramped up spot offers.
+Meanwhile, combined open interest in Dubai crude futures totaled 901,156 lots on Sept. 30, down from 1.054 million lots at the end of August, according to exchange data.
+The lower combined open interest across Dubai crude futures
+
+came as Dubai first-line futures open interest dropped 14.31% month over month to 502,873 lots, Dated Brent versus Dubai first-line futures open interest fell 17.50% to 25,347 lots and Brent first-line versus Dubai first-line futures open interest dropped 14.54% to 372,936 lots, exchange data showed.
+Open interest in the front-month September Dubai crude futures contract on ICE totaled 224,809 lots at the end of September, down 4% month over month, according to exchange data.
+Spot trading activity in October is expected to be thin due to China's Golden Week holiday over Oct. 1-7, although market participants will be closely monitoring vessel transits through the Strait of Hormuz amid an uptick in voyages through the channel in September.
+November cash Dubai assessments averaged $113.711/barrel in September, up from an average of $88.75/b for front-month October cash Dubai in August, while the Dubai cash-futures spread -- a measure of the market structure -- averaged $21.60/b in September, up from $9.59/b in August, data from Platts, part of S&P Global Energy, showed.
+-- Yong ren Toh, Yue Wang
+Dubai crude futures traded volume on TOCOM edges up MOM in September
+Traded volume down 33% YOY in September
+Middle East crude supply volatile in September
+The volume of Dubai crude oil futures contracts traded on the Tokyo Commodity Exchange edged 0.79% higher month over
+
+Platts Oilgram Price Report
+ISSN: 0163-1292
+Contact Client Services: support.energy@spglobal.com; Americas: +1-800-752-8878; Europe & Middle East: +44-20-7176-6111; Asia Pacific: +65-6530-6430
+Managing Editor Benjamin Morse, benjamin.morse@spglobal.com Senior Editor Derek Sands Associate Director, Americas Crude and Fuel Oil Patrick Harrington Global Director, Crude and Fuel Oil Markets John Morley Head of Market Reporting - Oil, Shipping, Chemicals Richard Swann Head of S&P Global Energy Platts Vera Blei President of S&P Global Energy Dave Ernsberger
+Manager, Advertising Sales: Joseph Mennella Advertising: joseph.mennella@spglobal.com, Tel: +1-212-884-9534
+
+Platts Oilgram Price Report is published every business day in New York and Houston by S&P Global Energy, a division of S&P Global, registered office: 55 Water Street, 37th Floor, New York, N.Y. 10038.
+© 2026 by S&P Global Inc. All rights reserved.
+S&P Global, the S&P Global logo, S&P Global Energy, and Platts are trademarks of S&P Global Inc. Permission for any commercial use of these trademarks must be obtained in writing from S&P Global Inc.
+You may view or otherwise use the information, prices, indices, assessments and other related information, graphs, tables and images ("Data") in this publication only for your personal use or, if you or your company has a license for the Data from S&P Global Energy and you are an authorized user, for your company's internal business use only. You may not publish, reproduce, extract, distribute, retransmit, resell, create any derivative work from and/or otherwise provide access to the Data or any portion thereof to any person (either within or outside your company, including as part of or via any internal electronic system or intranet), firm or entity, including any subsidiary, parent, or other entity that is affiliated with your company, without S&P Global Energy's prior written consent or as otherwise authorized under license from S&P Global Energy. Any use or distribution of the Data beyond the express uses authorized in this paragraph above is subject to the payment of additional fees to S&P Global Energy.
+S&P Global Energy, its affiliates and all of their third-party licensors disclaim any and all warranties, express or implied, including, but not limited to, any warranties of merchantability or fitness for a particular purpose or use as to the Data, or the results obtained by its use or as to the performance thereof. Data in this publication includes independent and verifiable data collected from actual market participants. Any user of the
+
+Data should not rely on any information and/or assessment contained therein in making any investment, trading, risk management or other decision. S&P Global Energy, its affiliates and their third-party licensors do not guarantee the adequacy, accuracy, timeliness and/or completeness of the Data or any component thereof or any communications (whether written, oral, electronic or in other format), and shall not be subject to any damages or liability, including but not limited to any indirect, special, incidental, punitive or consequential damages (including but not limited to, loss of profits, trading losses and loss of goodwill).
+ICE index data and NYMEX futures data used herein are provided under S&P Global Energy's commercial licensing agreements with ICE and with NYMEX. You acknowledge that the ICE index data and NYMEX futures data herein are confidential and are proprietary trade secrets and data of ICE and NYMEX or its licensors/suppliers, and you shall use best efforts to prevent the unauthorized publication, disclosure or copying of the ICE index data and/or NYMEX futures data.
+Permission is granted for those registered with the Copyright Clearance Center (CCC) to copy material herein for internal reference or personal use only, provided that appropriate payment is made to the CCC, 222 Rosewood Drive, Danvers, MA 01923, phone +1-978-750-8400. Reproduction in any other form, or for any other purpose, is forbidden without the express prior permission of S&P Global Inc. For article reprints contact: The YGS Group, phone +1-717-505-9701 x105 (800-501-9571 from the U.S.).
+For all other queries or requests pursuant to this notice, please contact S&P Global Inc. via email at support.energy@spglobal.com.
+
+© 2026 by S&P Global Inc. All rights reserved.
+
+4
+
+©2026 S&P Global Inc. Any unauthorized use of this copyrighted material constitutes infringement of our intellectual property and will subject you to possible legal action.
+
+
+
+Platts Oilgram Price Report
+
+October 6, 2026
+
+month but fell 32.83% year over year to 51,870 lots in September, the latest TOCOM data showed Oct. 6.
+Middle East crude supply was volatile in September, with the shutdown of Saudi Arabia's East-West pipeline and reduced Iranian crude exports sending regional cash differentials to multimonth highs. Prices, however, cooled toward the end of the month as producers and traders ramped up spot offers.
+Spot trading activity in October is expected to be thin due to China's Golden Week holiday over Oct. 1-7, although market participants will be closely monitoring vessel transits through the Strait of Hormuz amid an uptick in voyages through the channel in September.
+November cash Dubai assessments averaged $113.711/barrel in September, up from an average of $88.75/b for front-month October cash Dubai in August, while the Dubai cash-futures spread -- a measure of the market structure -- averaged $21.60/b in September, up from $9.59/b in August, data from Platts, part of S&P Global Energy, showed.
+-- Yong ren Toh, Yue Wang, Wei xiang Ang
+CRUDE MOC: Middle East crude differentials hit 5-week low
+Platts Dubai premium down $2.88/b
+Platts Oman premium down $3.28/b
+Four Dubai partials trade during MOC
+
+Cash differentials for Middle East sour crude markers slid for a second day during the Singapore Platts Market on Close assessment process Oct. 6, hitting lows not seen since late August.
+Platts, part of S&P Global Energy, assessed December cash Dubai and cash Oman both at a premium of $10.58/b to samemonth Dubai futures at the market close, down $2.88/b and $3.28/b respectively on the day.
+December cash Murban was down $2.68/b over the same period at a premium of $10.78/b to same-month Dubai futures.
+During the MOC, four December Dubai partials of 25,000 barrels each traded, with Mercuria selling all four partials to Trafigura.
+
+October to-date MOC trade & convergence data
+
+Total partials trades
+
+8
+
+Source: S&P Global Energy
+
+-- Yong ren Toh
+Platts North Sea Crude Daily Market Analysis
+WTI Midland climbs further as transatlantic freight hits record highs
+Volatile freight economics add to uncertainty around mediumterm supply prospects
+
+North Sea crude values strengthened further Oct. 6 as transatlantic freight rates reached all-time highs, with volatile
+
+freight economics casting further uncertainty on bearish predictions ahead.
+Landed values for WTI Midland continued to climb, as unprecedented tightening in tonnage sent Aframax freight rates on the US Gulf Coast-UK Continent route to their highest on record since Platts launched the assessment in 2018.
+The Platts Market on Close assessment process saw bids shown for all six Dated Brent basket grades on both a FOB and CIF basis -- notably, bids for WTI Midland CIF Rotterdam for end-October to early-November arrival were left outstanding without finding a seller at premiums as high as $22.65/b over Dated Brent.
+"There isn't a lot of WTI Midland around in the first half of November, let alone the third decade of October," said a Europebased North Sea crude trader, adding, however, that in line with the trading cycle for freshly resupplied barrels, there was still availability for arrival in the second half of November.
+In line with the volatility surrounding freight economics, traders described values for late-November arrivals of WTI Midland as fluctuating heavily during European afternoon trading, depending on when deals were finalized.
+A similar uncertainty was seen across the sour segment, with liquidity across Norway's Johan Sverdrup grinding to a halt as market participants struggled to value barrels landing in the November cycle.
+"JS is not trading, nobody knows how to value anything with freight into the region so high, but FOB differentials are also in freefall," said a second trader.
+As such, medium-term prospects in the region remained up in the air. "The curves still imply that differentials come off sharply after this week," said a third trader, referring to the steeply backwardated structure between the Brent CFDs settling across prompt weeks.
+However, "we're not sure how sharp [the correction] will be with current market conditions, the uncertainty is just too big," the trader added.
+Platts is part of S&P Global Energy. -- Natasha Tan
+Americas Crude
+Brazil's PPSA to sell 4 million barrels of crude oil at Oct. 7 spot market auction
+Output from Buzios field
+Continues ninth spot sale
+Weak interest in previous auctions
+Brazilian government subsalt management company PPSA plans to sell 4 million barrels of crude from the Buzios production sharing field at a spot-market auction Oct. 7, according to the regulator.
+The spot-market auction will be a continuation of PPSA's ninth sale held Sept. 30, with the cargoes up for bid failing to sell during the previous sale, PPSA said in the auction notice published Oct.
+
+© 2026 by S&P Global Inc. All rights reserved.
+
+5
+
+©2026 S&P Global Inc. Any unauthorized use of this copyrighted material constitutes infringement of our intellectual property and will subject you to possible legal action.
+
+
+
+Platts Oilgram Price Report
+
+October 6, 2026
+
+on imported propane to produce propylene, according to the Platts report.
+JLC data showed average PDH utilization edged down 0.12 percentage point to 75.6% as of Sept. 17, although it remained above the August average of 67.1%.
+Margins also deteriorated sharply. Average propane-topropylene margins fell 104% week over week to a loss of 9 yuan/ mt, according to JLC data.
+Platts, part of S&P Global Energy, assessed CFR North Asia propane cargoes at an average of $872.89/mt in September, up from $741.90/mt in August. CFR North Asia butane cargoes averaged $906.84/mt in September, up from $766.90/mt in August.
+Platts assessed FOB Arab Gulf propane cargoes at an average of $658.55/mt in September, up from $586.15/mt in August. FOB Arab Gulf butane cargoes averaged $698.68/mt in September, up from $608.20/mt in August.
+-- Jeff Ong
+Asian, Middle East propane swap trades on CME rises 31% MOM in September
+Propane FEI futures traded volume up 85.53% MOM
+Propane FEI futures open interest slips MOM in Sept
+The total volume of Asian and Middle Eastern traded propane swaps settled on the Chicago Mercantile Exchange rose 31.11% month over month to 3.199 million metric tons in September, according to the latest data on CME's website seen by Platts, part of S&P Global Energy on Oct. 5.
+The volume for propane Saudi CP futures traded on the CME increased 83.53% month over month to 468,000 mt, while trading volumes for propane FEI futures traded on the CME rose 24.99% over the same period to 2.731 million mt, the data showed. Year over year, Saudi CP futures saw a 73.30% decline in traded volumes, while propane FEI futures similarly fell 67.30% over the same period.
+Propane prices rose over the same period, with Platts assessing the front-month CFR North Asia propane swap at an average of $831.55/mt in September, up 17.83% from the August average of $705.73/mt.
+Platts assessed the front-month FOB Saudi CP swaps at an average of $650.91/mt in September, up 9.62% from $593.80/mt in August.
+Given the ongoing war against Iran in the Middle East and the subsequent closure of the Strait of Hormuz as well as disruption to cargo flows along the Bab Al-Mandeb, propane supplies out of the second-largest producing region after the US have declined significantly.
+Traditional customers of Middle Eastern LPG have had little choice but to shift to importing from alternative sources, such as the US.
+According to a report by S&P Global Commodities at Sea analysts, the growing export trend for US propane is expected to
+
+continue into October. "October exports are projected to be higher in September,
+thanks to the favorable arbitrage economics in September," the report showed.
+Meanwhile, the total open interest for front-month October Asia and Middle East propane contracts on the CME stood at 712,000 mt in September, CME data showed.
+Open interest for front-month October FEI propane futures slipped 0.18% month over month to 559,000 in September, while open interest for front-month October Saudi CP propane futures fell 6.13% to 153,000 mt over the same period.
+
+Total traded volume for Asian and Middle Eastern propane futures contracts on CME
+
+LPG (Unit: '000 mt)
+
+September
+
+August MOM Change
+
+YOY Change
+
+Propane FEI Futures
+
+2,731
+
+2,185
+
+24.99%
+
+-67.30%
+
+Propane Saudi CP 468 Futures
+
+255
+
+83.53%
+
+-73.30%
+
+Total
+
+3,199
+
+2,440
+
+31.11%
+
+-74.07%
+
+Source: Chicago Mercantile Exchange
+
+Open interest for front-month Asian and Middle Eastern propane futures contracts on CME
+
+LPG (Unit: '000 mt)
+
+October OI
+
+September OI
+
+MOM Change
+
+Propane FEI Futures
+
+559
+
+560
+
+-0.18%
+
+Propane Saudi CP Futures
+
+153
+
+163
+
+-6.13%
+
+Total
+
+712
+
+723
+
+-1.52%
+
+Note: Open interest for a month is measured at the end of the previous month. Source: Chicago Mercantile Exchange
+
+-- Norazlina Jumaat, Rachelle Teo, Wei xiang Ang, Jeff Ong
+
+Tankers
+Platts East of Suez Dirty Tanker Daily Commentary
+VLCC firm on tight supply, strong demand
+Suezmax gains as charterers seek alternatives
+Aframax higher on bullish sentiment, Western strength
+The East of Suez VLCC market remained firm Oct. 6, with sentiment showing little sign of easing.
+Market participants said the next fixture could be concluded at a higher level, a scenario many viewed as entirely plausible.
+The firmer West market, including Brazil, where recent fixtures were concluded above the previous level, was seen by sources as providing firm support for the broader VLCC market.
+Fixture-wise, ST was heard to have placed Koch's VLCC Silverstone on subjects for an Oct. 19 Fujairah-Singapore voyage at w875, with a Far East discharge option at w825.
+Fresh cargoes included an IOC inquiry seeking a VLCC for an Oct. 21 loading from Basrah to Sohar STS, with discharge options via Vadinar STS or Paradip.
+S-Oil was also heard to be seeking a VLCC for an Oct. 22 loading from a Gulf of Oman STS to the West Coast India STS range to Onsan.
+
+© 2026 by S&P Global Inc. All rights reserved.
+
+12
+
+©2026 S&P Global Inc. Any unauthorized use of this copyrighted material constitutes infringement of our intellectual property and will subject you to possible legal action.
+
+
+
+Platts Oilgram Price Report
+
+October 6, 2026
+
+Suezmax was also higher on Oct. 6 without much testing. Market participants also noted growing interest in alternative vessel sizes, with some VLCC charterers heard exploring Suezmax options as elevated VLCC freight rates continued to challenge economics. Among cargoes heard, Chevron was heard to be looking for a Suezmax for Oct. 9 loading from Fujairah to East. The Aframax market moved higher across the board, supported by strengthening fundamentals. Brokers pointed to tightening vessel availability in the East, while firmer freight levels in Western markets continued to provide additional support. "Rates for Southeast Asian loadings will need to be on par with the Western market," an Aframax owner said. There are still many cargo inquiries out of Southeast Asia that remain uncovered, with charterers heard trying to use their own vessels. In addition, Australian loading demand has picked up, with Inpex, Shell and Totsa looking for vessels to move 80,000 mt of condensate cargoes from Ichthys and Dampier to the East for end-October to early-November loading. Shell was heard seeking an Aframax for an Oct. 24 loading from Seria-Port Dickson. "With eastbound voyages from Vancouver and Argentina being concluded at significantly higher levels, people are not inclined to do Southeast Asian loadings," an Aframax broker said. Eastern position lists remain tight, despite the presence of some vessels that would typically trade in the West but are currently operating in the region, another Aframax broker reckoned. In the Medium Range sector, market sentiment remained firm. Among reported fixtures, E3 Energy was heard to have taken a MR on subjects for an Oct. 16 loading from Vizag to Singapore, with the rate not reported. Platts is part of S&P Global Energy.
+-- Vickey Du, Ellie Lin
+Platts West of Suez Clean Tanker Daily Commentary
+Med-Med rates jump w7.5 to w352.5 on Oct. 6
+UKC-USAC assessment drops w5 to w205 level
+The West of Suez clean tanker market experienced a quiet day Oct. 6, with limited activity reported.
+For the Med-Med Handysize route, market sentiment was mixed. One Europe-based source said nothing was happening, while a London-based broker said, "The market is crazy."
+Following the indications gathered, Platts assessed cross-Mediterranean, basis 30,000 mt, at w352.5, up by w7.5 from Oct. 5.
+Black Sea-to-Med shipments, basis 30,000 mt, were assessed at w382.5, up by w7.5 from Oct. 5.
+The Med-USAC route, basis 37,000 mt, was assessed at w215 and the Med-WAF route, basis 37,000 mt, was assessed at w270, both unchanged day over day.
+
+"There is a steady feeling in the Continent, maybe a bit of a calm before the storm," a source said.
+Platts assessed UKC-USAC, basis 37,000 mt, at w205, down by w5 from Oct. 5.
+Cross-UKC and Baltic-to-UKC shipments, basis 30,000 mt, were assessed at w345 and w355, respectively, down by $10 on Oct. 6.
+Platts assessed the WAF-WAF, basis 37,000 mt, at a $500,000 lumpsum, unchanged from Oct. 2.
+No fixtures were reported for the LR1 and LR2s in the West of Suez market.
+Platts assessed Med-to-Japan shipments via the Suez Canal, basis 60,000 mt, at $6.2 million. The 80,000 mt route, via the Suez Canal, was assessed at $9.00 million, up by $25 from Oct. 5.
+UKC-West Africa shipments, basis 60,000 mt, were assessed at w275, steady from Oct. 5.
+-- Marina Ledakis
+Platts Americas Clean Tanker Daily Commentary
+Tanker rates drop amid low shipping demand
+Sources expect continued decline through week
+Sentiment remained bearish for the Americas Medium Range clean tanker rates Oct. 6, after market activity remained limited, with no outstanding cargoes reported as seeking to load in the US Gulf Coast during the day.
+This led market sources to maintain expectations that rates would continue to decline from last-done levels, with some indicating that bearish sentiment could persist throughout the week.
+"I don't know how long sentiment will hold. If I had a prompt ship, I would be looking to fix at next done and get the thing moving," a shipbroker said. "Holiday weekend this weekend, so we may see a flurry of activity, with dropping rates to the end of the week."
+The bearish sentiment was reflected in a recent deal in which Trafigura placed the PS Imabari on subjects for an Oct. 9-10 USGC loading run, with a transatlantic option at w365 and East Coast South America at w450.
+However, the bulk of market indications heard after the deal fell below the achieved levels, with most calls at w360 for the transatlantic runs and w435 for the East Coast South America voyages.
+Platts assessed rates for the benchmark 38,000 mt USGC-UK Continent run at w360 and freight for the USGC-Brazil route at w435, down w15 for both routes on the day.
+This decline also drove the decreases seen on the lump sum routes, despite a lack of freight tests on the short- and long-haul routes during the first days of the week.
+Platts assessed rates for the USGC-Caribbean run at $1.25 million and freight for the USGC-Chile route at $3.8 million, down $100,000 for both routes on the day.
+Platts is part of S&P Global Energy. -- Cesar Martinez
+
+© 2026 by S&P Global Inc. All rights reserved.
+
+13
+
+©2026 S&P Global Inc. Any unauthorized use of this copyrighted material constitutes infringement of our intellectual property and will subject you to possible legal action.
+
+
+
+Platts Oilgram Price Report
+
+October 6, 2026
+
+News
+US EIA sharply raises oil price forecast on Middle East supply disruptions
+Agency lifts Q4 Brent forecast $14/b to $105/b
+Tight supply pushes US diesel above $6/gal, pressures crude
+Middle East disruptions cut output 4.5 million b/d
+The US Energy Information Administration has sharply raised its near-term oil price forecast, projecting crude will average $105/barrel in the fourth quarter of 2026 as Middle East supply disruptions drain global inventories and tight diesel markets amplify upward price pressure.
+The EIA's October Short-Term Energy Outlook marked a $14/b upward revision from last month's forecast and followed a surge in Dated Brent to an average of $114/b in September -- a $23/b jump from August's average. The agency forecasts global oil inventories will fall by a further 700,000 barrels/day in Q4 after declining by 1.9 million b/d in Q3, a trajectory that points to sustained tightness in physical crude and products markets through the end of the year.
+The agency said oil and product flows from the Middle East were likely to "generally increase" due to "a combination of convoys through the Strait of Hormuz and workarounds to oil exports ... including bypass routes and increased use of shipto-ship transfers." However, the threat of more regional attacks and other market disruptions was likely to hold prices higher for longer than previously forecast.
+"Although we expect oil production and flows from the Middle East will increase, we raised our global oil price forecast compared with last month," EIA said. "The attacks on the EastWest pipeline in Saudi Arabia highlight the potential for continued volatility in physical oil flows and oil amid ongoing withdrawals of oil inventories globally."
+Meanwhile, "extreme tightness" in diesel markets would continue to raise demand for crude among refiners hoping to meet diesel demand, EIA wrote. The agency forecast Dated Brent to fall to an average of $84/b in 2027.
+Diesel pressure Distillate markets are at the center of the current price
+rally, EIA said. US retail diesel prices averaged $6.29/gallon in September, and the EIA expects prices to remain above $6/ gal through October before gradually easing to an average of around $4.50/gal in 2027. East Coast distillate inventories stood 32% below their five-year seasonal average in September and are forecast to remain between 20% and 30% below average throughout the winter -- a persistent supply deficit that will keep heating oil and diesel markets exposed to further shocks.
+Record diesel prices have become a fixture of US political messaging in recent weeks. On Oct. 5, US President Donald Trump signed an executive order temporarily lifting restrictions that prohibit the use of dyed diesel, which is typically limited to
+
+off-road use and not subject to a federal excise tax, in his bid to help farmers and transporters grappling with fuel costs.
+The administration has faced weeks of pressure from Republican legislators and candidates in the Nov. 2 midterm elections to restrict US diesel exports. Trump expressed support for the idea on Sept. 22, one day before US Energy Secretary Chris Wright denied reports that the administration was preparing a 90-day ban on all diesel exports. Instead, Wright said, the administration was hoping to urge refiners to voluntarily reroute some flows and "trying to avoid a blunt hammer" in its attempts to relieve upward price pressure.
+A total ban could force American refiners to slash crude runs by nearly 2 million b/d and ultimately drive up domestic gasoline prices, an analysis from S&P Global CERA forecast Sept. 22.
+On the supply side, the EIA said that the gradual increase in the use of Middle East shipping workarounds would reduce regional production shut-ins from 4.5 million b/d in Q4 to 2.7 million b/d in Q1 2027.
+US crude oil production is forecast to rise from 13.9 million b/d in 2026 to 14.3 million b/d in 2027, EIA said, providing an additional buffer to global supply as Middle East volumes recover.
+Winter fuels The EIA's 2026-27 Winter Fuels Outlook, published alongside
+the October STEO, presented what the agency called a "mixed" picture for US households, with the burden of higher energy costs falling unevenly across heating fuel types.
+"Relatively high natural gas inventories entering the winter season provide a cushion for heating demand, while households that rely on heating oil face higher prices because distillate markets remain tight," EIA Administrator Tristan Abbey said in a statement.
+Households that primarily heat with natural gas or propane -- about half of all US households, according to the EIA -- are expected to spend less this winter than last, supported by natural gas inventories that are forecast to enter the heating season 2% above the previous five-year average. Strong production growth is expected to limit price increases even as LNG exports rise, with the Henry Hub spot price forecast to average $3.16 per million Btu in 2027, down 9% from 2026.
+
+© 2026 by S&P Global Inc. All rights reserved.
+
+14
+
+©2026 S&P Global Inc. Any unauthorized use of this copyrighted material constitutes infringement of our intellectual property and will subject you to possible legal action.
+
+
+
+Platts Oilgram Price Report
+
+October 6, 2026
+
+The outlook would be considerably more challenging for the roughly 3% of US households that rely on heating oil, concentrated largely in the Northeast, EIA forecast. Those consumers would pay about 21% more for heating oil this winter than last, the agency expected, driven by a projected 30% increase in heating oil prices, only partially offset by a forecast of milder weather in the region.
+Electricity users are also expected to face higher bills. Wholesale electricity prices are forecast to average $52 per megawatt-hour in 2026, 11% higher than in 2025, with PJM wholesale prices rising 41% -- though Northwest Mid-Columbia prices are forecast to fall 23%. Record-breaking summer temperatures drove a 4% increase in electricity consumption in Q3 2026 compared with the same period last year.
+US retail gasoline prices averaged $4.35/gal in September. The EIA forecasts retail gasoline prices will average $3.91/gal in 2026 before easing to $3.56/gal in 2027, following expected declines in crude.
+-- Eamonn Brennan
+Indonesia fuel import tenders draw few bidders amid supply disruption: ministry
+Middle East conflict disrupts supply chains
+Jakarta seeks alternative supplies at higher costs
+Import sources drop 25% since conflict began
+Indonesia's fuel import tenders are attracting few or no participants as the Middle East conflict disrupts regional supply chains, forcing Jakarta to seek alternative suppliers at potentially higher costs, Laode Sulaeman, director general for oil and gas at the Energy and Mineral Resources Ministry, said at a government meeting Oct. 5.
+Sulaeman said that state-owned Pertamina is increasingly sourcing cargoes outside its normal tender process.
+"Previously, Pertamina held tenders, but now there are relatively few participants in the tenders. So we have to look for countries that have surplus stocks," Sulaeman said.
+"We may have to buy at prices that are potentially higher than what we would pay through the usual procurement process," he added.
+Indonesia has lost around 25% of its oil import sources since the conflict in the Middle East began, he said, without specifying which suppliers or volumes were affected.
+Singapore was Indonesia's top gasoline supplier, accounting for more than 57% of the total gasoline and blendstocks discharged into Indonesia in 2025, according to S&P Global Commodities at Sea data. So far this year, Singapore has accounted for 67% of Indonesia's gasoline and blendstock discharges, while the country has added supplies from Latvia, Brunei and Qatar, none of which loaded gasoline cargoes discharged in Indonesia in 2025.
+Platts, part of S&P Global Energy, assessed Gasoline Unl 92 FOB Singapore Cargo at $146.16/barrel on Oct. 5, down $2.15/b from the previous assessment.
+
+The Indonesian government has repeatedly sought to diversify its supply sources since hostilities began earlier this year. Energy Minister Bahlil Lahadalia said in March that Indonesia was exploring additional crude supplies from countries including the United States, Angola, Brazil and Russia after disruptions affected flows through the Strait of Hormuz. Only about 20%25% of the country's crude imports normally transit the strait, according to the minister.
+Jakarta subsequently secured a commitment for 150 million barrels of Russian crude and has discussed longer-term supply arrangements with Moscow as part of broader energy security cooperation. The government is also preparing a long-term contract for Russian crude after receiving its first shipment, Lahadalia said in August.
+CAS data showed that crude and condensate loadings from the Middle East Gulf region that were discharged into Indonesia averaged 81,700 b/d in 2025, accounting for 22% of total discharges. The Middle East Gulf share has averaged 31,000 b/d so far in 2026, accounting for 10% of total discharges, while loadings from South America and the Red Sea have increased to averages of 47,000 b/d and 23,800 b/d, respectively.
+Fuel stocks The government is maintaining national fuel stocks equivalent
+to 18-20 days of supply, Sulaeman said, adding that any queues at fuel stations were not due to a shortage of national stocks.
+One factor disrupting fuel distribution was El Niño, which had dried up some rivers used to transport fuel, requiring distributors to use trucks with less capacity than river vessels, he said.
+The government is also keeping the prices of subsidized diesel and gasoline, including RON 90 Pertalite, unchanged through the end of the year to help contain inflation, he said. The fuels are widely used by farmers and fishermen, making price stability important to the government.
+Unsubsidized prices to remain stable Meanwhile, Pertamina Patra Niaga Planning and Business
+Growth Director Joko Pranoto said prices of unsubsidized fuels and jet fuel would remain at September levels in October. Pertamina had not fully passed higher global market costs through to domestic fuel prices in 2026, he said.
+He added that domestic unsubsidized fuel and jet fuel prices remained relatively competitive with prices in neighboring countries and other markets, including Southeast Asia, Australia, Pakistan and India, despite the price shocks in March and April that followed the escalation of the conflict.
+Pertamax RON 92 gasoline and Pertamax Green 95 RON 95 gasoline were kept unchanged from April before prices were raised in June, he said.
+Indonesia relies heavily on imports to meet domestic fuel demand, with consumption at about 1.6 million b/d compared with domestic output of only 600,000-610,000 b/d, leaving an import requirement of about 1 million b/d, according to government data.
+-- Mia Pei, Anita Nugraha
+
+© 2026 by S&P Global Inc. All rights reserved.
+
+15
+
+©2026 S&P Global Inc. Any unauthorized use of this copyrighted material constitutes infringement of our intellectual property and will subject you to possible legal action.
+
+
+
+Platts Oilgram Price Report
+
+October 6, 2026
+
+The facility was upgraded in 2024 to make sustainable aviation fuel (SAF), which allows the facility to convert about half of its capacity -- about 235 million gal/year -- to SAF.
+During its July 31 second-quarter results call, Diamond Green Diesel said it expected to produce about 335 million gallons of renewable fuel in the third quarter, about 6% below Q2 levels, but the company did not cite turnarounds or other operational issues as a reason for the drop.
+A DGD spokesperson was not immediately available for comment on the length and scope of the work.
+According to Valero's monthly market data, the DGD indicator on Oct. 6 averaged $3.16/gal so far for the month, up $1.97/gal, or 166%, from $1.19/gal in the second quarter of 2026. This indicates a substantial strengthening in renewable diesel economics entering the fourth quarter, supported by tight diesel supply as seasonal diesel demand for agriculture and heating rises.
+-- Janet Mcgurty
+OIL FUTURES: Crude rises amid improved Middle East flows, persistent risksSaudi pipeline restores 5.8 million b/d flow ...from page 1
+"While there are growing signs of a recovery in oil flows from the Persian Gulf, the market remains nervous about potential supply disruptions from the region. This is keeping prices wellsupported for now," ING's Warren Patterson said.
+"This nervousness is likely to persist until there are signs of progress in a deal between the US and Iran. In the meantime, the risk of further escalation remains very real," Patterson added.
+NYMEX November RBOB settled 2.70 cents/gallon higher at 3.2732/gal and November ULSD ended the session up 2.42 cents/ gal at $4.5694/gal.
+The BBC reported Oct. 6 that Saudi-backed Yemeni government forces have "secured" the Bab al-Mandab Strait, as part of a major campaign against the Iran-supported Houthis.
+"Saudi-backed government forces say they have retaken the coastline around Bab al-Mandab as far north as Mocha, including strategic positions around Dhubab. This reduces the immediate risk of Houthi control over the chokepoint itself and, therefore, the risk to the Saudi export route through the Red Sea. The Houthis dispute the government's claims," said Arne Lohmann Rasmussen, chief analyst at Global Risk Management.
+
+after declining by 1.9 million b/d in Q3, a trajectory that points to sustained tightness in physical crude and products markets through the end of the year.
+The agency said oil and product flows from the Middle East were likely to "generally increase" due to "a combination of convoys through the Strait of Hormuz and workarounds to oil exports ... including bypass routes and increased use of shipto-ship transfers." However, the threat of more regional attacks and other market disruptions was likely to hold prices higher for longer than previously forecast.
+-- Christopher Vanmoessner
+REFINERY NEWS: New co-processing plant to start work at Cressier from 2027
+Refinery: Cressier, Switzerland
+Owner: VAROPreem
+Overall capacity: 72,500 b/d
+VAROPreem said Oct. 6 that it has made the decision to invest in a new co-processing project at Switzerland's Cressier refinery, which will enable it to use renewable and conventional feedstocks to produce biofuels.
+The new plant will be operational from 2027 and will process about 40,000 tonnes of renewable feedstock a year, the company also said.
+From 2020, the refinery has increased its distillation capacity and in 2023, the company commissioned a 7.7 megawatt solar farm at the site, as part of VAROPreem's investments.
+Cressier refinery, which was established 60 years ago, supplies about 30% of Switzerland's fuel demand, according to the statement.
+-- Elza Turner
+REFINERY NEWS: Maintenance at the Wesseling part of Germany's Rhineland completed
+Refinery: Rhineland (Rheinland), Shell Energy and Chemicals Park Rhineland, Germany
+Owner: Shell
+Overall capacity: 17 million mt/year (340,000 b/d)
+
+EIA raises Q4 price outlook The US Energy Information Administration has sharply raised
+its near-term oil price forecast, projecting crude will average $105/barrel in the fourth quarter of 2026 as Middle East supply disruptions drain global inventories and tight diesel markets amplify upward price pressure.
+The EIA's October Short-Term Energy Outlook marked a $14/b upward revision from last month's forecast and followed a surge in Dated Brent to an average of $114/b in September -- a $23/b jump from August's average. The agency forecasts global oil inventories will fall by a further 700,000 barrels/day in Q4
+
+The scheduled maintenance at the Wesseling part of Germany's Rhineland refinery has been completed "safely and on schedule", the refinery said Oct. 6.
+It also said that the units have been gradually restarted and "have now returned to normal operations".
+It said previously that the maintenance started in early August and would last until the end of September.
+The Rhineland refinery (Shell Energy and Chemicals Park Rhineland) comprises the Wesseling (south) and Godorf (north) sites.
+-- Elza Turner
+
+© 2026 by S&P Global Inc. All rights reserved.
+
+17
+
+©2026 S&P Global Inc. Any unauthorized use of this copyrighted material constitutes infringement of our intellectual property and will subject you to possible legal action.
+
+
+
+Platts Oilgram Price Report
+
+October 6, 2026
+
+If you have any comments or questions about this announcement, please contact S&P Global Energy Support team or email support.energy@spglobal.com.
+
+Platts Resumes US Midwest seasonal ULSK assessments Platts, part of S&P Global Energy, has resumed its seasonal
+assessments for ultra-low sulfur kerosene in Group 3 and Chicago as of Oct. 1, 2026.
+The publication will be suspended again in the spring. These assessments appear on PGA pages 160, 420, as well as in US Marketscan and Oilgram Price Report under the code PJACB00 for Group 3 and PJACD00 for Chicago. Please send comments to americas_products@spglobal.com and pricegroup@spglobal.com. For written comments, please provide a clear indication if comments are not intended for publication by Platts for public viewing. Platts will consider all comments received and will make comments not marked as confidential available upon request.
+
+Platts backfills Asia and Middle East bitumen, base oils weekly commentaries for Sept. 30
+Platts, part of S&P Global Energy, has backfilled the following Asia and Middle East bitumen and base oils weekly commentaries for Sept. 30:
+
+Commentary Platts Asia and Middle East Weekly Bitumen Commentary Platts Asia and Middle East Weekly Group I Base Oils Commentary Platts Asia and Middle East Weekly Group II Base Oils Commentary Platts Asia and Middle East Weekly Group III Base Oils Commentary
+
+Fixed Page PGA2526, PRF2526 PGA2528, PRF2528 PGA2545, PRF2545 PGA2546, PRF2546
+
+The commentaries will be published in Asia Pacific Arab Gulf Marketscan and Oilgram Price Report on Oct. 1.
+Please send any questions to asia_products@spglobal.com and pricegroup@spglobal.com.
+Platts proposes amending freight calculation for Oman, Murban CFR North Asia crude assessments Nov. 2
+Platts, part of S&P Global Energy, is proposing to amend the freight calculation used in its daily Oman and Murban CFR North Asia crude assessments, effective Nov. 2, 2026.
+Under the proposed change, Platts would use the daily VLCC Gulf of Oman-to-Far East freight assessment in $/mt (DOOEW00), which was launched Aug. 3, in its calculation of the outright price of Oman and Murban delivered into North Asia at 4:30 pm Singapore time (0830 GMT).
+The proposed change would better reflect the shipping economics for the two grades, with Murban primarily loading from Fujairah port and Oman from Mina Al Fahal port outside the Strait of Hormuz.
+Currently, the freight calculation is based on the daily VLCC Persian Gulf-to-Far East freight assessment in $/mt (TDAAB00).
+
+The freight calculation would continue to use the conversion factor for metric tons to barrels, as applied to the grades, in line with their prevailing qualities. The conversion factors are currently 7.32 for Oman and 7.62 for Murban.
+In line with this change, Platts is also proposing to use the daily VLCC Gulf of Oman-to-Far East worldscale freight assessment (DIOEW00) in the freight calculation for Murban in its Indonesian Minas, Cinta and Widuri crude market parity prices.
+Under the current MPP methodology for Minas, Cinta and Widuri, Murban -- as one of five basket grades -- is normalized for delivery to Singapore, accounting for freight. This is currently calculated using the daily VLCC Persian Gulf-to-Singapore worldscale freight assessment (PFAOD00).
+The affected assessments appear in Crude Oil Marketwire, Oilgram Price Report, LNG Daily, Platts OPR World Crude Table, Platts Global Alert/Platts Crude Oil Alert pages 1250, 1805, 2202, 2203, 2211, 2216, 2217, 2244, 2245, 2264, 2265, 2280, 2281, 2811 and 2812, LNG Alert pages 0050 and 0051, Platts Natural Gas Alert pages 1024 and 1069, and under the price database codes below:
+
+Assessments Oman CFR North Asia Murban CFR North Asia Minas Singapore close Minas London close Cinta Singapore close Cinta London close Widuri Singapore close Widuri London close Minas FOB Indonesia $/
+MMBtu
+
+Daily PCAQJ00 PCAQE00 PCABO00 AAPAZ00 PCAAX00 AAPBJ00 PCAFE00 AAPBN00
+LCABO00
+
+Mavg PCAQJ03 PCAQE03 AAFZH00 AAPAZ03 AAFZC00 AAPBJ03 PCAFE03 AAPBN03
+LCABO03
+
+Please send all feedback, comments or questions to Asia_Crude@spglobal.com and pricegroup@spglobal.com by Oct. 9, 2026.
+For written comments, please provide a clear indication if they are not intended for publication by Platts for public viewing. Platts will consider all comments received and will make those not marked as confidential available upon request.
+
+Platts to launch daily FOB Middle East bitumen assessments from Nov. 2
+Platts, part of S&P Global Energy, will launch daily VG30 and VG40 bitumen spot assessments for FOB Middle East, effective Nov. 2, 2026.
+The new assessments will complement Platts' existing daily and weekly bitumen assessments, providing greater price transparency and information in the waterborne trade for the product in the Asia-Pacific and Middle East markets.
+Platts will launch two new daily outright assessments and their respective monthly averages. These assessments will reflect bulk viscosity grade 30 and VG40 grade bitumen, as per IS 73:2013 specifications, loading 10-30 days forward from the date of publication in the Middle East.
+
+Assessment FOB Middle East Bitumen VG30 FOB Middle East Bitumen VG40
+
+Quantity
+
+Laycan
+
+2,500-10,000 mt, bulk 10-30 days forward
+
+UoM $/mt
+
+2,500-10,000 mt, bulk 10-30 days forward $/mt
+
+© 2026 by S&P Global Inc. All rights reserved.
+
+21
+
+©2026 S&P Global Inc. Any unauthorized use of this copyrighted material constitutes infringement of our intellectual property and will subject you to possible legal action.
+
+
+
+Platts Oilgram Price Report  October 6, 2026
+
+Crude price assessments
+
+Asia Pacific/Middle East spot crude assessments ($/barrel), Oct 6
+
+  Assessment (Asian MOC)  Diffs (Asian MOC)  Diff to Dated Brent (Asian MOC)  Assessment (London MOC)
+  Mid  Mid  Mid Change
+  Change  Change  Mid  Change
+  (PGA page 2212)
+Condensate  (PGA page 2213)
+
+NW Shelf  Diff to Dubai
+Wheatstone
+Ichthys FC  PCAGX00  101.90-101.94  101.920  -0.760  ADFCB00  -9.25/-9.15  -9.200  0.000  AAPAI00  3.400  +0.100  AAPAH00  103.270  -3.490
+DFC  CHNFA00  103.020  -0.760  AARBD00  -9.55/-9.45  -9.500  0.000  CHADB00  4.500  +0.100  CHNFL00  104.370  -3.490
+Qatar LSC  ICFCA00  85.89-85.93  115.170  -0.860  AARAX00  -14.35/-14.25  -14.300  0.000  ICFCB00  16.650
+South Pars  ADFCA00  85.59-85.63  -1.140  ADFCC00  -12.610  0.000  ADFCD00  83.960  -3.460
+  AARBB00  80.79-80.83  85.910  -1.140  AAEOK00  Diff to ICP  0.000  +0.050  AARBC00  -12.910  -0.280  AARBA00  83.660  -3.460
+Senipah  AARAV00  85.610  -1.140  SIICP00  -0.05/0.05  0.150  +0.050  AARAW00  -17.710  -0.280  AARAU00  78.860  -3.460
+Senoro  98.55-98.59  80.810  -0.280
+  AAEOE00  -0.760
+Light  SFOBI00  98.570  -0.760  AAPBE00  0.050  +0.100  AAPBD00  99.920  -3.490
+  98.820  SFOBS00  0.300  +0.100  SFOBL00  100.170  -3.490
+Cossack
+Tapis  (PGA page 2214)  (PGA page 2215)
+Belida
+Kutubu  Diff to ICP
+Attaka
+Ardjuna  PCAGZ00  110.55-110.59  110.570  -0.860  PCAFM00 3.90/4.00  3.950 0.000  AAPAC00  12.050  0.000  AAPAB00  111.920  -3.590
+Banyu Urip  PCACB00  110.00-110.04  110.020  -1.360  AAOZW00  11.500  -0.500  AAOZV00  111.370  -4.090
+  PCAFL00  106.40-106.44  106.420  -0.860  PCAAK00  3.85/3.95  3.900  0.000  AAPBQ00  0.000  AAPBP00  107.770  -3.590
+Sakhalin Blend  PCAFJ00  110.35-110.39  110.370  -0.860  PCACR00  3.55/3.65  3.600  -0.250  AAPAE00  7.900  0.000  AAPAD00  111.720  -3.590
+Sokol  PCAAJ00  106.30-106.34  106.320  -0.860  PCAQQ00  6.200  -0.250  AAPBC00  11.850  0.000  AAPBB00  107.670  -3.590
+Kikeh  PCACQ00  105.70-105.74  105.720  -1.360  Diff to Dubai  AAPBG00  -0.500  AAPBF00  107.070  -4.090
+Miri Light  PCAFQ00  110.870  -1.360  AARCN00  12.70/12.80  AAPBU00  7.800  -0.500  AAPBR00  112.220  -4.090
+Labuan  107.84-107.88  AASCK00  16.10/16.20  7.200
+Kimanis  AARBN00  111.24-111.28  107.860  +0.860  12.350
+  AASCJ00  117.25-117.29  111.260  +2.860
+Medium  AAWUH00  113.60-113.64  117.270  -1.360  12.750 +2.000  AARDN00  9.340  +1.720  AAREN00  105.910  -1.460
+Nanhai  PCABQ00  117.80-117.84  113.620  -1.360  16.150 +4.000  AAPAO00  12.740  +3.720  AAPAN00  109.310  +0.540
+Minas*  PCABL00  117.820  -1.360  AAOZY00  18.750  -0.500  AAOZX00  118.620  -4.090
+Nile Blend  AASCL00  118.320  -1.360  AAPAS00  15.100  -0.500  AAPAR00  114.970  -4.090
+Widuri*  AAPAQ00  19.300  -0.500  AAPAP00  119.170  -4.090
+Daqing  -1.360  AASCM00  19.800  -0.500  AASCN00  119.670  -4.090
+Cinta*  -5.345
+Su Tu Den  -0.660  (PGA page 2216)  (PGA page 2217)  -4.090
+Bach Ho  -4.535  -8.075
+Champion  PCAFR00  102.15-102.19  102.170  -0.660  AAPAG00  3.650  -0.500  AAPAF00  103.520  -3.390
+  PCABO00  94.075  -5.040  AAPAZ00  95.425  -7.265
+Heavy  AAPLC00  95.80-95.84  95.820  -1.360  AAPAM00 -2.700  +0.200  AAPAL00  97.170  -3.390
+  PCAFE00  93.005  -1.360  AAPBN00  94.355  -7.770
+Dar Blend  PCAAZ00  97.20-97.24  97.220  -1.360  AAPAW00 -1.300  +0.200  AAPAV00  98.570  -4.090
+Shengli  PCAAX00  93.570  AAPBJ00  94.920  -4.090
+Duri  AARAR00  112.65-112.69  AARAS00  14.150  -0.500  AARAQ00  -4.090
+Vincent  PCAHY00  115.70-115.74  112.670  AAPAK00  17.200  -0.500  AAPAJ00  114.020
+*Market Parity Price.  CHNFE00  115.720  CHNFS00  18.600  -0.500  CHNFB00  117.070
+  117.120  118.470
+Murban M1
+Murban M2  (PGA page 2218)  (PGA page 2219)
+Murban M3
+Al Shaheen  AARAB00  97.20-97.24  97.220  -0.460  Diff to ICP  2.950 +0.200  AARAC00  -1.300  +0.400  AARAA00  98.570  -3.190
+Upper Zakum  PCABY00  101.15-101.19  101.170  -0.460  PCABB00 2.90/3.00  AAPAY00  2.650  +0.400  AAPAX00  102.520  -3.190
+Umm Lulu  PCABA00  104.40-104.44  104.420  -0.460  AAPBM00  5.900  +0.400  AAPBL00  105.770  -3.190
+Das Blend  AARAK00  113.920  -0.460  AARAL00  15.400  +0.400  AARAJ00  115.270  -3.190
+
+Basrah Medium M1  (PGA page 2220)  (PGA page 2202)
+Basrah Medium M2  Assessment (Asian MOC)
+Basrah Heavy M1  Diff to Dubai
+Basrah Heavy M2  AAKNL00  105.87-105.91  105.890  -3.815  AARBZ00  10.780  -2.675
+  MBNSA00  98.320  -1.510
+  MBNSB00  67.84-67.88  95.310  -0.940  AAPEW00  -27.30/-27.20  -27.250  -3.300  Dubai CFR North Asia  PCAQA00  141.970  -3.265
+  AAPEV00  67.84-67.88  67.860  -4.440  DBDUZ00  Spread vs OSP  -27.250  -3.300  LOOP Sour CFR North Asia  PCAQI00  120.920  -0.930
+  AAOUQ00  67.860  -4.440  DBDUL00  -25.700  -2.700  Oman CFR North Asia  PCAQJ00  141.380  -3.680
+  AUFAA00  69.14-69.18  69.410  -3.840  DBDDS00  -25.950  -2.700  Upper Zakum CFR North Asia  PCAQB00  103.550  -3.700
+  AAXOF00  69.160  -3.840  Qatar Marine CFR North Asia  PCAQC00  103.330  -3.660
+  -  BSMBM01  -34.600  -3.050  Murban CFR North Asia  PCAQE00  140.170  -3.105
+  BSMAM01  -  63.500  -5.000  BSMBM02  -25.850  -2.300
+  BSMAM02  -  60.500  -4.400  AALZJ00  -33.800  -3.050  Basrah Medium CFR North Asia  BASNA00  97.140  -3.640
+  AALZC00  -  61.000  -5.000  AALZK00  -25.050  -2.300  ESPO CFR North Asia  PCAQD00  111.130  +3.860
+  AALZD00  58.000  -4.400  Forties CFR North Asia  PCAQF00  154.960  +1.175
+  Dalia CFR North Asia  PCAQG00  126.540  -4.475
+  WTI MEH CFR North Asia  PCAQH00  122.400  -0.140
+
+Banoco Arab Medium  AAKNT00 67.38-67.42  67.400 -4.400  AAKUD00 -13.00/-12.90 -12.950 -2.300
+
+© 2026 by S&P Global Inc.All rights reserved.  33
+
+  ©2026 S&P Global Inc. Any unauthorized use of this copyrighted material constitutes infringement of our intellectual property and will subject you to possible legal action.
+
+
+Platts Oilgram Price Report  October 6, 2026
+
+Crude price assessments
+
+Asia Pacific/Middle East spot crude assessments ($/barrel), (continued)
+
+  Assessment (Asian MOC)  Diffs (Asian MOC)  Diff to Dated Brent (Asian MOC)  Assessment (London MOC)
+  Mid  Mid  Mid Change
+  Change  Change  Mid  Change
+
+  Diff to Dubai
+
+Qatar Land  AAKNP00  68.43-68.47  68.450  -3.800  AAKUJ00 -13.45/-13.35 -13.400 -1.900  QALDA00  Mid  Change
+Qatar Marine  AAKNR00  67.18-67.22  67.200  -4.400  AAKUH00 -14.20/-14.10 -14.150 -2.500  QAMDA00  -26.660  -2.660
+
+  -27.910  -3.260
+
+North Sea, Oct 6 (PGA page 1212)  International, Oct 6
+
+($/barrel)  Mid  Change  Spread  vs fwd Dated  Brent Mid  Change  ($/barrel)  Mid  Change
+Dated Brent Diff  17.87/17.88  +0.035
+BNB  124.215  -4.470  AAXEZ00  18.18/18.19  17.875  +0.020  (PGA page 2210)  -4.015
+Forties  123.905  -4.455  AAVJB00  17.87/17.88  18.185  +0.035  -1.710
+Oseberg  AAVJA00  124.21-124.22  128.255  -3.555  AAGWZ00  22.22/22.23  17.875  +0.935  Dubai (Dec)  PCAAT00 105.68-105.70105.690  -1.140
+Ekofisk  PCADJ00  123.90-123.91  127.530  -3.600  AAGXF00  21.49/21.51  22.225  +0.890  -4.015
+Troll  PCAEU00  128.25-128.26  128.055  -3.490  AAGXB00  22.02/22.03  21.500  +1.000  Dubai (Jan)  PCAAU00 98.11-98.13 98.120  -1.710
+FOB N Sea WTI Midland  PCADI00  127.52-127.54  125.180  -4.100  AAWEY00  22.025  +0.390  -1.140
+Statfjord  AAWEX00  128.05-128.06  127.830  -4.190  ALNDB00  21.79/21.81  19.150  +0.300  Dubai (Feb)  PCAAV00 95.10-95.12 95.110  -4.420
+Flotta Gold  ALNDA00  112.030  -8.690  AAGXD00  5.99/6.01  21.800  -4.200  -2.110
+Duc  PCAEE00  127.82-127.84  124.030  -4.190  AAGXH00  +0.300  MEC (Dec)  AAWSA00 105.68-105.70105.690  -1.540
+Grane Blend  PCACZ00  112.02-112.04  113.830  -8.690  AAWFL00  17.99/18.01  6.000  -4.200  -2.875
+Johan Sverdrup  AAWEZ00  124.02-124.04  113.990  -7.705  PCALB00  18.000  -3.215  MEC (Jan)  AAWSB00 98.11-98.13 98.120  -3.280
+Statfjord (CIF)  PCALA00  128.210  -4.185  AJSVB00  22.89/22.91  +0.300
+Gullfaks (CIF)  AJSVA00  128.20-128.22  129.610  -4.185  AASAT00  24.29/24.31  7.800  +0.300  MEC (Feb)  AAWSC00 95.10-95.12 95.110  -4.455
+Alvheim (CIF)  AASAS00  129.60-129.62  129.110  -4.185  AASAV00  7.960  +0.300  -4.455
+Asgard (CIF)  AASAU00  125.310  -4.185  ALVHB00  22.900  +0.300  Oman (Dec)  PCABS00 105.68-105.70105.690  -3.975
+North Sea Dated Strip  ALVHA00  106.02-106.04  106.030  -4.490  ASGCB00  24.300  -3.650
+European Sour Crude Index  ASGCA00  115.610  -4.060  23.800  -0.480  Oman (Jan)  AAHZF00 98.11-98.13 98.120  -3.050
+  AAKWH00  20.000  -2.580
+($/barrel)  CSBEA00  127.645  -3.975  +0.510  Oman (Feb)  AAHZH00 95.10-95.12 95.110  -4.020
+Dated Brent (CIF)  131.220  -3.615  +0.870
+BNB (CIF)  AAVJG00  129.410  -3.210  +1.275  Dubai cash/Futures  DBDDC00  10.580  -1.630
+Forties (CIF)  PCAKP00  132.220  -3.040  +1.445  -1.360
+Oseberg (CIF)  PCAKR00  130.900  -3.150  +1.335  Oman cash/Futures  DBDOC00  10.580  -1.170
+Ekofisk (CIF)  PCAKT00  131.970  -2.980  +1.505  -0.140
+Troll (CIF)  PCAKV00  127.645  -3.975  +0.510  (PGA page 1212)  -0.110
+WTI Midland (CIF)  AAXJO00  117.910  -7.190  -2.705  -0.110
+Johan Sverdrup (CIF)  WMCRD00  105.310  -4.485  Brent (DTD)  PCAAS00 123.90-123.91123.905
+North Sea CIF Dated Strip  AJSWA00  Change  -1.710
+  AAHXE00  CSBEB00  12.190  DTD NSL  AAOFD00 123.90-123.91123.905  -1.140
+  -1.500  -0.820
+  Spread vs fwd CIF Dated Brent  -1.500  Dated Brent (CIF)  PCAKM00  127.645  -2.110
+  -1.500  -1.540
+  AAVJF00  22.335  -1.500  Brent (Dec)  PCAAQ00 98.60-98.62 98.610  -1.220
+  -1.500  -0.400
+  AAVJC00  25.910  -1.500  Brent (Jan)  PCAAR00 96.06-96.08 96.070  -0.400
+  -2.500  -0.400
+  AAHXC00  24.100  -1.500  Brent (Feb)  PCARR00  93.930
+  -1.500
+  AAHXD00  26.910  -1.500  North Sea Basket  AAGIZ00 125.97-125.98125.975
+  -1.500
+  AAHXB00  25.590  (PGA page 218)
+
+  AAXJN00  26.660  Brent/WTI 1st  AALAU00 11.32/11.34 11.330
+
+  WMCRB00  22.335  Brent/WTI 2nd  AALAV00 9.82/9.84 9.830
+
+  AJSWB00  12.600  Brent/WTI 3rd  8.770
+
+  AALAY00
+
+  Brent EFP (Dec)  AAGVX00 0.07/0.09 0.080
+
+  Brent EFP (Jan)  AAGVY00 0.17/0.19 0.180
+
+  Brent EFP (Feb)  AAMVY00  0.180
+
+West Africa, Oct 6 (PGA pages 1230 and 1232)  Swaps(PGA page 2658)
+
+($/barrel)  Mid  Change  Spread vs fwd DTD Brent Mid  Dubai (Nov)  AAHBM00 98.10-98.14 98.120
+
+Nigeria  98.815  -5.245  Dubai (Dec)  AAHBN00 95.09-95.13 95.110
+  98.715  -5.245
+Agbami  98.80-98.83  99.565  -5.245  -1.06/-1.04  -1.050  Dubai (Jan)  AAHBO00 93.29-93.33 93.310
+  104.115  -5.245  -1.16/-1.14  -1.150
+  AAQZB00  102.965  -5.245  AAQZC00  -0.300  Oman Swap (Nov)  AAHZP00 98.10-98.14 98.120
+  101.315  -5.245  PCNGB00  4.24/4.26  4.250
+Akpo  PCNGA00  98.70-98.73  101.115  -6.245  AMENA00  3.09/3.11  3.100  Oman Swap (Dec)  AAHZR00 95.09-95.13 95.110
+  106.315  -5.245  PCNGD00  1.44/1.46  1.450
+Amenam Blend  AAXTI00  103.865  -5.245  AAGXL00  1.250  Oman Swap (Jan)  AAHZT00 93.29-93.33 93.310
+  104.015  -5.245  AAGXV00  4.14/4.16  6.450
+Bonga  PCNGC00 104.10-104.13  103.915  -5.245  APIRC00  4.04/4.06  4.000
+  AFONB00  4.150
+Bonny Light  PCAIC00 102.95-102.98  AAXUP00  4.050  Oman/Dubai Swap (Nov)  AAIHJ00 -0.02/0.02 0.000
+  AAGXR00
+Brass River  AAEJB00 101.30-101.33  AAGXP00  Oman/Dubai Swap (Dec)  AAIHL00 -0.02/0.02 0.000
+
+CJ Blend  APIRR00  Oman/Dubai Swap (Jan)  AAIHN00 -0.02/0.02  0.000
+
+Egina  AFONA00  Quality Adjustments
+
+Erha  AAXUO00  Murban QA  AASVA00  0.0000
+
+Escravos  AAEIZ00 104.00-104.03
+
+Forcados  PCABC00 103.90-103.93
+
+© 2026 by S&P Global Inc.All rights reserved.  34
+
+  ©2026 S&P Global Inc. Any unauthorized use of this copyrighted material constitutes infringement of our intellectual property and will subject you to possible legal action.
+
+
+Platts Oilgram Price Report  October 6, 2026
+
+Crude price assessments
+
+West Africa (PGA pages 1230 and 1232) (continued)  Asia ($/barrel), Oct 6 (PGA page 2210)
+
+($/barrel)  Mid  Change  Spread vs fwd DTD Brent Mid  Change  Mid  Change
+  PCAJG00 100.17-100.21100.190  -1.360
+Nembe  NFBDA00  103.715  -5.245  NFBDB00  3.850  -1.500  Brent (Dec)  -0.790
+Okwuibome  NFBDC00  102.065  -5.245  NFBDD00  2.200  -1.500  -0.390
+Qua Iboe  PCAID00  102.765  -5.245  AAGXN00  2.900  -1.500  Brent (Jan)  PCAJI00 97.44-97.48 97.460  -1.655
+Usan  AAXUQ00  -4.745  AAXUR00  -4.350  -1.000  +2.655
+  102.75-102.78  95.515  2.89/2.91  Brent (Feb)  PCAJ000  95.190  -1.470
+Angola  PCAFD00  -5.745  -2.000  -1.020
+Cabinda  AAQYX00  93.05-93.08  93.065  -5.745  -2.000  Brent(DTD)  AAXPG00  126.290  -0.510
+Dalia  AASNL00  90.00-90.03  90.015  -5.745  -2.000
+Girassol  AASLJ00  93.95-93.98  93.965  -10.395  -6.650  Brent/Dubai  AAJMS00 -5.51/-5.49 -5.500
+Hungo  AASLK00  80.25-80.28  80.265  -5.745  -2.000
+Kissanje  AAQYZ00  91.05-91.08  91.065  -5.745  AAGXT00  -6.81/-6.79  -6.800  -2.000  WTI (Nov)  AAFFU00 88.48-88.52 88.500
+Nemba  PCNGG00  88.90-88.93  88.915  -5.745  AAQYY00  -9.86/-9.84  -9.850  -2.000
+Pazflor  PCNGI00  90.00-90.03  90.015  -7.745  AASJD00  -5.91/-5.89  -5.900  -4.000  WTI (Dec)  AAFFW00 87.51-87.55 87.530
+Plutonio  86.45-86.48  86.465  AASJF00  -19.61/-19.59  -19.600
+  AAXUS00  -4.745  AASJE00  -8.81/-8.79  -8.800  -1.000  WTI (Jan)  AAFFY00 86.60-86.64 86.620
+Ghana  74.85-74.88  92.565  AAQZA00  -10.96/-10.94  -10.950
+Jubilee  PCNGE00  -7.745  PCNGH00  -9.86/-9.84  -9.850  -4.000
+  99.86-99.87  74.865  PCNGJ00  -13.41/-13.39  -13.400
+Republic of Congo  AAXUU00  -4.745  -1.000
+Djeno  AAXRK00  90.565  -3.745  AAXUT00  -7.300
+  99.865
+Chad  PCNGF00 -25.01/-24.99 -25.000
+Doba
+30-60 Day Dtd strip  AAXUV00  -9.300
+
+Mediterranean, Oct 6 (PGA pages 1220, 1222, 1234)
+
+($/barrel)  Mid  Change  Spread vs fwd DTD Brent  Mid  Change
+Med Dtd Strip  105.455  -4.545
+BTC Dtd Strip  AALDF00  105.45-105.46  104.680  -4.430  AAGXJ00  -9.28/-9.27  -9.275  +0.215
+CPC Dtd Strip  AAUFI00  104.67-104.69  101.695  -3.980  AAGXX00  -2.85/-2.84  -2.845  -0.580
+15-45 Day Dtd Strip  AAUFP00  101.69-101.70  102.650  -4.135  AAHPI00  -18.51/-18.49  -18.500  -0.500
+Urals (Rdam)  AALGM00  102.64-102.66  -4.330  AAHPH00  -24.51/-24.49  -24.500  -0.500
+Urals (Med)  PCAFW00  96.180  -5.125  AAOTI00  -24.51/-24.49  -24.500  -0.500
+Urals (Ex-Baltic)  PCACE00  96.17-96.19  102.610  -5.045  AAWVI00  -18.51/-18.49  -18.500  -0.500
+Urals FOB Novo Suez  AAGZT00  102.60-102.62  -5.045
+Urals FOB Novo Afra  AAGZS00  86.955  -5.045  KBCOB00  5.39/5.41  6.000  0.000
+Urals (Primorsk)  AAOTH00  86.94-86.97  80.955  -5.045  KBCOD00  -0.85/-0.84  6.000  0.000
+Urals (RCMB)  AAWVH00  80.94-80.97  80.955  -5.035  KBCOF00  4.94/4.96  -15.655  +0.080
+KEBCO (CIF Augusta)  AALIN00  80.94-80.97  86.955  -4.545  KBCOH00  15.99/16.01  -3.335  -0.725
+KEBCO (CIF Rotterdam)  KBCOA00  86.94-86.97  121.060  -4.545  AILKB00  4.04/4.05  -17.650  +0.550
+KEBCO (FOB Novo)  KBCOC00  121.05-121.07  111.455  -4.465  AIHKB00  6.35/6.37  -18.950  +0.550
+KEBCO (FOB Ust-Luga)  KBCOE00  111.455  -5.270  AAGYH00  -1.42/-1.41  5.400  -0.100
+Iranian Light FOB Kharg Island (Med)  KBCOG00  110.06-110.10  89.800  -3.995  AAHPK00  5.19/5.21  -0.845  -0.580
+Iranian Heavy FOB Kharg Island (Med)  AILKA00  104.60-104.62  102.120  -3.995  AAHPN00  -2.01/-1.99  4.950  -0.300
+Es Sider  AIHKA00  109.61-109.65  87.805  -4.530  AAHPM00  -0.01/0.01  16.000  +0.500
+Siberian Lt  PCACO00  120.66-120.70  86.505  -5.125  AAUFN00  3.44/3.46  4.045  +1.355
+Saharan Bld  AAGZW00  108.71-108.74  110.080  -4.730  AAUFL00  -18.65/-18.64  6.360  -0.355
+Azeri Lt  AAGZY00  111.02-111.06  104.610  -3.930  AATHN00  -16.22/-16.21  -1.415  +0.585
+Azeri Lt FOB Ceyhan Suez  AAGZX00  103.25-103.28  109.630  -3.075  AAUFJ00  5.200  +0.500
+Azeri Lt FOB Ceyhan Afra  AAUFM00  109.86-109.90  120.680  -4.785  AAGYD00  -2.000  -0.050
+Azeri Lt FOB Supsa  AAUFK00  103.44-103.47  108.725  -3.845  AAGYF00  0.000  -0.050
+BTC FOB Ceyhan  AATHM00  105.44-105.47  111.040  -3.930  AAHPL00  3.450  -0.415
+Suez Blend  AAUFH00  105.13-105.16  103.265  -4.595  AALVZ00  -18.645  +0.175
+Kirkuk  PCACA00  109.880  -4.595  AAOFW00  -16.215  -0.335
+CPC Blend CIF  AAEJD00  83.04-83.06  103.455  -4.395
+CPC Blend FOB Suez  AAGZU00  85.47-85.49  105.455  -3.805
+CPC Blend FOB Afra  AALVX00  105.145  -4.315
+Additional War Risk Premium  AAOFV00  83.050  0.000
+  AWARA00  85.480
+
+  3.000
+
+© 2026 by S&P Global Inc.All rights reserved.  35
+
+  ©2026 S&P Global Inc. Any unauthorized use of this copyrighted material constitutes infringement of our intellectual property and will subject you to possible legal action.
+
+
+Platts Oilgram Price Report  October 6, 2026
+
+Crude price assessments
+
+Mediterranean (PGA pages 1220, 1222, 1234) (continued)  Mid  Change  Spread vs fwd DTD Brent  Mid  Change
+
+($/barrel)  -2.845  -0.580  2.250  0.000
+  -2.845  -0.580  1.000  0.000
+(PPE page 1617)  AAMDU00  -2.85/-2.84  -2.845  -0.580  CPC Blend CFD (Oct) AAOFX00  1.000  0.000
+  AAMEA00  -2.85/-2.84  -9.275  +0.215  CPC Blend CFD (Nov) AAOFY00
+Urals Med CFD (Oct)  UMCM003  -2.85/-2.84  -9.275  +0.215  CPC Blend CFD (Dec) AAOFZ00  Change
+Urals Med CFD (Nov)  UNCM001  -9.28/-9.27  -9.275  +0.215  -2.500
+Urals Med CFD (Dec)  UNCM002  -9.28/-9.27  -3.200
+Urals NWE CFD (Oct)  UNCM003  -9.28/-9.27  -3.900
+Urals NWE CFD (Nov)  -4.250
+Urals NWE CFD (Dec)  -3.860
+  -3.560
+London, Oct 6 (PGA page 1214)  PCAKA00  Brent CFD  Mid  Change  AAJNV00  Dated Swap  Mid  -3.410
+  PCAKC00  28.83/28.85  28.840  +0.550  AAJOS00  124.90/124.92  124.910  -3.590
+($/barrel)  PCAKE00  20.08/20.10  20.090  -0.150  AAJOU00  116.15/116.17  116.160
+1wk (Jan)  PCAKG00  11.98/12.00  11.990  -0.850  AAJOW00  108.05/108.07  108.060
+2wk (Jan)  AAGLU00  -1.200  AAJPC00  103.89/103.91  103.900
+3wk (Jan)  AAGLV00  7.82/7.84  7.830  -0.810  AAJPE00  102.70/102.72  102.710
+4wk (Jan)  AALCZ00  6.63/6.65  6.640  -0.510  AALAW00  100.95/100.97  100.960
+5wk (Jan)  AALDA00  4.88/4.90  4.890  -0.360  AALAX00
+6wk (Jan)  3.48/3.50  3.490  -0.540  99.55/99.57  99.560
+7wk (Jan)  2.58/2.60  2.590  98.65/98.67  98.660
+8wk (Jan)
+
+Platts Euro denominated crude oil assessments (/barrel) (PGA page 1252)
+
+Oct 6  Mid  Change
+  109.991  -4.493
+Dated Brent  AAPYR00  109.99-110.00  113.311  -4.081
+  91.087  -5.002
+Dated Brent (CIF)  PCAKN00  91.08-91.10  78.420  -2.493
+  78.41-78.43  78.864  -2.807
+Urals (Mediterranean) AAPYS00  79.308  -2.943
+  79.30-79.32
+WTI (Nov)  AAPYT00
+
+WTI MEH (Nov)  AAYSA00
+
+Mars (Nov)  AAPYU00
+
+Euro/US$ forex rate: 1.126. Platts Euro denominated crude oil assessments are based on market values and a Euro/US$ forex rate at 4:30 PM local London time.
+
+© 2026 by S&P Global Inc.All rights reserved.  36
+
+  ©2026 S&P Global Inc. Any unauthorized use of this copyrighted material constitutes infringement of our intellectual property and will subject you to possible legal action.
+
+
+Platts Oilgram Price Report  October 6, 2026
+
+Spot tanker rates, Oct 6  Platts futures assessments, Oct 6
+
+  Route  NYMEX light sweet crude ($/barrel) (PGA page 701)
+
+From  To  Size (mt)  WS  Rate ($/mt)  CME 2:30 PM ET settlement
+
+Clean  Nov  AAWS001  89.440
+
+  Dec  AAWS002  88.430
+
+(PGT page 1910)  Jan  AAWS003  87.420
+
+Med  UKC  PFADCSZ  30k  PFADC10  362.50  TCABA00  52.60  Feb  AAWS004  86.290
+Med  USAC  PFACWSZ  37k  PFACW10  215.00  TCABC00  40.70
+Med  Med  PFADBSZ  30k  PFADB10  352.50  TCAAY00  27.42  Platts 2:30 PM ET futures assessment
+UKC  UKC  PFALYSZ  22k  PFALY00  463.75  TCABV00  31.07
+UKC  USAC  PFAMASZ  37k  PFAMA00  205.00  TCABX00  31.69  Nov  NYCRM01  89.430
+UKC  USGC  PFAMBSZ  37k  PFAMB00  200.00  TCACA00  44.16
+BSea  Med  PFABXSZ  30k  PFABX00  382.50  TCAAP00  37.22  Dec  NYCRM02  88.430
+
+  PFABM10  905.00  TCAAF00  73.31  Jan  NYCRM03  87.430
+  PFABN10  850.00  TCAAH00  188.79
+  PFAEB10  567.00  TCABP00  Feb  NYCRM04  86.310
+  PFAKW10  1550.00*  TCADI00  64.13
+  51.67  CME 2:30 PM vs Platts 2:30 PM spread
+  PFAEY10  900.00  TCAAI00
+(PGT page 2920)  PFAMT00  895.00  TCAAJ00  199.89  Nov  AAWD001  0.010
+  198.78
+AG  West Coast India PFABMSZ  35k  Dec  AAWD002  0.000
+AG
+Sing  Japan  PFABNSZ  35k  Jan  AAWD003  -0.010
+Sing
+  Japan  PFAEBSZ  30k  Feb  AAWD004  -0.020
+
+  HK  PFAKWSZ  30k  NYMEX RBOB (¢/gal) (PGA page 701)
+
+(PGT page 2922)  CME 2:30 PM ET settlement
+
+AG  Japan  PFAEYSZ  55k  Nov  AARS001  327.320
+
+AG  Japan  PFAMTSZ  75k  Dec  AARS002  308.800
+
+  Jan  AARS003  296.740
+
+Dirty  Platts 2:30 PM ET futures assessment
+
+  Nov  NYRBM01  327.440
+
+(PGT page 1962)  Dec  NYRBM02  308.920
+
+Carib  USGC  PFANZSZ  50k  PFANZ00  700.00  TDABA00  68.25  Jan  NYRBM03  296.880
+Carib  USAC  PFALTSZ  70k  PFALT10  1010.00  TDAAY00  95.34
+(PGT page 1960)  CME 2:30 PM vs Platts 2:30 PM spread
+  Med  PFAJPSZ  80k  PFAJP10  790.00  TDABL00  85.48
+Med  USGC  PFAJOSZ  80k  PFAJO10  395.00  TDABU00  97.96  Nov  AARD001  -0.120
+Med  UKC  PFAKDSZ  80k  PFAKD10  495.00  TDACD00  52.62
+UKC  USAC  PFAKESZ  80k  PFAKE10  342.50  TDACG00  56.38  Dec  AARD002  -0.120
+UKC
+(PGT page 1970)  USGC  PFAIASZ  130k  PFAIA10  955.00  TDACV00  213.63  Jan  AARD003  -0.140
+  USGC  PFAHNSZ  135k  PFAHN10  325.00  TDACH00  71.47
+WAF  USGC  PFAHGSZ  135k  PFAHG10  325.00  TDABS00  80.60  NYMEX NY ULSD (¢/gal) (PGA page 701)
+UKC
+Med  Asia  PFAJDSZ  80k  PFAJD10  1130.00  TDAAC00  216.06  CME 2:30 PM ET settlement
+(PGT page 2970)
+  Asia  PFAOCSZ  270k  PFAOC00  1210.00  TDAAB00  261.24  Nov  AAHS001  456.940
+AG  USGC  PFAOGSZ  280k  PFAOG00  623.50  TDAAN00  254.58
+(PGT page 2980)  Dec  AAHS002  442.310
+
+AG  Jan  AAHS003  432.440
+AG
+*values are in lumpsum  Platts 2:30 PM ET futures assessment
+
+  Nov  NYHOM01  457.180
+
+  Dec  NYHOM02  442.550
+
+  Jan  NYHOM03  432.710
+
+  CME 2:30 PM vs Platts 2:30 PM spread
+
+  Nov  AAHD001  -0.240
+
+  Dec  AAHD002  -0.240
+
+  Jan  AAHD003  -0.270
+
+Platts futures assessments Singapore MOC, Oct 6 (PGA page 703)  ICE Brent crude ($/barrel) (PGA page 703)
+
+NYMEX RBOB (¢/gal)  NYMEX NY ULSD (¢/gal)  Platts 2:30 PM ET futures assessment
+
+Nov  Nov  Dec  AAQBG00  100.620
+Dec  Dec
+Jan  XNRBA01  323.480  Jan  XNHOA01  447.740  Jan  AAQBH00  97.610
+  XNRBA02  306.240  XNHOA02  433.590
+  XNRBA03  294.570  XNHOA03  424.790  Feb  AAXZZ00  95.150
+
+  Mar  AAYAL00  93.280
+
+© 2026 by S&P Global Inc.All rights reserved.  40
+
+  ©2026 S&P Global Inc. Any unauthorized use of this copyrighted material constitutes infringement of our intellectual property and will subject you to possible legal action.
+
+
+Platts Oilgram Price Report  October 6, 2026
+
+Futures settlements, Oct 6  Change  Low High Volume* Open interest PNT****  Settlement Change Low High Volume* Open interest PNT***
+
+  Settlement
+
+NYMEX Light sweet crude ($/barrel) (PGA page 705)  ICE BWAVE (Brent weighted futures average)($/barrel) (PGA page 704)
+
+Nov 26  NMCL001  89.44  +0.01  86.86  90.05  227165  248138  Dec 26  XIBW001  101.64
+Dec 26  NMCL002  88.43  +0.23  86.00  88.75  143936  242211  98.37
+Jan 27  NMCL003  87.42  +0.23  85.19  87.65  122255  Jan 27  XIBW002
+Feb 27  NMCL004  86.29  +0.18  84.23  86.44  84781
+Total  NMCL000  44243  60062  BWAVE data refer to previous day.
+  697571
+  ICE WTI ($/barrel) (PGA page 704)
+
+  XNCLP00 21773  Nov 26  ICIC001  89.44  +0.01  86.89  90.00  20811  56825
+  Dec 26  ICIC002  88.43  +0.23  86.02  88.74  46765  134047
+NYMEX NY ULSD ($/gal) (PGA page 705)  Jan 27  ICIC003  87.42  +0.23  85.28  87.69  24942
+  Feb 27  ICIC004  86.29  +0.18  84.35  86.48  16166  54268
+Nov 26  NMHO001  4.5694  +0.0242  4.3513  4.5844  33628  65350  Total  ICIC000  151493  29713
+Dec 26  NMHO002  4.4231  +0.0230  4.2233  4.4386  26037  41652
+Jan 27  NMHO003  4.3244  +0.0178  4.1447  4.3400  15230  28699  XIICP00  7788
+Feb 27  NMHO004  4.2277  +0.0157  4.0621  4.2416  15052
+Total  NMHO000  8388  ICE low sulfur Gasoil ($/mt) (PGA page 704)
+  109088
+  XNHOP00  3452  Oct 26  ICLO001 1329.50 -53.50 1309.25 1380.00 40155 58385
+
+NYMEX RBOB unleaded gasoline ($/gal) (PGA page 705)  Nov 26  ICLO002 1294.00 -48.50 1273.50 1340.75 98573 159369
+
+Nov 26  NMRB001  3.2732  +0.0270  3.1874  3.2941  39499  112527  Dec 26  ICLO003 1257.00 -44.50 1237.50 1302.00 68916 105749
+Dec 26  NMRB002  3.0880  +0.0161  3.0208  3.1060  43865  65605
+Jan 27  NMRB003  2.9674  +0.0104  2.9063  2.9768  20537  47094  Jan 27  ICLO004 1224.75 -39.50 1205.50 1266.00 38290 80402
+Feb 27  NMRB004  2.9045  +0.0062  2.8481  2.9087  28858
+Total  NMRB000  9358  Total  ICLO000  348071  XILOP00 4480
+  139374
+  XNRBP00  6432  *Volume, open interest and PNT reflect prior trading day. PNT reflect volume for Privately Negotiated Trades or off-exchange.
+  **Oman settlements are Post Close settlements. ***IFAD Murban spread to 1st Line (Dec 26) Platts Dubai crude futures.
+  ****Privately Negotiated Trade values found on PGA page 710
+
+ICE Midland WTI American Gulf Coast ($/barrel) (PGA page 704)  Source: CQG
+
+Nov 26  IHOU001  90.08  -0.02  87.62  90.37  4515  11120
+Dec 26  IHOU002  89.33  +0.22  86.84  89.38  9567  11336
+Jan 27  IHOU003  88.57  +0.18  86.54  88.81  4014
+Feb 27  IHOU004  87.52  +0.16  85.65  87.52  3540
+  889  2747
+
+NYMEX Natural Gas ($/MMBtu) (PGA page 705)
+
+Nov 26  NMNG001  3.114  +0.05  3.058  3.130  142408  387420
+Dec 26  NMNG002  3.409  +0.05  3.340  3.418  71313  204945
+Jan 27  NMNG003  3.789  +0.06  3.713  3.799  42452  193128
+Feb 27  NMNG004  3.450  +0.04  3.394  3.455  19854  109473
+Total  NMNG000
+  360930  XNNGP00 11310
+
+GME Oman crude ($/barrel)** (PGA pages 702 & 2710)
+
+Dec 26 Asia  XDOA001  105.40  -4.84  104.76  107.50  4302  3197
+Dec 26  DMOQ001  106.76  -2.41  100.25  100.25  4461  22
+Jan 27  DMOQ002  100.25  -2.41  37
+Feb 27  DMOQ003  -1.95  97.79  97.79  595  1
+Mar 27  DMOQ004  97.79  -2.10  95.91  95.91  3380
+Total  DMOQ000  95.91  4975
+  13829
+  XDOQP00 13829
+
+IFAD Murban crude ($/barrel) (PGA page 703)
+
+Dec 26  AMIFA00 106.500
+
+Murban vs Dubai*** AMIFB00 11.390
+
+ICE Brent ($/barrel) (PGA page 704)
+
+Dec 26  ICLL001  100.58  +0.26  97.06  101.11  388914  556078
+Jan 27  ICLL002  97.59  +0.01  94.70  98.05  227565  358835
+Feb 27  ICLL003  95.13  -0.23  92.76  95.65  116439  163923
+Mar 27  ICLL004  93.25  -0.38  91.18  93.79  167172
+Total  ICLL000  87766
+  1059689  XILLP00 30702
+
+© 2026 by S&P Global Inc.All rights reserved.  41
+
+  ©2026 S&P Global Inc. Any unauthorized use of this copyrighted material constitutes infringement of our intellectual property and will subject you to possible legal action.
+
+
+Platts Oilgram Price Report  October 6, 2026
+
+Saudi Arabian Official Selling Prices ($/barrel), Oct 5
+
+  Benchmark  NOV  Monthly change  OCT  SEP  AUG
+
+US(PGA page 1070)  ASCI  AAIQZ00  5.95  0.00  5.95  4.95  5.95
+  ASCI  AAIRA00  4.60  3.60  4.60
+Extra Light  ASCI  AAIRB00  4.60  0.00  3.40  2.40  3.40
+Arab Light  ASCI  AAIRC00  2.65  1.65  2.65
+Arab Medium  3.40  0.00
+Arab Heavy  -0.55  -0.55  2.45
+Prices FOB Ras Tanura  2.65  0.00  -2.15  -2.15  0.85
+  -2.95  -2.95  0.05
+Northwest Europe(PGA page 1069)  -5.35  -5.35  -2.35
+
+Extra Light  ICE Brent  AAIQQ00  2.45  +3.00  -0.65  -0.65  2.35
+  AAIQR00  0.85  +3.00  -2.35  -2.35  0.65
+Arab Light  ICE Brent  AAIQS00  0.05  +3.00  -2.95  -2.95  0.05
+  AAIQT00  -2.35  +3.00  -5.65  -5.65  -2.65
+Arab Medium  ICE Brent
+  -0.65  -0.65  2.35
+Arab Heavy  ICE Brent  -2.35  -2.35  0.65
+  -2.95  -2.95  0.05
+Prices FOB Ras Tanura  -5.65  -5.65  -2.65
+
+Mediterranean(PGA page 1069)  -0.35  -0.35  0.15
+  -1.50  -1.50  -1.00
+Extra Light  ICE Brent  AAWQK00  2.35  +3.00  -2.00  -2.00  -1.50
+  AAWQL00  0.65  +3.00  -1.00  -2.00  -3.25
+Arab Light  ICE Brent  AAWQM00  0.05  +3.00  -2.35  -3.35  -4.60
+  AAWQN00  -2.65  +3.00
+Arab Medium  ICE Brent
+
+Arab Heavy  ICE Brent
+
+Prices FOB Ras Tanura
+
+FOB Sidi Kerir(PGA page 1069)
+
+Extra Light  ICE Brent  AAUCS00  NA  NANA
+  AAUCU00
+Arab Light  ICE Brent  AAUCW00  NA  NANA
+  AAUCY00
+Arab Medium  ICE Brent  NA  NANA
+
+Arab Heavy  ICE Brent  NA  NANA
+
+Asia(PGA page 1068)
+
+Super Light  (O+D)/2  AAIQU00  -3.35  -3.00
+Extra Light  (O+D)/2  AAIQV00  -4.50  -3.00
+Arab Light  (O+D)/2  AAIQW00  -5.00  -3.00
+Arab Medium  (O+D)/2  AAIQX00  -6.00  -5.00
+Arab Heavy  (O+D)/2  AAIQY00  -7.35  -5.00
+
+Prices FOB Ras Tanura
+
+ASCI=Argus Sour Crude Index; BWAVE=ICE Brent Weighted Average; (O+D)/2=Average of Platts Oman and Dubai assessments
+
+Sources: Saudi Aramco OSP differentials prior to July 2017 were set against BWAVE.
+
+© 2026 by S&P Global Inc.All rights reserved.  53
+
+  ©2026 S&P Global Inc. Any unauthorized use of this copyrighted material constitutes infringement of our intellectual property and will subject you to possible legal action.

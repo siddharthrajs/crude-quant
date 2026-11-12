@@ -1,0 +1,233 @@
+{
+ "run_date": "2026-10-13",
+ "ref_contract": "COF27",
+ "ref_price": 102.91,
+ "themes": [
+  {
+   "key": "us_iran_escalation",
+   "name": "US-Iran escalation risk",
+   "impact": "highest",
+   "status": "active"
+  },
+  {
+   "key": "hormuz_flow_recovery",
+   "name": "Hormuz / Gulf export flow recovery",
+   "impact": "high",
+   "status": "active"
+  },
+  {
+   "key": "gulf_disruption_tight_stocks",
+   "name": "Persistent Gulf disruption and tight stocks",
+   "impact": "high",
+   "status": "active"
+  },
+  {
+   "key": "stock_releases",
+   "name": "G7 / IEA / SPR stock releases",
+   "impact": "high",
+   "status": "active"
+  },
+  {
+   "key": "diesel_export_ban",
+   "name": "Diesel tightness, export-ban risk and Russian diesel deal",
+   "impact": "medium",
+   "status": "active"
+  },
+  {
+   "key": "russia_ukraine_strikes",
+   "name": "Russian supply and Ukrainian strikes",
+   "impact": "medium",
+   "status": "active"
+  },
+  {
+   "key": "gom_hurricane",
+   "name": "Hurricane Isaias Gulf of Mexico shut-ins",
+   "impact": "medium",
+   "status": "active"
+  },
+  {
+   "key": "atlantic_basin_arb",
+   "name": "Asian pull on Atlantic Basin crude / WTI-Brent",
+   "impact": "medium",
+   "status": "dormant"
+  },
+  {
+   "key": "non_gulf_supply",
+   "name": "Non-Gulf supply growth and rerouting",
+   "impact": "low",
+   "status": "dormant"
+  }
+ ],
+ "new_sets": [],
+ "forecasts": [
+  {
+   "theme_key": "gom_hurricane",
+   "horizon_end": "2026-10-16",
+   "direction": "bearish",
+   "probability": 45,
+   "brent_lo": 98,
+   "brent_hi": 106
+  },
+  {
+   "theme_key": "gom_hurricane",
+   "horizon_end": "2026-10-16",
+   "direction": "base",
+   "probability": 53,
+   "brent_lo": 98,
+   "brent_hi": 106
+  },
+  {
+   "theme_key": "gom_hurricane",
+   "horizon_end": "2026-10-16",
+   "direction": "bullish",
+   "probability": 2,
+   "brent_lo": 101,
+   "brent_hi": 109
+  },
+  {
+   "theme_key": "us_iran_escalation",
+   "horizon_end": "2026-10-16",
+   "direction": "bearish",
+   "probability": 5,
+   "brent_lo": 94,
+   "brent_hi": 100
+  },
+  {
+   "theme_key": "us_iran_escalation",
+   "horizon_end": "2026-10-16",
+   "direction": "base",
+   "probability": 92,
+   "brent_lo": 98,
+   "brent_hi": 107
+  },
+  {
+   "theme_key": "us_iran_escalation",
+   "horizon_end": "2026-10-16",
+   "direction": "bullish",
+   "probability": 3,
+   "brent_lo": 107,
+   "brent_hi": 119
+  },
+  {
+   "theme_key": "hormuz_flow_recovery",
+   "horizon_end": "2026-10-16",
+   "direction": "bearish",
+   "probability": 35,
+   "brent_lo": 96,
+   "brent_hi": 102
+  },
+  {
+   "theme_key": "hormuz_flow_recovery",
+   "horizon_end": "2026-10-16",
+   "direction": "base",
+   "probability": 58,
+   "brent_lo": 99,
+   "brent_hi": 106
+  },
+  {
+   "theme_key": "hormuz_flow_recovery",
+   "horizon_end": "2026-10-16",
+   "direction": "bullish",
+   "probability": 7,
+   "brent_lo": 104,
+   "brent_hi": 111
+  },
+  {
+   "theme_key": "gulf_disruption_tight_stocks",
+   "horizon_end": "2026-10-16",
+   "direction": "bearish",
+   "probability": 8,
+   "brent_lo": 93,
+   "brent_hi": 96
+  },
+  {
+   "theme_key": "gulf_disruption_tight_stocks",
+   "horizon_end": "2026-10-16",
+   "direction": "base",
+   "probability": 67,
+   "brent_lo": 98,
+   "brent_hi": 104
+  },
+  {
+   "theme_key": "gulf_disruption_tight_stocks",
+   "horizon_end": "2026-10-16",
+   "direction": "bullish",
+   "probability": 25,
+   "brent_lo": 105,
+   "brent_hi": 110
+  },
+  {
+   "theme_key": "stock_releases",
+   "horizon_end": "2026-10-16",
+   "direction": "bearish",
+   "probability": 6,
+   "brent_lo": 93,
+   "brent_hi": 97
+  },
+  {
+   "theme_key": "stock_releases",
+   "horizon_end": "2026-10-16",
+   "direction": "base",
+   "probability": 74,
+   "brent_lo": 97,
+   "brent_hi": 105
+  },
+  {
+   "theme_key": "stock_releases",
+   "horizon_end": "2026-10-16",
+   "direction": "bullish",
+   "probability": 20,
+   "brent_lo": 104,
+   "brent_hi": 110
+  },
+  {
+   "theme_key": "diesel_export_ban",
+   "horizon_end": "2026-10-16",
+   "direction": "bearish",
+   "probability": 8,
+   "brent_lo": 95,
+   "brent_hi": 101
+  },
+  {
+   "theme_key": "diesel_export_ban",
+   "horizon_end": "2026-10-16",
+   "direction": "base",
+   "probability": 78,
+   "brent_lo": 99,
+   "brent_hi": 106
+  },
+  {
+   "theme_key": "diesel_export_ban",
+   "horizon_end": "2026-10-16",
+   "direction": "bullish",
+   "probability": 14,
+   "brent_lo": 103,
+   "brent_hi": 109
+  },
+  {
+   "theme_key": "russia_ukraine_strikes",
+   "horizon_end": "2026-10-16",
+   "direction": "bearish",
+   "probability": 4,
+   "brent_lo": 95,
+   "brent_hi": 100
+  },
+  {
+   "theme_key": "russia_ukraine_strikes",
+   "horizon_end": "2026-10-16",
+   "direction": "base",
+   "probability": 87,
+   "brent_lo": 98,
+   "brent_hi": 106
+  },
+  {
+   "theme_key": "russia_ukraine_strikes",
+   "horizon_end": "2026-10-16",
+   "direction": "bullish",
+   "probability": 9,
+   "brent_lo": 102,
+   "brent_hi": 109
+  }
+ ],
+ "resolutions": []
+}

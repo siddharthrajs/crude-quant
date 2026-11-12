@@ -1,0 +1,97 @@
+{
+  "report_date": "2026-10-30",
+  "sources": ["oilgram_news 2026-10-30"],
+  "prices": [
+    {"name": "ICE December Brent settle", "value": "$117.64/b", "unit": "$/b", "as_of": "2026-10-30", "change": "+$2.76/b", "page": 12},
+    {"name": "NYMEX December WTI settle", "value": "$104.12/b", "unit": "$/b", "as_of": "2026-10-30", "change": "+$2.12/b", "page": 12},
+    {"name": "ICE January Brent intraday high at open", "value": "$114.06/b", "unit": "$/b", "as_of": "2026-10-30", "change": "highest since May 5", "page": 6},
+    {"name": "ICE January Brent at 0900 GMT", "value": "$112.56/b", "unit": "$/b", "as_of": "2026-10-30", "change": "+1.6% from previous close", "page": 6},
+    {"name": "Dated Brent (week avg)", "value": "120.93", "unit": "$/b", "as_of": "2026-10-23", "change": "vs 126.97 week ending 16-Oct", "page": 17},
+    {"name": "Dubai first month (week avg)", "value": "112.22", "unit": "$/b", "as_of": "2026-10-23", "change": "vs 108.11 week ending 16-Oct", "page": 17},
+    {"name": "WTI Cushing first month (week avg)", "value": "103.86", "unit": "$/b", "as_of": "2026-10-23", "change": "vs 96.47 week ending 16-Oct", "page": 17},
+    {"name": "ICE Brent (week avg settlement)", "value": "110.80", "unit": "$/b", "as_of": "2026-10-23", "change": "vs 105.74 prior week", "page": 17},
+    {"name": "NYMEX Light Sweet Crude (week avg settlement)", "value": "101.19", "unit": "$/b", "as_of": "2026-10-23", "change": "vs 95.10 prior week", "page": 17},
+    {"name": "Mars (MOC) week avg", "value": "111.06", "unit": "$/b", "as_of": "2026-10-23", "change": "vs 99.82 week ending 16-Oct", "page": 17},
+    {"name": "ANS (California) week avg", "value": "122.05", "unit": "$/b", "as_of": "2026-10-23", "change": "vs 119.61 week ending 16-Oct", "page": 17},
+    {"name": "WTI Midland DES Yeosu premium to front-month Dubai", "value": "$26.80/b", "unit": "$/b", "as_of": "2026-10-29", "change": "record premium $34.60/b on Sept. 18", "page": 3},
+    {"name": "WTI Midland CFR North Asia vs Murban", "value": "$6.45/b discount", "unit": "$/b", "as_of": null, "change": "average so far in 2026", "page": 3},
+    {"name": "Front-month WTI premium to sixth-month contract", "value": "roughly $10/barrel", "unit": "$/b", "as_of": null, "change": "avg back half of Oct; over $13/b first weeks of the war", "page": 12},
+    {"name": "Dated Brent Q3 average (BP)", "value": "$103.90/b", "unit": "$/b", "as_of": null, "change": "up almost $30/b y/y", "page": 16},
+    {"name": "VLCC 270,000 mt Arab Gulf to China freight", "value": "$245.27/mt", "unit": "$/mt", "as_of": "2026-10-29", "change": "Q4 average", "page": 4}
+  ],
+  "flows": [
+    {"metric": "Hormuz ship transits", "value": "26 ships (incl. five crude tankers inbound)", "unit": "ships", "period": "2026-10-29", "source": "S&P Global Commodities At Sea; up from 18 the day before", "page": 12},
+    {"metric": "US naval blockade line transits", "value": "55 (28 inbound, 27 outbound)", "unit": "transits", "period": "2026-10-29", "source": "CAS", "page": 13},
+    {"metric": "Bab al-Mandab transits", "value": "31 vessels incl. nine tankers", "unit": "vessels", "period": "2026-10-29", "source": "CAS", "page": 13},
+    {"metric": "Iranian-linked/sanctioned vessels through Hormuz", "value": "10", "unit": "ships", "period": "2026-10-29", "source": "CAS", "page": 13},
+    {"metric": "South Korea crude imports total", "value": "81.22 million barrels", "unit": "barrels", "period": "Sept 2026", "source": "KNOC; up 2.9% y/y", "page": 3},
+    {"metric": "South Korea crude from Americas", "value": "191.4 million barrels (26.12% share)", "unit": "barrels", "period": "Jan-Sep 2026", "source": "KNOC; record", "page": 2},
+    {"metric": "South Korea imports of US crude", "value": "13.13 million barrels (Sept); 144.23 million barrels cumulative, +19.1%", "unit": "barrels", "period": "Sept / Jan-Sep 2026", "source": "KNOC", "page": 3},
+    {"metric": "South Korea imports of Oman Blend", "value": "4.32 million barrels (Sept); 20.73 million barrels Jan-Sep", "unit": "barrels", "period": "Sept / Jan-Sep 2026", "source": "KNOC", "page": 4},
+    {"metric": "South Korea imports from UAE", "value": "14.50 million barrels (Sept, +44.5% y/y); 116.06 million barrels Jan-Sep", "unit": "barrels", "period": "Sept / Jan-Sep 2026", "source": "KNOC", "page": 4},
+    {"metric": "South Korea imports from Saudi Arabia", "value": "20,854 thousand barrels (Sept, -22.0% y/y); 217,069 thousand Jan-Sep", "unit": "thousand barrels", "period": "Sept / Jan-Sep 2026", "source": "KNOC", "page": 4},
+    {"metric": "Russian diesel and gasoil loadings", "value": "around 1.1 million metric tons", "unit": "mt", "period": "Oct. 1-30", "source": "S&P Global Commodities at Sea (preliminary)", "page": 13},
+    {"metric": "Russian diesel exports authorized", "value": "510,000 mt Oct; 2 million-2.15 million mt target Nov", "unit": "mt", "period": "Oct/Nov 2026", "source": "Novak", "page": 13}
+  ],
+  "supply": [
+    {"metric": "Venezuela crude production (PDVSA and partners)", "value": "1.218 million b/d", "unit": "b/d", "period": "Sept 2026", "page": 11},
+    {"metric": "PDVSA Venezuela output target", "value": "1.3 million b/d end-2026; 1.5 million b/d end-2027", "unit": "b/d", "period": "end-2026 / end-2027", "page": 11},
+    {"metric": "NABEP Venezuela crude output", "value": "more than 200,000 b/d", "unit": "b/d", "period": "as of Oct. 13", "page": 11},
+    {"metric": "Nigeria oil production incl. condensates", "value": "1.72 million b/d", "unit": "b/d", "period": "Sept 2026", "page": 7},
+    {"metric": "Nigeria shut-in volumes regulator hopes to restore", "value": "around 788,000 b/d", "unit": "b/d", "period": "target stated Oct. 11", "page": 7},
+    {"metric": "Seplat Q3 production", "value": "155,801 boe/d", "unit": "boe/d", "period": "Q3 2026", "page": 6},
+    {"metric": "Yoho field (OML104) offline, pipeline damage", "value": "expected back by end of Q4 2026", "unit": "", "period": "2026", "page": 7},
+    {"metric": "ExxonMobil Q3 global production", "value": "4.496 million boe/d (assuming 350,000 boe/d Middle East impact)", "unit": "boe/d", "period": "Q3 2026", "page": 15},
+    {"metric": "ExxonMobil Permian output target", "value": "1.8 million boe/d", "unit": "boe/d", "period": "end of 2026", "page": 1},
+    {"metric": "Chevron Permian output", "value": "1 million boe/d plateau", "unit": "boe/d", "period": "sixth consecutive quarter", "page": 15},
+    {"metric": "Chevron Venezuela JV production target", "value": "roughly 600,000 b/d by 2031; 300,000 b/d by end-2026", "unit": "b/d", "period": "2026-2031", "page": 7},
+    {"metric": "BP Q3 production", "value": "2.2 million boe/d (flat q/q)", "unit": "boe/d", "period": "Q3 2026", "page": 1},
+    {"metric": "BP Q4 production guidance", "value": "2.09-2.23 million boe/d", "unit": "boe/d", "period": "Q4 2026", "page": 16},
+    {"metric": "BP Iraq output cut early in Iran war", "value": "100,000 b/d", "unit": "b/d", "period": "early in war", "page": 16}
+  ],
+  "demand_inventories": [
+    {"metric": "BP refining indicator margin", "value": "$46.70/b (vs $29.60/b Q2, $15.80/b Q3 2025)", "unit": "$/b", "period": "Q3 2026", "page": 1},
+    {"metric": "Moeve refining margin", "value": "$26.80/b, 100% utilization", "unit": "$/b", "period": "Q3 2026", "page": 14},
+    {"metric": "Sinopec crude throughput", "value": "170 million mt, down 10.7% y/y", "unit": "mt", "period": "Jan-Sep 2026", "page": 4},
+    {"metric": "Sinopec crude procurement premium, freight, insurance", "value": "about $4.29/b Q3 (Q2 peak $14.74/b); Q4 $15/b or above, could exceed $20/b in December", "unit": "$/b", "period": "Q3-Q4 2026", "page": 4},
+    {"metric": "Pemex crude processing", "value": "1.143 million b/d, +13.8% y/y", "unit": "b/d", "period": "Q3 2026", "page": 8},
+    {"metric": "Valero purchase of LyondellBasell Houston refinery", "value": "263,000 b/d capacity; 165,000 b/d light-sweet restart by end-2027; $320.5 million", "unit": "b/d", "period": "close by yearend 2026", "page": 10},
+    {"metric": "ExxonMobil US Gulf Coast refinery utilization", "value": "about 100%", "unit": "%", "period": "Q3 2026", "page": 9},
+    {"metric": "US residual fuel oil stocks", "value": "fell", "unit": "", "period": "week ended Oct. 23 (EIA)", "page": 14},
+    {"metric": "ANZ on strategic inventories", "value": "drawn down; Chinese crude buying recovering", "unit": "", "period": "2026-10-30", "page": 12}
+  ],
+  "physical_market": [
+    {"metric": "Platts gasoline FOB West Africa", "value": "$1,126/mt (about $680/mt before conflict)", "unit": "$/mt", "as_of": "2026-10-29", "page": 7},
+    {"metric": "Bunkerworld 0.5% sulfur index", "value": "$934/mt, up $17/mt w/w", "unit": "$/mt", "as_of": "2026-10-29", "page": 13},
+    {"metric": "NYMEX November ULSD settle", "value": "$4.7905/gal, +5.45 c/gal", "unit": "$/gal", "as_of": "2026-10-30", "page": 12},
+    {"metric": "NYMEX November RBOB settle", "value": "$3.3120/gal, +12.70 c/gal", "unit": "$/gal", "as_of": "2026-10-30", "page": 12},
+    {"metric": "Canadian heavy (Cold Lake, WCS blend) substituting for Basrah Medium, Arab Medium and Arab Heavy in Korea", "value": "demand strengthened", "unit": "", "as_of": "2026-10-29", "page": 3},
+    {"metric": "Forward curve backwardation", "value": "eased as forward contracts found support", "unit": "", "as_of": "2026-10-30", "page": 12}
+  ],
+  "forecasts": [
+    {"who": "Sinopec CFO", "what": "International crude and shipping prices to remain elevated", "value": "elevated levels", "horizon": "Q4 2026", "page": 4},
+    {"who": "ExxonMobil CEO Woods", "what": "Refined product tightness normalizing", "value": "well through next year, possibly longer", "horizon": "2027", "page": 9},
+    {"who": "Moeve", "what": "Refining margin supported near term but softening", "value": "no estimate", "horizon": "upcoming months", "page": 14},
+    {"who": "BP", "what": "Guiding to softer refining and upstream prices; refining margins remain elevated", "value": "no figure", "horizon": "Q4 2026", "page": 16}
+  ],
+  "events": [
+    {"date": "2026-10-29", "category": "attack", "region": "Saudi Arabia", "what": "Houthis claimed missile strikes on Abqaiq, 400,000 b/d Rabigh and 550,000 b/d Ras Tanura refineries; Aramco and Saudi government have not confirmed; NASA FIRMS showed no abnormal fires at Abqaiq", "crude_impact": "bullish", "page": 5},
+    {"date": "2026-10-30", "category": "shipping", "region": "Strait of Hormuz", "what": "IRGC reported two tankers in accidents on unauthorized route; Iran said a tanker hit a mine; five incidents reported Oct. 29-30", "crude_impact": "bullish", "page": 12},
+    {"date": "2026-10-29", "category": "shipping", "region": "Oman/Khasab", "what": "UKMTO said an inbound tanker was on fire after explosives were attached to its hull by a small boat; fire extinguished", "crude_impact": "bullish", "page": 12},
+    {"date": null, "category": "diplomacy", "region": "US-Iran", "what": "Media reports said US VP Vance contacted senior Iranian leadership to propose restarting talks; crude benchmarks ended the week lower on diplomacy hopes", "crude_impact": "bearish", "page": 13},
+    {"date": "2026-10-30", "category": "conflict", "region": "Russia/Ukraine", "what": "Ukraine resumed attacks on Russian refineries after no reported strikes Oct. 16-29", "crude_impact": "mixed", "page": 13},
+    {"date": "2026-10-30", "category": "policy", "region": "Russia", "what": "Novak said Russia plans to extend diesel export ban with exceptions until end of January", "crude_impact": "neutral", "page": 13},
+    {"date": "2026-10-09", "category": "sanctions", "region": "US/Russia", "what": "OFAC granted sanctions waiver allowing sale and import of Russian-origin diesel", "crude_impact": "neutral", "page": 13},
+    {"date": "2026-10-30", "category": "policy", "region": "US", "what": "Valero announced purchase of idled LyondellBasell Houston refinery", "crude_impact": "neutral", "page": 10},
+    {"date": null, "category": "diplomacy", "region": "Venezuela", "what": "Fourth round of political transition talks held; Supreme Justice Tribunal magistrates to be selected by end of year; Congressional scrutiny of NABEP deal expected after midterms", "crude_impact": "neutral", "page": 12}
+  ],
+  "themes": [
+    {"theme": "Houthi strikes on Saudi energy infrastructure", "articles": 2, "direction": "bullish", "summary": "Houthis claimed strikes on Abqaiq, Rabigh and Ras Tanura; Brent spiked to $114.06/b for January contract and Dec Brent settled at $117.64/b."},
+    {"theme": "Hormuz disruption and ship attacks", "articles": 6, "direction": "bullish", "summary": "Hormuz transits rose to 26 on Oct. 29 but attacks, a mine report and tanker fires continued; Sinopec and Korean refiners cite persistent Hormuz uncertainty."},
+    {"theme": "US-Iran diplomacy hopes", "articles": 1, "direction": "bearish", "summary": "Reports of Vance outreach to Iran pushed crude benchmarks lower on the week, though escalation concerns kept a floor under prices."},
+    {"theme": "Elevated freight, premiums and refining margins", "articles": 5, "direction": "bullish", "summary": "BP margin $46.70/b, Sinopec expects premiums, freight and insurance above $15/b in Q4, Moeve cites higher crude premiums and freight."},
+    {"theme": "Product tightness and refinery capacity", "articles": 5, "direction": "bullish", "summary": "ExxonMobil said product shortage may last well through next year; Russian diesel exports and Valero Houston restart are partial offsets."},
+    {"theme": "Sourcing away from Gulf barrels", "articles": 2, "direction": "mixed", "summary": "South Korea imported record Americas crude (191.4 million barrels Jan-Sep) with WTI Midland at $26.80/b over Dubai DES Yeosu."},
+    {"theme": "Non-Gulf supply growth", "articles": 5, "direction": "bearish", "summary": "Venezuela, Permian, Nigeria and Pemex show output or runs growth, with Venezuela at 1.218 million b/d in September."}
+  ]
+}

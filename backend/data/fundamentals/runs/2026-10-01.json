@@ -1,0 +1,408 @@
+{
+ "run_date": "2026-10-01",
+ "ref_contract": "COF27",
+ "ref_price": 98.43,
+ "themes": [
+  {
+   "key": "us_iran_escalation",
+   "name": "US-Iran escalation risk",
+   "impact": "highest",
+   "status": "active"
+  },
+  {
+   "key": "hormuz_flow_recovery",
+   "name": "Hormuz / Gulf export flow recovery",
+   "impact": "high",
+   "status": "active"
+  },
+  {
+   "key": "gulf_disruption_tight_stocks",
+   "name": "Persistent Gulf disruption and tight stocks",
+   "impact": "high",
+   "status": "active"
+  },
+  {
+   "key": "diesel_export_ban",
+   "name": "Diesel tightness and US export ban risk",
+   "impact": "medium",
+   "status": "active"
+  },
+  {
+   "key": "atlantic_basin_arb",
+   "name": "Asian pull on Atlantic Basin crude / WTI-Brent",
+   "impact": "medium",
+   "status": "active"
+  },
+  {
+   "key": "non_gulf_supply",
+   "name": "Non-Gulf supply growth and rerouting",
+   "impact": "low",
+   "status": "active"
+  }
+ ],
+ "new_sets": [
+  {
+   "theme_key": "us_iran_escalation",
+   "horizon_end": "2026-10-09",
+   "scenarios": [
+    {
+     "direction": "bearish",
+     "label": "US-Iran deal or direct talks announced, no strikes",
+     "test_kind": "report",
+     "test_text": "A fact sheet dated 2026-10-02..2026-10-09 reports that the US and Iran reached/signed an agreement or formally announced direct negotiations during Oct 1-9, and no US/Israeli strike on Iranian territory occurred in that window.",
+     "metric": null,
+     "op": null,
+     "value_lo": null,
+     "value_hi": null
+    },
+    {
+     "direction": "base",
+     "label": "Threats and buildup only; no strikes, no deal",
+     "test_kind": "report",
+     "test_text": "Neither the bearish nor the bullish condition is reported in fact sheets dated through 2026-10-09.",
+     "metric": null,
+     "op": null,
+     "value_lo": null,
+     "value_hi": null
+    },
+    {
+     "direction": "bullish",
+     "label": "US or Israeli strikes on Iran resume before Oct 9",
+     "test_kind": "report",
+     "test_text": "A fact sheet dated 2026-10-02..2026-10-09 reports a US or Israeli military strike on Iranian territory occurring between Oct 1 and Oct 9, 2026.",
+     "metric": null,
+     "op": null,
+     "value_lo": null,
+     "value_hi": null
+    }
+   ]
+  },
+  {
+   "theme_key": "hormuz_flow_recovery",
+   "horizon_end": "2026-10-09",
+   "scenarios": [
+    {
+     "direction": "bearish",
+     "label": "Front Brent spread eases below $3",
+     "test_kind": "price",
+     "metric": "brent_m1m2",
+     "op": "<",
+     "value_lo": 3.0,
+     "test_text": "brent_m1m2 on the last settlement on or before 2026-10-09 is below 3.00.",
+     "value_hi": null
+    },
+    {
+     "direction": "base",
+     "label": "Front Brent spread holds $3-5",
+     "test_kind": "price",
+     "metric": "brent_m1m2",
+     "op": "between",
+     "value_lo": 3.0,
+     "value_hi": 5.0,
+     "test_text": "brent_m1m2 on the last settlement on or before 2026-10-09 is >= 3.00 and < 5.00."
+    },
+    {
+     "direction": "bullish",
+     "label": "Front Brent spread widens to $5+",
+     "test_kind": "price",
+     "metric": "brent_m1m2",
+     "op": ">=",
+     "value_lo": 5.0,
+     "test_text": "brent_m1m2 on the last settlement on or before 2026-10-09 is >= 5.00.",
+     "value_hi": null
+    }
+   ]
+  },
+  {
+   "theme_key": "gulf_disruption_tight_stocks",
+   "horizon_end": "2026-10-09",
+   "scenarios": [
+    {
+     "direction": "bearish",
+     "label": "COF27 falls below $95",
+     "test_kind": "price",
+     "metric": "brent_ref",
+     "op": "<",
+     "value_lo": 95.0,
+     "test_text": "brent_ref (COF27) on the last settlement on or before 2026-10-09 is below 95.00.",
+     "value_hi": null
+    },
+    {
+     "direction": "base",
+     "label": "COF27 holds $95-102",
+     "test_kind": "price",
+     "metric": "brent_ref",
+     "op": "between",
+     "value_lo": 95.0,
+     "value_hi": 102.0,
+     "test_text": "brent_ref (COF27) on the last settlement on or before 2026-10-09 is >= 95.00 and < 102.00."
+    },
+    {
+     "direction": "bullish",
+     "label": "COF27 at $102 or higher",
+     "test_kind": "price",
+     "metric": "brent_ref",
+     "op": ">=",
+     "value_lo": 102.0,
+     "test_text": "brent_ref (COF27) on the last settlement on or before 2026-10-09 is >= 102.00.",
+     "value_hi": null
+    }
+   ]
+  },
+  {
+   "theme_key": "diesel_export_ban",
+   "horizon_end": "2026-10-09",
+   "scenarios": [
+    {
+     "direction": "bearish",
+     "label": "US announces diesel export ban or formal restriction",
+     "test_kind": "report",
+     "test_text": "A fact sheet dated 2026-10-02..2026-10-09 reports the US government announced a ban, quota or licensing restriction on diesel/distillate exports during Oct 1-9.",
+     "metric": null,
+     "op": null,
+     "value_lo": null,
+     "value_hi": null
+    },
+    {
+     "direction": "base",
+     "label": "No US export restriction; ULSD stays below $5/gal",
+     "test_kind": "report",
+     "test_text": "Neither the bearish nor the bullish condition is reported in fact sheets dated through 2026-10-09.",
+     "metric": null,
+     "op": null,
+     "value_lo": null,
+     "value_hi": null
+    },
+    {
+     "direction": "bullish",
+     "label": "No restriction and NYMEX ULSD front settles >= $5.00/gal",
+     "test_kind": "report",
+     "test_text": "No bearish-condition announcement, and a fact sheet dated 2026-10-02..2026-10-09 reports a NYMEX front-month ULSD settle of $5.00/gal or higher.",
+     "metric": null,
+     "op": null,
+     "value_lo": null,
+     "value_hi": null
+    }
+   ]
+  },
+  {
+   "theme_key": "atlantic_basin_arb",
+   "horizon_end": "2026-10-09",
+   "scenarios": [
+    {
+     "direction": "bearish",
+     "label": "WTI-Brent widens below -$13",
+     "test_kind": "price",
+     "metric": "wti_brent_m1",
+     "op": "<",
+     "value_lo": -13.0,
+     "test_text": "wti_brent_m1 on the last settlement on or before 2026-10-09 is below -13.00.",
+     "value_hi": null
+    },
+    {
+     "direction": "base",
+     "label": "WTI-Brent between -$13 and -$10",
+     "test_kind": "price",
+     "metric": "wti_brent_m1",
+     "op": "between",
+     "value_lo": -13.0,
+     "value_hi": -10.0,
+     "test_text": "wti_brent_m1 on the last settlement on or before 2026-10-09 is >= -13.00 and < -10.00."
+    },
+    {
+     "direction": "bullish",
+     "label": "WTI-Brent narrows to -$10 or tighter",
+     "test_kind": "price",
+     "metric": "wti_brent_m1",
+     "op": ">=",
+     "value_lo": -10.0,
+     "test_text": "wti_brent_m1 on the last settlement on or before 2026-10-09 is >= -10.00.",
+     "value_hi": null
+    }
+   ]
+  },
+  {
+   "theme_key": "non_gulf_supply",
+   "horizon_end": "2026-10-09",
+   "scenarios": [
+    {
+     "direction": "bearish",
+     "label": "WTI front falls below $88",
+     "test_kind": "price",
+     "metric": "wti_m1",
+     "op": "<",
+     "value_lo": 88.0,
+     "test_text": "wti_m1 on the last settlement on or before 2026-10-09 is below 88.00.",
+     "value_hi": null
+    },
+    {
+     "direction": "base",
+     "label": "WTI front holds $88-97",
+     "test_kind": "price",
+     "metric": "wti_m1",
+     "op": "between",
+     "value_lo": 88.0,
+     "value_hi": 97.0,
+     "test_text": "wti_m1 on the last settlement on or before 2026-10-09 is >= 88.00 and < 97.00."
+    },
+    {
+     "direction": "bullish",
+     "label": "WTI front at $97 or higher",
+     "test_kind": "price",
+     "metric": "wti_m1",
+     "op": ">=",
+     "value_lo": 97.0,
+     "test_text": "wti_m1 on the last settlement on or before 2026-10-09 is >= 97.00.",
+     "value_hi": null
+    }
+   ]
+  }
+ ],
+ "forecasts": [
+  {
+   "theme_key": "us_iran_escalation",
+   "horizon_end": "2026-10-09",
+   "direction": "bearish",
+   "probability": 7,
+   "brent_lo": 86,
+   "brent_hi": 95
+  },
+  {
+   "theme_key": "us_iran_escalation",
+   "horizon_end": "2026-10-09",
+   "direction": "base",
+   "probability": 85,
+   "brent_lo": 93,
+   "brent_hi": 103
+  },
+  {
+   "theme_key": "us_iran_escalation",
+   "horizon_end": "2026-10-09",
+   "direction": "bullish",
+   "probability": 8,
+   "brent_lo": 104,
+   "brent_hi": 116
+  },
+  {
+   "theme_key": "hormuz_flow_recovery",
+   "horizon_end": "2026-10-09",
+   "direction": "bearish",
+   "probability": 25,
+   "brent_lo": 89,
+   "brent_hi": 97
+  },
+  {
+   "theme_key": "hormuz_flow_recovery",
+   "horizon_end": "2026-10-09",
+   "direction": "base",
+   "probability": 50,
+   "brent_lo": 94,
+   "brent_hi": 102
+  },
+  {
+   "theme_key": "hormuz_flow_recovery",
+   "horizon_end": "2026-10-09",
+   "direction": "bullish",
+   "probability": 25,
+   "brent_lo": 99,
+   "brent_hi": 108
+  },
+  {
+   "theme_key": "gulf_disruption_tight_stocks",
+   "horizon_end": "2026-10-09",
+   "direction": "bearish",
+   "probability": 27,
+   "brent_lo": 88,
+   "brent_hi": 94
+  },
+  {
+   "theme_key": "gulf_disruption_tight_stocks",
+   "horizon_end": "2026-10-09",
+   "direction": "base",
+   "probability": 43,
+   "brent_lo": 95,
+   "brent_hi": 101
+  },
+  {
+   "theme_key": "gulf_disruption_tight_stocks",
+   "horizon_end": "2026-10-09",
+   "direction": "bullish",
+   "probability": 30,
+   "brent_lo": 102,
+   "brent_hi": 110
+  },
+  {
+   "theme_key": "diesel_export_ban",
+   "horizon_end": "2026-10-09",
+   "direction": "bearish",
+   "probability": 10,
+   "brent_lo": 88,
+   "brent_hi": 97
+  },
+  {
+   "theme_key": "diesel_export_ban",
+   "horizon_end": "2026-10-09",
+   "direction": "base",
+   "probability": 78,
+   "brent_lo": 93,
+   "brent_hi": 103
+  },
+  {
+   "theme_key": "diesel_export_ban",
+   "horizon_end": "2026-10-09",
+   "direction": "bullish",
+   "probability": 12,
+   "brent_lo": 99,
+   "brent_hi": 108
+  },
+  {
+   "theme_key": "atlantic_basin_arb",
+   "horizon_end": "2026-10-09",
+   "direction": "bearish",
+   "probability": 25,
+   "brent_lo": 92,
+   "brent_hi": 102
+  },
+  {
+   "theme_key": "atlantic_basin_arb",
+   "horizon_end": "2026-10-09",
+   "direction": "base",
+   "probability": 50,
+   "brent_lo": 93,
+   "brent_hi": 103
+  },
+  {
+   "theme_key": "atlantic_basin_arb",
+   "horizon_end": "2026-10-09",
+   "direction": "bullish",
+   "probability": 25,
+   "brent_lo": 95,
+   "brent_hi": 106
+  },
+  {
+   "theme_key": "non_gulf_supply",
+   "horizon_end": "2026-10-09",
+   "direction": "bearish",
+   "probability": 25,
+   "brent_lo": 87,
+   "brent_hi": 93
+  },
+  {
+   "theme_key": "non_gulf_supply",
+   "horizon_end": "2026-10-09",
+   "direction": "base",
+   "probability": 48,
+   "brent_lo": 93,
+   "brent_hi": 102
+  },
+  {
+   "theme_key": "non_gulf_supply",
+   "horizon_end": "2026-10-09",
+   "direction": "bullish",
+   "probability": 27,
+   "brent_lo": 101,
+   "brent_hi": 110
+  }
+ ],
+ "resolutions": []
+}
