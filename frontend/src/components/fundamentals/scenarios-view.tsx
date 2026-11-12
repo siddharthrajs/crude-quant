@@ -54,7 +54,7 @@ function ScenarioCell({ set, dir, selected, onPick }: { set: BoardSet; dir: Dire
         onPick()
       }}
       title={s.label}
-      className={`flex h-full w-full flex-col justify-center gap-0.5 rounded-sm px-1.5 text-left hover:bg-accent/60 ${selected ? "bg-accent ring-1 ring-ring" : ""}`}
+      className={`flex h-full w-full flex-col justify-center gap-1 rounded-sm px-1.5 py-1 text-left leading-tight hover:bg-accent/60 ${selected ? "bg-accent ring-1 ring-ring" : ""}`}
     >
       <div className="flex items-baseline justify-between text-[10px] leading-none text-muted-foreground">
         <span className="tabular-nums">{fmtRange(s.lo, s.hi)}</span>
@@ -125,7 +125,7 @@ export function ScenariosView() {
         flash: false,
         accessor: (r) => r.theme,
         cell: ({ row }) => (
-          <div className="flex min-w-0 flex-col justify-center leading-tight">
+          <div className="flex h-full min-w-0 flex-col justify-center gap-1 leading-tight">
             <span className="truncate font-semibold" title={row.theme}>
               {row.theme}
             </span>
