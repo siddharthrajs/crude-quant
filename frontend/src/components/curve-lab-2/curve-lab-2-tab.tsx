@@ -2,16 +2,20 @@ import { useState } from "react"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { CorrelationsView } from "./correlations-view"
 import { CurvesView } from "./curves-view"
+import { DistributionView } from "./distribution-view"
 
 // Curve Lab 2: the Curves view (one strategy's forward curve scrubbed day by day) and the Correlations view
-// (rolling correlations between two strategies' points), switched by a centered sub-tab nav.
+// (rolling correlations between two strategies' points) and the Distribution view (a strategy's histogram on the
+// days a set of conditions hold), switched by a centered sub-tab nav.
 
-type SubTab = "curves" | "correlations"
+type SubTab = "curves" | "correlations" | "distribution"
+const SUB_TABS: SubTab[] = ["curves", "correlations", "distribution"]
 const STORAGE_KEY = "crude-quant-curve-lab-2-subtab"
 
 function loadSubTab(): SubTab {
   try {
-    return localStorage.getItem(STORAGE_KEY) === "correlations" ? "correlations" : "curves"
+    const v = localStorage.getItem(STORAGE_KEY) as SubTab | null
+    return v && SUB_TABS.includes(v) ? v : "curves"
   } catch {
     return "curves"
   }
@@ -19,7 +23,7 @@ function loadSubTab(): SubTab {
 
 export function CurveLab2Tab() {
   const [subTab, setSubTab] = useState<SubTab>(loadSubTab)
-  // The Correlations view fetches two strategies over a long range, so it mounts only once it is first opened.
+  // The Correlations and Distribution views fetch over long ranges, so each mounts only once it is first opened.
   const [visited, setVisited] = useState<Set<SubTab>>(() => new Set([subTab]))
 
   const choose = (v: SubTab) => {
@@ -39,6 +43,7 @@ export function CurveLab2Tab() {
           <TabsList>
             <TabsTrigger value="curves">Curves</TabsTrigger>
             <TabsTrigger value="correlations">Correlations</TabsTrigger>
+            <TabsTrigger value="distribution">Distribution</TabsTrigger>
           </TabsList>
         </Tabs>
       </div>
@@ -46,6 +51,7 @@ export function CurveLab2Tab() {
       {/* Both stay mounted once visited, same as the app's top-level tabs. */}
       <div className={subTab === "curves" ? "min-h-0 flex-1" : "hidden"}>{visited.has("curves") && <CurvesView />}</div>
       <div className={subTab === "correlations" ? "min-h-0 flex-1" : "hidden"}>{visited.has("correlations") && <CorrelationsView />}</div>
+      <div className={subTab === "distribution" ? "min-h-0 flex-1" : "hidden"}>{visited.has("distribution") && <DistributionView />}</div>
     </div>
   )
 }

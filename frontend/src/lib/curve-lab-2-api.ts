@@ -58,3 +58,58 @@ export function getCurveLab2Curves(
   const params = new URLSearchParams({ product: q.product, strategy: q.strategy, start: q.start, end: q.end, depth: String(q.depth), price: q.price })
   return call<CurveLab2Curves>(token, `/api/curve-lab-2/curves?${params}`, { signal })
 }
+
+// Distribution (backend/app/routers/curve_lab_2_distribution.py). Strategies are QH codes: generic CL1-2, running CLZ26-F27.
+
+export interface DistributionCondition {
+  code: string
+  min: number | null
+  max: number | null
+}
+
+export interface DistributionQuery {
+  start: string
+  end: string
+  mode: CurveLab2Mode
+  price: CurveLab2Price
+  conditions: DistributionCondition[]
+  target: string
+}
+
+export interface Distribution {
+  target: { code: string; label: string }
+  mode: CurveLab2Mode
+  price: CurveLab2Price
+  days_in_range: number
+  days_with_target: number
+  /** Per condition: days its strategy had a value, and days it was inside its range. */
+  conditions: (DistributionCondition & { available: number; passed: number })[]
+  /** The days every condition held (and the target had a value), with the target's value on each. */
+  dates: string[]
+  values: number[]
+}
+
+export interface DistributionCurve {
+  code: string
+  label: string
+  days: number
+  points: string[]
+  /** Each point's legs on the latest day that has it ("Z26-F27"). */
+  refs: (string | null)[]
+  count: number[]
+  mean: (number | null)[]
+  median: (number | null)[]
+  min: (number | null)[]
+  max: (number | null)[]
+  /** The point the strategy itself sits on (for a running code, on the latest day). */
+  own: number | null
+}
+
+export const getDistribution = (token: string, q: DistributionQuery, signal?: AbortSignal) =>
+  call<Distribution>(token, "/api/curve-lab-2/distribution", { method: "POST", body: JSON.stringify(q), signal })
+
+export const getDistributionCurve = (
+  token: string,
+  q: { code: string; dates: string[]; price: CurveLab2Price; depth: number },
+  signal?: AbortSignal,
+) => call<DistributionCurve>(token, "/api/curve-lab-2/distribution/curve", { method: "POST", body: JSON.stringify(q), signal })

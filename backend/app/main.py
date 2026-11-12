@@ -16,6 +16,7 @@ from app.quant.source import PRODUCTS as QUANT_PRODUCTS, store as quant_store
 from app.routers.auth import router as auth_router
 from app.routers.curve_lab import router as curve_lab_router
 from app.routers.curve_lab_2 import router as curve_lab_2_router
+from app.routers.curve_lab_2_distribution import router as curve_lab_2_distribution_router
 from app.routers.dd import router as dd_router
 from app.routers.manager import router as manager_router
 from app.routers.paper_positions import router as paper_positions_router
@@ -106,6 +107,7 @@ app.include_router(manager_router)
 app.include_router(seasonality_router)
 app.include_router(curve_lab_router)
 app.include_router(curve_lab_2_router)
+app.include_router(curve_lab_2_distribution_router)
 app.include_router(watchlist_router)
 app.include_router(quant_router)
 app.include_router(dd_router)
