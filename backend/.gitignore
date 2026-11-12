@@ -3,3 +3,6 @@ __pycache__/
 .venv/
 .env
 .credentials/
+
+# Platts reports, extracted text, fact sheets and run files (licensed content; see app/fundamentals/)
+data/

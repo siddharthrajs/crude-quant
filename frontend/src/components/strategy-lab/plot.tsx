@@ -150,6 +150,10 @@ function fitYOnXZoom(P: PlotlyModule, el: PlotEl) {
 export interface PlotClick {
   x: unknown
   meta: unknown
+  /** Modifier keys held during the click. */
+  shift: boolean
+  /** Ctrl, or Cmd on a Mac. */
+  ctrl: boolean
 }
 
 /**
@@ -191,7 +195,8 @@ export function Plot({
             fitYOnXZoom(P, el as PlotEl)
             ;(el as PlotEl).on?.("plotly_click", (ev) => {
               const pt = (ev.points as { x?: unknown; data?: { meta?: unknown } }[] | undefined)?.[0]
-              if (pt) clickRef.current?.({ x: pt.x, meta: pt.data?.meta })
+              const mouse = ev.event as MouseEvent | undefined
+              if (pt) clickRef.current?.({ x: pt.x, meta: pt.data?.meta, shift: Boolean(mouse?.shiftKey), ctrl: Boolean(mouse?.ctrlKey || mouse?.metaKey) })
             })
             wired.current = true
           }

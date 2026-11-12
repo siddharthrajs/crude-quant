@@ -53,6 +53,13 @@ class Settings(BaseSettings):
     qh_autosync: bool = True
     qh_sync_time: str = "01:30"
 
+    # Fundamental scenarios (see app/fundamentals/): where the Platts Oilgram PDFs come from, and the local working
+    # folder for PDFs, extracted text, fact sheets and forecaster run files. The folder holds licensed Platts content
+    # and is git-ignored.
+    platts_pdf_url: str = "https://qh-apps.corp.hertshtengroup.com/platts/api/pdf?file=Energy%2F"
+    platts_share_dir: Path = Path(r"\\JPR-FS1\JaipurQuant\Public\Tanishq\platts-pdf")
+    fundamentals_dir: Path = BACKEND_DIR / "data" / "fundamentals"
+
     # Username/password auth (see app/auth/)
     jwt_secret_key: str = "change-me"
     jwt_algorithm: str = "HS256"
