@@ -105,6 +105,49 @@ bid = ask; the last bar on a contract's expiry day has blown-out quotes; CL
 contracts beyond the 12th generic had ~$1-wide quotes before 2026, so their
 mids are not precise enough for fly/double-fly work.
 
+## Fundamental scenarios (Platts Oilgram reports)
+
+`app/fundamentals/` turns the daily Platts Oilgram News and Oilgram Price
+Report into crude scenarios with probabilities and Brent ranges, stored in the
+`fnd` schema (migration 0016):
+
+- `fnd.reports`, `fnd.report_facts` -- the PDFs read, and one JSON fact sheet
+  per report date.
+- `fnd.runs` -- one per forecast date (`mode` backtest or live). Setting
+  `status` to `complete` fires `pg_notify('fnd_run', <run id>)`, the same push
+  pattern as `cns.headlines`.
+- `fnd.themes`, `fnd.scenario_sets`, `fnd.scenarios` -- each theme gets sets of
+  three exclusive scenarios (bearish / base / bullish) sharing a horizon, each
+  with a test fixed when the set opens: a price test on settlements, or a report
+  test on what a later Oilgram report says.
+- `fnd.forecasts` -- each scenario's probability and Brent range on each run.
+- `fnd.resolutions` -- which scenario came true.
+
+Working files (PDFs, text, fact sheets, run files) go under `data/fundamentals/`,
+which is git-ignored because it holds licensed Platts content. `pdftotext`
+(poppler) must be on PATH. A day's steps, from `backend/`:
+
+```
+.venv\Scripts\python -m app.fundamentals.fetch --from 2026-11-11 --to 2026-11-11
+.venv\Scripts\python -m app.fundamentals.bundle
+```
+
+Then Claude writes `facts/<date>.json` from `bundles/<date>.txt` following
+`app/fundamentals/prompts/fact_sheet.md`, and forecasts the day following
+`prompts/forecaster.md`. It reads prices only through
+`python -m app.fundamentals.prices <date>` and writes the run with
+`python -m app.fundamentals.apply_day <spec.json>`. Then:
+
+```
+.venv\Scripts\python -m app.fundamentals.load
+.venv\Scripts\python -m app.fundamentals.score data\fundamentals\scores.json
+```
+
+`load` reloads every run file in one transaction and resolves price tests from
+`qh_settlements`, so it is safe to re-run. Brent ranges and `brent_ref` tests
+are quoted on `REF_CONTRACT` in `app/fundamentals/common.py` (COF27, expires
+30 Nov 2026); move it to a later contract before horizons run past that.
+
 ## Market data auth (Entra ID, one-time)
 
 The feed authenticates to Entra ID as a user via MSAL device-code login, then
