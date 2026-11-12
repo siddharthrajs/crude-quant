@@ -5,7 +5,7 @@ set's first forecast on its own. Scores:
   brier   multi-class Brier on the three scenarios (0 perfect, 0.667 for a flat 1/3 each, 2 worst)
   hit     the scenario with the highest probability is the one that happened
   range   the reference contract's settle at horizon_end falls inside the Brent range given to the scenario that happened
-    python -m app.fundamentals.score [out.json]
+    python -m app.fundamentals.score [out.json] [--live]
 
 Prints the summary; with a path, also writes the full JSON (scores, every set, daily probability paths and the
 reference contract's settlements), which is what the results dashboard was built from.
@@ -15,7 +15,7 @@ import json
 import sys
 from collections import defaultdict
 
-from app.fundamentals.common import REF_CONTRACT, connect
+from app.fundamentals.common import connect
 
 Q = """
 SELECT ss.id set_id, t.key theme, t.name theme_name, t.impact, ss.horizon_end, r.run_date, sc.direction, sc.label,
@@ -23,7 +23,7 @@ SELECT ss.id set_id, t.key theme, t.name theme_name, t.impact, ss.horizon_end, r
        (SELECT s.settle FROM qh_settlements s WHERE s.code = r.ref_contract AND s.trade_date <= ss.horizon_end
          ORDER BY s.trade_date DESC LIMIT 1) cof27_at_horizon
 FROM fnd.forecasts f
-JOIN fnd.runs r ON r.id = f.run_id AND r.mode = 'backtest'
+JOIN fnd.runs r ON r.id = f.run_id AND r.mode = $1
 JOIN fnd.scenarios sc ON sc.id = f.scenario_id
 JOIN fnd.scenario_sets ss ON ss.id = sc.set_id
 JOIN fnd.themes t ON t.id = ss.theme_id
@@ -31,16 +31,16 @@ LEFT JOIN fnd.resolutions res ON res.scenario_id = sc.id
 ORDER BY ss.id, r.run_date, sc.direction"""
 
 
-async def main():
-    c = await connect()
-    try:
-        rows = [dict(r) for r in await c.fetch(Q)]
-        prices = [dict(r) for r in await c.fetch(
-            """SELECT trade_date, settle FROM qh_settlements WHERE code = $1 AND trade_date BETWEEN
-               (SELECT min(run_date) FROM fnd.runs WHERE mode = 'backtest') AND
-               (SELECT max(horizon_end) FROM fnd.scenario_sets) ORDER BY 1""", REF_CONTRACT)]
-    finally:
-        await c.close()
+async def compute(c, mode: str = "backtest") -> dict:
+    """The scores, every set and the daily probability paths of one mode's runs."""
+    rows = [dict(r) for r in await c.fetch(Q, mode)]
+    # The latest run's contract (the backtest's is COF27 throughout).
+    ref = await c.fetchval("SELECT ref_contract FROM fnd.runs WHERE mode = $1 ORDER BY run_date DESC LIMIT 1", mode)
+    prices = [dict(r) for r in await c.fetch(
+        """SELECT trade_date, settle FROM qh_settlements WHERE code = $1 AND trade_date BETWEEN
+           (SELECT min(run_date) FROM fnd.runs WHERE mode = $2) AND
+           (SELECT max(ss.horizon_end) FROM fnd.scenario_sets ss JOIN fnd.runs r ON r.id = ss.created_run_id
+            WHERE r.mode = $2) ORDER BY 1""", ref, mode)]
 
     by = defaultdict(lambda: defaultdict(dict))  # set -> run_date -> direction -> row
     for r in rows:
@@ -104,18 +104,30 @@ async def main():
         "calibration": [{"bucket": f"{b*10}-{b*10+10}%", "n": n, "freq": k / n} for b, (n, k) in sorted(cal.items())],
         "outcome_counts": dict(base_rate),
         "sets": sets_out, "paths": paths,
+        "ref_contract": ref,
         "cof27": [{"d": str(p["trade_date"]), "v": p["settle"]} for p in prices],
     }
-    if len(sys.argv) > 1:
-        with open(sys.argv[1], "w") as f:
+    return out
+
+
+async def main(path: str | None, mode: str) -> None:
+    c = await connect()
+    try:
+        out = await compute(c, mode)
+    finally:
+        await c.close()
+    themes = sorted(out["by_theme"])
+    if path:
+        with open(path, "w") as f:
             json.dump(out, f, indent=1, default=str)
     print(json.dumps({k: out[k] for k in ("overall", "first_forecast", "by_kind", "outcome_counts")}, indent=1, default=str))
     for t in themes:
         print(t, out["by_theme"][t])
     for cb in out["calibration"]:
         print(cb)
-    print("sets", len(sets_out), {s: sum(1 for x in sets_out if x["status"] == s) for s in ("resolved", "void", "open")})
+    print("sets", len(out["sets"]), {s: sum(1 for x in out["sets"] if x["status"] == s) for s in ("resolved", "void", "open")})
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    args = [a for a in sys.argv[1:] if a != "--live"]
+    asyncio.run(main(args[0] if args else None, "live" if "--live" in sys.argv[1:] else "backtest"))

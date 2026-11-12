@@ -1,9 +1,12 @@
 """Apply one day's forecaster spec: update state.json and write runs/<run_date>.json.
 
-    python -m app.fundamentals.apply_day path/to/day_spec.json
+    python -m app.fundamentals.apply_day path/to/day_spec.json           # backtest: runs/, state.json
+    python -m app.fundamentals.apply_day path/to/day_spec.json --live    # live: live/runs/, live/state.json
 
-Spec: {run_date, ref_price, themes: [...], resolutions: [...], new_sets: [...],
+Spec: {run_date, ref_price, [ref_contract], themes: [...], resolutions: [...], new_sets: [...],
        forecasts: {"<theme_key>|<horizon_end>": [[direction, probability, brent_lo, brent_hi], ...]}}
+A live spec must name its ref_contract (the one `python -m app.fundamentals.prices D --live` prints); a backtest
+spec defaults to COF27.
 An open set left out of `forecasts` carries its last forecast forward. A set closes once all three of its
 scenarios have a resolution. Fails loudly if a set's probabilities do not sum to 100, a direction is missing, or
 a forecast names a set that is not open.
@@ -12,10 +15,13 @@ a forecast names a set that is not open.
 import json
 import sys
 
-from app.fundamentals.common import REF_CONTRACT, RUNS, STATE
+from app.fundamentals.common import REF_CONTRACT, run_paths
 
 
-def apply(spec: dict) -> dict:
+def apply(spec: dict, mode: str = "backtest") -> dict:
+    RUNS, STATE = run_paths(mode)
+    ref = spec.get("ref_contract") or (REF_CONTRACT if mode == "backtest" else None)
+    assert ref, "a live spec needs ref_contract"
     state = json.loads(STATE.read_text()) if STATE.exists() else {"themes": [], "open_sets": [], "closed_sets": []}
     day = spec["run_date"]
     state["themes"] = spec["themes"]
@@ -50,7 +56,7 @@ def apply(spec: dict) -> dict:
     unknown = set(given) - {f"{s['theme_key']}|{s['horizon_end']}" for s in state["open_sets"]}
     assert not unknown, f"forecasts for sets that are not open: {unknown}"
     state["last_run"] = day
-    run = {"run_date": day, "ref_contract": REF_CONTRACT, "ref_price": spec["ref_price"], "themes": spec["themes"],
+    run = {"run_date": day, "ref_contract": ref, "ref_price": spec["ref_price"], "themes": spec["themes"],
            "new_sets": spec.get("new_sets", []), "forecasts": forecasts, "resolutions": spec.get("resolutions", [])}
     RUNS.mkdir(parents=True, exist_ok=True)
     (RUNS / f"{day}.json").write_text(json.dumps(run, indent=1))
@@ -59,5 +65,5 @@ def apply(spec: dict) -> dict:
 
 
 if __name__ == "__main__":
-    st = apply(json.loads(open(sys.argv[1], encoding="utf-8").read()))
+    st = apply(json.loads(open(sys.argv[1], encoding="utf-8").read()), "live" if "--live" in sys.argv[2:] else "backtest")
     print("ok", st["last_run"], "open sets:", [(s["theme_key"], s["horizon_end"]) for s in st["open_sets"]])

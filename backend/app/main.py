@@ -10,6 +10,7 @@ from app.config import settings
 from app.lightstreamer.feed import LightstreamerFeed
 from app.lightstreamer.instruments import load_instrument_records
 from app.lightstreamer.structures import Leg, Structure, StructureEngine, build_dfly12_structures, build_dfly_structures, build_fly_structures
+from app.fundamentals.api import listener as fnd_listener, router as fnd_router
 from app.news import listener as news_listener, router as news_router
 from app.qh import sync as qh_sync
 from app.quant.source import PRODUCTS as QUANT_PRODUCTS, store as quant_store
@@ -73,6 +74,7 @@ async def lifespan(app: FastAPI):
         # based and LightstreamerFeed.start() blocks while the session settles.
         loop.run_in_executor(None, _feed.start).add_done_callback(_log_feed_result)
     news_listener.start()
+    fnd_listener.start()
     if settings.quant_autoload:
         # Build/refresh the Strategy Lab caches from the SQLite share in the background.
         for product in QUANT_PRODUCTS:
@@ -83,6 +85,7 @@ async def lifespan(app: FastAPI):
     if qh_task:
         qh_task.cancel()
     await news_listener.stop()
+    await fnd_listener.stop()
     if _feed:
         _feed.stop()
 
@@ -99,6 +102,7 @@ app.add_middleware(
 
 app.include_router(ws_router)
 app.include_router(news_router)
+app.include_router(fnd_router)
 app.include_router(auth_router)
 app.include_router(teams_router)
 app.include_router(positions_router)

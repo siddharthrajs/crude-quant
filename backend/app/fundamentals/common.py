@@ -1,10 +1,13 @@
 """Paths and the Postgres connection shared by the fundamentals scripts."""
 
+import datetime as dt
 from pathlib import Path
 
 import asyncpg
 
 from app.config import settings
+
+MODES = ("backtest", "live")
 
 DATA = Path(settings.fundamentals_dir)
 REPORTS = DATA / "reports"
@@ -15,9 +18,26 @@ FACTS = DATA / "facts"
 RUNS = DATA / "runs"
 STATE = DATA / "state.json"
 
-# Brent contract every Brent range and `brent_ref` test is quoted on. COF27 is the front month from 31 Oct and expires
-# 30 Nov 2026, so a run after about 20 Nov needs a later contract (and `prices` and `load` with it).
+# The Brent contract a run quotes its ranges and `brent_ref` tests on, stored on the run (fnd.runs.ref_contract).
+# The backtest is pinned to COF27 (front month from 31 Oct, expires 30 Nov 2026) so its runs compare. A live run
+# takes the first Brent contract that expires more than REF_MIN_DAYS after the run date, so it never expires before
+# the run's horizons (the Friday of the following week, at most 11 days out).
 REF_CONTRACT = "COF27"
+REF_MIN_DAYS = 14
+
+
+def run_paths(mode: str) -> tuple[Path, Path]:
+    """(runs dir, state file) of a mode. The backtest's sit at the top of DATA, the live ones under DATA/live."""
+    assert mode in MODES, mode
+    return (RUNS, STATE) if mode == "backtest" else (DATA / "live" / "runs", DATA / "live" / "state.json")
+
+
+async def ref_contract(conn: asyncpg.Connection, day: dt.date, mode: str) -> str:
+    if mode == "backtest":
+        return REF_CONTRACT
+    return await conn.fetchval(
+        "SELECT code FROM qh_contracts WHERE product = 'CO' AND expiry > $1 ORDER BY expiry LIMIT 1",
+        day + dt.timedelta(days=REF_MIN_DAYS))
 
 
 async def connect() -> asyncpg.Connection:
