@@ -17,8 +17,8 @@ import { DayScrubber } from "./day-scrubber"
 import { fieldClass, shiftDays, useCurves, useMeta, usePlayback } from "./shared"
 
 // Curve Lab 2's Curves view: one strategy's forward curve on each settlement day of a date range, from settlements or closes (solid) with
-// the session opens beside it (dashed grey), and a reference curve (any product and strategy) for the same day next
-// to it. The whole range is fetched once per strategy; the slider (or Play) scrubs through its days locally. Point k
+// the session opens beside it (dashed grey), and one or two reference curves (any product and strategy) for the same
+// day next to it. The whole range is fetched once per strategy; the slider (or Play) scrubs through its days locally. Point k
 // applies the strategy from generic slot ck; GD / RD only changes how points are labelled.
 
 const STORAGE_KEY = "crude-quant-curve-lab-2"
@@ -100,6 +100,9 @@ interface Persisted {
   /** The curve drawn beside it, for the same range and points. "" = the same product as the strategy. */
   refProduct: CurveLab2Product | ""
   refStrategy: CurveLab2Strategy
+  /** An optional second reference beside the first. "" strategy = none. */
+  ref2Product: CurveLab2Product | ""
+  ref2Strategy: CurveLab2Strategy | ""
   mode: CurveLab2Mode
   /** The solid curve (and the relative charts): settlements or closes. */
   price: CurveLab2Price
@@ -120,7 +123,7 @@ interface Persisted {
   relByYear: boolean
 }
 
-const DEFAULTS: Persisted = { product: "CL", strategy: "spread", refProduct: "", refStrategy: "outright", mode: "GD", price: "settle", start: "", end: "", depth: 12, yScale: "range", yMin: "", yMax: "", speedMs: 200, picks: { GD: [], RD: [] }, relView: "level", relByYear: false }
+const DEFAULTS: Persisted = { product: "CL", strategy: "spread", refProduct: "", refStrategy: "outright", ref2Product: "", ref2Strategy: "", mode: "GD", price: "settle", start: "", end: "", depth: 12, yScale: "range", yMin: "", yMax: "", speedMs: 200, picks: { GD: [], RD: [] }, relView: "level", relByYear: false }
 
 function loadPersisted(): Persisted {
   try {
@@ -159,9 +162,14 @@ export function CurvesView() {
   const main = useCurves(token, ready ? { product: state.product, strategy: state.strategy, start, end, depth: state.depth, price: state.price } : null)
   const refProduct = state.refProduct || state.product
   const ref = useCurves(token, ready ? { product: refProduct, strategy: state.refStrategy, start, end, depth: state.depth, price: state.price } : null)
+  const ref2Strategy = state.ref2Strategy
+  const ref2 = useCurves(
+    token,
+    ready && ref2Strategy ? { product: state.ref2Product || state.product, strategy: ref2Strategy, start, end, depth: state.depth, price: state.price } : null,
+  )
   const data = main.data
   const error = metaError ?? main.error
-  const loading = main.loading || ref.loading
+  const loading = main.loading || ref.loading || (Boolean(ref2Strategy) && ref2.loading)
 
   const count = data?.days.length ?? 0
   const playback = usePlayback(count, state.speedMs)
@@ -180,9 +188,12 @@ export function CurvesView() {
   // The reference's curve on the slider's day (another product may not have settled that day).
   const refByDate = useMemo(() => new Map((ref.data?.days ?? []).map((d) => [d.date, d])), [ref.data])
   const refDay = day ? (refByDate.get(day.date) ?? null) : null
+  const ref2ByDate = useMemo(() => new Map((ref2.data?.days ?? []).map((d) => [d.date, d])), [ref2.data])
+  const ref2Day = day && ref2Strategy ? (ref2ByDate.get(day.date) ?? null) : null
 
   const rangeDomain = useMemo(() => rangeDomainOf(data), [data])
   const refRangeDomain = useMemo(() => rangeDomainOf(ref.data), [ref.data])
+  const ref2RangeDomain = useMemo(() => rangeDomainOf(ref2.data), [ref2.data])
   const dayDomain = () => dayDomainOf(day)
 
   const yMin = Number(state.yMin)
@@ -192,6 +203,7 @@ export function CurvesView() {
   const yDomain = state.yScale === "range" ? rangeDomain : state.yScale === "manual" ? manualDomain : undefined
   // The reference is on its own scale (an outright is ~100x a spread), so typed bounds don't apply to it: Manual holds it on its range.
   const refYDomain = state.yScale === "auto" ? undefined : refRangeDomain
+  const ref2YDomain = state.yScale === "auto" ? undefined : ref2RangeDomain
 
   // Switching to Manual starts from whatever the chart shows now, so the bounds are a sensible place to edit from.
   const setYScale = (yScale: YScale) => {
@@ -214,6 +226,7 @@ export function CurvesView() {
 
   const { settlePoints, openPoints } = useMemo(() => curvePoints(day, state.mode), [day, state.mode])
   const refPoints = useMemo(() => curvePoints(refDay, state.mode), [refDay, state.mode])
+  const ref2Points = useMemo(() => curvePoints(ref2Day, state.mode), [ref2Day, state.mode])
 
   // Contracts that can be picked: GD the generic slots on the curve; RD every contract that is a point's front leg
   // on some day of the range, in delivery order.
@@ -279,12 +292,45 @@ export function CurvesView() {
   const highlight = useMemo(() => {
     const at = (d: CurveLab2Day | null) =>
       d ? picks.map((p) => (state.mode === "GD" ? Number(p.ref.slice(1)) - 1 : d.refs.indexOf(p.ref))).filter((k) => k >= 0 && k < d.settle.length) : []
-    return { main: at(day), ref: at(refDay) }
-  }, [day, refDay, picks, state.mode])
+    return { main: at(day), ref: at(refDay), ref2: at(ref2Day) }
+  }, [day, refDay, ref2Day, picks, state.mode])
 
   // The day slider, also shown inside a full-screen chart (right padding clears its exit button).
   const sliderBar = (className = "") =>
     data && day ? <DayScrubber dates={dates} playback={playback} speedMs={state.speedMs} onSpeed={(speedMs) => patch({ speedMs })} className={className} /> : null
+
+  const referencePanel = (
+    name: string,
+    r: ReturnType<typeof useCurves>,
+    rDay: CurveLab2Day | null,
+    points: ReturnType<typeof curvePoints>,
+    yDom: [number, number] | undefined,
+    marks: number[],
+  ) => (
+    <FullscreenPanel controls={sliderBar("pr-9")} className="min-w-0">
+      {(full) =>
+        r.error ? (
+          <div className="p-3 text-sm text-destructive">
+            {name}: {r.error}
+          </div>
+        ) : r.data && rDay ? (
+          <CurveChart
+            points={points.settlePoints}
+            settlePoints={points.openPoints}
+            settleLabel="Open"
+            yDomain={yDom}
+            highlight={marks}
+            convention={CURVE_CONVENTION}
+            label={`${name}: ${r.data.product_label} ${r.data.strategy_label} · ${rDay.date} — ${PRICE_LABEL[r.data.price]}`}
+            height={full ? undefined : 360}
+            className={`[&_[data-chart-header]]:pr-8 ${full ? "min-h-0 flex-1" : ""}`}
+          />
+        ) : (
+          <div className="p-3 text-sm text-muted-foreground">{r.loading ? `Loading ${name.toLowerCase()}…` : `No ${name.toLowerCase()} curve on ${day?.date ?? ""}`}</div>
+        )
+      }
+    </FullscreenPanel>
+  )
 
   return (
     <div className="flex h-full min-h-0 flex-col gap-2 overflow-y-auto p-2">
@@ -320,6 +366,31 @@ export function CurvesView() {
             ))}
           </select>
           <select className={fieldClass} value={state.refStrategy} onChange={(e) => patch({ refStrategy: e.target.value as CurveLab2Strategy })}>
+            {(meta?.strategies ?? []).map((s) => (
+              <option key={s.id} value={s.id}>
+                {s.label} ({s.weights.join(":")})
+              </option>
+            ))}
+          </select>
+        </label>
+        <label className="flex items-center gap-1.5" title="An optional second reference, drawn beside the first">
+          <span className="font-semibold">Reference 2</span>
+          <select
+            className={fieldClass}
+            value={state.ref2Product}
+            disabled={!ref2Strategy}
+            onChange={(e) => patch({ ref2Product: e.target.value as CurveLab2Product | "" })}
+            aria-label="Second reference product"
+          >
+            <option value="">Same product</option>
+            {products.map((p) => (
+              <option key={p.root} value={p.root}>
+                {p.label}
+              </option>
+            ))}
+          </select>
+          <select className={fieldClass} value={state.ref2Strategy} onChange={(e) => patch({ ref2Strategy: e.target.value as CurveLab2Strategy | "" })} aria-label="Second reference strategy">
+            <option value="">None</option>
             {(meta?.strategies ?? []).map((s) => (
               <option key={s.id} value={s.id}>
                 {s.label} ({s.weights.join(":")})
@@ -452,27 +523,11 @@ export function CurvesView() {
               )}
             </FullscreenPanel>
 
-            <FullscreenPanel controls={sliderBar("pr-9")} className="min-w-0">
-              {(full) =>
-                ref.error ? (
-                  <div className="p-3 text-sm text-destructive">Reference: {ref.error}</div>
-                ) : ref.data && refDay ? (
-                  <CurveChart
-                    points={refPoints.settlePoints}
-                    settlePoints={refPoints.openPoints}
-                    settleLabel="Open"
-                    yDomain={refYDomain}
-                    highlight={highlight.ref}
-                    convention={CURVE_CONVENTION}
-                    label={`Reference: ${ref.data.product_label} ${ref.data.strategy_label} · ${refDay.date} — ${PRICE_LABEL[ref.data.price]}`}
-                    height={full ? undefined : 360}
-                    className={`[&_[data-chart-header]]:pr-8 ${full ? "min-h-0 flex-1" : ""}`}
-                  />
-                ) : (
-                  <div className="p-3 text-sm text-muted-foreground">{ref.loading ? "Loading reference…" : `No reference curve on ${day.date}`}</div>
-                )
-              }
-            </FullscreenPanel>
+            {/* The references share the other half: the whole of it for one, a quarter each for two. */}
+            <div className={`grid min-w-0 gap-2 ${ref2Strategy ? "grid-cols-2" : "grid-cols-1"}`}>
+              {referencePanel("Reference", ref, refDay, refPoints, refYDomain, highlight.ref)}
+              {ref2Strategy && referencePanel("Reference 2", ref2, ref2Day, ref2Points, ref2YDomain, highlight.ref2)}
+            </div>
           </div>
 
           <section className="flex flex-wrap items-center gap-2 rounded-md border border-border px-2 py-1.5 text-xs">
