@@ -59,6 +59,61 @@ export function getCurveLab2Curves(
   return call<CurveLab2Curves>(token, `/api/curve-lab-2/curves?${params}`, { signal })
 }
 
+// Roll transition (backend/app/routers/curve_lab_2_roll.py): every front expiry as one event, on an axis of
+// settlement days from that expiry (E-window .. E+window).
+
+export type RollSectionId = "early" | "pre" | "roll" | "expiry" | "post" | "front" | "own"
+
+export interface RollSection {
+  id: RollSectionId
+  label: string
+  /** Settlement days from E, inclusive. */
+  from: number
+  to: number
+}
+
+export interface RollEvent {
+  /** The expiring front contract (N), the incoming one (N+1, c2 before E, c1 after) and the one after it. */
+  out: string
+  in: string
+  next: string
+  /** E: N's last settlement day. */
+  expiry: string
+  /** Settlement days from E to N+1's own expiry; null while N+1 still trades. */
+  L: number | null
+  /** N above N+1 at the start of the window. */
+  back: boolean
+  /** One entry per offset -window .. +window; null past the latest settlement. */
+  dates: (string | null)[]
+  /** The strategy from N+1, the same legs every day, to the day before N+1's own expiry. */
+  in_values: (number | null)[]
+  /** The strategy from N, up to E. */
+  out_values: (number | null)[]
+  /** Outright settlements of N (to E), N+1, N+2. */
+  px: [(number | null)[], (number | null)[], (number | null)[]]
+  /** Open interest of N (to E), N+1, N+2. */
+  oi: [(number | null)[], (number | null)[], (number | null)[]]
+}
+
+export interface RollEvents {
+  product: CurveLab2Product
+  product_label: string
+  strategy: CurveLab2Strategy
+  strategy_label: string
+  weights: number[]
+  window: number
+  /** Median offset at which N+1's open interest first exceeds N's (rolls since 2016). */
+  crossover: number
+  /** Median settlement days from one expiry to the next. */
+  cycle_length: number
+  sections: RollSection[]
+  last: string
+  events: RollEvent[]
+}
+
+export const getRollEvents = (token: string, q: { product: CurveLab2Product; strategy: CurveLab2Strategy }, signal?: AbortSignal) =>
+  call<RollEvents>(token, `/api/curve-lab-2/roll-events?${new URLSearchParams(q)}`, { signal })
+
 // Distribution (backend/app/routers/curve_lab_2_distribution.py). Strategies are QH codes: generic CL1-2, running CLZ26-F27.
 
 export interface DistributionCondition {

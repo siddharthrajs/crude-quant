@@ -3,13 +3,15 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { CorrelationsView } from "./correlations-view"
 import { CurvesView } from "./curves-view"
 import { DistributionView } from "./distribution-view"
+import { RollTransitionView } from "./roll-transition-view"
 
 // Curve Lab 2: the Curves view (one strategy's forward curve scrubbed day by day) and the Correlations view
 // (rolling correlations between two strategies' points) and the Distribution view (a strategy's histogram on the
-// days a set of conditions hold), switched by a centered sub-tab nav.
+// days a set of conditions hold) and the Roll transition view (the 2nd-month contract followed across the front's
+// expiry, in sections), switched by a centered sub-tab nav.
 
-type SubTab = "curves" | "correlations" | "distribution"
-const SUB_TABS: SubTab[] = ["curves", "correlations", "distribution"]
+type SubTab = "curves" | "correlations" | "distribution" | "roll"
+const SUB_TABS: SubTab[] = ["curves", "correlations", "distribution", "roll"]
 const STORAGE_KEY = "crude-quant-curve-lab-2-subtab"
 
 function loadSubTab(): SubTab {
@@ -44,6 +46,7 @@ export function CurveLab2Tab() {
             <TabsTrigger value="curves">Curves</TabsTrigger>
             <TabsTrigger value="correlations">Correlations</TabsTrigger>
             <TabsTrigger value="distribution">Distribution</TabsTrigger>
+            <TabsTrigger value="roll">Roll transition</TabsTrigger>
           </TabsList>
         </Tabs>
       </div>
@@ -52,6 +55,7 @@ export function CurveLab2Tab() {
       <div className={subTab === "curves" ? "min-h-0 flex-1" : "hidden"}>{visited.has("curves") && <CurvesView />}</div>
       <div className={subTab === "correlations" ? "min-h-0 flex-1" : "hidden"}>{visited.has("correlations") && <CorrelationsView />}</div>
       <div className={subTab === "distribution" ? "min-h-0 flex-1" : "hidden"}>{visited.has("distribution") && <DistributionView />}</div>
+      <div className={subTab === "roll" ? "min-h-0 flex-1" : "hidden"}>{visited.has("roll") && <RollTransitionView />}</div>
     </div>
   )
 }
