@@ -17,8 +17,8 @@ import { DayScrubber } from "./day-scrubber"
 import { fieldClass, shiftDays, useCurves, useMeta, usePlayback } from "./shared"
 
 // Curve Lab 2's Curves view: one strategy's forward curve on each settlement day of a date range, from settlements or closes (solid) with
-// the session opens beside it (dashed grey), and a reference strategy's curve for the same product and day next to
-// it. The whole range is fetched once per strategy; the slider (or Play) scrubs through its days locally. Point k
+// the session opens beside it (dashed grey), and a reference curve (any product and strategy) for the same day next
+// to it. The whole range is fetched once per strategy; the slider (or Play) scrubs through its days locally. Point k
 // applies the strategy from generic slot ck; GD / RD only changes how points are labelled.
 
 const STORAGE_KEY = "crude-quant-curve-lab-2"
@@ -76,6 +76,12 @@ function curvePoints(day: CurveLab2Day | null, mode: CurveLab2Mode): { settlePoi
 
 const MAX_PICKS = 3
 
+const FALLBACK_PRODUCTS: { root: CurveLab2Product; label: string }[] = [
+  { root: "CL", label: "WTI" },
+  { root: "CO", label: "Brent" },
+  { root: "WTCLCO", label: "CLBZZ" },
+]
+
 const PRICES: { id: CurveLab2Price; label: string; hint: string }[] = [
   { id: "settle", label: "Settlement", hint: "Official settlement prices" },
   { id: "close", label: "Close", hint: "The session's last trade; a point is missing when any leg did not trade that day" },
@@ -91,7 +97,8 @@ interface Pick {
 interface Persisted {
   product: CurveLab2Product
   strategy: CurveLab2Strategy
-  /** The strategy drawn beside it, for the same product, range and points. */
+  /** The curve drawn beside it, for the same range and points. "" = the same product as the strategy. */
+  refProduct: CurveLab2Product | ""
   refStrategy: CurveLab2Strategy
   mode: CurveLab2Mode
   /** The solid curve (and the relative charts): settlements or closes. */
@@ -113,7 +120,7 @@ interface Persisted {
   relByYear: boolean
 }
 
-const DEFAULTS: Persisted = { product: "CL", strategy: "spread", refStrategy: "outright", mode: "GD", price: "settle", start: "", end: "", depth: 12, yScale: "range", yMin: "", yMax: "", speedMs: 200, picks: { GD: [], RD: [] }, relView: "level", relByYear: false }
+const DEFAULTS: Persisted = { product: "CL", strategy: "spread", refProduct: "", refStrategy: "outright", mode: "GD", price: "settle", start: "", end: "", depth: 12, yScale: "range", yMin: "", yMax: "", speedMs: 200, picks: { GD: [], RD: [] }, relView: "level", relByYear: false }
 
 function loadPersisted(): Persisted {
   try {
@@ -141,6 +148,7 @@ export function CurvesView() {
     }
   }, [state])
 
+  const products = meta?.products ?? FALLBACK_PRODUCTS
   const range = meta?.products.find((p) => p.root === state.product)
   const maxDepth = meta?.max_depth ?? 24
   const end = state.end || range?.last || ""
@@ -149,7 +157,8 @@ export function CurvesView() {
   // One request per range/strategy; the slider only moves through what came back.
   const ready = Boolean(start && end)
   const main = useCurves(token, ready ? { product: state.product, strategy: state.strategy, start, end, depth: state.depth, price: state.price } : null)
-  const ref = useCurves(token, ready ? { product: state.product, strategy: state.refStrategy, start, end, depth: state.depth, price: state.price } : null)
+  const refProduct = state.refProduct || state.product
+  const ref = useCurves(token, ready ? { product: refProduct, strategy: state.refStrategy, start, end, depth: state.depth, price: state.price } : null)
   const data = main.data
   const error = metaError ?? main.error
   const loading = main.loading || ref.loading
@@ -168,7 +177,7 @@ export function CurvesView() {
 
   const day = data?.days[index] ?? null
   const nLegs = data?.weights.length ?? 1
-  // The reference's curve on the slider's day (same product, so the same settlement days).
+  // The reference's curve on the slider's day (another product may not have settled that day).
   const refByDate = useMemo(() => new Map((ref.data?.days ?? []).map((d) => [d.date, d])), [ref.data])
   const refDay = day ? (refByDate.get(day.date) ?? null) : null
 
@@ -283,7 +292,7 @@ export function CurvesView() {
         <label className="flex items-center gap-1.5">
           <span className="font-semibold">Product</span>
           <select className={fieldClass} value={state.product} onChange={(e) => patch({ product: e.target.value as CurveLab2Product })}>
-            {(meta?.products ?? [{ root: "CL", label: "WTI" }, { root: "CO", label: "Brent" }, { root: "WTCLCO", label: "CLBZZ" }]).map((p) => (
+            {products.map((p) => (
               <option key={p.root} value={p.root}>
                 {p.label}
               </option>
@@ -300,8 +309,16 @@ export function CurvesView() {
             ))}
           </select>
         </label>
-        <label className="flex items-center gap-1.5" title="Drawn beside the strategy: same product, day and points">
+        <label className="flex items-center gap-1.5" title="Drawn beside the strategy: same day, range and points">
           <span className="font-semibold">Reference</span>
+          <select className={fieldClass} value={state.refProduct} onChange={(e) => patch({ refProduct: e.target.value as CurveLab2Product | "" })} aria-label="Reference product">
+            <option value="">Same product</option>
+            {products.map((p) => (
+              <option key={p.root} value={p.root}>
+                {p.label}
+              </option>
+            ))}
+          </select>
           <select className={fieldClass} value={state.refStrategy} onChange={(e) => patch({ refStrategy: e.target.value as CurveLab2Strategy })}>
             {(meta?.strategies ?? []).map((s) => (
               <option key={s.id} value={s.id}>
