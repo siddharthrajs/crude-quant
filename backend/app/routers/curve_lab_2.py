@@ -12,13 +12,23 @@ Two values per point, both the weighted sum of the legs on that day:
           missing when any leg did not trade that day
   open    the session's first trade (qh_daily_bars.open); missing when any leg did not trade that day
 
+With legs=spread the same strategy is built synthetically from adjacent calendar spreads S(j) = c(j) - c(j+1)
+instead of outrights: its weights over the spreads are the running sums of its outright weights (fly 1:-2:1 is
+S1 - S2, DFly S1 - 2*S2 + S3, 1:2 DFly S1 - 3*S2 + 2*S3; a spread is S1 itself). The spreads' closes and opens are
+the spread instruments' own trades (QH daily bars of CLZ26-F27, ..., fetched live and kept for SPREAD_TTL); QH has no
+spread settlements, so with price=settle a spread is its legs' settlement difference (the exchange settles it that
+way). An outright has no spread form and is always built from outrights; the response's `legs` says which was used.
+
 The days are those with at least one settlement for the product. The whole range comes back in one response so
 the frontend can scrub through it without further requests.
 """
 
+import asyncio
+import time
 from bisect import bisect_left
 from collections import defaultdict
-from datetime import date
+from datetime import date, datetime, timedelta, timezone
+from itertools import accumulate
 from typing import Literal
 
 from fastapi import APIRouter, Depends, HTTPException, Query
@@ -28,6 +38,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.auth.dependencies import get_current_user
 from app.db.base import get_db
 from app.db.models import User
+from app.qh.client import QhError, client
 from app.qh.products import PRODUCTS
 
 router = APIRouter(prefix="/api/curve-lab-2", tags=["curve-lab-2"])
@@ -48,6 +59,42 @@ STRATEGIES: dict[str, tuple[str, tuple[int, ...]]] = {
 Product = Literal["CL", "CO", "WTCLCO"]
 StrategyId = Literal["outright", "spread", "fly", "dfly", "dfly12"]
 Price = Literal["settle", "close"]
+Legs = Literal["outright", "spread"]
+
+# Spread daily bars from QH: product -> (fetched at, codes asked for, start, end, {(code, day): (open, close)}).
+SPREAD_TTL = 15 * 60
+OHLC_BATCH = 50
+_spread_bars: dict[str, tuple[float, frozenset[str], date, date, dict[tuple[str, date], tuple[float | None, float | None]]]] = {}
+
+
+def _spread_weights(weights: tuple[int, ...]) -> tuple[int, ...]:
+    """A strategy's weights over adjacent spreads: the running sums of its outright weights, dropping the last (0)."""
+    return tuple(accumulate(weights))[:-1]
+
+
+def _num(v: object) -> float | None:
+    return None if v is None else float(v)
+
+
+async def _spread_quotes(product: str, codes: set[str], start: date, end: date) -> dict[tuple[str, date], tuple[float | None, float | None]]:
+    """(open, close) of each spread code on each trade date in [start, end], from QH's daily bars."""
+    hit = _spread_bars.get(product)
+    if hit and time.monotonic() - hit[0] < SPREAD_TTL and codes <= hit[1] and hit[2] <= start and end <= hit[3]:
+        return hit[4]
+    since = int(datetime.combine(start, datetime.min.time(), timezone.utc).timestamp())
+    until = int(datetime.combine(end + timedelta(days=1), datetime.min.time(), timezone.utc).timestamp())
+    ordered = sorted(codes)
+    out: dict[tuple[str, date], tuple[float | None, float | None]] = {}
+    try:
+        for i in range(0, len(ordered), OHLC_BATCH):
+            bars = await asyncio.to_thread(client.ohlc, ordered[i : i + OHLC_BATCH], "1D", start=since, end=until)
+            for b in bars:
+                d = datetime.fromtimestamp(b["time"] / 1000, timezone.utc).date()  # 1D bars are stamped with their trade date
+                out[(b["product"], d)] = (_num(b.get("open")), _num(b.get("close")))
+    except QhError as e:
+        raise HTTPException(status_code=502, detail=f"Spread prices from QH: {e}") from e
+    _spread_bars[product] = (time.monotonic(), frozenset(codes), start, end, out)
+    return out
 
 
 def _weighted(values: list[float | None], weights: tuple[int, ...]) -> float | None:
@@ -82,6 +129,7 @@ async def curves(
     end: date,
     depth: int = Query(default=MAX_DEPTH, ge=1, le=MAX_DEPTH),
     price: Price = "settle",
+    legs: Legs = "outright",
     db: AsyncSession = Depends(get_db),
     _: User = Depends(get_current_user),
 ) -> dict:
@@ -89,6 +137,9 @@ async def curves(
         raise HTTPException(status_code=422, detail="Start date is after the end date")
     label, weights = STRATEGIES[strategy]
     n_legs = len(weights)
+    if n_legs < 2:
+        legs = "outright"  # an outright has no spread form
+    spread_w = _spread_weights(weights)
 
     contracts = (
         await db.execute(
@@ -119,16 +170,43 @@ async def curves(
     if len(days) > MAX_DAYS:
         raise HTTPException(status_code=422, detail=f"At most {MAX_DAYS} settlement days per request; narrow the range")
 
+    fronts = {d: bisect_left(expiries, d) for d in days}  # c1: first contract expiring on or after the day
+    spread_code = lambda a, b: f"{a}-{b[len(product):]}"  # CLZ26, CLF27 -> CLZ26-F27
+    spread_px: dict[tuple[str, date], tuple[float | None, float | None]] = {}
+    if legs == "spread":
+        wanted = {
+            spread_code(codes[i], codes[i + 1])
+            for f in set(fronts.values())
+            for i in range(f, min(f + depth + n_legs - 2, len(codes) - 1))
+        }
+        spread_px = await _spread_quotes(product, wanted, days[0], days[-1])
+
     out_days = []
     for d in days:
-        front = bisect_left(expiries, d)  # c1: first contract expiring on or after the day
+        front = fronts[d]
         held = codes[front : front + depth + n_legs - 1]
         quotes = by_day[d]
         settle, opens = [], []
-        for k in range(len(held) - n_legs + 1):
-            legs = [quotes.get(code, (None, None)) for code in held[k : k + n_legs]]
-            settle.append(_weighted([q[0] for q in legs], weights))
-            opens.append(_weighted([q[1] for q in legs], weights))
+        if legs == "spread":
+            # Spread j = held[j] - held[j+1]: its own open and close; a settlement from its legs' settlements.
+            spreads = []
+            for a, b in zip(held, held[1:]):
+                bar = spread_px.get((spread_code(a, b), d), (None, None))
+                if price == "settle":
+                    sa, sb = quotes.get(a, (None, None))[0], quotes.get(b, (None, None))[0]
+                    solid = None if sa is None or sb is None else sa - sb
+                else:
+                    solid = bar[1]
+                spreads.append((solid, bar[0]))
+            for k in range(len(held) - n_legs + 1):
+                part = spreads[k : k + n_legs - 1]
+                settle.append(_weighted([q[0] for q in part], spread_w))
+                opens.append(_weighted([q[1] for q in part], spread_w))
+        else:
+            for k in range(len(held) - n_legs + 1):
+                part = [quotes.get(code, (None, None)) for code in held[k : k + n_legs]]
+                settle.append(_weighted([q[0] for q in part], weights))
+                opens.append(_weighted([q[1] for q in part], weights))
         out_days.append({
             "date": d.isoformat(),
             # Each point's legs are refs[k : k + len(weights)].
@@ -144,5 +222,6 @@ async def curves(
         "strategy_label": label,
         "weights": list(weights),
         "price": price,
+        "legs": legs,
         "days": out_days,
     }

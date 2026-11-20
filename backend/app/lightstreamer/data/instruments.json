@@ -452,6 +452,20 @@
           "instrument_type": "1MS",
           "label": "U27",
           "enabled": true
+        },
+        {
+          "tenor": "V27-X27",
+          "instrument_id": "3009661574048152138",
+          "instrument_type": "1MS",
+          "label": "V27",
+          "enabled": true
+        },
+        {
+          "tenor": "X27-Z27",
+          "instrument_id": "6700999969048516591",
+          "instrument_type": "1MS",
+          "label": "X27",
+          "enabled": true
         }
       ]
     },

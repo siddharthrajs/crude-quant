@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react"
 import { formatDateTime, journalGridColumns, toJournalRow, type JournalGridRow } from "@/components/journal/journal-columns"
-import { JournalAnalyticsPanel } from "@/components/journal/journal-analytics"
+import { JournalAnalyticsPanel, type JournalNotes } from "@/components/journal/journal-analytics"
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog"
 import { AuditTrail } from "@/components/ui/audit-trail"
 import { Button } from "@/components/ui/button"
 import type { SortState } from "@/components/ui/data-grid"
 import { useAuth } from "@/hooks/use-auth"
 import { NULL_TOKEN, formatPrice, formatSignedUsd } from "@/lib/format"
-import { deleteJournalEntries, getJournal, getMemberJournal, type BookMode, type BookScope, type JournalEntry } from "@/lib/positions-api"
+import { deleteJournalEntries, getJournal, updateJournalNotes, getMemberJournal, type BookMode, type BookScope, type JournalEntry } from "@/lib/positions-api"
 import { createRowStore, type RowId } from "@/lib/row-store"
 
 /** How the side pane prints a "changes" field's before/after value -- `price` and `realized_pnl`
@@ -54,7 +54,7 @@ export interface JournalPanelProps {
  * /api/positions/{id}/close`. */
 export function JournalPanel({ scope, member, active, label, mode = "live" }: JournalPanelProps) {
   const memberId = member ? member.id : undefined
-  const { token } = useAuth()
+  const { token, user } = useAuth()
   const [error, setError] = useState<string | null>(null)
   const [store] = useState(() => createRowStore<JournalGridRow>({ getRowId: (r) => r.id, lane: "ordered" }))
   const [columns] = useState(() => journalGridColumns())
@@ -83,6 +83,16 @@ export function JournalPanel({ scope, member, active, label, mode = "live" }: Jo
       })
       .catch((err: unknown) => setError(err instanceof Error ? err.message : "Could not load the trade journal."))
   }, [token, active, scope, memberId, mode, store])
+
+  // Only the trade's owner can rewrite its notes, and never from a manager's read-only member view.
+  const canEditNotes = memberId === undefined && focusedEntry !== null && user !== null && focusedEntry.owner_id === user.id
+
+  async function saveNotes(entry: JournalEntry, notes: JournalNotes) {
+    if (!token) throw new Error("Not signed in.")
+    const updated = await updateJournalNotes(token, entry.id, notes, mode)
+    setEntries((prev) => prev.map((e) => (e.id === updated.id ? updated : e)))
+    store.applyDeltas({ upsert: [toJournalRow(updated)] })
+  }
 
   async function deleteSelected() {
     if (!token || selection.size === 0) return
@@ -153,7 +163,7 @@ export function JournalPanel({ scope, member, active, label, mode = "live" }: Jo
             pane={false}
           />
         </div>
-        <JournalAnalyticsPanel journal={entries} selected={focusedEntry} />
+        <JournalAnalyticsPanel journal={entries} selected={focusedEntry} onSaveNotes={canEditNotes ? saveNotes : undefined} />
       </div>
     </div>
   )

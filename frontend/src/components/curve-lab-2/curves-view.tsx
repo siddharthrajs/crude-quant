@@ -5,6 +5,7 @@ import { useAuth } from "@/hooks/use-auth"
 import {
   type CurveLab2Curves,
   type CurveLab2Day,
+  type CurveLab2Legs,
   type CurveLab2Mode,
   type CurveLab2Price,
   type CurveLab2Product,
@@ -12,7 +13,7 @@ import {
 } from "@/lib/curve-lab-2-api"
 import { CURVE_CONVENTION } from "@/lib/curve-series"
 import { FullscreenPanel } from "./fullscreen-panel"
-import { RelativeCharts, type RelSeries, type RelView } from "./relative-charts"
+import { RelativeCharts, type RelBands, type RelSeries, type RelView } from "./relative-charts"
 import { DayScrubber } from "./day-scrubber"
 import { fieldClass, shiftDays, useCurves, useMeta, usePlayback } from "./shared"
 
@@ -88,6 +89,18 @@ const PRICES: { id: CurveLab2Price; label: string; hint: string }[] = [
 ]
 const PRICE_LABEL: Record<CurveLab2Price, string> = { settle: "settlement", close: "close" }
 
+const LEGS: { id: CurveLab2Legs; label: string; hint: string }[] = [
+  { id: "outright", label: "OUT", hint: "Build the strategy synthetically from its outright legs (fly = c1 − 2·c2 + c3)" },
+  {
+    id: "spread",
+    label: "Spread",
+    hint: "Build the strategy synthetically from adjacent calendar spreads (fly = S1 − S2, DFly = S1 − 2·S2 + S3): closes and opens are the spreads' own trades; settlements equal the outright build. Outrights are always from outrights",
+  },
+]
+/** "settlement", or with a synthetic build picked "close, from spreads" (an outright says "from outrights" either way). */
+const curveTitle = (c: CurveLab2Curves, legs: CurveLab2Legs | "") =>
+  legs ? `${PRICE_LABEL[c.price]}, from ${c.legs === "spread" ? "spreads" : "outrights"}` : PRICE_LABEL[c.price]
+
 interface Pick {
   ref: string
   /** As typed. */
@@ -106,6 +119,8 @@ interface Persisted {
   mode: CurveLab2Mode
   /** The solid curve (and the relative charts): settlements or closes. */
   price: CurveLab2Price
+  /** Built synthetically from outrights or from calendar spreads; "" = neither picked (plain settlement / close). */
+  legs: CurveLab2Legs | ""
   /** "" = DEFAULT_SPAN_DAYS before the end. */
   start: string
   /** "" = the latest settlement day. */
@@ -121,9 +136,13 @@ interface Persisted {
   relView: RelView
   /** Relative value chart: one line per calendar year. */
   relByYear: boolean
+  /** Relative value bands: fixed over the range, or moving (rolling by date, seasonal by year). */
+  relBands: RelBands
+  /** Rolling band lookback, trading days. */
+  relWindow: number
 }
 
-const DEFAULTS: Persisted = { product: "CL", strategy: "spread", refProduct: "", refStrategy: "outright", ref2Product: "", ref2Strategy: "", mode: "GD", price: "settle", start: "", end: "", depth: 12, yScale: "range", yMin: "", yMax: "", speedMs: 200, picks: { GD: [], RD: [] }, relView: "level", relByYear: false }
+const DEFAULTS: Persisted = { product: "CL", strategy: "spread", refProduct: "", refStrategy: "outright", ref2Product: "", ref2Strategy: "", mode: "GD", price: "settle", legs: "", start: "", end: "", depth: 12, yScale: "range", yMin: "", yMax: "", speedMs: 200, picks: { GD: [], RD: [] }, relView: "level", relByYear: false, relBands: "range", relWindow: 60 }
 
 function loadPersisted(): Persisted {
   try {
@@ -159,13 +178,13 @@ export function CurvesView() {
 
   // One request per range/strategy; the slider only moves through what came back.
   const ready = Boolean(start && end)
-  const main = useCurves(token, ready ? { product: state.product, strategy: state.strategy, start, end, depth: state.depth, price: state.price } : null)
+  const main = useCurves(token, ready ? { product: state.product, strategy: state.strategy, start, end, depth: state.depth, price: state.price, legs: state.legs || undefined } : null)
   const refProduct = state.refProduct || state.product
-  const ref = useCurves(token, ready ? { product: refProduct, strategy: state.refStrategy, start, end, depth: state.depth, price: state.price } : null)
+  const ref = useCurves(token, ready ? { product: refProduct, strategy: state.refStrategy, start, end, depth: state.depth, price: state.price, legs: state.legs || undefined } : null)
   const ref2Strategy = state.ref2Strategy
   const ref2 = useCurves(
     token,
-    ready && ref2Strategy ? { product: state.ref2Product || state.product, strategy: ref2Strategy, start, end, depth: state.depth, price: state.price } : null,
+    ready && ref2Strategy ? { product: state.ref2Product || state.product, strategy: ref2Strategy, start, end, depth: state.depth, price: state.price, legs: state.legs || undefined } : null,
   )
   const data = main.data
   const error = metaError ?? main.error
@@ -321,7 +340,7 @@ export function CurvesView() {
             yDomain={yDom}
             highlight={marks}
             convention={CURVE_CONVENTION}
-            label={`${name}: ${r.data.product_label} ${r.data.strategy_label} · ${rDay.date} — ${PRICE_LABEL[r.data.price]}`}
+            label={`${name}: ${r.data.product_label} ${r.data.strategy_label} · ${rDay.date} — ${curveTitle(r.data, state.legs)}`}
             height={full ? undefined : 360}
             className={`[&_[data-chart-header]]:pr-8 ${full ? "min-h-0 flex-1" : ""}`}
           />
@@ -441,6 +460,21 @@ export function CurvesView() {
               </button>
             ))}
           </div>
+          <span className="text-muted-foreground">from</span>
+          <div className="flex overflow-hidden rounded-md border border-input" role="group" aria-label="Built from">
+            {LEGS.map((l) => (
+              <button
+                key={l.id}
+                type="button"
+                aria-pressed={state.legs === l.id}
+                title={`${l.hint}. Click again to turn it off`}
+                onClick={() => patch({ legs: state.legs === l.id ? "" : l.id })}
+                className={`h-7 px-2.5 text-xs ${state.legs === l.id ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:bg-muted"}`}
+              >
+                {l.label}
+              </button>
+            ))}
+          </div>
         </div>
         <label className="flex items-center gap-1.5">
           <span className="font-semibold">Points</span>
@@ -516,7 +550,7 @@ export function CurvesView() {
                   yDomain={yDomain}
                   highlight={highlight.main}
                   convention={CURVE_CONVENTION}
-                  label={`${data.product_label} ${data.strategy_label} · ${day.date} — ${PRICE_LABEL[data.price]}`}
+                  label={`${data.product_label} ${data.strategy_label} · ${day.date} — ${curveTitle(data, state.legs)}`}
                   height={full ? undefined : 360}
                   className={`[&_[data-chart-header]]:pr-8 ${full ? "min-h-0 flex-1" : ""}`}
                 />
@@ -584,6 +618,10 @@ export function CurvesView() {
                 controls={sliderBar("pr-9")}
                 byYear={state.relByYear}
                 onByYear={(on) => patch({ relByYear: on })}
+                bands={state.relBands}
+                onBands={(b) => patch({ relBands: b })}
+                window={state.relWindow}
+                onWindow={(w) => patch({ relWindow: w })}
                 onPick={playback.pick}
               />
             </>

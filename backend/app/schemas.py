@@ -200,3 +200,9 @@ class JournalEntryOut(BaseModel):
 
 class JournalDeleteIn(BaseModel):
     ids: list[int] = Field(min_length=1, max_length=500)
+
+
+class JournalNotesIn(BaseModel):
+    # Both are written as given: blank/whitespace clears the note.
+    entry_note: str | None = Field(default=None, max_length=2000)
+    exit_note: str | None = Field(default=None, max_length=2000)

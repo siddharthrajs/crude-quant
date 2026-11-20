@@ -177,3 +177,10 @@ export async function deleteJournalEntries(token: string, ids: number[], mode: B
   const res = await fetch(`${basePath(mode)}/journal`, { method: "DELETE", headers: authHeaders(token), body: JSON.stringify({ ids }) })
   if (!res.ok) return positionsError(res)
 }
+
+/** Rewrites a closed trade's entry and exit notes (owner only); blank clears a note. */
+export async function updateJournalNotes(token: string, id: number, notes: { entry_note: string | null; exit_note: string | null }, mode: BookMode = "live"): Promise<JournalEntry> {
+  const res = await fetch(`${basePath(mode)}/journal/${id}/notes`, { method: "PATCH", headers: authHeaders(token), body: JSON.stringify(notes) })
+  if (!res.ok) return positionsError(res)
+  return res.json() as Promise<JournalEntry>
+}

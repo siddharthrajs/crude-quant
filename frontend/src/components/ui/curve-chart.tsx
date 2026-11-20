@@ -45,6 +45,9 @@ export interface CurveChartProps extends Omit<ComponentProps<"div">, "children">
   height?: number
   labels?: Partial<CurveChartLabels>
   onCursor?: (point: CurvePoint | null) => void
+  /** Let the user zoom into a run of tenors: drag across the plot or scroll the wheel to zoom, shift+wheel to
+   * pan, double-click (or the header's Reset) to see the whole curve again. The y-axis refits to what's in view. */
+  zoomable?: boolean
 }
 
 interface Palette {
@@ -99,6 +102,8 @@ interface Live {
   showSettle: boolean
   yDomain?: readonly [number, number]
   highlight: readonly number[]
+  /** The tenor window in view, or null for the whole curve. Kept here so a tick's setData doesn't undo a zoom. */
+  xView: readonly [number, number] | null
 }
 
 interface PlotArgs {
@@ -107,6 +112,8 @@ interface PlotArgs {
   convention: PriceConvention | InstrumentConvention
   live: () => Live
   onCursor: (index: number | null) => void
+  zoomable: boolean
+  onZoom: (view: readonly [number, number] | null) => void
 }
 
 const finiteOrNull = (v: number | null | undefined) => (typeof v === "number" && Number.isFinite(v) ? v : null)
@@ -138,7 +145,7 @@ function plotOptions(a: PlotArgs): uPlot.Options {
   // thinned subset) once the pixel gap between points falls under `space`, since incrs here has
   // nowhere smaller than 1 to fall back to. A curve is exactly as many tenors as it has points, and
   // every one of them is meant to be on the axis, however tight the tile.
-  const tenorSplits: uPlot.Axis.Splits = () => a.live().points.map((_, i) => i)
+  const tenorSplits: uPlot.Axis.Splits = (_u, _i, min, max) => a.live().points.map((_, i) => i).filter((i) => i >= min - 1e-9 && i <= max + 1e-9)
   const priceAxisSize: uPlot.Axis.Size = (u, values, _axis, cycle) => {
     if (cycle > 1 || !values) return 64
     u.ctx.font = font(uPlot.pxRatio)
@@ -146,26 +153,27 @@ function plotOptions(a: PlotArgs): uPlot.Options {
     for (const v of values) widest = Math.max(widest, u.ctx.measureText(v).width)
     return Math.ceil(widest / uPlot.pxRatio) + 18
   }
-  const n = () => Math.max(1, a.live().points.length - 1)
   return {
     width: a.width,
     height: a.height,
     legend: { show: false },
-    select: { show: false, left: 0, top: 0, width: 0, height: 0 },
+    select: { show: a.zoomable, left: 0, top: 0, width: 0, height: 0 },
     cursor: {
       x: true,
       y: true,
       lock: false,
-      drag: { x: false, y: false, setScale: false },
+      drag: { x: a.zoomable, y: false, setScale: false },
       focus: { prox: -1 },
       points: { size: 7, width: 1, stroke: () => a.live().palette.background, fill: () => a.live().palette.point },
     },
     scales: {
-      x: { range: () => [-0.4, n() + 0.4] },
+      x: { range: () => (a.live().xView as [number, number] | null) ?? fullXRange(a.live().points.length) },
       y: {
         range: (_u, min, max) => {
           const fixed = a.live().yDomain
           if (fixed) return [fixed[0], fixed[1]]
+          const view = a.live().xView
+          if (view) [min, max] = visibleExtent(a.live(), view, min, max)
           if (!(max > min)) {
             const step = priceIncrements(a.convention)[0] ?? 1
             return [min - step, max + step]
@@ -187,9 +195,52 @@ function plotOptions(a: PlotArgs): uPlot.Options {
     hooks: {
       init: [(u) => u.root.setAttribute("aria-hidden", "true")],
       setCursor: [(u) => a.onCursor(u.cursor.idx ?? null)],
+      setSelect: [
+        (u) => {
+          if (!a.zoomable || u.select.width < 6) return
+          const from = u.posToVal(u.select.left, "x")
+          const to = u.posToVal(u.select.left + u.select.width, "x")
+          u.setSelect({ left: 0, top: 0, width: 0, height: 0 }, false)
+          a.onZoom(clampView([from, to], a.live().points.length))
+        },
+      ],
       draw: [(u) => drawPointLabels(u, a), (u) => drawHighlights(u, a)],
     },
   }
+}
+
+const fullXRange = (count: number): [number, number] => [-0.4, Math.max(1, count - 1) + 0.4]
+/** Narrowest x window a zoom may reach -- two neighbouring tenors still read as a curve. */
+const MIN_SPAN = 1.2
+
+/** Fits a requested window inside the curve and no narrower than MIN_SPAN; null once it covers the whole curve. */
+function clampView([from, to]: readonly [number, number], count: number): readonly [number, number] | null {
+  const [lo, hi] = fullXRange(count)
+  let a = Math.min(from, to)
+  let b = Math.max(from, to)
+  if (b - a < MIN_SPAN) {
+    const mid = (a + b) / 2
+    a = mid - MIN_SPAN / 2
+    b = mid + MIN_SPAN / 2
+  }
+  if (b - a >= hi - lo) return null
+  if (a < lo) [a, b] = [lo, lo + (b - a)]
+  if (b > hi) [a, b] = [hi - (b - a), hi]
+  return [a, b]
+}
+
+/** Min/max of the plotted values (curve, plus settle when it's showing) at the tenors inside the window. */
+function visibleExtent(live: Live, [from, to]: readonly [number, number], fallbackMin: number, fallbackMax: number): [number, number] {
+  let min = Infinity
+  let max = -Infinity
+  for (let i = Math.max(0, Math.ceil(from)); i <= Math.min(live.points.length - 1, Math.floor(to)); i++) {
+    for (const v of [finiteOrNull(live.points[i]?.value), live.showSettle ? finiteOrNull(live.settle[i]?.value) : null]) {
+      if (v === null) continue
+      if (v < min) min = v
+      if (v > max) max = v
+    }
+  }
+  return min <= max ? [min, max] : [fallbackMin, fallbackMax]
 }
 
 /** The value at every point, floating just off its marker -- a curve has few enough points (a dozen
@@ -251,7 +302,7 @@ function readShowSettle(key: string): boolean {
 
 const clamp = (n: number, max: number) => Math.max(0, Math.min(max, n))
 
-export function CurveChart({ points, settlePoints, settleLabel = "Settle", yDomain, highlight, convention, label, height, labels: labelsProp, onCursor, className, style, ...props }: CurveChartProps) {
+export function CurveChart({ points, settlePoints, settleLabel = "Settle", yDomain, highlight, convention, label, height, labels: labelsProp, onCursor, zoomable = false, className, style, ...props }: CurveChartProps) {
   const labels = { ...DEFAULT_CURVE_CHART_LABELS, ...labelsProp }
   const conventionKey = JSON.stringify(convention)
 
@@ -259,10 +310,11 @@ export function CurveChart({ points, settlePoints, settleLabel = "Settle", yDoma
   const [size, setSize] = useState<{ width: number; height: number } | null>(null)
   const [cursor, setCursorState] = useState<number | null>(null)
   const [fontEpoch, setFontEpoch] = useState(0)
+  const [zoomed, setZoomed] = useState(false)
 
   const plot = useRef<uPlot | null>(null)
   const [showSettle, setShowSettle] = useState(() => readShowSettle(settleKey(settleLabel)))
-  const live = useRef<Live>({ palette: UNREAD_PALETTE, points, settle: settlePoints ?? [], showSettle, highlight: highlight ?? [] })
+  const live = useRef<Live>({ palette: UNREAD_PALETTE, points, settle: settlePoints ?? [], showSettle, highlight: highlight ?? [], xView: null })
   const onCursorRef = useRef(onCursor)
   const conventionRef = useRef(convention)
   const cursorFromPlot = useRef(false)
@@ -285,11 +337,38 @@ export function CurveChart({ points, settlePoints, settleLabel = "Settle", yDoma
     })
   }
 
+  /** Shows a tenor window (null: the whole curve); the y-axis refits to it through the scale's range. */
+  const applyView = (view: readonly [number, number] | null) => {
+    live.current.xView = view
+    setZoomed(view !== null)
+    const u = plot.current
+    if (!u) return
+    const [min, max] = view ?? fullXRange(live.current.points.length)
+    u.setScale("x", { min, max })
+  }
+  const applyViewRef = useRef(applyView)
+
+  /** Zooms by `factor` (<1 in, >1 out) holding the x value `anchor` in place; null anchor = the view's middle. */
+  const zoomBy = (factor: number, anchor: number | null) => {
+    const count = live.current.points.length
+    const [from, to] = live.current.xView ?? fullXRange(count)
+    const at = anchor ?? (from + to) / 2
+    applyViewRef.current(clampView([at - (at - from) * factor, at + (to - at) * factor], count))
+  }
+  const zoomByRef = useRef(zoomBy)
+
   useLayoutEffect(() => {
+    applyViewRef.current = applyView
+    zoomByRef.current = zoomBy
     onCursorRef.current = onCursor
     conventionRef.current = convention
   })
   useLayoutEffect(() => {
+    // A different curve (another product or strategy) has its own tenors: the old window means nothing there.
+    if (live.current.points.length !== points.length && live.current.xView) {
+      live.current.xView = null
+      setZoomed(false)
+    }
     live.current.points = points
     live.current.settle = settlePoints ?? []
     live.current.showSettle = showSettle
@@ -314,11 +393,39 @@ export function CurveChart({ points, settlePoints, settleLabel = "Settle", yDoma
     live.current.palette = readPalette(plotEl)
     const box = plotEl.getBoundingClientRect()
     const u = new uPlot(
-      plotOptions({ width: box.width, height: box.height, convention: conventionRef.current, live: () => live.current, onCursor: (index) => moveCursor(index, true) }),
+      plotOptions({
+        width: box.width,
+        height: box.height,
+        convention: conventionRef.current,
+        live: () => live.current,
+        onCursor: (index) => moveCursor(index, true),
+        zoomable,
+        onZoom: (view) => applyViewRef.current(view),
+      }),
       alignedData(live.current),
       plotEl,
     )
     plot.current = u
+    const onWheel = (event: WheelEvent) => {
+      if (event.deltaY === 0 && event.deltaX === 0) return
+      event.preventDefault()
+      const count = live.current.points.length
+      const view = live.current.xView
+      if (event.shiftKey || Math.abs(event.deltaX) > Math.abs(event.deltaY)) {
+        // Pan a tenth of the window per notch -- only meaningful once zoomed in.
+        if (!view) return
+        const shift = Math.sign(event.deltaX || event.deltaY) * (view[1] - view[0]) * 0.1
+        applyViewRef.current(clampView([view[0] + shift, view[1] + shift], count))
+        return
+      }
+      const rect = u.over.getBoundingClientRect()
+      zoomByRef.current(event.deltaY < 0 ? 0.8 : 1.25, u.posToVal(event.clientX - rect.left, "x"))
+    }
+    const onDblClick = () => applyViewRef.current(null)
+    if (zoomable) {
+      u.over.addEventListener("wheel", onWheel, { passive: false })
+      u.over.addEventListener("dblclick", onDblClick)
+    }
     const observer = new MutationObserver(() => {
       const next = readPalette(plotEl)
       const fontChanged = next.font !== live.current.palette.font
@@ -332,11 +439,13 @@ export function CurveChart({ points, settlePoints, settleLabel = "Settle", yDoma
     observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class", "style", "data-theme", "data-accessibility"] })
     return () => {
       observer.disconnect()
+      u.over.removeEventListener("wheel", onWheel)
+      u.over.removeEventListener("dblclick", onDblClick)
       u.destroy()
       plot.current = null
     }
     // conventionKey stands for the object's structure; the object itself never remakes the plot on an inline literal.
-  }, [plotEl, ready, conventionKey, fontEpoch])
+  }, [plotEl, ready, conventionKey, fontEpoch, zoomable])
 
   useEffect(() => {
     if (size && plot.current) plot.current.setSize(size)
@@ -368,6 +477,12 @@ export function CurveChart({ points, settlePoints, settleLabel = "Settle", yDoma
 
   function onKeyDown(event: KeyboardEvent<HTMLDivElement>) {
     if (event.defaultPrevented || !interactive || event.metaKey || event.ctrlKey || event.altKey) return
+    if (zoomable && (event.key === "+" || event.key === "=" || event.key === "-" || event.key === "0")) {
+      event.preventDefault()
+      if (event.key === "0") applyView(null)
+      else zoomBy(event.key === "-" ? 1.25 : 0.8, cursor)
+      return
+    }
     const from = cursor === null ? 0 : clamp(cursor, count - 1)
     const to = { ArrowLeft: from - 1, ArrowDown: from - 1, ArrowRight: from + 1, ArrowUp: from + 1, Home: 0, End: count - 1 }[event.key]
     if (to === undefined && event.key !== "Escape") return
@@ -397,6 +512,11 @@ export function CurveChart({ points, settlePoints, settleLabel = "Settle", yDoma
         <span data-chart-readout="" className={cn("ml-auto", NUMERIC_CLASS)}>
           {readout}
         </span>
+        {zoomable && zoomed && (
+          <button type="button" onClick={() => applyView(null)} className="rounded border border-border px-1.5 text-[10px] leading-4 text-muted-foreground hover:bg-muted hover:text-foreground">
+            Reset zoom
+          </button>
+        )}
       </div>
       <div
         ref={setPlotEl}

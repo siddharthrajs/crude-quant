@@ -1,7 +1,10 @@
 import { useMemo, useState } from "react"
 import { Line, LineChart, XAxis } from "recharts"
+import { PencilIcon } from "lucide-react"
+import { Button } from "@/components/ui/button"
 import { Card, CardAction, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { ChartContainer, ChartTooltip, ChartTooltipContent, type ChartConfig } from "@/components/ui/chart"
+import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { directionClass, directionOf } from "@/hooks/use-flash"
 import { formatSignedUsd } from "@/lib/format"
@@ -166,8 +169,39 @@ function NoteBlock({ label, text }: { label: string; text: string | null }) {
   )
 }
 
-/** The clicked trade's reasons: the entry note it was opened with and the exit note it was closed with. */
-function TradeNotesCard({ entry }: { entry: JournalEntry | null }) {
+export type JournalNotes = { entry_note: string | null; exit_note: string | null }
+
+/** The clicked trade's reasons: the entry note it was opened with and the exit note it was closed
+ * with. With `onSave` (the viewer owns the trade), both can be edited in place. */
+function TradeNotesCard({ entry, onSave }: { entry: JournalEntry | null; onSave?: (entry: JournalEntry, notes: JournalNotes) => Promise<void> }) {
+  const [editing, setEditing] = useState(false)
+  const [entryDraft, setEntryDraft] = useState("")
+  const [exitDraft, setExitDraft] = useState("")
+  const [saving, setSaving] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+
+  function startEdit() {
+    if (!entry) return
+    setEntryDraft(entry.entry_note ?? "")
+    setExitDraft(entry.exit_note ?? "")
+    setError(null)
+    setEditing(true)
+  }
+
+  async function save() {
+    if (!entry || !onSave) return
+    setSaving(true)
+    setError(null)
+    try {
+      await onSave(entry, { entry_note: entryDraft.trim() || null, exit_note: exitDraft.trim() || null })
+      setEditing(false)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Could not save the notes.")
+    } finally {
+      setSaving(false)
+    }
+  }
+
   return (
     <Card size="sm" className="shrink-0">
       <CardHeader>
@@ -177,10 +211,38 @@ function TradeNotesCard({ entry }: { entry: JournalEntry | null }) {
             {entry.strategy_label} — {entry.side === "long" ? "Long" : "Short"} {entry.size} · <span className={directionClass(directionOf(0, entry.realized_pnl))}>{usd(entry.realized_pnl)}</span>
           </CardDescription>
         )}
+        {entry && onSave && !editing && (
+          <CardAction>
+            <Button type="button" variant="ghost" size="sm" className="h-6 gap-1 px-2 text-xs" onClick={startEdit}>
+              <PencilIcon className="size-3" />
+              Edit
+            </Button>
+          </CardAction>
+        )}
       </CardHeader>
       <CardContent>
         {entry === null ? (
           <p className="text-xs text-muted-foreground">Click a trade to see its entry and exit notes.</p>
+        ) : editing ? (
+          <div className="flex flex-col gap-3">
+            <label className="flex flex-col gap-1">
+              <span className="text-[10px] tracking-wide text-muted-foreground uppercase">Entry note</span>
+              <Textarea value={entryDraft} onChange={(e) => setEntryDraft(e.target.value)} maxLength={2000} rows={3} className="text-xs" placeholder="Why was this trade put on?" autoFocus />
+            </label>
+            <label className="flex flex-col gap-1">
+              <span className="text-[10px] tracking-wide text-muted-foreground uppercase">Exit note</span>
+              <Textarea value={exitDraft} onChange={(e) => setExitDraft(e.target.value)} maxLength={2000} rows={3} className="text-xs" placeholder="Why was it exited?" />
+            </label>
+            {error && <p className="text-xs text-destructive">{error}</p>}
+            <div className="flex justify-end gap-2">
+              <Button type="button" variant="outline" size="sm" disabled={saving} onClick={() => setEditing(false)}>
+                Cancel
+              </Button>
+              <Button type="button" size="sm" disabled={saving} onClick={save}>
+                {saving ? "Saving…" : "Save"}
+              </Button>
+            </div>
+          </div>
         ) : (
           <div className="flex flex-col gap-3">
             <NoteBlock label="Entry note" text={entry.entry_note} />
@@ -195,7 +257,16 @@ function TradeNotesCard({ entry }: { entry: JournalEntry | null }) {
 /** The journal's KPI column, replacing the audit trail's per-row "changes" pane -- this trail is
  * always one shape of event (a closed trade), so the pane's job is better done as a summary of all
  * of them than a diff of one or two. Under the curve, the clicked trade's (`selected`) notes. */
-export function JournalAnalyticsPanel({ journal, selected = null }: { journal: readonly JournalEntry[]; selected?: JournalEntry | null }) {
+export function JournalAnalyticsPanel({
+  journal,
+  selected = null,
+  onSaveNotes,
+}: {
+  journal: readonly JournalEntry[]
+  selected?: JournalEntry | null
+  /** Set when the viewer may edit `selected`'s notes (their own trade, not a manager's read-only view). */
+  onSaveNotes?: (entry: JournalEntry, notes: JournalNotes) => Promise<void>
+}) {
   const stats = useMemo(() => computeStats(journal), [journal])
 
   return (
@@ -213,7 +284,8 @@ export function JournalAnalyticsPanel({ journal, selected = null }: { journal: r
 
       <JournalPnlCurveChart journal={journal} />
 
-      <TradeNotesCard entry={selected} />
+      {/* Keyed by trade so switching rows drops any half-finished edit. */}
+      <TradeNotesCard key={selected?.id ?? "none"} entry={selected} onSave={onSaveNotes} />
     </section>
   )
 }

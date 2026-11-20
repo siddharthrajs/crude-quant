@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from "react"
-import type { Annotations, Data, Layout, Shape } from "plotly.js"
+import type { Annotations, Data, Shape } from "plotly.js"
 import { Plot, type Theme } from "@/components/strategy-lab/plot"
 import { useAuth } from "@/hooks/use-auth"
 import {
@@ -8,7 +8,6 @@ import {
   type CurveLab2Strategy,
   type RollEvent,
   type RollEvents,
-  type RollSection,
   type RollSectionId,
 } from "@/lib/curve-lab-2-api"
 import {
@@ -25,6 +24,9 @@ import {
   type Series,
 } from "@/lib/roll-transition"
 import { FullscreenPanel } from "./fullscreen-panel"
+import { CHART_H, SECTION_FILL, line, offsetLayout, offsets, type Built } from "./roll-chart-layout"
+import { ChartPanel } from "./roll-charts"
+import { RollFlowSection } from "./roll-flow-section"
 import { fieldClass, useMeta } from "./shared"
 
 // Curve Lab 2's Roll transition view: every expiry of a front contract N (day E) as one event, on an axis of
@@ -32,13 +34,11 @@ import { fieldClass, useMeta } from "./shared"
 // keeps the same legs all win, so it runs straight through the expiry with no jump from the generic slots
 // shifting. The win is cut into sections (pre-roll, roll, expiry, post-roll, ...) the backend derives from the
 // open-interest hand-over. Charts: the selected roll, the typical roll over history, outrights and open interest of
-// N / N+1 / N+2, a section scorecard, and a carry-over scatter (does a section's move continue after expiry?).
+// N / N+1 / N+2, a section scorecard, a carry-over scatter (does a section's move continue after expiry?) and, for
+// CL and Brent, the aggressor order flow from time and sales (roll-flow-section.tsx).
 // Backend: app/routers/curve_lab_2_roll.py; statistics: lib/roll-transition.ts.
 
 const STORAGE_KEY = "crude-quant-curve-lab-2-roll"
-const CHART_H = 280
-
-type Built = { data: Data[]; layout: Partial<Layout> }
 
 interface Persisted {
   product: CurveLab2Product
@@ -66,17 +66,6 @@ const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "
 const monthOf = (contract: string) => MONTHS["FGHJKMNQUVXZ".indexOf(contract[0])] ?? contract[0]
 const signed = (v: number | null, dp = 2) => (v === null ? "–" : `${v > 0 ? "+" : v < 0 ? "−" : ""}${Math.abs(v).toFixed(dp)}`)
 
-/** Section shading: a theme token and an opacity per section (none for the quiet ones). */
-const SECTION_FILL: Record<RollSectionId, [string, number] | null> = {
-  early: null,
-  pre: ["var(--chart-4)", 0.1],
-  roll: ["var(--chart-2)", 0.12],
-  expiry: ["var(--destructive)", 0.2],
-  post: ["var(--chart-3)", 0.14],
-  front: null,
-  own: ["var(--chart-2)", 0.06],
-}
-
 function useRollEvents(token: string | null, product: CurveLab2Product, strategy: CurveLab2Strategy) {
   const key = `${product}|${strategy}`
   const [res, setRes] = useState<{ key: string; data: RollEvents | null; error: string | null }>({ key: "", data: null, error: null })
@@ -91,62 +80,6 @@ function useRollEvents(token: string | null, product: CurveLab2Product, strategy
     return () => ctl.abort()
   }, [token, product, strategy, key])
   return { data: res.key === key ? res.data : null, error: res.key === key ? res.error : null, loading: res.key !== key }
-}
-
-/** Shared x-axis, section bands and the E line for every offset chart. */
-function offsetLayout(t: Theme, win: number, sections: RollSection[], labels: boolean, extraShapes: Partial<Shape>[] = []): Partial<Layout> {
-  const shapes: Partial<Shape>[] = []
-  const annotations: Partial<Annotations>[] = []
-  for (const s of sections) {
-    const fill = SECTION_FILL[s.id]
-    if (fill) shapes.push({ type: "rect", xref: "x", yref: "paper", x0: s.from - 0.5, x1: s.to + 0.5, y0: 0, y1: 1, fillcolor: t.c(fill[0], fill[1]), line: { width: 0 }, layer: "below" })
-    if (labels && s.to - s.from >= 2)
-      annotations.push({ x: (s.from + s.to) / 2, y: 1, xref: "x", yref: "paper", yanchor: "top", text: s.label, showarrow: false, font: { size: 10, color: t.c("var(--muted-foreground)") } })
-  }
-  shapes.push({ type: "line", xref: "x", yref: "paper", x0: 0, x1: 0, y0: 0, y1: 1, line: { color: t.c("var(--muted-foreground)"), width: 1 } }, ...extraShapes)
-  const ticks = Array.from({ length: 2 * win + 1 }, (_, i) => i - win).filter((x) => x % 5 === 0)
-  return {
-    shapes,
-    annotations,
-    margin: { l: 52, r: 12, t: 26, b: 28 },
-    xaxis: { range: [-win - 0.5, win + 0.5], tickvals: ticks, ticktext: ticks.map(offsetLabel), zeroline: false, automargin: false, hoverformat: "d" },
-    yaxis: { tickformat: ".2f", automargin: false, zeroline: false },
-    hovermode: "x unified",
-  }
-}
-
-const offsets = (win: number) => Array.from({ length: 2 * win + 1 }, (_, i) => i - win)
-
-function line(name: string, x: number[], y: Series, color: string, opts: { width?: number; dash?: "solid" | "dash" | "dot"; dates?: (string | null)[] } = {}): Data {
-  return {
-    type: "scatter",
-    mode: "lines",
-    name,
-    x,
-    y,
-    customdata: opts.dates ?? undefined,
-    connectgaps: false,
-    line: { color, width: opts.width ?? 2, dash: opts.dash ?? "solid" },
-    hovertemplate: opts.dates ? "%{y:.2f} · %{customdata}<extra></extra>" : "%{y:.2f}<extra></extra>",
-  }
-}
-
-function ChartPanel({ title, sub, build, revision }: { title: string; sub?: string; build: (t: Theme) => { data: Data[]; layout: Partial<Layout> }; revision: string }) {
-  return (
-    <FullscreenPanel className="flex min-w-0 flex-col">
-      {(full) => (
-        <>
-          <div className="mb-1 flex flex-wrap items-baseline gap-x-3 gap-y-0.5 pr-8 text-xs">
-            <span className="font-semibold">{title}</span>
-            {sub && <span className="text-muted-foreground">{sub}</span>}
-          </div>
-          <div className={full ? "min-h-0 flex-1" : ""} style={full ? undefined : { height: CHART_H }}>
-            <Plot build={build} revision={revision} />
-          </div>
-        </>
-      )}
-    </FullscreenPanel>
-  )
 }
 
 export function RollTransitionView() {
@@ -540,6 +473,8 @@ export function RollTransitionView() {
               )}
             </FullscreenPanel>
           </div>
+
+          {(state.product === "CL" || state.product === "CO") && <RollFlowSection product={state.product} />}
         </>
       )}
     </div>

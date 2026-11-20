@@ -10,7 +10,7 @@ from app.auth.dependencies import get_current_user
 from app.db.base import get_db
 from app.db.models import Book, PaperPositionFill, PaperPosition, PaperTradeJournalEntry, User
 from app.schemas import (
-    FillOut, JournalDeleteIn, JournalEntryOut, PositionCloseIn, PositionCreateIn, PositionEditIn, PositionOut,
+    FillOut, JournalDeleteIn, JournalEntryOut, JournalNotesIn, PositionCloseIn, PositionCreateIn, PositionEditIn, PositionOut,
 )
 
 router = APIRouter(prefix="/api/paper-positions", tags=["paper-positions"])
@@ -559,3 +559,25 @@ async def delete_journal_entries(
     for entry in entries:
         await db.delete(entry)
     await db.commit()
+
+
+@router.patch("/journal/{entry_id}/notes", response_model=JournalEntryOut)
+async def update_journal_notes(
+    entry_id: int,
+    body: JournalNotesIn,
+    db: AsyncSession = Depends(get_db),
+    user: User = Depends(get_current_user),
+) -> JournalEntryOut:
+    """Rewrites a closed trade's entry and exit notes. Owner only -- same rule as deleting it."""
+    entry = (await db.execute(select(PaperTradeJournalEntry).where(PaperTradeJournalEntry.id == entry_id))).scalar_one_or_none()
+    if entry is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Journal entry not found")
+    if entry.owner_id != user.id:
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Can only edit your own journal entries")
+
+    entry.entry_note = _note(body.entry_note)
+    entry.exit_note = _note(body.exit_note)
+    await db.commit()
+    await db.refresh(entry)
+    fields = {name: getattr(entry, name) for name in JournalEntryOut.model_fields if name != "owner_username"}
+    return JournalEntryOut(**fields, owner_username=user.username)

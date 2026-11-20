@@ -8,6 +8,8 @@ export type CurveLab2Strategy = "outright" | "spread" | "fly" | "dfly" | "dfly12
 export type CurveLab2Mode = "GD" | "RD"
 /** The solid curve: official settlements, or the session's last trade. */
 export type CurveLab2Price = "settle" | "close"
+/** What the strategy is built from: outright legs, or adjacent calendar spreads (their own traded opens and closes). */
+export type CurveLab2Legs = "outright" | "spread"
 
 export interface CurveLab2Meta {
   products: { root: CurveLab2Product; label: string; first: string | null; last: string | null }[]
@@ -32,6 +34,8 @@ export interface CurveLab2Curves {
   strategy_label: string
   weights: number[]
   price: CurveLab2Price
+  /** What it was built from (an outright is always built from outrights). */
+  legs: CurveLab2Legs
   days: CurveLab2Day[]
 }
 
@@ -52,10 +56,11 @@ export const getCurveLab2Meta = (token: string, signal?: AbortSignal) => call<Cu
 
 export function getCurveLab2Curves(
   token: string,
-  q: { product: CurveLab2Product; strategy: CurveLab2Strategy; start: string; end: string; depth: number; price: CurveLab2Price },
+  q: { product: CurveLab2Product; strategy: CurveLab2Strategy; start: string; end: string; depth: number; price: CurveLab2Price; legs?: CurveLab2Legs },
   signal?: AbortSignal,
 ) {
   const params = new URLSearchParams({ product: q.product, strategy: q.strategy, start: q.start, end: q.end, depth: String(q.depth), price: q.price })
+  if (q.legs) params.set("legs", q.legs)
   return call<CurveLab2Curves>(token, `/api/curve-lab-2/curves?${params}`, { signal })
 }
 
@@ -113,6 +118,73 @@ export interface RollEvents {
 
 export const getRollEvents = (token: string, q: { product: CurveLab2Product; strategy: CurveLab2Strategy }, signal?: AbortSignal) =>
   call<RollEvents>(token, `/api/curve-lab-2/roll-events?${new URLSearchParams(q)}`, { signal })
+
+// Roll order flow (backend/app/routers/curve_lab_2_roll_flow.py): aggressor flow from QH time and sales in the first
+// four contracts, their spreads and flies, on the roll view's axis. CL and Brent only.
+
+export type RollFlowProduct = "CL" | "CO"
+export type RollFlowKind = "outright" | "spread" | "fly"
+type Daily = (number | null)[]
+
+export interface RollFlowEvent {
+  out: string
+  in: string
+  expiry: string
+  back: boolean
+  L: number | null
+  /** The roll still running: its front has not expired yet. */
+  live: boolean
+  dates: (string | null)[]
+  /** One code per role, in `roles` order. */
+  codes: string[]
+  /** Per role, per offset, from QH daily bars: lots traded. Null before the bars carry buy and sell volume. */
+  lots: Daily[]
+  /** Aggressor buys minus sells, lots. */
+  net: Daily[]
+  /** Settlement (spreads and flies from their legs). */
+  px: Daily[]
+  /** Open interest of N .. N+3. */
+  oi: Daily[]
+}
+
+export interface RollFlow {
+  product: RollFlowProduct
+  product_label: string
+  window: number
+  crossover: number
+  sections: RollSection[]
+  roles: { id: string; kind: RollFlowKind }[]
+  size: Record<RollFlowKind, { large: number; block: number }>
+  /** Days with daily-bar flow; order sizes (time and sales) exist from `orders_from`. */
+  coverage: { first: string | null; last: string | null; days: number; orders_from: string }
+  events: RollFlowEvent[]
+}
+
+export const getRollFlow = (token: string, product: RollFlowProduct, signal?: AbortSignal) =>
+  call<RollFlow>(token, `/api/curve-lab-2/roll-flow?${new URLSearchParams({ product })}`, { signal })
+
+/** One roll's order-size flow for one role, per offset, from time and sales (fetched live, kept in API memory). */
+export interface RollFlowOrderSeries {
+  expiry: string
+  /** Net of orders of at least size[kind].large lots. */
+  large: Daily
+  /** Net of orders of at least size[kind].block lots. */
+  block: Daily
+  /** Net inside the settlement window. */
+  settle_net: Daily
+  sweeps: Daily
+}
+
+export interface RollFlowOrders {
+  code: string
+  /** The requested roll's days: fetched, still queued, failed. Poll while queued > 0. */
+  status: { total: number; done: number; queued: number; failed: number }
+  /** Every roll with any of this role's days fetched so far. */
+  events: RollFlowOrderSeries[]
+}
+
+export const getRollFlowOrders = (token: string, product: RollFlowProduct, expiry: string, role: number, signal?: AbortSignal) =>
+  call<RollFlowOrders>(token, `/api/curve-lab-2/roll-flow/orders?${new URLSearchParams({ product, expiry, role: String(role) })}`, { signal })
 
 // Distribution (backend/app/routers/curve_lab_2_distribution.py). Strategies are QH codes: generic CL1-2, running CLZ26-F27.
 
